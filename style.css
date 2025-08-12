@@ -61,3 +61,25 @@ nav{
     gap: 1vw;
     margin-top: 6vh;
 }
+.home{
+  height: 70vh;
+  margin-top: 7vh;
+}
+.mission{
+  height:23vh;
+  background-color: #84AEAD;
+  h1{
+    color:#fff;
+    text-align: center;
+padding-top: 3vh;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  p{
+    color:#fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 100;
+   
+  }
+}
