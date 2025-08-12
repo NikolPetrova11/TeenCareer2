@@ -1,9 +1,50 @@
-.logo{
-   margin-left: 12.81vw; 
-   margin-top: 3.33vh;
-   margin-left: 12.81vw;
-   margin-top: 3.33vh; 
-    
 
-    
+*{
+    font-family: 'Montserrat';
+}header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+
+  
+}
+
+.logo {
+  width: 10.94vw;
+  height: auto;
+  margin-top: 3.33vh;
+  margin-left: 12.81vw;
+}
+
+nav{
+    display:flex;
+    margin-right: 12.81vw;
+ margin-top: 6vh;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 20px;
+  
+}
+
+.nav-links ul li a {
+  color: #09989e;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: bold;
+}
+.nav-links ul li::after{
+    content:'';
+    width:0%;
+    height: 3px;
+    background:  #09989e;
+    display: block;
+    margin:auto;
+    transition:0.5s;
+}
+.nav-links ul li:hover::after{
+    width:100%;
 }
