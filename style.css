@@ -66,21 +66,58 @@ nav{
   width: auto;
   margin-top: 7vh;
 }
-.mission{
-  height:23vh;
+.mission {
+  position: relative;
+  height: 23vh;
   background-color: #84AEAD;
-  h1{
-    color:#fff;
-    text-align: center;
-padding-top: 3vh;
-    font-weight: 700;
-    font-size: 20px;
-  }
-  h2{
-    color:#fff;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 0;
-   
-  }
+}
+
+.mission h1 {
+  color: #fff;
+  text-align: center;
+  padding-top: 3vh;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.mission h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.mission img {
+  position: absolute;
+  top: 17vh;
+  transform: translateY(-50%);
+  width: 5vw;
+  height: auto;
+}
+
+.mission-image1 {
+  left: 20vw;
+}
+
+
+.mission-image2 {
+  left: 47vw;
+  transform: translateY(-50%);
+}
+
+
+.mission-image3 {
+  right: 20vw;
+}
+
+
+
+
+
+
+.mission-image3 {
+width:5vw;
+height: auto;
+
+
 }
