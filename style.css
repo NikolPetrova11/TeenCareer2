@@ -29,12 +29,39 @@ nav{
   padding: 8px 20px;
   
 }
+.nav-links ul {
+    display: flex;
+    flex-wrap: nowrap; /* Забраняваме прехвърляне на нов ред */
+    gap: 1vw; /* Намаляваме разстоянието между елементите */
+}
 
 .nav-links ul li a {
   color: #09989e;
   text-decoration: none;
   font-size: 19px;
   font-weight: bold;
+  font-size: clamp(14px, 1.1vw, 19px); /* Ще се смалява при нужда */
+}
+@media (max-width: 1100px) {
+    header {
+        padding: 2vh 4vw; /* малко по-малки падинги */
+    }
+
+    .nav-links ul {
+        gap: 0.5vw; /* още по-малко разстояние */
+    }
+
+    .nav-links ul li a {
+        font-size: clamp(12px, 1vw, 16px);
+    }
+
+    .logo {
+        width: 10vw; /* смаляваме логото */
+    }
+
+    .profile {
+        width: 2vw; /* смаляваме иконата */
+    }
 }
 .nav-links ul li::after{
     content:'';
@@ -71,47 +98,80 @@ nav{
 
 
 .mission {
-  position: relative;
-  height: 29vh;
-  background-color: #84AEAD;
+    background-color: #84AEAD;
+    padding: 4vh 2vw;
+    text-align: center;
 }
 
 .mission h1 {
-  color: #fff;
-  text-align: center;
-  padding-top: 3vh;
-  font-weight: 700;
-  font-size: 20px;
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(18px, 2vw, 20px);
+    margin-bottom: 1vh;
 }
 
 .mission h2 {
-  color: #fff;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 400;
+    color: #fff;
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 400;
+    margin-bottom: 3vh;
 }
 
-
+.icon-row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 12vw; /* вместо 5vw – увеличаваме разстоянието */
+    padding-left: 306px;
+    padding-right: 306px;
+    box-sizing: border-box;
+}
 .icon-wrapper {
-  position: absolute;
-  top: 65%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 150px;
 }
 
 .icon-wrapper img {
-  width: 5vw;
-  height: auto;
+    width: clamp(40px, 5vw, 80px);
+    height: auto;
 }
 
 .icon-wrapper p {
-  color: #fff;
-  font-size: 16px;
-  margin-top: 0.5vh;
+    color: #fff;
+    font-size: clamp(12px, 1.2vw, 16px);
+    margin-top: 0.5vh;
 }
+
+/* Среден екран — смаляване */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .icon-row {
+        gap: 3vw;
+    }
+    .icon-wrapper img {
+        width: clamp(35px, 4vw, 60px);
+    }
+    .icon-wrapper p {
+        font-size: clamp(10px, 1vw, 14px);
+    }
+    .mission h1 {
+        font-size: clamp(16px, 1.8vw, 18px);
+    }
+    .mission h2 {
+        font-size: clamp(12px, 1.3vw, 16px);
+    }
+}
+
+/* Мобилен — подреждане под формата на колона */
+@media (max-width: 768px) {
+    .icon-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 3vh;
+    }
+}
+
 
 
  
