@@ -66,9 +66,13 @@ nav{
   width: auto;
   margin-top: 7vh;
 }
+
+
+
+
 .mission {
   position: relative;
-  height: 23vh;
+  height: 29vh;
   background-color: #84AEAD;
 }
 
@@ -87,37 +91,31 @@ nav{
   font-weight: 400;
 }
 
-.mission img {
+
+.icon-wrapper {
   position: absolute;
-  top: 17vh;
+  top: 65%;
   transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.icon-wrapper img {
   width: 5vw;
   height: auto;
 }
 
-.mission-image1 {
-  left: 20vw;
+.icon-wrapper p {
+  color: #fff;
+  font-size: 16px;
+  margin-top: 0.5vh;
 }
 
 
-.mission-image2 {
-  left: 47vw;
-  transform: translateY(-50%);
-}
-
-
-.mission-image3 {
-  right: 20vw;
-}
+ 
 
 
 
 
-
-
-.mission-image3 {
-width:5vw;
-height: auto;
-
-
-}
