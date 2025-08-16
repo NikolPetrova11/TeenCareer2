@@ -1,34 +1,19 @@
-<!DOCTYPE html>
-<html lang="bg">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-</head>
-<body>
-    <div class="container">
-        <div class="form-box active" id="login-form">
-            <form action="">
-                <h2>Вход</h2>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" name="Login">Вход</button>
-                <p >Нямате акаунт? <a href="#" onclick="showForm('register-form')">Регистрация</a></p>
-            </form>
-        </div>
-        <div class="form-box" id="register-form">
-            <form action="">
-                <h2>Регистрация</h2>
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" name="Register">Регистрация</button>
-                <p >Вече имате акаунт? <a href="#" onclick="showForm('login-form')">Вход</a></p>
-                
-            </form>
-        </div>
+<button class="profile-btn">
+    <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
+  </button>
+  <div class="popup">
+    <div class="close-btn">&times;</div>
+    <div class="form">
+       <div class="form-element">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Въведи имейл">
+       </div> 
+       <div class="form-element"></div>
+       <label for="password">Password</label>
+         <input type="password" id="password" placeholder="Въведи парола">
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
+     <div class="form-element">
+     <input type=" checkbox" id="remember-me">
+     <label for="remember-me">Запомни ме</label>
+  </div>
+  </div>
