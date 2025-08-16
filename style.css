@@ -75,13 +75,16 @@ nav{
 .nav-links ul li:hover::after{
     width:100%;
 }
+
 .profile{
     
     margin-right: 12.81vw;
     width: 2.34vw;
     height: auto;
 
-}
+ } 
+  
+
 .menu-container {
     display: flex;
     align-items: center;
