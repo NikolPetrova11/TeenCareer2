@@ -1,109 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
 
-*{
-    font-family: 'Montserrat';
-}header {
+header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center; 
-
-  
+  padding: 3.33vh 12.81vw;
 }
 
 .logo {
-  width: 10.94vw;
-  height: auto;
-  margin-top: 3.33vh;
-  margin-left: 12.81vw;
+  height: 75px;
+  width: auto;
+}
+ .nav-links {
+  position: relative;
+  top: 5px; 
 }
 
-nav{
-    display:flex;
-   margin-right: 0vw;
- margin-top: 6vh;
-    justify-content: space-between;
-    align-items: center;
-}
-.nav-links ul li {
-  list-style: none;
-  display: inline-block;
-  padding: 8px 20px;
-  
-}
 .nav-links ul {
-    display: flex;
-    flex-wrap: nowrap; 
-    gap: 1vw; 
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  align-items: center;
 }
 
 .nav-links ul li a {
+  text-decoration: none;
   color: #09989e;
-  text-decoration: none;
-  font-size: 19px;
-  font-weight: bold;
-  font-size: clamp(14px, 1.1vw, 19px);
-}
-@media (max-width: 1100px) {
-    header {
-        padding: 2vh 4vw; 
-    }
-
-    .nav-links ul {
-        gap: 0.5vw; 
-    }
-
-    .nav-links ul li a {
-        font-size: clamp(12px, 1vw, 16px);
-    }
-
-    .logo {
-        width: 10vw;
-    }
-
-    .profile {
-        width: 2vw; 
-    }
-}
-.nav-links ul li::after{
-    content:'';
-    width:0%;
-    height: 3px;
-    background:  #09989e;
-    display: block;
-    margin:auto;
-    transition:0.5s;
-}
-.nav-links ul li:hover::after{
-    width:100%;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between; /* лого отляво, линкове в средата, бутон вдясно */
-  align-items: center;
-  padding: 10px 30px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px; /* разстояние между линковете */
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: teal;
   font-weight: 600;
+  font-size: clamp(14px, 1.1vw, 18px);
+  top:5px;
+}
+
+.nav-links ul li::after {
+  content:'';
+  width:0%;
+  height: 3px;
+  background:  #09989e;
+  display: block;
+  margin:auto;
+  transition:0.5s;
+}
+
+.nav-links ul li:hover::after {
+  width:100%;
 }
 
 .profile-btn {
   background: none;
   border: none;
   cursor: pointer;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 55px;
+  height: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 40px;
 }
 
 .profile {
@@ -113,134 +69,146 @@ nav{
   object-fit: cover;
 }
 
-
-  
-
-.menu-container {
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-    margin-top: 6vh;
-}
-.home{
-  height: 80vh;
-  width: auto;
-  margin-top: 7vh;
+.hero-video {
+  margin: 20px 12.81vw 0 12.81vw;
+  overflow: hidden;
 }
 
-
-
+.hero-video video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
 
 .mission {
-    background-color: #84AEAD;
-    padding: 4vh 2vw;
-    text-align: center;
+  background-color: #84AEAD;
+  padding: 4vh 2vw;
+  text-align: center;
 }
 
 .mission h1 {
-    color: #fff;
-    font-weight: 700;
-    font-size: clamp(18px, 2vw, 20px);
-    margin-bottom: 1vh;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 20px);
+  margin-bottom: 1vh;
 }
 
 .mission h2 {
-    color: #fff;
-    font-size: clamp(14px, 1.5vw, 18px);
-    font-weight: 400;
-    margin-bottom: 3vh;
+  color: #fff;
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-weight: 400;
+  margin-bottom: 3vh;
 }
 
 .icon-row {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 14vw; 
-    padding-left: 306px;
-    padding-right: 306px;
-    box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 14vw; 
+  padding: 0 306px;
+  box-sizing: border-box;
 }
+
 .icon-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 150px;
 }
 
 .icon-wrapper img {
-    width: clamp(70px, 8vw, 100px);
-    height: auto;
+  width: clamp(70px, 8vw, 100px);
+  height: auto;
 }
 
 .icon-wrapper p {
-    color: #fff;
-    font-size: clamp(12px, 1.2vw, 16px);
-    margin-top: 0.5vh;
+  color: #fff;
+  font-size: clamp(12px, 1.2vw, 16px);
+  margin-top: 0.5vh;
 }
 
-
-@media (max-width: 1024px) and (min-width: 768px) {
-    .icon-row {
-        gap: 3vw;
-    }
-    .icon-wrapper img {
-        width: clamp(35px, 4vw, 60px);
-    }
-    .icon-wrapper p {
-        font-size: clamp(10px, 1vw, 14px);
-    }
-    .mission h1 {
-        font-size: clamp(16px, 1.8vw, 18px);
-    }
-    .mission h2 {
-        font-size: clamp(12px, 1.3vw, 16px);
-    }
-}
-
-
-@media (max-width: 768px) {
-    .icon-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 3vh;
-    }
-}
-.quotes{
-  height:100vh;
- 
+.quotes {
+  height: 100vh;
   text-align: center;
-
-
-
 }
-.quote1{
+
+.quote1 {
   margin-top: 18vh;
   font-weight: bold;
   font-size: 32px;
   color:#84AEAD;
-   margin-left: 29vw;
+  margin-left: 29vw;
   margin-right: 29vw;
-
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
 
-.quote2{
+.quote2 {
   margin-top: 4vh;
-  font-family: 'Caveat';
-  font-size: 32px;
-  color:#8274A1;
   font-family: 'Caveat', cursive;
-    font-weight: 400;
-    margin-left: 28.5vw;
-    margin-right: 29vw;
-    font-size: 36px;
+  font-weight: 400;
+  font-size: 36px;
+  color:#8274A1;
+  margin-left: 28.5vw;
+  margin-right: 29vw;
 }
-.quote3{
+
+.quote3 {
   margin-left: 29vw;
   margin-right: 29vw;
   color:#84AEAD;
   margin-top: 4vh;
 }
+
+@media (max-width: 1100px) {
+  header {
+    padding: 2vh 4vw; 
+  }
+
+  .nav-links ul {
+    gap: 2vw; 
+  }
+
+  .nav-links ul li a {
+    font-size: clamp(12px, 1vw, 16px);
+  }
+
+  .logo {
+    width: 10vw;
+  }
+
+  .profile {
+    width: 2vw; 
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .icon-row {
+    gap: 3vw;
+  }
+  .icon-wrapper img {
+    width: clamp(35px, 4vw, 60px);
+  }
+  .icon-wrapper p {
+    font-size: clamp(10px, 1vw, 14px);
+  }
+  .mission h1 {
+    font-size: clamp(16px, 1.8vw, 18px);
+  }
+  .mission h2 {
+    font-size: clamp(12px, 1.3vw, 16px);
+  }
+}
+
+@media (max-width: 768px) {
+  .icon-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+  }
+}
+
 
 
  
