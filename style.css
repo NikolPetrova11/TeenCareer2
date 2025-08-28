@@ -5,27 +5,40 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
+}
+
+.header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3.33vh 12.81vw;
+  padding: 2vh 12.81vw;
 }
 
 .logo {
-  height: 75px;
+  height: clamp(50px, 6vh, 60px);
   width: auto;
-}
- .nav-links {
-  position: relative;
-  top: 5px; 
 }
 
 .nav-links ul {
   display: flex;
-  gap: 40px;
+  gap: clamp(30px, 3vw, 40px);
   list-style: none;
   align-items: center;
+  padding-top: 1.5%;
 }
 
 .nav-links ul li a {
@@ -33,14 +46,13 @@ header {
   color: #09989e;
   font-weight: 600;
   font-size: clamp(14px, 1.1vw, 18px);
-  top:5px;
 }
 
 .nav-links ul li::after {
   content:'';
   width:0%;
-  height: 3px;
-  background:  #09989e;
+  height: 0.3vh;
+  background: #09989e;
   display: block;
   margin:auto;
   transition:0.5s;
@@ -54,12 +66,12 @@ header {
   background: none;
   border: none;
   cursor: pointer;
-  width: 55px;
-  height: 55px;
+  width: clamp(35px, 4vw, 45px);
+  height: clamp(35px, 4vw, 45px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 40px;
+  margin-left: clamp(10px, 2vw, 20px);
 }
 
 .profile {
@@ -67,18 +79,30 @@ header {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  padding-top: 1.5%;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: clamp(24px, 4vw, 32px);
+  background: none;
+  border: none;
+  color: #09989e;
+  cursor: pointer;
 }
 
 .hero-video {
-  margin: 20px 12.81vw 0 12.81vw;
+  position: relative;
+  width: calc(100% - 25.62vw);
+  height: calc(100vh - 100px);
+  margin: 100px 12.81vw 0 12.81vw;
   overflow: hidden;
 }
 
 .hero-video video {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .mission {
@@ -105,8 +129,8 @@ header {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 14vw; 
-  padding: 0 306px;
+  gap: clamp(100px, 14vw, 200px);
+  padding: 0 clamp(200px, 20vw, 306px);
   box-sizing: border-box;
 }
 
@@ -126,69 +150,67 @@ header {
   color: #fff;
   font-size: clamp(12px, 1.2vw, 16px);
   margin-top: 0.5vh;
-}
-
-.quotes {
-  height: 100vh;
   text-align: center;
 }
 
-.quote1 {
-  margin-top: 18vh;
-  font-weight: bold;
-  font-size: 32px;
-  color:#84AEAD;
-  margin-left: 29vw;
-  margin-right: 29vw;
+.quotes {
+  min-height: 60vh;
+  text-align: center;
+   padding-left: 24.5vw;
+     padding-right: 24.5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+.quote1, .quote2, .quote3 {
+  margin: 4vh 0;
+  max-width: 100%;
+}
+
+.quote1 {
+  font-weight: bold;
+  font-size: clamp(24px, 2.5vw, 32px);
+  color:#84AEAD;
+}
 
 .quote2 {
-  margin-top: 4vh;
   font-family: 'Caveat', cursive;
-  font-weight: 400;
-  font-size: 36px;
+  font-size: clamp(22px, 3vw, 36px);
   color:#8274A1;
-  margin-left: 28.5vw;
-  margin-right: 29vw;
 }
 
 .quote3 {
-  margin-left: 29vw;
-  margin-right: 29vw;
+  font-size: clamp(16px, 1.5vw, 20px);
   color:#84AEAD;
-  margin-top: 4vh;
 }
 
 @media (max-width: 1100px) {
   header {
     padding: 2vh 4vw; 
   }
-
   .nav-links ul {
     gap: 2vw; 
   }
-
   .nav-links ul li a {
     font-size: clamp(12px, 1vw, 16px);
   }
-
   .logo {
     width: 10vw;
   }
-
   .profile {
     width: 2vw; 
   }
 }
 
-@media (max-width: 1024px) and (min-width: 768px) {
+@media (max-width: 1024px) {
   .icon-row {
-    gap: 3vw;
+    gap: clamp(60px, 8vw, 150px);
+    padding: 0 5vw;
   }
   .icon-wrapper img {
-    width: clamp(35px, 4vw, 60px);
+    width: clamp(35px, 6vw, 60px);
   }
   .icon-wrapper p {
     font-size: clamp(10px, 1vw, 14px);
@@ -199,20 +221,39 @@ header {
   .mission h2 {
     font-size: clamp(12px, 1.3vw, 16px);
   }
-}
-
-@media (max-width: 768px) {
-  .icon-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 3vh;
+  .quotes {
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
 }
 
-
-
- 
-
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 7vh;
+    right: 5vw;
+    background: white;
+    border-radius: 1vw;
+    box-shadow: 0 0.5vh 1.5vh rgba(0,0,0,0.2);
+  }
+  .nav-links.active {
+    display: block;
+  }
+  .nav-links ul {
+    flex-direction: column;
+    padding: 2vh 2vw;
+    gap: 2vh;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .hero-video {
+    width: 90vw;
+    height: 50vh;
+    margin-top: 7vh;
+  }
+}
 
 
 

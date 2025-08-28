@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
 
-  
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -13,22 +12,25 @@
 <body>
  
   <header>
-  <img src="logo.png" class="logo">
+    <div class="header-container">
+      <img src="logo.png" class="logo" alt="TeenCareer">
 
-  <nav class="nav-links">
-    <ul>
-      <li><a href="#">Да започнем</a></li>
-      <li><a href="#">Хайде на работа!</a></li>
-      <li><a href="#">Твоят стартов комплект</a></li>
-      <li><a href="#">Съвети със стил</a></li>
-    </ul>
-  </nav>
+      <nav class="nav-links" id="navMenu">
+        <ul>
+          <li><a href="#">Да започнем</a></li>
+          <li><a href="#">Хайде на работа!</a></li>
+          <li><a href="#">Твоят стартов комплект</a></li>
+          <li><a href="#">Съвети със стил</a></li>
+        </ul>
+      </nav>
 
-  <button class="profile-btn">
-    <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
-  </button>
+      <button class="menu-toggle" id="menuToggle"></button>
 
-</header>
+      <button class="profile-btn">
+        <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
+      </button>
+    </div>
+  </header>
   
   <section class="hero-video">
     <video autoplay muted loop playsinline>
@@ -36,7 +38,6 @@
         Твоят браузър не поддържа видео таг.
     </video>
   </section>
-
 
   <section class="home"></section>
 
@@ -69,6 +70,10 @@
     <h2 class="quote2">Готов ли си да започнеш? </h2>
     <h3 class="quote3">Тук ще намериш всичко, което ти трябва, за да направиш уверено първите си стъпки към работа. Без излишни усложнения, без скучни теории — само практични съвети, инструменти и мотивация.</h3>
   </section>     
+
+  <section class="steps">
+    
+  </section>
 
 </body>
 </html>
