@@ -5,6 +5,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+
 img, video {
   max-width: 100%;
   height: auto;
@@ -185,15 +186,13 @@ header {
   font-size: clamp(16px, 1.5vw, 20px);
   color:#84AEAD;
 }
-.step2 {
-  float: right;
-  position: absolute;
- z-index: 2;
- 
-  
+.footer video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
-.step4{
-  float:right ;
+.footer{
+  margin-top: 3280px;
 }
 
 @media (max-width: 1100px) {
