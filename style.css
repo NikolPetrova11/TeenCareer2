@@ -185,6 +185,10 @@ header {
   font-size: clamp(16px, 1.5vw, 20px);
   color:#84AEAD;
 }
+.step1r {
+  position: relative;
+  padding-top: 25vh;
+}
 
 @media (max-width: 1100px) {
   header {
