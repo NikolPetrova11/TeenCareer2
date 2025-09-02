@@ -6,6 +6,7 @@
     <title>TeenCareer</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -30,6 +31,36 @@
         <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
       </button>
     </div>
+    <div class="popup">
+    <div class="close-btn">&times;</div>
+    <div class="form">
+       <div class="form-element">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Въведи имейл">
+       </div> 
+       <div class="form-element">
+       <label for="password">Password</label>
+         <input type="password" id="password" placeholder="Въведи парола">
+    </div>
+     <div class="form-element">
+     <input type="checkbox" id="remember-me">
+     <label for="remember-me">Запомни ме</label>
+  </div>
+  <div class="form-element">
+    <button>Вход</button>
+  </div>
+  <div class="form-element"></div>
+  <a href="">Забравена парола?</a>
+  </div>
+  <script>
+document.querySelector(".profile-btn").addEventListener("click", function() {
+    document.querySelector(".popup").classList.add("active");
+});
+
+document.querySelector(".popup .close-btn").addEventListener("click", function() {
+    document.querySelector(".popup").classList.remove("active");
+});
+</script>
   </header>
   
   <section class="hero-video">
