@@ -115,13 +115,29 @@ document.querySelector(".popup .close-btn").addEventListener("click", function()
   </section>
 
   <script>
-    // Toggle меню за мобилни
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
+    
+    
+  // Отваряне на login popup
+  document.querySelector(".profile-btn").addEventListener("click", function() {
+    document.querySelector(".overlay").classList.add("active");
+    document.querySelector(".popup").classList.add("active");
+  });
 
-    menuToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-    });
+  // Затваряне с Х
+  document.querySelector(".popup .close-btn").addEventListener("click", function() {
+    document.querySelector(".overlay").classList.remove("active");
+    document.querySelector(".popup").classList.remove("active");
+  });
+
+  // Затваряне при клик върху overlay-а
+  document.querySelector(".overlay").addEventListener("click", function(e) {
+    if (e.target.classList.contains("overlay")) {
+      document.querySelector(".overlay").classList.remove("active");
+      document.querySelector(".popup").classList.remove("active");
+    }
+  });
+
+
   </script>
   
 
