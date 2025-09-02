@@ -92,20 +92,26 @@
       cursor: pointer;
     }
 
-    .hero-video {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      margin-top: 12vh;
-      overflow: hidden;
-    }
+.hero-video {
+  position: relative;
+  width: calc(100% - 25.62vw);
+  margin: 10.5vh 12.81vw 0 12.81vw; /* базово адаптивно */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+}
 
-    .hero-video video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+@media (max-width: 480px) {
+  .hero-video {
+    margin-top: 5vh; /* по-малко на малки екрани */
+  }
+}
 
+.hero-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* изпълва целия контейнер */
+}
     .mission {
       background-color: #84AEAD;
       padding: 6vh 5vw;
