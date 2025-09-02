@@ -196,15 +196,15 @@ header {
 }
 
 .steps img {
-  position: absolute;
-  width: 80%;
+  position: relative;
+  width: 70%;
   height: auto;
 }
 
 .step1 { top: 0%; left: 0%; }
-.step2 { top: 20%; left: 35%; }
-.step3 { top: 50%; left: 25%; z-index: 2; }
-.step4 { top: 75%; right: 10%; width: 90%; }
+.step2 { left: 30%; }
+.step3 { left: 25%; z-index: 2; }
+.step4 {  right: 10%; width: 90%; }
 
 /* FOOTER */
 .footer video {
