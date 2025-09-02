@@ -9,12 +9,13 @@ body {
     height: 100vh;
 }
 
+/* POPUP */
 .popup {
-    position: absolute;
-    top: -150%;
+    position: fixed;   /* фиксирано в центъра на екрана */
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* скрито първоначално */
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.25); 
     width: 70vw;
     height: 70vh;
     max-width: 500px;
@@ -22,45 +23,40 @@ body {
     background-image: url(Registration-Form.png);
     background-size: cover;
     background-position: center;
-    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    display: flex;
     justify-content: center; 
     align-items: center;
-    transition: top 0ms ease-in-out 200ms, 
-                opacity 200ms ease-in-out 0ms, 
-                transform 20ms ease-in-out 0ms;
-                display: flex;
-                 z-index: 9999;
-         
+    z-index: 9999;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.popup .form {
-    width: 55%;  
-    max-width: 300px;
-}
-             
-
 
 .popup.active {
-    top: 50%;
+    transform: translate(-50%, -50%) scale(1); /* показва се */
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    transition: top 0ms ease-in-out 0ms, 
-                opacity 200ms ease-in-out 0ms, 
-                transform 20ms ease-in-out 0ms;
 }
 
+/* Бутон за затваряне */
 .popup .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background-color: #888;
-    color: #eee;
+    color: #fff;
+    font-size: 16px;
     text-align: center;
-    line-height: 15px;
+    line-height: 20px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+/* Формата */
+.popup .form {
+    width: 70%;  
+    max-width: 300px;
 }
 
 .popup .form .form-element {
@@ -90,21 +86,28 @@ body {
 
 .popup .form .form-element button {
     width: 100%;
-    height: 35px;
+    height: 40px;
     border: none;
     outline: none;
-    font-size: 14px;
+    font-size: 15px;
     background: #222;
     color: #f5f5f5;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
+.popup .form .form-element button:hover {
+    background: #444;
+}
+
+/* Линк "Забравена парола" */
 a:-webkit-any-link {
     display: block;
     text-align: right;
-    font-size: 15px;
+    font-size: 14px;
     color: #222;
     text-decoration: none;
     font-weight: 600;
 }
+
