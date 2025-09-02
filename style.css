@@ -204,7 +204,7 @@ header {
 .step1 { top: 0%; left: 0%; }
 .step2 { left: 30%; }
 .step3 { left: 25%; z-index: 2; }
-.step4 {  right: 10%; width: 90%; }
+.step4 {  right: 10%;  }
 
 /* FOOTER */
 .footer video {
