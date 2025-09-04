@@ -9,6 +9,27 @@
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Добавени стилове за overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none;
+    }
+    
+    .overlay.active {
+      display: block;
+    }
+  </style>
+
 </head>
 <body>
  
@@ -25,44 +46,67 @@
         </ul>
       </nav>
 
-      <button class="menu-toggle" id="menuToggle">☰</button>
-
-      <button class="profile-btn">
-        <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
-      </button>
+      <div class="right-buttons">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <button class="profile-btn">
+          <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
+        </button>
+      </div>
     </div>
+    
+    <div class="overlay"></div>
     <div class="popup">
-    <div class="close-btn">&times;</div>
-    <div class="form">
-       <div class="form-element">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Въведи имейл">
-       </div> 
-       <div class="form-element">
-       <label for="password">Password</label>
-         <input type="password" id="password" placeholder="Въведи парола">
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <div class="form-element">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Въведи имейл">
+        </div> 
+        <div class="form-element">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Въведи парола">
+        </div>
+        <div class="form-element">
+          <input type="checkbox" id="remember-me">
+          <label for="remember-me">Запомни ме</label>
+        </div>
+        <div class="form-element">
+          <button>Вход</button>
+        </div>
+        <div class="form-element">
+          <a href="">Забравена парола?</a>
+        </div>
+      </div>
     </div>
-     <div class="form-element">
-     <input type="checkbox" id="remember-me">
-     <label for="remember-me">Запомни ме</label>
-  </div>
-  <div class="form-element">
-    <button>Вход</button>
-  </div>
-  <div class="form-element"></div>
-  <a href="">Забравена парола?</a>
-  </div>
-  <script>
-document.querySelector(".profile-btn").addEventListener("click", function() {
-    document.querySelector(".popup").classList.add("active");
-});
+    
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const navMenu = document.getElementById("navMenu");
 
-document.querySelector(".popup .close-btn").addEventListener("click", function() {
-    document.querySelector(".popup").classList.remove("active");
-});
-</script>
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+
+      document.querySelector(".profile-btn").addEventListener("click", function() {
+        document.querySelector(".overlay").classList.add("active");
+        document.querySelector(".popup").classList.add("active");
+      });
+
+      document.querySelector(".popup .close-btn").addEventListener("click", function() {
+        document.querySelector(".overlay").classList.remove("active");
+        document.querySelector(".popup").classList.remove("active");
+      });
+
+      document.querySelector(".overlay").addEventListener("click", function(e) {
+        if (e.target.classList.contains("overlay")) {
+          document.querySelector(".overlay").classList.remove("active");
+          document.querySelector(".popup").classList.remove("active");
+        }
+      });
+    </script>
   </header>
   
+  <!-- Останалата част от HTML кода остава непроменена -->
   <section class="hero-video">
     <video autoplay muted loop playsinline>
         <source src="Header 3.mp4" type="video/mp4">
@@ -99,50 +143,22 @@ document.querySelector(".popup .close-btn").addEventListener("click", function()
     <h2 class="quote2">Готов ли си да започнеш? </h2>
     <h3 class="quote3">Тук ще намериш всичко, което ти трябва, за да направиш уверено първите си стъпки към работа. Без излишни усложнения, без скучни теории — само практични съвети, инструменти и мотивация.</h3>
   </section>     
-
-  <section class="steps"> 
-    <img class="step1" src="Desktop-1.1.png" alt="Стъпка 1">
-    <img class="step2" src="Desktop-1.2.png" alt="Стъпка 2">
-    <img class="step3" src="Desktop-1.3.png" alt="Стъпка 3">
-    <img class="step4" src="Desktop-1.4(21).png" alt="Стъпка 4">
-   
-  </section>
+<section class="steps">
+  
+</section>
 
   <section class="footer">
    <video autoplay muted loop playsinline>
         <source src="Footer 2.mp4" type="video/mp4">
         Твоят браузър не поддържа видео таг.
     </video>
-     
+     <h1>Последвай ни в:</h1>
+    <div class="footer-social">
+  <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+  <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+  <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+</div>
   </section>
-
-  <script>
-    
-    
-  // Отваряне на login popup
-  document.querySelector(".profile-btn").addEventListener("click", function() {
-    document.querySelector(".overlay").classList.add("active");
-    document.querySelector(".popup").classList.add("active");
-  });
-
-  // Затваряне с Х
-  document.querySelector(".popup .close-btn").addEventListener("click", function() {
-    document.querySelector(".overlay").classList.remove("active");
-    document.querySelector(".popup").classList.remove("active");
-  });
-
-  // Затваряне при клик върху overlay-а
-  document.querySelector(".overlay").addEventListener("click", function(e) {
-    if (e.target.classList.contains("overlay")) {
-      document.querySelector(".overlay").classList.remove("active");
-      document.querySelector(".popup").classList.remove("active");
-    }
-  });
-
-
-  </script>
-  
-
-
 </body>
 </html>
