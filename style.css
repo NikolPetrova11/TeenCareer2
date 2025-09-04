@@ -219,7 +219,15 @@ header {
   width: 100%;
   height: auto;
   object-fit: cover;
+  
 
+}
+.footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4); /* 0.4 = 40% черен слой */
+  pointer-events: none; /* да не пречи на видеото */
 }
 
 /* --- Responsive --- */
@@ -236,7 +244,7 @@ header {
     right: 5vw;
     background: white;
     border-radius: 1vw;
-    box-shadow: 0 0.5vh 1.5vh rgba(0,0,0,0.2);
+   
     z-index: 1000;
   }
   .nav-links.active { display: block; }
