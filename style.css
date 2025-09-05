@@ -1,5 +1,4 @@
-
-       * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -14,6 +13,7 @@
 
         body {
             overflow-x: hidden;
+            background-color: #f8f9fa;
         }
 
         header {
@@ -77,23 +77,22 @@
         }
 
         .profile-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .profile {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
+.profile {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
         .menu-toggle {
             display: none;
             font-size: 28px;
@@ -103,69 +102,92 @@
             cursor: pointer;
         }
 
-        /* HERO VIDEO */
         .hero-video {
-            position: relative;
-            width: 84%;
-            height: calc(100vh - 80px);
-            margin: 80px auto 0 auto;
-            overflow: hidden;
-            border-radius: 12px;
-        }
+  position: relative;
+  width: 84%;              /* на голям екран има странични разстояния */
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;          /* няма празнина отгоре */
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 80px;        /* колкото е височината на header-а */
+}
 
-        .hero-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.hero-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-        /* MISSION */
-        .mission {
+        /* MISSION - актуализирана секция */
+       .mission {
+    background-color: #84AEAD;
+    padding: 15px 5vw;
+    text-align: center;
+    height: 252px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ .mission {
             background-color: #84AEAD;
-            padding: 6vh 5vw;
+            padding: 20px 5vw;
             text-align: center;
+            min-height: 252px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .mission h1 {
             color: #fff;
             font-weight: 700;
-            font-size: clamp(18px, 2vw, 28px);
-            margin-bottom: 1vh;
+            font-size: 18px;
+            margin-bottom: 10px;
         }
 
         .mission h2 {
             color: #fff;
-            font-size: clamp(14px, 1.5vw, 20px);
+            font-size: 16px;
             font-weight: 400;
-            margin-bottom: 3vh;
+            margin-bottom: 25px;
         }
 
         .icon-row {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10vw;
-            padding: 0 5vw;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8vw;
+            width: 100%;
         }
 
         .icon-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 20vw;
-            min-width: 120px;
+            justify-content: center;
         }
 
-        .icon-wrapper img {
-            width: clamp(60px, 8vw, 120px);
-            height: auto;
+        .icon {
+            width: 87px;
+            height: 87px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: #84AEAD;
+            margin-bottom: 10px;
         }
 
         .icon-wrapper p {
             color: #fff;
-            font-size: clamp(12px, 1.2vw, 18px);
-            margin-top: 1vh;
+            font-size: 14px;
             text-align: center;
+            max-width: 150px;
         }
 
         /* QUOTES */
@@ -200,27 +222,8 @@
             color:#84AEAD;
         }
 
-        /* STEPS */
-        .steps {
-            position: relative;
-            width: 100%;
-            height: auto;
-            padding-bottom: 50vh;
-        }
-
-        .steps img {
-            position: absolute;
-            width: 70%;
-            height: auto;
-        }
-
-        .step1 { top: 0%; left: 0%; }
-        .step2 { top: 70vh; left: 30%; z-index: 2; }
-        .step3 { top: 180vh; left: 30%; z-index: 3; }
-        .step4 { top: 256vh; right: 10%; left: 20%; z-index: 4; }
-
-        /* FOOTER */
-        .footer {
+        /* FOOTER - адаптивно */
+      .footer {
   position: relative;
   width: 100%;
   height: 300px;
@@ -375,6 +378,10 @@
             .hero-video {
                 width: 90%;
             }
+            
+            .footer {
+                aspect-ratio: 16 / 4;
+            }
         }
 
         @media (max-width: 768px) {
@@ -453,8 +460,11 @@
             
             .hero-video {
                 width: 92%;
-                height: calc(100vh - 70px);
                 margin-top: 70px;
+            }
+            
+            .footer {
+                aspect-ratio: 16 / 3;
             }
             
             .footer-social {
@@ -462,7 +472,39 @@
             }
             
             .footer-social a {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+            
+            /* Адаптивни стилове за Mission секцията */
+            .mission {
+                height: auto;
+                min-height: 252px;
+                padding: 20px 5vw;
+            }
+            
+            .icon-row {
+                gap: 5vw;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .icon-wrapper {
+                max-width: 80%;
+                min-width: 200px;
+                margin-bottom: 20px;
+            }
+            
+            .icon-wrapper img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .mission h1 {
+                font-size: 15px;
+            }
+            
+            .mission h2 {
+                font-size: 13px;
             }
         }
 
@@ -476,40 +518,25 @@
                 height: 40px;
             }
             
-            .mission h1, .mission h2 { 
-                font-size: clamp(16px, 4vw, 20px); 
-            }
-            
-            .icon-wrapper { 
-                max-width: 80%; 
-                margin: auto; 
-            }
-            
-            .quotes { 
-                padding: 5vh 5vw; 
-            }
-            
-            .steps img { 
-                width: 90%; 
-                left: 5%; 
-                top: auto; 
-                position: relative; 
-                margin-bottom: 5vh; 
-            }
-            
-            .right-buttons {
-                gap: 0.7rem;
-            }
-            
             .profile-btn {
                 width: 40px;
                 height: 40px;
             }
             
+           
+            .quotes { 
+                padding: 5vh 5vw; 
+            }
+            
             .hero-video {
                 width: 94%;
-                height: calc(100vh - 70px);
                 margin-top: 70px;
+                aspect-ratio: 4/5;
+            }
+            
+            .footer {
+                aspect-ratio: 16 / 3;
+                margin-top: 30px;
             }
             
             .footer-social {
@@ -517,11 +544,139 @@
             }
             
             .footer-social a {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
             }
             
             .footer h1 {
-                padding-top: 40px;
-                margin-bottom: 25px;
+                font-size: clamp(14px, 2.5vw, 20px);
+                top: 35%;
+            }
+            
+            .footer-social {
+                top: 65%;
             }
         }
+       @media (max-width: 1024px) {
+  .hero-video {
+    width: 90%;
+    margin-top: 80px; /* същото като височината на header-а */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-video {
+    width: 100%;          /* за мобилни – без странични полета */
+    margin-top: 70px;     /* колкото е мобилният header */
+    border-radius: 0;     /* без извити ъгли, за да пасва плътно */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-video {
+    width: 100%;
+    margin-top: 70px; /* header височината */
+    border-radius: 0;
+    aspect-ratio: 16 / 9; /* запазва пропорцията */
+  }
+}
+
+  @media (max-width: 1024px) {
+            .mission {
+                height: 220px;
+                padding: 12px 4vw;
+            }
+            
+            .icon-row {
+                gap: 8vw;
+            }
+            
+            .icon-wrapper {
+                max-width: 22vw;
+                min-width: 100px;
+            }
+            
+            .icon-wrapper img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .icon-wrapper p {
+                font-size: 13px;
+            }
+            
+            .mission h1 {
+                font-size: 15px;
+            }
+            
+            .mission h2 {
+                font-size: 13px;
+                margin-bottom: 12px;
+            }
+        }
+        /* Desktop + Tablet: винаги в един ред */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .mission .icon-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;         /* винаги един ред */
+    justify-content: space-between !important;
+    gap: 1.5vw !important;
+  }
+
+  .mission .icon-wrapper {
+    flex: 1 1 auto !important;            /* позволяваме свиване */
+    min-width: 60px !important;
+    max-width: 87px !important;
+    text-align: center !important;
+  }
+
+  .mission .icon-wrapper img {
+    width: 100% !important;               /* смалява се според контейнера */
+    max-width: 87px !important;
+    height: auto !important;
+  }
+
+  .mission .icon-wrapper p {
+    font-size: 12px !important;
+  }
+}
+
+/* Mobile: максимум 2 в ред */
+@media (max-width: 768px) {
+  .mission .icon-row {
+    display: flex !important;
+    flex-wrap: wrap !important;           /* позволяваме пренасяне */
+    justify-content: center !important;
+    gap: 20px !important;
+  }
+
+  .mission .icon-wrapper {
+    flex: 1 1 45% !important;             /* максимум 2 в ред */
+    max-width: 45% !important;
+    min-width: 120px !important;
+  }
+
+  .mission .icon-wrapper img {
+    width: 70px !important;
+    height: auto !important;
+  }
+}
+
+/* Малки телефони: 1 в ред */
+@media (max-width: 480px) {
+  .mission .icon-row {
+    display: flex !important;
+    flex-direction: column !important;    /* всички един под друг */
+    align-items: center !important;
+    gap: 20px !important;
+  }
+
+  .mission .icon-wrapper {
+    flex: 1 1 100% !important;
+    max-width: 220px !important;
+  }
+
+  .mission .icon-wrapper img {
+    width: 65px !important;
+    height: auto !important;
+  }
+}
