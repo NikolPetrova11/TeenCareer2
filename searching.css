@@ -123,12 +123,27 @@ margin-left: 243px;
     z-index: 2; 
   
 }
-.hero button{
-    position: absolute;
-    margin-top: 400px;
-    border-radius: 12px;
-    background-color: #09989e;
+.button{
+    display: inline-block;
+    text-decoration: none;
+    color:#fff;
+    border:  2px solid #09989e;
+    padding: 7px 35px;
+  margin-top:450px;
+  margin-left: 243px;
+    font-size: 16px;
+    background: #09989e;
+    position:absolute;
+    cursor: pointer;
+    border-radius: 25px;
+     z-index: 3; 
 }
+.button:hover{
+    border:2px solid  #8274A1;
+    background:  #8274A1;
+    transition: 1s;
+}
+
 
 .whattoexpectimg{
     width: auto;
