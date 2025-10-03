@@ -104,12 +104,12 @@
 
         .hero-video {
   position: relative;
-  width: 84%;              /* на голям екран има странични разстояния */
+  width: 84%;            
   aspect-ratio: 16 / 9;
-  margin: 0 auto;          /* няма празнина отгоре */
+  margin: 0 auto;         
   overflow: hidden;
   border-radius: 12px;
-  margin-top: 80px;        /* колкото е височината на header-а */
+  margin-top: 80px;       
 }
 
 .hero-video video {
@@ -118,7 +118,7 @@
   object-fit: cover;
 }
 
-        /* MISSION - актуализирана секция */
+
  .mission {
             background-color: #84AEAD;
             padding: 15px 5vw;
@@ -170,78 +170,10 @@
             text-align: center;
         }
 
-        /* ---- Tablet ---- */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .icon-row {
-                flex-wrap: nowrap;          /* всички иконки на един ред */
-                justify-content: center;    /* центрирани */
-                gap: 3vw;                   /* по-малко разстояние между иконки */
-                overflow-x: auto;           /* добавя скрол, ако не се побират */
-                padding: 0 5vw;
-            }
-
-            .icon-wrapper {
-                flex: 0 0 auto;             /* не се разтягат, остават на ред */
-                min-width: 80px;            /* минимална ширина */
-                max-width: 100px;           /* максимална ширина за контрол */
-                text-align: center;
-            }
-
-            .icon-wrapper img {
-                width: 60px;
-                height: 60px;
-            }
-
-            .icon-wrapper p {
-                font-size: 11px;
-                margin-top: 8px;
-                white-space: normal;        /* текстът може да се пренася */
-                word-break: break-word;     /* текстът се пренася на два реда */
-                line-height: 1.3;
-                height: 2.6em;              /* място за два реда текст */
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;      /* ограничава текста до 2 реда */
-                -webkit-box-orient: vertical;
-            }
-
-            .mission h1 {
-                font-size: 14px;
-            }
-
-            .mission h2 {
-                font-size: 12px;
-            }
-        }
-
-        /* ---- Mobile ---- */
-        @media (max-width: 768px) {
-            .icon-row {
-                flex-direction: column;   
-                align-items: center;
-                gap: 20px;
-            }
-
-            .icon-wrapper img {
-                width: 45px;
-                height: 45px;
-            }
-
-            .icon-wrapper p {
-                font-size: 12px;
-            }
-
-            .mission h1 {
-                font-size: 14px;
-            }
-
-            .mission h2 {
-                font-size: 12px;
-            }
-        }
+       
 
 
-        /* QUOTES */
+       
         .quotes {
             min-height: 60vh;
             text-align: center;
@@ -272,55 +204,12 @@
             font-size: clamp(14px, 1.5vw, 22px);
             color:#84AEAD;
         }
-         .container {
-            display: flex;
-            flex-direction: column;
-         }
-  .image-wrapper {
-            width: 80%;
-            height: auto;
-            overflow: hidden;
-         
-          
-        }
-
-        img {
-            width: 0%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        /* Стилове за подравняване на различните изображения */
-        .image-1 {
-            align-self: flex-start;
-        }
-
-        .image-2 {
-            align-self: flex-end;
-        }
+        
 
         
 
-        .image-3 {
-            margin-left: 108px;
-        }
-
-        .image-4 {
-            align-self: flex-start;
-        }
-
-        /* Медийни заявки за адаптивност */
-        @media (max-width: 768px) {
-            .image-4 {
-                margin-left: 0;
-            }
-            
-            .image-2, .image-3 {
-                align-self: stretch;
-            }
-        }
-        /* FOOTER - адаптивно */
+      
+       
       .footer {
   position: relative;
   width: 100%;
@@ -689,23 +578,23 @@
        @media (max-width: 1024px) {
   .hero-video {
     width: 90%;
-    margin-top: 80px; /* същото като височината на header-а */
+    margin-top: 80px; 
   }
 }
 
 @media (max-width: 768px) {
   .hero-video {
-    width: 100%;          /* за мобилни – без странични полета */
-    margin-top: 70px;     /* колкото е мобилният header */
-    border-radius: 0;     /* без извити ъгли, за да пасва плътно */
+    width: 100%;          
+    margin-top: 70px;     
+    border-radius: 0;     
   }
 }
 
 @media (max-width: 480px) {
   .hero-video {
     width: 100%;
-    margin-top: 70px; /* header височината */
+    margin-top: 70px;
     border-radius: 0;
-    aspect-ratio: 16 / 9; /* запазва пропорцията */
+    aspect-ratio: 16 / 9; 
   }
 }
