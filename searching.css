@@ -119,19 +119,19 @@ margin-left: 243px;
 margin-left: 243px;
     color: #8274A1;
     font-size: 16px;
- 
+ line-height: 1.8;
     z-index: 2; 
   
 }
 .button{
     display: inline-block;
     text-decoration: none;
-    color:#fff;
+    color:#fff !important;
     border:  2px solid #09989e;
-    padding: 7px 35px;
-  margin-top:450px;
+    padding: 9px 45px;
+  margin-top:470px;
   margin-left: 243px;
-    font-size: 16px;
+    font-size: 18px !important;
     background: #09989e;
     position:absolute;
     cursor: pointer;
@@ -148,10 +148,35 @@ margin-left: 243px;
 .whattoexpectimg{
     width: auto;
       height: auto;
-    margin-top: 60px;
+
     align-items: center;
+    display: block;
+    margin: 100px auto;
 
 }
+
+.searching h1{
+    text-align: center;
+    color: #09989e;
+    font-size: 34px;
+    margin-top: 120px;
+}
+.searching h2{
+    text-align: center;
+    color: #8274A1;
+    font-size: 28px;
+    margin-top: 15px;
+}
+.searching img{
+     display: block;
+     margin: auto;
+    justify-content: center;
+   
+    width: auto;
+      height: auto;
+    margin-top: 60px;
+}
+
 
  .footer {
   position: relative;
