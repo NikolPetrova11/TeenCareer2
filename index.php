@@ -39,7 +39,7 @@
 
       <nav class="nav-links" id="navMenu">
         <ul>
-          <li><a href="#">Да започне</a></li>
+          <li><a href="#">Да започнем</a></li>
           <li><a href="searching.html">Хайде на работа!</a></li>
           <li><a href="#">Твоят стартов комплект</a></li>
           <li><a href="#">Съвети със стил</a></li>
