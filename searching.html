@@ -85,6 +85,55 @@
       });
     </script>
   </header>
+  <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-8">
+  <!-- Поле за търсене -->
+  <input
+    type="text"
+    placeholder="Търси работа..."
+    class="w-64 px-4 py-2 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+  />
+
+  <!-- Падащо меню за избор на град -->
+  <select
+    class="w-48 px-4 py-2 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+  >
+    <option value="">Избери град</option>
+    <option value="sofia">София</option>
+    <option value="plovdiv">Пловдив</option>
+    <option value="varna">Варна</option>
+    <option value="burgas">Бургас</option>
+    <option value="ruse">Русе</option>
+    <option value="stara-zagora">Стара Загора</option>
+  </select>
+
+  <!-- Бутон за търсене -->
+  <button
+    class="bg-teal-500 text-white px-6 py-2 rounded-2xl shadow-md hover:bg-teal-600 transition"
+  >
+    Търси
+  </button>
+</div>
+
+<!-- Скрипт за обработка -->
+<script>
+  const searchBtn = document.querySelector('button');
+  const searchInput = document.querySelector('input');
+  const citySelect = document.querySelector('select');
+
+  searchBtn.addEventListener('click', () => {
+    const keyword = searchInput.value.trim();
+    const city = citySelect.value;
+
+    if (!keyword && !city) {
+      alert('Моля, въведи дума за търсене или избери град!');
+      return;
+    }
+
+    // Тук можеш да сложиш логика за заявка към сървъра
+    console.log(`Търсене на: "${keyword}" в град: ${city || 'всички'}`);
+  });
+</script>
+
  <section class="hero">
     <h1><b>Намери първата си работа</b></h1>
     <h2>Или поне тази,<br> 
