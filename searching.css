@@ -561,4 +561,61 @@ margin-left: 243px;
     padding: 7px 25px;
   }
 }
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 50px;
+    background: #f4f4f4;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown img {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+
+  .dropdown img:hover {
+    transform: scale(1.05);
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f0f0f0;
+  }
+
+  /* Показва менюто, когато има активен клас */
+  .show {
+    display: block;
+  }
+
+
+
+
+
+
+
 

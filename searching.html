@@ -110,7 +110,39 @@
  <section class="searching">
   <h1>Твоят стил, твоята работа</h1>
   <h2>Отбележи мястото, открий какво ти пасва</h2>
-  <img src="vecteezy_looking-for-a-new-job-career-or-job-search-looking-for_-[Converted] 1.png">
+
+  <div class="dropdown">
+  <img src="vecteezy_looking-for-a-new-job-career-or-job-search-looking-for_-[Converted] 1.png"
+       alt="Избери град" onclick="toggleDropdown()">
+  <div id="cityDropdown" class="dropdown-content">
+    <a href="#">София</a>
+    <a href="#">Пловдив</a>
+    <a href="#">Варна</a>
+    <a href="#">Бургас</a>
+    <a href="#">Русе</a>
+    <a href="#">Стара Загора</a>
+    <a href="#">Плевен</a>
+    <a href="#">Велико Търново</a>
+  </div>
+</div>
+
+<script>
+  function toggleDropdown() {
+    document.getElementById("cityDropdown").classList.toggle("show");
+  }
+
+  // Затваряне при клик извън менюто
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropdown img')) {
+      const dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].classList.remove('show');
+      }
+    }
+  }
+</script>
+
+
  </section>
   <section class="footer">
    <video autoplay muted loop playsinline>
