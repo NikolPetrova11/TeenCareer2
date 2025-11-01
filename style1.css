@@ -229,6 +229,9 @@ header {
 .image-wrapper {
     margin-top: -380px;
     width: 100%;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     height: auto;
 }
@@ -864,5 +867,9 @@ header {
     
     .overlay.active {
       display: block;
+<<<<<<< Updated upstream
+    }
+>>>>>>> Stashed changes
+=======
     }
 >>>>>>> Stashed changes

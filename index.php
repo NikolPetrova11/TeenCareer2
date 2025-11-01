@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <style>
       .overlay {
         position: fixed;
@@ -29,6 +30,9 @@
         display: block;
       }
     </style>
+=======
+ 
+>>>>>>> Stashed changes
 =======
  
 >>>>>>> Stashed changes
