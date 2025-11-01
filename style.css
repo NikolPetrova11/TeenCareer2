@@ -209,7 +209,9 @@
         }
         
 .image-wrapper image-2{
-    margin-top: -170px;
+    margin-top: -420px;
+    width: 50%;
+    height: auto;
 }
         
 
@@ -350,12 +352,17 @@
             .hero-video {
                 width: 88%;
             }
+            .image-wrapper image-2{
+    margin-top: -270px;}
+    .quotes{
+        margin-bottom: 160px;
+    }
         }
 
         @media (max-width: 1024px) {
             .icon-row { gap: 5vw; }
             .image-wrapper image-2{
-    margin-top: -270px;
+    margin-top: -223px;
 }
             
             .header-container {
@@ -377,6 +384,9 @@
             .footer {
                 aspect-ratio: 16 / 4;
             }
+            .quotes{
+        margin-bottom: 135px;
+    }
         }
 
         @media (max-width: 768px) {
@@ -501,6 +511,11 @@
             .mission h2 {
                 font-size: 13px;
             }
+            .image-wrapper image-2{
+              margin-top: -115px;}
+              .quotes{
+        margin-bottom: 200px;
+    }
         }
 
         @media (max-width: 480px) {
@@ -582,6 +597,11 @@
             .footer-social {
                 top: 65%;
             }
+            .image-wrapper image-2{
+             margin-top: -270px;}
+             .quotes{
+        margin-bottom: 112px;
+    }
         }
        @media (max-width: 1024px) {
   .hero-video {
