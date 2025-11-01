@@ -10,25 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <style>
-   
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-      display: none;
-    }
-    
-    .overlay.active {
-      display: block;
-    }
-  </style>
+    <style>
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+      }
+      
+      .overlay.active {
+        display: block;
+      }
+    </style>
 
 </head>
 <body>
@@ -55,32 +54,34 @@
     </div>
     
     <div class="overlay"></div>
+    
+    <!-- ✅ Popup с вградена форма за регистрация -->
     <div class="popup">
       <div class="close-btn">&times;</div>
       <div class="form">
-        <div class="form-element">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Въведи имейл">
-        </div> 
-        <div class="form-element">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Въведи парола">
-        </div>
-        <div class="form-element">
-          <input type="checkbox" id="remember-me">
-          <label for="remember-me">Запомни ме</label>
-        </div>
-        <div class="form-element">
-          <button>Вход</button>
-        </div>
-        <div class="form-element">
-          <a href="">Забравена парола?</a>
-        </div>
-         <div class="form-element">
-          <a href="">Регистрация</a>
-        </div>
+        <form action="register.php" method="POST">
+          <div class="form-element">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Въведи имейл" required>
+          </div> 
+
+          <div class="form-element">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Въведи парола" required>
+          </div>
+
+          <div class="form-element">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Запомни ме</label>
+          </div>
+
+          <div class="form-element">
+            <button type="submit">Регистрирай се</button>
+          </div>
+        </form>
       </div>
     </div>
+    <!-- ✅ Край на popup-а -->
     
     <script>
       const menuToggle = document.getElementById("menuToggle");
@@ -146,37 +147,37 @@
     <h2 class="quote2">Готов ли си да започнеш? </h2>
     <h3 class="quote3">Тук ще намериш всичко, което ти трябва, за да направиш уверено първите си стъпки към работа. Без излишни усложнения, без скучни теории — само практични съвети, инструменти и мотивация.</h3>
   </section>     
-   <div class="container">
-        <div class="image-wrapper image-1">
-            <img src="Desktop-1.1.png">
-        </div>
-        
-        <div class="image-wrapper image-2">
-            <img src="Desktop-1.2.png">
-        </div>
-        
-        <div class="image-wrapper image-3">
-            <img src="Desktop-1.3.png">
-        </div>
-        
-        <div class="image-wrapper image-4">
-            <img src="Desktop-1.4(21).png">
-        </div>
-        
-      
+
+  <div class="container">
+    <div class="image-wrapper image-1">
+        <img src="Desktop-1.1.png">
+    </div>
+    
+    <div class="image-wrapper image-2">
+        <img src="Desktop-1.2.png">
+    </div>
+    
+    <div class="image-wrapper image-3">
+        <img src="Desktop-1.3.png">
+    </div>
+    
+    <div class="image-wrapper image-4">
+        <img src="Desktop-1.4(21).png">
+    </div>
+  </div>
 
   <section class="footer">
-   <video autoplay muted loop playsinline>
+    <video autoplay muted loop playsinline>
         <source src="Footer 2.mp4" type="video/mp4">
         Твоят браузър не поддържа видео таг.
     </video>
-     <h1>Последвай ни в:</h1>
+    <h1>Последвай ни в:</h1>
     <div class="footer-social">
-  <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
-  <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-  <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-</div>
+      <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+    </div>
   </section>
 </body>
 </html>
