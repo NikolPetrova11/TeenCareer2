@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
   <body>
-<header>
+
+ 
+  <header>
     <div class="header-container">
       <img src="logo.png" class="logo" alt="TeenCareer">
 
@@ -27,7 +29,7 @@
       </nav>
 
       <div class="right-buttons">
-        <button class="menu-toggle" id="menuToggle">☰</button>
+        <button class="menu-toggle" id="menuToggle" metod="post">☰</button>
         <button class="profile-btn">
           <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
         </button>
@@ -35,29 +37,34 @@
     </div>
     
     <div class="overlay"></div>
+    
+    <!-- ✅ Popup с вградена форма за регистрация -->
     <div class="popup">
       <div class="close-btn">&times;</div>
       <div class="form">
-        <div class="form-element">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Въведи имейл">
-        </div> 
-        <div class="form-element">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Въведи парола">
-        </div>
-        <div class="form-element">
-          <input type="checkbox" id="remember-me">
-          <label for="remember-me">Запомни ме</label>
-        </div>
-        <div class="form-element">
-          <button>Вход</button>
-        </div>
-        <div class="form-element">
-          <a href="">Забравена парола?</a>
-        </div>
+        <form action="register.php" method="POST">
+          <div class="form-element">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Въведи имейл" required>
+          </div> 
+
+          <div class="form-element">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Въведи парола" required>
+          </div>
+
+          <div class="form-element">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Запомни ме</label>
+          </div>
+
+          <div class="form-element">
+            <button type="submit">Регистрирай се</button>
+          </div>
+        </form>
       </div>
     </div>
+    <!-- ✅ Край на popup-а -->
     
     <script>
       const menuToggle = document.getElementById("menuToggle");
