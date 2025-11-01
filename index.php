@@ -47,7 +47,7 @@
       </nav>
 
       <div class="right-buttons">
-        <button class="menu-toggle" id="menuToggle">☰</button>
+        <button class="menu-toggle" id="menuToggle" metod="post">☰</button>
         <button class="profile-btn">
           <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
         </button>
@@ -75,6 +75,9 @@
         </div>
         <div class="form-element">
           <a href="">Забравена парола?</a>
+        </div>
+         <div class="form-element">
+          <a href="">Регистрация</a>
         </div>
       </div>
     </div>
