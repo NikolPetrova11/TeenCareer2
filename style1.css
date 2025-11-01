@@ -204,11 +204,11 @@ header {
     color:#84AEAD;
 }
 
-<<<<<<< Updated upstream
+
 .image-wrapper image-2{
     margin-top: -420px;
     width: 50%;
-=======
+}
         .quote1 {
             font-weight: bold;
             font-size: clamp(20px, 2.5vw, 36px);
@@ -229,10 +229,7 @@ header {
 .image-wrapper {
     margin-top: -380px;
     width: 100%;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     height: auto;
 }
 
@@ -292,7 +289,7 @@ header {
 
 /* ---------------- POPUP СЕКЦИЯ (ПОДРАВНЕНА ВЛЯВО) ---------------- */
 
-<<<<<<< Updated upstream
+
 .popup {
     position: fixed;
     top: 50%;
@@ -302,8 +299,8 @@ header {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    z-index: 1001;
-=======
+    z-index: 1001;}
+
         .popup.active {
             transform: translate(-50%, -50%) scale(1);
         }
@@ -624,7 +621,7 @@ header {
         }
        @media (max-width: 1024px) {
   .hero-video {
->>>>>>> Stashed changes
+
     width: 90%;
     max-width: 400px;
     transition: transform 0.3s ease;
@@ -793,7 +790,7 @@ header {
 }
 
 @media (max-width: 480px) {
-<<<<<<< Updated upstream
+
     .header-container {
         padding: 0 4vw;
         height: 70px;
@@ -845,7 +842,7 @@ header {
         aspect-ratio: 16 / 9; 
     }
 }
-=======
+
   .hero-video {
     width: 100%;
     margin-top: 70px;
@@ -867,9 +864,4 @@ header {
     
     .overlay.active {
       display: block;
-<<<<<<< Updated upstream
     }
->>>>>>> Stashed changes
-=======
-    }
->>>>>>> Stashed changes
