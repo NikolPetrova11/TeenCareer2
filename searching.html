@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
 
-    <link rel="stylesheet" type="text/css" href="searching.css" />
+    <link rel="stylesheet" type="text/css" href="searching2.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -112,7 +112,19 @@
   <h2>Отбележи мястото, открий какво ти пасва</h2>
 
   <div class="search-box">
-    <input type="text" placeholder="Търси...">
+    <div class="select-wrapper">
+      <select>
+        <option selected disabled>Избери град...</option>
+        <option value="sofia">София</option>
+        <option value="plovdiv">Пловдив</option>
+        <option value="varna">Варна</option>
+        <option value="burgas">Бургас</option>
+        <option value="ruse">Русе</option>
+        <option value="stz">Стара Загора</option>
+        <option value="pleven">Плевен</option>
+      </select>
+      <span class="arrow">&#9662;</span>
+    </div>
     <button type="submit">
       <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search icon">
     </button>
