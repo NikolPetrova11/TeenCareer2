@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
 
-    <link rel="stylesheet" type="text/css" href="style1.css" />
+    <link rel="stylesheet" type="text/css" href="style4.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -149,19 +149,19 @@
   </section>     
 
   <div class="container">
-    <div class="image-wrapper image-1">
+    <div class="image-wrapper_image-1">
         <img src="Desktop-1.1.png">
     </div>
     
-    <div class="image-wrapper image-2">
+    <div class="image-wrapper_image-2">
         <img src="Desktop-1.2.png">
     </div>
     
-    <div class="image-wrapper image-3">
+    <div class="image-wrapper_image-3">
         <img src="Desktop-1.3.png">
     </div>
     
-    <div class="image-wrapper image-4">
+    <div class="image-wrapper_image-4">
         <img src="Desktop-1.4(21).png">
     </div>
   </div>
@@ -174,7 +174,7 @@
     <h1>Последвай ни в:</h1>
     <div class="footer-social">
       <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+      
       <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
       <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
     </div>

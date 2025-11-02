@@ -179,12 +179,12 @@
         .quotes {
             min-height: 60vh;
             text-align: center;
-            padding: 8vh 12vw;
+            padding: 8vh 18vw;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: 10px;
         }
 
         .quote1, .quote2, .quote3 {
@@ -207,11 +207,27 @@
             font-size: clamp(14px, 1.5vw, 22px);
             color:#84AEAD;
         }
+
+        .container img{
+            margin-top: -330px;
+            width:87%;
+        }
         
-.image-wrapper image-2{
-    margin-top: -420px;
-    width: 50%;
-    height: auto;
+.image-wrapper_image-1{
+   
+   
+}
+.image-wrapper_image-2{
+    margin-top: -230px;
+    
+}
+.image-wrapper_image-3{
+    
+   
+}
+.image-wrapper_image-4{
+    
+   
 }
         
 
@@ -340,7 +356,7 @@
         }
 
         /* --- Responsive --- */
-        @media (max-width: 1280px) {
+        @media (max-width: 1440px) {
             .header-container {
                 padding: 0 6vw;
             }
@@ -352,12 +368,15 @@
             .hero-video {
                 width: 88%;
             }
-            .image-wrapper {
-    margin-top: -283px;}
+           
+    
+    
+    
     .quotes{
         margin-bottom: 160px;
     }
-        }
+}
+        
 
         @media (max-width: 1024px) {
             .icon-row { gap: 5vw; }
