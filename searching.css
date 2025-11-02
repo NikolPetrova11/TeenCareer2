@@ -562,55 +562,49 @@ margin-left: 243px;
   }
 }
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding-top: 50px;
-    background: #f4f4f4;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+}
 
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
+.search-box {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-  .dropdown img {
-    width: 150px;
-    height: auto;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: transform 0.2s;
-  }
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 250px;
+}
 
-  .dropdown img:hover {
-    transform: scale(1.05);
-  }
+.search-box button {
+  background-color: #2ea8ac; /* цвят като на примерното изображение */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  cursor: pointer;
+}
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1;
-  }
+.search-box button img {
+  width: 24px;
+  height: 24px;
+}
 
-  .dropdown-content a {
-    color: #333;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-  }
+.search-box button:hover {
+  background-color: #259398;
+}
 
-  .dropdown-content a:hover {
-    background-color: #f0f0f0;
-  }
 
-  /* Показва менюто, когато има активен клас */
-  .show {
-    display: block;
-  }
+
 
 
 
