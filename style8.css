@@ -184,7 +184,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: -140px;
         }
 
         .quote1, .quote2, .quote3 {
@@ -215,7 +215,7 @@
         }
         
 .image-wrapper_image-1{
-    
+     width: 90%;
 
 }
 .image-wrapper_image-2{
@@ -236,8 +236,8 @@
     
 }
 .image-wrapper_image-4{
-   margin-top: -380px;
-   width: 90%;
+   margin-top: -280px;
+   width: 100%;
 }
         
 
@@ -380,9 +380,7 @@
             }
             .image-wrapper {
     margin-top: -283px;}
-    .quotes{
-        margin-bottom: 160px;
-    }
+    
     .footer{
         height: 321px;
        
