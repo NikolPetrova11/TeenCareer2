@@ -205,7 +205,7 @@
 
         .quote3 {
             font-size: clamp(14px, 1.5vw, 22px);
-            color:#84AEAD;
+            color:red;
         }
 
         .container img{
@@ -228,7 +228,7 @@
 }
 .image-wrapper_image-3{
     width: 90%;
- margin-top: -280px;
+ margin-top: -275px;
  margin-left: 150px;
  
 
