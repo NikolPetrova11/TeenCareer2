@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="bg">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeenCareer</title>
 
-    <link rel="stylesheet" type="text/css" href="searching2.css" />
-    <link rel="stylesheet" type="text/css" href="login.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeenCareer</title>
+
+  <link rel="stylesheet" type="text/css" href="searching2.css" />
+  <link rel="stylesheet" type="text/css" href="login.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-  <body>
 
- 
+<body>
+
+
   <header>
     <div class="header-container">
       <img src="logo.png" class="logo" alt="TeenCareer">
@@ -35,9 +39,9 @@
         </button>
       </div>
     </div>
-    
+
     <div class="overlay"></div>
-    
+
     <!-- ✅ Popup с вградена форма за регистрация -->
     <div class="popup">
       <div class="close-btn">&times;</div>
@@ -46,7 +50,7 @@
           <div class="form-element">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Въведи имейл" required>
-          </div> 
+          </div>
 
           <div class="form-element">
             <label for="password">Password</label>
@@ -65,7 +69,7 @@
       </div>
     </div>
     <!-- ✅ Край на popup-а -->
-    
+
     <script>
       const menuToggle = document.getElementById("menuToggle");
       const navMenu = document.getElementById("navMenu");
@@ -74,17 +78,17 @@
         navMenu.classList.toggle("active");
       });
 
-      document.querySelector(".profile-btn").addEventListener("click", function() {
+      document.querySelector(".profile-btn").addEventListener("click", function () {
         document.querySelector(".overlay").classList.add("active");
         document.querySelector(".popup").classList.add("active");
       });
 
-      document.querySelector(".popup .close-btn").addEventListener("click", function() {
+      document.querySelector(".popup .close-btn").addEventListener("click", function () {
         document.querySelector(".overlay").classList.remove("active");
         document.querySelector(".popup").classList.remove("active");
       });
 
-      document.querySelector(".overlay").addEventListener("click", function(e) {
+      document.querySelector(".overlay").addEventListener("click", function (e) {
         if (e.target.classList.contains("overlay")) {
           document.querySelector(".overlay").classList.remove("active");
           document.querySelector(".popup").classList.remove("active");
@@ -92,56 +96,61 @@
       });
     </script>
   </header>
-  
-</script>
 
- <section class="hero">
+  </script>
+
+  <section class="hero">
     <h1><b>Намери първата си работа</b></h1>
-    <h2>Или поне тази,<br> 
-с която да започнеш</h2>
-<p>Търсиш си първа работа, лятна позиция или нещо,<br> 
-с което да хванеш малко опит и още повече увереност?<br>
-Тук е мястото  </p>
-<a href="#" class="button">Потърси сега</a>
- </section>
- <section classs="whattoexpect">
-    <img class = "whattoexpectimg" src="Group 7.png" alt="What to expect">
- </section>
- <section class="searching">
-  <h1>Твоят стил, твоята работа</h1>
-  <h2>Отбележи мястото, открий какво ти пасва</h2>
-
-  <div class="search-box">
-    <div class="select-wrapper">
-      <select>
-        <option selected disabled>Избери град...</option>
-        <option value="sofia">София</option>
-        <option value="plovdiv">Пловдив</option>
-        <option value="varna">Варна</option>
-        <option value="burgas">Бургас</option>
-        <option value="ruse">Русе</option>
-        <option value="stz">Стара Загора</option>
-        <option value="pleven">Плевен</option>
-      </select>
-      <span class="arrow">&#9662;</span>
-    </div>
-    <button type="submit">
-      <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search icon">
-    </button>
-  </div>
- </section>
-  <section class="footer">
-   <video autoplay muted loop playsinline>
-        <source src="Footer 2.mp4" type="video/mp4">
-        Твоят браузър не поддържа видео таг.
-    </video>
-     <h1>Последвай ни в:</h1>
-    <div class="footer-social">
-  <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
-  <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-  <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-</div>
+    <h2>Или поне тази,<br>
+      с която да започнеш</h2>
+    <p>Търсиш си първа работа, лятна позиция или нещо,<br>
+      с което да хванеш малко опит и още повече увереност?<br>
+      Тук е мястото </p>
+    <a href="#" class="button">Потърси сега</a>
   </section>
-  </body>
-  </html>
+  <section classs="whattoexpect">
+    <img class="whattoexpectimg" src="Group 7.png" alt="What to expect">
+  </section>
+  
+  <section class="cards-container">
+    <div class="card">
+      <h3>Работа в заведение</h3>
+      <p>Пица, кафе или сладолед – не е важно какво, важното е, че се учиш да работиш в екип, да комуникираш уверено
+        и... винаги да знаеш къде има храна!</p>
+      <p><strong>Подходяща за ваканции, след училище или уикенди.</strong></p>
+      <button onclick="window.location.href='search.php?role=барман&city=София'">
+  Да действаме!
+</button>
+
+    </div>
+
+    <div class="card">
+      <h3>Асистент в магазин</h3>
+      <p>Помагаш на клиенти, подреждаш стока, учиш се на отговорност и дори как се прави витрина.</p>
+      <p>Перфектно за хора, които обичат движението и искат разнообразие.</p>
+      <button><a href="jobs.html">Да действаме!</a></button>
+    </div>
+
+    <div class="card">
+      <h3>Гледане на деца или домашни любимци</h3>
+      <p>Ако си търпелив, забавен и обичаш животни (или малки братовчеди) – това може да е твоят старт.</p>
+      <p>Родителите често търсят помощ за няколко часа следобед.</p>
+      <button><a href="jobs.html">Да действаме!</a></button>
+    </div>
+  </section>
+  <section class="footer">
+    <video autoplay muted loop playsinline>
+      <source src="Footer 2.mp4" type="video/mp4">
+      Твоят браузър не поддържа видео таг.
+    </video>
+    <h1>Последвай ни в:</h1>
+    <div class="footer-social">
+      <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </section>
+</body>
+
+</html>

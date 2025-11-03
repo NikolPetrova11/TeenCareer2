@@ -149,98 +149,56 @@
     margin: 100px auto;
 }
 
-/* SEARCH SECTION */
-.searching h1 {
-    text-align: center;
-    color: #09989e;
-    font-size: 34px;
-    margin-top: 120px;
-}
 
-.searching h2 {
-    text-align: center;
-    color: #8274A1;
-    font-size: 28px;
-    margin-top: 15px;
-}
 
-.searching img {
-    display: block;
-    margin: auto;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    margin-top: 60px;
-}
-
-.searching {
-  text-align: center;
-  margin-top: 60px;
-}
-
-/* --- Стил на падащото меню --- */
-.search-box {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #000;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 55px;
-}
-
-/* Контейнер за select + стрелка */
-.select-wrapper {
-  position: relative;
+.cards-container {
   display: flex;
-  align-items: center;
-  height: 100%;
-  background-color: #fff;
-}
-
-.select-wrapper select {
-  border: none;
-  outline: none;
-  padding: 0 40px 0 15px;
-  font-size: 18px;
-  height: 100%;
-  width: 280px;
-  background-color: transparent;
-  appearance: none; /* скрива стандартната стрелка */
-  cursor: pointer;
-}
-
-/* Красива персонализирана стрелка */
-.select-wrapper .arrow {
-  position: absolute;
-  right: 15px;
-  font-size: 14px;
-  color: #09989e;
-  pointer-events: none;
-}
-
-/* --- Бутон с лупа --- */
-.search-box button {
-  background-color: #2ea8ac;
-  border: none;
-  width: 60px;
-  height: 100%;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  color: #009688;
+  margin-bottom: 15px;
+}
+
+.card p {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+button {
+  margin-top: 15px;
+  background-color: #6ad0cb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.search-box button:hover {
-  background-color: #259398;
+button:hover {
+  background-color: #4db5af;
 }
-
-.search-box button img {
-  width: 26px;
-  height: 26px;
-}
-
-
 
 
 /* FOOTER */
