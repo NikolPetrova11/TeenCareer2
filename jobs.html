@@ -1,15 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Търсачка за работа</title>
+<style>
+  body { font-family: Arial; margin: 40px; }
+  input { padding: 8px; margin-right: 5px; }
+  button { padding: 8px 12px; }
+  .job { border-bottom: 1px solid #ccc; padding: 8px 0; }
+</style>
 </head>
 <body>
-    <form action="jobs.php" method="get">
-  <input type="text" name="role" placeholder="Професия">
-  <input type="text" name="city" placeholder="Град">
-  <button type="submit">Търси</button>
-</form>
+
+<h1>🔍 Търси обяви</h1>
+<input id="role" placeholder="Позиция (напр. Барман)">
+<input id="city" placeholder="Град (напр. Варна)">
+<button onclick="searchJobs()">Търси</button>
+
+<div id="results"></div>
+
+<script>
+async function searchJobs() {
+  const role = document.getElementById('role').value;
+  const city = document.getElementById('city').value;
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = "⏳ Търсене...";
+
+  // CORS bypass чрез AllOrigins API
+  const url = `https://www.zaplata.bg/?q=${encodeURIComponent(role)}&l=${encodeURIComponent(city)}`;
+  const proxy = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}`;
+
+
+  try {
+    const res = await fetch(proxy);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const html = await res.text();
+
+    // Създаваме временен DOM от текста
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Вземаме всички обяви
+    const jobs = doc.querySelectorAll('.grid .title a');
+    if (jobs.length === 0) {
+      resultsDiv.innerHTML = "❌ Няма намерени обяви.";
+      return;
+    }
+
+    resultsDiv.innerHTML = `<p>Намерени: ${jobs.length}</p>`;
+    jobs.forEach(job => {
+      const link = job.href;
+      const title = job.textContent.trim();
+      resultsDiv.innerHTML += `<div class="job"><a href="${link}" target="_blank">${title}</a></div>`;
+    });
+
+  } catch (err) {
+    resultsDiv.innerHTML = `⚠️ Грешка: ${err.message}`;
+  }
+}
+</script>
 </body>
 </html>
