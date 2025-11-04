@@ -118,9 +118,15 @@
       <p>Пица, кафе или сладолед – не е важно какво, важното е, че се учиш да работиш в екип, да комуникираш уверено
         и... винаги да знаеш къде има храна!</p>
       <p><strong>Подходяща за ваканции, след училище или уикенди.</strong></p>
-      <button onclick="window.location.href='search.php?role=барман&city=София'">
+      <button onclick="window.location.href='jobs.php?role=барман&city=София'">
   Да действаме!
-</button>
+  
+</button><form action="jobs.php" method="get">
+  <input type="text" name="role" placeholder="Професия">
+  <input type="text" name="city" placeholder="Град">
+  <button type="submit">Търси</button>
+</form>
+
 
     </div>
 
