@@ -3,6 +3,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+            
         }
 
         img, video {
@@ -358,7 +359,34 @@ margin-left: 180px;
             display: block;
         }
 
+
         /* --- Responsive --- */
+        @media (max-width: 1536px){
+            .image-wrapper_image-1{
+    width: 80%;
+
+}
+.image-wrapper_image-2{
+margin-top: -298px;
+margin-left: 308px;
+ width: 80%;
+ 
+
+}
+.image-wrapper_image-3{
+
+  width: 80%;
+margin-top: -233px;
+margin-left: 248px;
+ 
+    
+}
+.image-wrapper_image-4{
+  width: 100%;
+  margin-top: -234px;
+}
+
+        }
         @media (max-width: 1440px) {
             .header-container {
                 padding: 0 6vw;
