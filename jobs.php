@@ -2,39 +2,112 @@
 $role = isset($_GET['role']) ? urlencode($_GET['role']) : '';
 $city = isset($_GET['city']) ? urlencode($_GET['city']) : '';
 
-$url = "https://www.jobs.bg/front_job_jobs.php?keywords=$role&location=$city";
+echo "<h1>Обяви за <em>" . urldecode($role) . "</em> в <em>" . urldecode($city) . "</em></h1>";
+
+$results = [];
+
+/* ------------------------------
+    jobs.bg
+--------------------------------*/
+$url_jobsbg = "https://www.jobs.bg/front_job_search.php?keywords=$role&location=$city";
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; PHP JobScraper/1.0)');
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url_jobsbg,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; PHP JobScraper/1.0)'
+]);
 $html = curl_exec($ch);
 curl_close($ch);
 
-libxml_use_internal_errors(true);
-$doc = new DOMDocument();
-$doc->loadHTML($html);
-libxml_clear_errors();
+if ($html) {
+    libxml_use_internal_errors(true);
+    $doc = new DOMDocument();
+    $doc->loadHTML($html);
+    libxml_clear_errors();
+    $xpath = new DOMXPath($doc);
 
-$xpath = new DOMXPath($doc);
+    // примерни селектори (ще ги нагласим после)
+    $titles = $xpath->query("//a[contains(@class, 'joblink')]");
+    foreach ($titles as $t) {
+        $results[] = [
+            'title' => trim($t->nodeValue),
+            'link'  => ($t instanceof DOMElement) ? $t->getAttribute('href') : '',
+            'source' => 'Jobs.bg'
+        ];
+    }
+}
 
-// ще променим тези селектори, след като видим структурата
-$jobTitles = $xpath->query("//a[contains(@class, 'joblink')]");
-$companies = $xpath->query("//div[contains(@class, 'mdc-card__subtitle')]");
+/* ------------------------------
+     zaplata.bg
+--------------------------------*/
+$url_zaplata = "https://www.zaplata.bg/?q=$role&l=$city";
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url_zaplata,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_USERAGENT => 'Mozilla/5.0'
+]);
+$html = curl_exec($ch);
+curl_close($ch);
 
-echo "<h2>Резултати за: <em>" . urldecode($role) . "</em> в <em>" . urldecode($city) . "</em></h2>";
+if ($html) {
+    libxml_use_internal_errors(true);
+    $doc = new DOMDocument();
+    $doc->loadHTML($html);
+    libxml_clear_errors();
+    $xpath = new DOMXPath($doc);
 
-if ($jobTitles->length > 0) {
+    // примерен селектор за zaplata.bg
+    $titles = $xpath->query("//a[contains(@class, 'job-title')]");
+    foreach ($titles as $t) {
+        $href = ($t instanceof DOMElement) ? $t->getAttribute('href') : '';
+        $results[] = [
+            'title' => trim($t->nodeValue),
+            'link'  => $href ? "https://www.zaplata.bg" . $href : '',
+            'source' => 'Zaplata.bg'
+        ];
+    }
+}
+
+/* ------------------------------
+    indeed.com
+--------------------------------*/
+$url_indeed = "https://bg.indeed.com/jobs?q=$role&l=$city";
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url_indeed,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_USERAGENT => 'Mozilla/5.0'
+]);
+$html = curl_exec($ch);
+curl_close($ch);
+
+if ($html) {
+    libxml_use_internal_errors(true);
+    $doc = new DOMDocument();
+    $doc->loadHTML($html);
+    libxml_clear_errors();
+    $xpath = new DOMXPath($doc);
+
+    $titles = $xpath->query("//a[contains(@class, 'jcs-JobTitle')]");
+    foreach ($titles as $t) {
+        $results[] = [
+            'title' => trim($t->nodeValue),
+            'link'  => ($t instanceof DOMElement) ? "https://bg.indeed.com" . $t->getAttribute('href') : '',
+            'source' => 'Indeed.com'
+        ];
+    }
+}
+
+/* ------------------------------
+ Извеждане на резултатите
+--------------------------------*/
+if (count($results) > 0) {
     echo "<ul>";
-    for ($i = 0; $i < $jobTitles->length; $i++) {
-        $title = trim($jobTitles->item($i)->nodeValue);
-        $jobTitleNode = $jobTitles->item($i);
-        $link = '';
-        if ($jobTitleNode instanceof DOMElement) {
-            $link = $jobTitleNode->getAttribute('href');
-        }
-        $company = $companies->item($i)->nodeValue ?? 'Неизвестна фирма';
-        echo "<li><a href='$link' target='_blank'>$title</a> — <strong>$company</strong></li>";
+    foreach ($results as $r) {
+        echo "<li><a href='{$r['link']}' target='_blank'>{$r['title']}</a> 
+              <small>({$r['source']})</small></li>";
     }
     echo "</ul>";
 } else {
