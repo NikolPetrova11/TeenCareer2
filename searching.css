@@ -3,6 +3,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+          
             
         }
 
@@ -14,7 +15,7 @@
 
         body {
             overflow-x: hidden;
-            background-color: #f8f9fa;
+            background-color: white !important;
         }
 
         header {
@@ -86,6 +87,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 .image-wrapper{
     margin-top: -385px;
@@ -207,7 +209,7 @@
   line-height: 1.5;
 }
 
-button {
+.button1 {
   margin-top: 15px;
   background-color: #6ad0cb;
   color: white;
@@ -219,7 +221,7 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.button1:hover {
   background-color: #4db5af;
 }
 
