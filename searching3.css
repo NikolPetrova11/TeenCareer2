@@ -208,6 +208,8 @@
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
      margin-top: 230px;    
+      position: relative;
+    z-index: 9999;
 }
 
 .card:hover {
@@ -239,13 +241,15 @@
   font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
+   position: relative;
+    z-index: 9999 !important;
+   
+
+}
+.button1 a {
+  color: white !important;
   text-decoration: none;
 }
-.button1 a{
-    color:#fff;
-    text-decoration: none;
-}
-
 .button1:hover {
   background-color: #4db5af;
 }
@@ -257,10 +261,10 @@
 .robot img{
     width: 75%;
     height: 900px;
-    z-index: 10;
+    z-index: 55px;
     position: relative;
     margin-top: 10px;
-    margin-left: 375px;
+    margin-left: 520px;
 }
 .quotes img{
     position: relative;
@@ -396,6 +400,67 @@
 }
 
 /* --------- МЕДИЙНИ ЗАПИТВАНИЯ --------- */
+@media (max-width: 1536px) {
+   .logo{
+    height: 55px;
+
+}
+.nav-links ul {
+   margin-top: 11px;
+}
+.nav-links ul li a {
+    font-size: 17px;
+
+        }
+.profile{
+    height: 90%;
+    margin-top: 10px;
+}
+header{
+    width: 92.5%;
+}
+.hero{
+    width:100%;
+}
+.header-container{
+    padding: 0 10vw; 
+    margin-left: -25px;
+}
+.hero h1{
+    margin-left: 132px;
+    font-size: 30px;
+    margin-top: 210px;
+}
+.hero h2{
+    margin-left: 132px;
+    font-size: 24px;
+    margin-top: 260px;
+}
+.hero p{
+    margin-left: 132px;
+    font-size: 15px;
+    margin-top: 410px;
+}
+.button{
+    margin-left: 132px;
+    font-size: 15px !important;
+    padding: 8px 40px;
+margin-top: 510px;
+}
+.whattoexpectimg{
+    width:60%;
+    margin-left: 321px;
+}
+.bg{
+    min-height: 750px;
+}
+.arrow1{
+    margin-left: -90px ;
+}
+.arrow2{
+    margin-left: -230px ;
+}
+}
 @media(max-width: 1280px) {
     .header-container {
         padding: 0 6vw; 
