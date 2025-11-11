@@ -119,7 +119,7 @@
 .hero h1 {
     position: absolute;
     margin-top: 150px;
-    margin-left: 243px;
+    margin-left: 290px;
     color: #19989e;
     font-size: 34px;
     z-index: 2;
@@ -128,7 +128,7 @@
 .hero h2 {
     position: absolute;
     margin-top: 200px;
-    margin-left: 243px;
+    margin-left: 290px;
     color: #8274A1;
     font-size: 28px;
     z-index: 2;
@@ -136,8 +136,8 @@
 
 .hero p {
     position: absolute;
-    margin-top: 350px;
-    margin-left: 243px;
+    margin-top: 290px;
+    margin-left: 290px;
     color: #8274A1;
     font-size: 16px;
     line-height: 1.8;
@@ -151,7 +151,7 @@
     border: 2px solid #09989e;
     padding: 9px 45px;
     margin-top: 470px;
-    margin-left: 243px;
+    margin-left: 290px;
     font-size: 18px !important;
     background: #09989e;
     position: absolute;
@@ -189,7 +189,7 @@
 .cards-container {
     position: relative;     
  
-    gap:50px;
+    gap:30px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -203,13 +203,14 @@
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 325px;
+  width: 425px;
   padding: 25px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
      margin-top: 230px;    
       position: relative;
     z-index: 9999;
+    height: 420px;
 }
 
 .card:hover {
@@ -220,20 +221,25 @@
 .card h3 {
   color: #09989e;
   margin-bottom: 15px;
-  font-size: 30px;
+  font-size: 24px;
+  
 }
 
 .card p {
   color: #8274A1;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.5;
   text-align: left;
   font-weight: bold;
   margin-top: 45px;
+
 }
 
 .button1 {
-  margin-top: 55px;
+   position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%); /* по желание – центриране */
   background-color: #6ad0cb;
   color: white;
   border: none;
@@ -242,7 +248,7 @@
   font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
-   position: relative;
+
     z-index: 9999 !important;
    
 
@@ -254,30 +260,9 @@
 .button1:hover {
   background-color: #4db5af;
 }
-.button11 {
-  margin-top: 55px;
-  background-color: #6ad0cb;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-   position: relative;
-    z-index: 9999 !important;
-   
 
-}
-.button11 a {
-  color: white !important;
-  text-decoration: none;
-}
-.button11:hover {
-  background-color: #4db5af;
-}
 .arrows {
-    position: relative;
+  
     width: 100%;
     height: 0;
 }
@@ -286,7 +271,14 @@
 .arrow2 img {
     position: absolute;
     width: 120px;
-    z-index: 9999;
+  
+    top:220%;
+}
+.arrow1 img{
+    left: 5%;
+}
+.arrow2 img{
+    left: 89%;
 }
 
 .robot img{
@@ -294,7 +286,7 @@
     height: 900px;
     z-index: 55px;
     position: relative;
-    margin-top: 10px;
+    margin-top: -180px;
     margin-left: 520px;
 }
 .quotes img{
@@ -450,7 +442,7 @@
 
 .hero{
     width:100%;
-     height: 85%;
+     height: 93%;
 }
 .header-container{
     padding: 0 10vw; 
@@ -485,40 +477,145 @@ margin-top: 510px;
 .bg{
     min-height: 750px;
 }
+.card{
+    width: 350px;
+}
 .card h3{
     font-size: 20px;
 }
 .card p{
     font-size: 15.5px;
 }
-button.button1{
-    margin-top: 65px;
-    font-size: 16px;
+
+
+
+
+
+
+.arrow1 img{
+  top: 205%;
+  left: 5%;
 }
-.button11{
-    margin-top: 65px;
-}
-.arrow1{
-    margin-left: -90px ;
-}
-.arrow2{
-    margin-left: -230px ;
+.arrow2 img{
+    top: 205%;
+    left: 87%;
 }
 
 .robot img{
     width: 77%;
     height: auto;
+
    
     position: relative;
-    margin-top: 60px;
+    margin-top: 172px;
     margin-left: 355px;
+}
+.quotes img{
+  height: 350px;  
 }
 .quotes_text img{
     width: 670px;
     margin-left: 355px;
 }
 }
+@media (max-width: 1440px) {
+     .logo{
+    height: 55px;
+
+}
+.nav-links ul {
+   margin-top: 11px;
+}
+.nav-links ul li a {
+    font-size: 17px;
+
+        }
+.profile{
+    height: 90%;
+    margin-top: -150px;
+}
+
+.hero{
+    width:100%;
+     height: 93%;
+}
+.header-container{
+    padding: 0 10vw; 
+    margin-left: -25px;
+}
+.hero h1{
+    margin-left: 132px;
+    font-size: 32px;
+    margin-top: 210px;
+}
+.hero h2{
+    margin-left: 132px;
+    font-size: 24px;
+    margin-top: 260px;
+}
+.hero p{
+    margin-left: 132px;
+    font-size: 15px;
+    margin-top: 410px;
+}
+.button{
+    margin-left: 132px;
+    font-size: 15px !important;
+    padding: 8px 40px;
+margin-top: 510px;
+flex-direction: row;
+}
+.whattoexpectimg{
+    width:60%;
+    margin-left: 250px;
+}
+
+.bg{
+    min-height: 750px;
+}
+.card{
+    width: 330px;
+}
+.card h3{
+    font-size: 20px;
+}
+.card p{
+    font-size: 15.5px;
+}
+
+
+
+
+
+
+.arrow1 img{
+  top: 205%;
+  left: 5%;
+}
+.arrow2 img{
+    top: 205%;
+    left: 87%;
+}
+
+.robot img{
+    width: 77%;
+    height: auto;
+
+   
+    position: relative;
+    margin-top: -211px;
+    margin-left: 350px;
+}
+.quotes img{
+  height: 350px;  
+}
+.quotes_text img{
+    width: 650px;
+    margin-left: 330px;
+}
+}
 @media(max-width: 1280px) {
+
     .logo{
     height: 55px;
 
@@ -542,26 +639,26 @@ button.button1{
    height: 85%;
 }
 .header-container{
-    padding: 0 12vw; 
-    margin-left: -50px;
+    padding: -1 12vw; 
+    margin-left: -2px;
 }
 .hero h1{
-    margin-left: 110px;
+    margin-left: 130px;
     font-size: 26px;
     margin-top: 210px;
 }
 .hero h2{
-    margin-left: 110px;
+    margin-left: 130px;
     font-size: 22px;
     margin-top: 260px;
 }
 .hero p{
-    margin-left: 110px;
+    margin-left: 130px;
     font-size: 15px;
     margin-top: 380px;
 }
 .button{
-    margin-left: 110px;
+    margin-left: 130px;
     font-size: 12px !important;
     padding: 8px 40px;
 margin-top: 480px;
@@ -584,6 +681,7 @@ margin-top: 480px;
      margin-top: 175px;    
       position: relative;
     z-index: 9999;
+    height: 350px;
 }
 .card p{
     font-size: 12.5px;
@@ -600,20 +698,13 @@ margin-top: 480px;
   transition: background-color 0.3s;
    position: relative;
     z-index: 9999 !important;
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.button11 {
-  margin-top: 45px;
-  background-color: #6ad0cb;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 25px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-   position: relative;
-    z-index: 9999 !important;
-}
+
+
   .arrow1 img {
         top: -470px;
         left: 15px;
@@ -648,19 +739,27 @@ margin-top: 480px;
 
 @media (max-width: 1024px) {
     .logo{
-    height: 50px;
+    height: 40px;
+       margin-top: 5px;
 
+}
+.nav-links{
+    margin-left: 55px;
 }
 .nav-links ul {
    margin-top: 11px;
+   gap: 1.5vw;
+
 }
 .nav-links ul li a {
     font-size: 13px;
+  
 
         }
 .profile{
-    height: 85%;
+    height: 75%;
     margin-top: 10px;
+    margin-right: -70px;
 }
 
 .hero{
@@ -672,6 +771,7 @@ margin-top: 480px;
 .header-container{
     padding: 0 12vw; 
     margin-left: -50px;
+    height: 70px;
 }
 .hero h1{
     margin-left: 82px;
@@ -693,7 +793,7 @@ margin-top: 480px;
     font-size: 10px !important;
     padding: 8px 40px;
 margin-top: 370px;
-padding: 10px 18px;
+padding: 6px 18px;
 }
 .whattoexpectimg{
     width:56%;
@@ -714,10 +814,11 @@ padding: 10px 18px;
       position: relative;
     z-index: 9999;
     height: 320px;
+    
    
 }
 
-}
+
 .card p{
     font-size: 11.5px;
 }
@@ -740,15 +841,22 @@ padding: 10px 18px;
    position: relative;
     z-index: 9999 !important;
     margin-top: 25px;
+        position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
 }
   .arrow1 img {
-        top: -470px;
-        left: 15px;
+   top: 148%;
+    left: 3%;
+     width: 100px;
     }
 
     .arrow2 img {
-        top: -470px;
-        right: 15px;
+        top: 148%;
+    left: 87%;
+    width: 100px;
+
     }
 .robot img{
     width: 77%;
@@ -756,201 +864,428 @@ padding: 10px 18px;
    
     position: relative;
     margin-top: -300px;
-    margin-left: 295px;
+    margin-left: 237px;
 }
 .quotes img{
-  height: 300px;  
+  height: 243px;  
 }
 .quotes_text img{
-    width: 570px;
-    margin-left: 280px;
+    width: 520px;
+    margin-left: 190px;
 }
-.footer h1{
-    font-size: clamp(14px, 2.5vw, 20px);
+ .footer{
+        height: 236px;
+       
+    }
+    .footer h1{
+        font-size: 19px;
+         margin-top: 9vh;
+    }
+    .footer-social a{ 
+font-size: 1.2rem !important; 
+        }
+        .image-wrapper_image-1{
+    width: 80%;
 }
-.footer-social a {
-    font-size: 1.3rem !important;
 }
-
 
 
 @media (max-width: 768px) {
-    .menu-toggle { 
-        display: block; 
-    }
+     .menu-toggle { 
+                display: block; 
+                margin-right: -65px;
+            }
 
-    .header-container {
-        padding: 0 4vw;
-    }
+            .header-container {
+                padding: -1px 4vw;
+            }
 
-    .logo {
-        height: 45px;
-    }
-
-    .nav-links {
-        display: block;
+            .logo {
+                height: 45px;
+            }
+            
+             .nav-links {
         position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        border-radius: 0.5rem;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
-        z-index: 1000;
-        width: 200px;
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-    }
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
 
     .nav-links.active {
         max-height: 500px;
-        opacity: 1;
-        transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
     }
 
     .nav-links ul {
-        flex-direction: column;
-        padding: 1rem 1.5rem;
-        gap: 1rem;
-        text-align: left;
-        align-items: flex-start;
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
     }
 
-    .nav-links ul li {
-        width: 100%;
-        text-align: left;
+
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 1.1rem;
+                color: #09989e;
+                width: 100%;
+            }
+
+            /* Анимация на линковете */
+            .nav-links ul li {
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .nav-links.active ul li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
+            .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
+            .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
+            .profile{
+                height: 84%;
+    margin-top: 2px;
+    margin-right: -100px;
+            }
+.hero{
+    height:52%;
+    margin-top: 50px;
+
+}
+.header-container{
+    padding: 0 12vw; 
+    margin-left: -50px;
+    height: 70px;
+}
+.hero h1{
+    margin-left: 50px;
+    font-size: 20px;
+    margin-top: 100px;
+}
+.hero h2{
+    margin-left: 50px;
+    font-size: 18px;
+    margin-top: 130px;
+}
+.hero p{
+    margin-left: 50px;
+    font-size: 10px;
+    margin-top: 200px;
+    padding-right: 55%;
+}
+.button{
+    margin-left: 50px;
+    font-size: 10px !important;
+    padding: 8px 40px;
+margin-top: 280px;
+padding: 5px 14px;
+}
+.whattoexpectimg{
+    width:56%;
+    margin-left: 150px;
+}
+.bg{
+    min-height: 1400px;
+     background-image: url("Group 18(4).png");
+}
+   .cards-container {
+        flex-direction: column; /* една под друга */
+        align-items: center;    /* центриране на картите */
+        gap: 20px;
+       
     }
 
-    .nav-links ul li a {
-        text-align: left;
-        display: block;
-        font-size: 1.1rem;
-        color: #09989e;
-        width: 100%;
+    .card {
+        width: 300px;           /* фиксирана ширина */
+        margin-top: 0;
+    
+    }
+    .card:first-child {
+    margin-top: 120px; /* само първата карта е отместена надолу */
+}
+
+    .button1 {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+  .arrow1 img {
+   top: 120%;
+    left: 8%;
+     width: 80px;
     }
 
-    .nav-links ul li {
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
+    .arrow2 img {
+        top: 120%;
+    left: 83%;
+    width: 80px;
 
-    .nav-links.active ul li {
-        opacity: 1;
-        transform: translateY(0);
     }
-
-    .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
-    .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
-    .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
-    .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
-
-    .hero-video {
-        width: 92%;
-        margin-top: 70px;
+.robot img{
+    width: 77%;
+    height: auto;
+   
+    position: relative;
+    margin-top: -300px;
+    margin-left: 177px;
+}
+.quotes img{
+  height: 180px;  
+}
+.quotes_text img{
+    width: 410px;
+    margin-left: 120px;
+}
+  .footer {
+                aspect-ratio: 16 / 3;
+            }
+            
+            .footer-social {
+                gap: 25px;
+            }
+            
+           
+            .footer{
+        height: 180px;
+       
     }
-
-    .footer {
-        aspect-ratio: 16 / 3;
+    .footer h1{
+        font-size: 16px;
+         margin-top: 8vh;
     }
-
-    .footer-social {
-        gap: 25px;
-    }
-
-    .footer-social a {
-        font-size: 1.5rem;
-    }
-
-    .hero {
-        text-align: center;
-        align-items: center;
-        background-position: center;
-        min-height: 90vh;
-    }
-
-    .hero h1 {
-        font-size: 24px;
-        margin-top: 80px;
-    }
-
-    .hero h2 {
-        font-size: 20px;
-    }
-
-    .hero p {
-        font-size: 14px;
-        max-width: 80%;
-    }
-
-    .hero .button {
-        font-size: 14px;
-        padding: 8px 30px;
-        margin-top: 25px;
-    }
+    .footer-social a{ 
+font-size: 1rem !important; 
+        }
 }
 
 @media (max-width: 480px) {
-    .header-container {
-        padding: 0 4vw;
-        height: 70px;
+     .menu-toggle { 
+                display: block; 
+                margin-right: -60px;
+                margin-top: 5px;
+            }
+
+            .header-container {
+                padding: -1px 4vw;
+            }
+
+            .logo {
+                height: 35px;
+            }
+            
+             .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
     }
 
-    .logo {
-        height: 40px;
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
     }
 
-    .profile-btn {
-        width: 40px;
-        height: 40px;
-    }
 
-    .footer {
-        aspect-ratio: 16 / 3;
-        margin-top: 30px;
-    }
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
 
-    .footer-social {
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 1.1rem;
+                color: #09989e;
+                width: 100%;
+            }
+
+            /* Анимация на линковете */
+            .nav-links ul li {
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .nav-links.active ul li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
+            .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
+            .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
+            .profile{
+                height: 80%;
+    margin-top: 7px;
+    margin-right: -80px;
+            }
+.hero{
+    height:28%;
+    margin-top: 80px;
+
+}
+.header-container{
+    padding: 0 12vw; 
+    margin-left: -50px;
+    height: 70px;
+}
+.hero h1{
+    margin-left: 15px;
+    font-size: 13px;
+    margin-top: 37px;
+}
+.hero h2{
+    margin-left: 15px;
+    font-size: 11px;
+    margin-top: 55px;
+}
+.hero p{
+    margin-left: 15px;
+    font-size: 8px;
+    margin-top: 95px;
+    padding-right: 53%;
+    line-height: 1.2;
+}
+.button{
+    margin-left: 15px;
+    font-size: 7px !important;
+   
+margin-top: 150px;
+padding: 2px 9px;
+}
+.whattoexpectimg{
+    width:85%;
+    margin-left: 35px;
+}
+.bg{
+    min-height: 1100px;
+     background-image: url("Group 18(5).png");
+}
+   .cards-container {
+        flex-direction: column; /* една под друга */
+        align-items: center;    /* центриране на картите */
         gap: 20px;
+       
     }
 
-    .footer-social a {
-        font-size: 1.3rem;
+    .card {
+        width: 260px;           /* фиксирана ширина */
+        margin-top: 0;
+        height: 250px;
+    
+    }
+    .card:first-child {
+    margin-top: 77px; /* само първата карта е отместена надолу */
+}
+.card h3{
+    font-size: 14px;
+}
+.card p{
+    font-size: 9px;
+    margin-top: 20px;
+}
+
+    .button1 {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+  .arrow1 img {
+   top: 88%;
+    left: 6%;
+     width: 65px;
     }
 
-    .footer h1 {
-        font-size: clamp(14px, 2.5vw, 20px);
-        top: 35%;
-    }
+    .arrow2 img {
+        top: 88%;
+    left: 80%;
+    width: 65px;
 
-    .footer-social {
-        top: 65%;
     }
-
-    .hero {
-        min-height: 80vh;
-        background-position: top;
-        padding: 0 5vw;
+.robot img{
+    width: 85%;
+    height: auto;
+   
+    position: relative;
+    margin-top: -267px;
+    margin-left: 83px;
+}
+.quotes img{
+  height: 115px;  
+}
+.quotes_text img{
+    width: 285px;
+    margin-left: 60px;
+}
+  .footer{
+        height: 99px;
+       
     }
-
-    .hero h1 {
-        font-size: 20px;
-        margin-top: 60px;
+    .footer h1{
+        font-size: 10px;
+         margin-top: 4vh;
     }
-
-    .hero h2 {
-        font-size: 18px;
-    }
-
-    .hero p {
-        font-size: 13px;
-        max-width: 90%;
-    }
-
-    .hero .button {
-        font-size: 13px;
-        padding: 7px 25px;
-    }
+     .footer {
+                aspect-ratio: 16 / 3;
+                margin-top: 30px;
+            }
+            
+            .footer-social {
+                gap: 10px;
+            }
+.footer-social a{ 
+font-size: 0.7rem !important; 
+ margin-top: -1.5vh;
+        }
 }
