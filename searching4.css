@@ -706,13 +706,15 @@ margin-top: 480px;
 
 
   .arrow1 img {
-        top: -470px;
-        left: 15px;
+        top: 175%;
+        left: 4%;
+        width: 80px;
     }
 
     .arrow2 img {
-        top: -470px;
-        right: 15px;
+        top: 175%;
+        left: 90%;
+          width: 80px;
     }
 .robot img{
     width: 77%;
@@ -1037,13 +1039,13 @@ padding: 5px 14px;
         transform: translateX(-50%);
     }
   .arrow1 img {
-   top: 120%;
+   top: 124%;
     left: 8%;
      width: 80px;
     }
 
     .arrow2 img {
-        top: 120%;
+        top: 124%;
     left: 83%;
     width: 80px;
 
@@ -1242,13 +1244,13 @@ padding: 2px 9px;
         transform: translateX(-50%);
     }
   .arrow1 img {
-   top: 88%;
+   top: 97%;
     left: 6%;
      width: 65px;
     }
 
     .arrow2 img {
-        top: 88%;
+        top: 97%;
     left: 80%;
     width: 65px;
 
