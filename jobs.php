@@ -3,7 +3,7 @@
 // error_reporting(0); 
 
 // --- НАСТРОЙКИ ---
-$token = "apify_api_hwRvUpHXtQxEHyzDK317pVeYVdKQR629w6Pv"; // ТВОЯТ токен
+$token = "apify_api_AO3crKcr2Eg2UNukesJkrk0OTbsEzE33VY3C"; // ТВОЯТ токен
 $actorId = "worldunboxer~rapid-linkedin-scraper"; 
 
 $filtered = [];
