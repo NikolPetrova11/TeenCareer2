@@ -1,23 +1,16 @@
-* {
+  * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
-          
-            
-        }
-
-        img, video {
-            max-width: 100%;
-            height: auto;
-            display: block;
         }
 
         body {
-            overflow-x: hidden;
             background-color: #f8f9fa;
+            overflow-x: hidden;
         }
 
+        /* ---------- HEADER ---------- */
         header {
             width: 100%;
             position: fixed;
@@ -25,7 +18,7 @@
             left: 0;
             z-index: 1000;
             background: white;
-            box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             height: 80px;
         }
 
@@ -61,7 +54,7 @@
         .nav-links ul li::after {
             content:'';
             width:0%;
-            height: 0.3vh;
+            height: 3px;
             background: #09989e;
             display: block;
             margin:auto;
@@ -72,131 +65,180 @@
             width:100%;
         }
 
-        .right-buttons {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
         .profile-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.image-wrapper{
-    margin-top: -385px;
-}
-.profile {
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-        .menu-toggle {
-            display: none;
-            font-size: 28px;
             background: none;
             border: none;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile {
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            margin-top: 80px;
+            position: relative;
+            text-align: center;
+            padding: 80px 20px;
+            background: #eaf9f9;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            color: #8274A1;
+        }
+
+        .hero h2 {
+            margin-top: 20px;
+            font-size: 32px;
+            font-family: 'Caveat', cursive;
             color: #09989e;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            border: 2px solid #09989e;
+            padding: 10px 40px;
+            margin-top: 30px;
+            font-size: 18px;
+            background: #09989e;
+            border-radius: 25px;
+            transition: 0.5s;
+        }
+
+        .button:hover {
+            background: #8274A1;
+            border-color: #8274A1;
+        }
+
+        /* ---------- FLIP CARDS ---------- */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            padding: 80px 0;
+        }
+
+        .card-wrapper {
+            width: 300px;
+            height: 380px;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
             cursor: pointer;
         }
 
-.phone img{
-    position: absolute; 
- width:70%;
-    top: 48%; 
-   left: 30%;
-  z-index: 2; 
-  width: 600px;
- 
-  transform: translate(-50%, -50%);
-    background: transparent;
-}
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* или колкото искаш */
-  overflow: hidden;
-}
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
 
-.hero .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("Group 15 (1).png"); /* или каквото ползваш */
-  background-size: cover;
-  background-position: center;
-  z-index: 1; /* Фонът е отзад */
-}
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-.hero .text {
-  position: relative;
-  z-index: 2;
-  margin-left: 1047px;
-  margin-top: 225px;
-  color: #19989e;
-   background: transparent;
-}
+        .card-front {
+            background-color: #f8f8ff;
+        }
 
-.hero h1 {
-  font-size: 36px;
-  color: #8274A1;
-  background: transparent;
-}
+        .card-front img {
+            width: 100px;
+            margin: 15px 0;
+        }
 
-.hero h2 {
-  margin-top: 50px;
-  font-size: 36px;
-   font-family: 'Caveat', cursive;
-  color: #09989e;
-  background: transparent;
-    line-height: 0.8;
-}
+        .card-back {
+            background-color: #eaf9f9;
+            transform: rotateY(180deg);
+        }
 
-.hero p {
-  margin-top: 25px;
-  font-size: 16px;
-  color: #8274A1;
-  
-  background: transparent;
-  line-height: 1.2;
-}
-.button {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff !important;
-    border: 2px solid #09989e;
-    padding: 9px 45px;
-    margin-top: 57px;
-    margin-left: -1px;
-    font-size: 18px !important;
-    background: #09989e;
-    position: absolute;
-    cursor: pointer;
-    border-radius: 25px;
-    z-index: 3;
-}
+        .card-back form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            text-align: left;
+        }
 
-.button:hover {
-    border: 2px solid #8274A1;
-    background: #8274A1;
-    transition: 1s;
-}
+        .card-back input,
+        .card-back select,
+        .card-back textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
 
-.steps {
-    position: relative;
-    width: 100%;
-    height: 400px; /* или колкото искаш */
-}
+        .card-back button,
+        .close-flip-btn {
+            background: #09989e;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
 
-.steps img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        .card-back button:hover,
+        .close-flip-btn:hover {
+            background: #8274A1;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            background: #09989e;
+            color: #fff;
+        }
+
+        .footer-social {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #8274A1;
+        }
