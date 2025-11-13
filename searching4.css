@@ -426,6 +426,7 @@
 @media (max-width: 1536px) {
    .logo{
     height: 55px;
+    margin-left: -20px;
 
 }
 .nav-links ul {
@@ -436,8 +437,9 @@
 
         }
 .profile{
-    height: 90%;
+    height: 100%;
     margin-top: 10px;
+    
 }
 
 .hero{
@@ -471,7 +473,7 @@ margin-top: 510px;
 }
 .whattoexpectimg{
     width:60%;
-    margin-left: 321px;
+    margin-left: 290px;
 }
 
 .bg{
@@ -493,11 +495,11 @@ margin-top: 510px;
 
 
 .arrow1 img{
-  top: 205%;
+  top: 187%;
   left: 5%;
 }
 .arrow2 img{
-    top: 205%;
+    top: 187%;
     left: 87%;
 }
 
@@ -507,8 +509,8 @@ margin-top: 510px;
 
    
     position: relative;
-    margin-top: 172px;
-    margin-left: 355px;
+    margin-top: -172px;
+    margin-left: 315px;
 }
 .quotes img{
   height: 350px;  
@@ -521,6 +523,7 @@ margin-top: 510px;
 @media (max-width: 1440px) {
      .logo{
     height: 55px;
+    margin-left: 10px;
 
 }
 .nav-links ul {
@@ -532,7 +535,9 @@ margin-top: 510px;
         }
 .profile{
     height: 90%;
-    margin-top: -150px;
+    margin-right: 27px;
+  
+ 
 }
 
 .hero{
@@ -567,7 +572,7 @@ flex-direction: row;
 }
 .whattoexpectimg{
     width:60%;
-    margin-left: 250px;
+    margin-left: 283px;
 }
 
 .bg{
@@ -604,20 +609,21 @@ flex-direction: row;
    
     position: relative;
     margin-top: -211px;
-    margin-left: 350px;
+    margin-left: 332px;
 }
 .quotes img{
   height: 350px;  
 }
 .quotes_text img{
     width: 650px;
-    margin-left: 330px;
+    margin-left: 315px;
 }
 }
 @media(max-width: 1280px) {
 
     .logo{
     height: 55px;
+       margin-left: 25px;
 
 }
 .nav-links ul {
@@ -630,6 +636,7 @@ flex-direction: row;
 .profile{
     height: 90%;
     margin-top: 10px;
+    margin-right: -20px;
 }
 
 .hero{
@@ -682,6 +689,10 @@ margin-top: 480px;
       position: relative;
     z-index: 9999;
     height: 350px;
+  
+}
+.card:first-child{
+    margin-left: 30px;
 }
 .card p{
     font-size: 12.5px;
@@ -706,13 +717,13 @@ margin-top: 480px;
 
 
   .arrow1 img {
-        top: 175%;
-        left: 4%;
+        top: 187%;
+        left: 6%;
         width: 80px;
     }
 
     .arrow2 img {
-        top: 175%;
+        top: 187%;
         left: 90%;
           width: 80px;
     }
@@ -729,13 +740,20 @@ margin-top: 480px;
 }
 .quotes_text img{
     width: 570px;
-    margin-left: 280px;
+    margin-left: 304px;
+    
 }
 .footer h1{
     font-size: clamp(14px, 2.5vw, 20px);
+    margin-left: 200px;
+    margin-left: 30px;
 }
 .footer-social a {
     font-size: 1.3rem !important;
+    
+}
+.footer-social a:first-child{
+      margin-left: 30px;
 }
 }
 
@@ -743,10 +761,11 @@ margin-top: 480px;
     .logo{
     height: 40px;
        margin-top: 5px;
+   
 
 }
 .nav-links{
-    margin-left: 55px;
+    margin-left:  80px;
 }
 .nav-links ul {
    margin-top: 11px;
@@ -754,14 +773,14 @@ margin-top: 480px;
 
 }
 .nav-links ul li a {
-    font-size: 13px;
+    font-size: 12px;
   
 
         }
 .profile{
     height: 75%;
     margin-top: 10px;
-    margin-right: -70px;
+    margin-right: -60px;
 }
 
 .hero{
@@ -819,7 +838,9 @@ padding: 6px 18px;
     
    
 }
-
+.card:first-child{
+    margin-left: 0px;
+}
 
 .card p{
     font-size: 11.5px;
@@ -847,6 +868,9 @@ padding: 6px 18px;
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
+}
+.button1 a{
+    font-size: 10px !important;
 }
   .arrow1 img {
    top: 148%;
@@ -882,10 +906,14 @@ padding: 6px 18px;
     .footer h1{
         font-size: 19px;
          margin-top: 9vh;
+         margin-left: 0px;
     }
     .footer-social a{ 
 font-size: 1.2rem !important; 
+ 
         }
+        .footer-social a:first-child{
+      margin-left: 0px; }
         .image-wrapper_image-1{
     width: 80%;
 }
@@ -896,6 +924,7 @@ font-size: 1.2rem !important;
      .menu-toggle { 
                 display: block; 
                 margin-right: -65px;
+                z-index: 10;
             }
 
             .header-container {
@@ -904,6 +933,7 @@ font-size: 1.2rem !important;
 
             .logo {
                 height: 45px;
+                margin-left: -5px;
             }
             
              .nav-links {
@@ -1010,8 +1040,8 @@ margin-top: 280px;
 padding: 5px 14px;
 }
 .whattoexpectimg{
-    width:56%;
-    margin-left: 150px;
+    width:67%;
+    margin-left: 123px;
 }
 .bg{
     min-height: 1400px;
@@ -1039,27 +1069,28 @@ padding: 5px 14px;
         transform: translateX(-50%);
     }
   .arrow1 img {
-   top: 124%;
+   top: 138%;
     left: 8%;
      width: 80px;
     }
 
     .arrow2 img {
-        top: 124%;
+        top: 138%;
     left: 83%;
     width: 80px;
 
     }
-.robot img{
-    width: 77%;
-    height: auto;
-   
-    position: relative;
-    margin-top: -300px;
-    margin-left: 177px;
-}
+    .robot img {
+        width: 91%;
+        height: auto;
+        position: relative;
+        margin-top: -300px;
+        margin-left: 68px;
+    }
 .quotes img{
   height: 180px;  
+  margin-top: -25px;
+  z-index: 10;
 }
 .quotes_text img{
     width: 410px;
@@ -1090,8 +1121,9 @@ font-size: 1rem !important;
 @media (max-width: 480px) {
      .menu-toggle { 
                 display: block; 
-                margin-right: -60px;
+                margin-right: -65px;
                 margin-top: 5px;
+                z-index: 10;
             }
 
             .header-container {
@@ -1100,6 +1132,7 @@ font-size: 1rem !important;
 
             .logo {
                 height: 35px;
+                margin-left: 10px;
             }
             
              .nav-links {
@@ -1207,8 +1240,8 @@ margin-top: 150px;
 padding: 2px 9px;
 }
 .whattoexpectimg{
-    width:85%;
-    margin-left: 35px;
+            width: 85%;
+        margin-left: 30px;
 }
 .bg{
     min-height: 1100px;
@@ -1217,18 +1250,18 @@ padding: 2px 9px;
    .cards-container {
         flex-direction: column; /* една под друга */
         align-items: center;    /* центриране на картите */
-        gap: 20px;
+        gap: 10px;
        
     }
 
     .card {
-        width: 260px;           /* фиксирана ширина */
+        width: 240px;           /* фиксирана ширина */
         margin-top: 0;
         height: 250px;
     
     }
     .card:first-child {
-    margin-top: 77px; /* само първата карта е отместена надолу */
+    margin-top: 67px; /* само първата карта е отместена надолу */
 }
 .card h3{
     font-size: 14px;
@@ -1256,12 +1289,12 @@ padding: 2px 9px;
 
     }
 .robot img{
-    width: 85%;
-    height: auto;
-   
-    position: relative;
-    margin-top: -267px;
-    margin-left: 83px;
+           width: 91%; 
+
+        height: auto;
+        position: relative;
+        margin-top: -267px;
+        margin-left: 43px;
 }
 .quotes img{
   height: 115px;  

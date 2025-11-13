@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
 
-    <link rel="stylesheet" type="text/css" href="style3.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -174,7 +174,7 @@
     <h1>Последвай ни в:</h1>
     <div class="footer-social">
       <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-      
+        <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
       <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
       <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
     </div>

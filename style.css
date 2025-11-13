@@ -363,6 +363,9 @@ margin-left: 180px;
 
         /* --- Responsive --- */
         @media (max-width: 1536px){
+            .profile{
+                margin-right: 60px;
+            }
             .image-wrapper_image-1{
     width: 80%;
 
@@ -389,6 +392,9 @@ margin-left: 248px;
         }
     
         @media (max-width: 1440px) {
+            .profile{
+                margin-right: -20px;
+            }
             .header-container {
                 padding: 0 6vw;
             }
@@ -443,6 +449,9 @@ margin-left: 195px;
     }
 
         @media (max-width: 1024px) {
+            .profile{
+                margin-right: 40px;
+            }
             .icon-row { gap: 5vw; }
            
             
@@ -455,7 +464,8 @@ margin-left: 195px;
             }
             
             .nav-links ul li a {
-                font-size: 15px;
+                font-size: 13px;
+                margin-top: 5px;
             }
             
             .hero-video {
@@ -485,7 +495,7 @@ font-size: 1.2rem !important;
 }
 .image-wrapper_image-2{
 margin-top: -180px;
-margin-left: 205px;
+margin-left: 154px;
  width: 80%;
  
 
@@ -517,36 +527,41 @@ margin-left: 167px;
                 height: 45px;
             }
             
-            .nav-links {
-                display: block;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                background: white;
-                border-radius: 0.5rem;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
-                transform: translateY(-20px);
-                transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
-                z-index: 1000;
-                width: 200px;
-                box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-            }
+           .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
 
-            .nav-links.active {
-                max-height: 500px;
-                opacity: 1;
-                transform: translateY(0);
-            }
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
 
-            .nav-links ul {
-                flex-direction: column;
-                padding: 1rem 1.5rem;
-                gap: 1rem;
-                text-align: left;
-                align-items: flex-start;
-            }
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
+
 
             .nav-links ul li {
                 width: 100%;
@@ -666,15 +681,21 @@ margin-left: 130px;
         }
 
         @media (max-width: 480px) {
+            .menu-toggle{
+                margin-right: -20px;
+            }
             .header-container {
                 padding: 0 4vw;
                 height: 70px;
             }
             
             .logo {
-                height: 40px;
+                height: 35px;
+                margin-left: -5px;
             }
-            
+            .profile{
+                margin-right: 0px;
+            }
             .profile-btn {
                 width: 40px;
                 height: 40px;
@@ -725,7 +746,7 @@ margin-left: 130px;
             
             .footer {
                 aspect-ratio: 16 / 3;
-                margin-top: 30px;
+              
             }
             
             .footer-social {
@@ -761,7 +782,7 @@ font-size: 0.7rem !important;
 }
 .image-wrapper_image-2{
 margin-top: -92px;
-margin-left: 130px;
+margin-left: 85px;
  width: 80%;
  
 
