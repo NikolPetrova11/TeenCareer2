@@ -3,282 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeenCareer - Твоят стартов комплект</title>
-    
+    <title>TeenCareer</title>
     <link rel="stylesheet" type="text/css" href="cv.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
-    
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-   
+
 </head>
 <body>
     <header>
     <div class="header-container">
-        <img src="logo.png" class="logo" alt="TeenCareer">
+      <img src="logo.png" class="logo" alt="TeenCareer">
 
-        <nav class="nav-links" id="navMenu">
-            <ul>
-                <li><a href="index.php">Да започнем</a></li>
-                <li><a href="searching.html">Хайде на работа!</a></li>
-                <li><a href="CV_Portfolio_Maker.html">Твоят стартов комплект</a></li>
-                <li><a href="#">Съвети със стил</a></li>
-            </ul>
-        </nav>
+      <nav class="nav-links" id="navMenu">
+        <ul>
+          <li><a href="index.php">Да започнем</a></li>
+          <li><a href="searching.html">Хайде на работа!</a></li>
+          <li><a href="CV_Portfolio_Maker.html">Твоят стартов комплект</a></li>
+          <li><a href="#">Съвети със стил</a></li>
+        </ul>
+      </nav>
 
-        <div class="right-buttons">
-            <button class="menu-toggle" id="menuToggle" metod="post">☰</button>
-            <button class="profile-btn">
-                <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
-            </button>
-        </div>
+      <div class="right-buttons">
+        <button class="menu-toggle" id="menuToggle" metod="post">☰</button>
+        <button class="profile-btn">
+          <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
+        </button>
+      </div>
     </div>
     
     <div class="overlay"></div>
     
+    <!-- ✅ Popup с вградена форма за регистрация -->
     <div class="popup">
-        <div class="close-btn">&times;</div>
-        <div class="form">
-            <form action="register.php" method="POST">
-                <div class="form-element">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Въведи имейл" required>
-                </div> 
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <form action="register.php" method="POST">
+          <div class="form-element">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Въведи имейл" required>
+          </div> 
 
-                <div class="form-element">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Въведи парола" required>
-                </div>
+          <div class="form-element">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Въведи парола" required>
+          </div>
 
-                <div class="form-element">
-                    <input type="checkbox" id="remember-me">
-                    <label for="remember-me">Запомни ме</label>
-                </div>
+          <div class="form-element">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Запомни ме</label>
+          </div>
 
-                <div class="form-element">
-                    <button type="submit">Регистрирай се</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <script>
-        // ЛОГИКА ЗА МЕНЮ И ПОПАП
-        const menuToggle = document.getElementById("menuToggle");
-        const navMenu = document.getElementById("navMenu");
-
-        menuToggle.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });
-
-        document.querySelector(".profile-btn").addEventListener("click", function() {
-            document.querySelector(".overlay").classList.add("active");
-            document.querySelector(".popup").classList.add("active");
-        });
-
-        document.querySelector(".popup .close-btn").addEventListener("click", function() {
-            document.querySelector(".overlay").classList.remove("active");
-            document.querySelector(".popup").classList.remove("active");
-        });
-
-        document.querySelector(".overlay").addEventListener("click", function(e) {
-            if (e.target.classList.contains("overlay")) {
-                document.querySelector(".overlay").classList.remove("active");
-                document.querySelector(".popup").classList.remove("active");
-            }
-        });
-    </script>
-    </header>
-    <section class="hero">
-        <div class="background"></div>
-        <div class="phone">
-            <img src="phone 1.png" alt="Телефон">
-        </div>
-        <div class="text">
-            <h1>Създай си CV без главоболие</h1>
-            <h2>Не е нужно да имаш опит, за да<br>  изглеждаш готов.</h2>
-            <p>Нашият CV Maker ще ти помогне да се представиш уверено, дори<br> ако това е първата ти работа.</p>
-            <a href="#" class="button">Създай сега</a>
-        </div>
-    </section>
-    <section class="steps">
-        <img src="Group 16.png" alt="Стъпки">
-        <p>Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
-    </section>
-    
-    <section class="cards-container">
-        
-        <div class="card"> 
-            <div class="card-inner" id="card-inner-1">
-                <div class="card card-front">
-                    <h3>1.</h3>
-                    <img src="design.png" alt="Икона за дизайн">
-                    <p><strong>Избери темплейт за CV</strong></p>
-                </div>
-
-                <div class="card card-back">
-                    <h3>Избери темплейт</h3>
-                    <form class="flip-form">
-                        <label for="template-select">Темплейт:</label>
-                        <select id="template-select-1">
-                            <option value="modern">Модерен</option>
-                            <option value="classic">Класически</option>
-                        </select>
-                        <button type="submit">Продължи</button>
-                    </form>
-                    <button class="close-flip-btn">Затвори</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-wrapper">
-            <div class="card-inner" id="card-inner-2">
-                <div class="card card-front">
-                    <h3>2.</h3>
-                    <img src="inf.png" alt="Икона за информация">
-                    <p>Разкажи ни за себе си</p>
-                </div>
-
-                <div class="card card-back">
-                    <h3>Твоите данни</h3>
-                    <form action="generate_pdf.php" method="POST">
-        
-        <h2>Лична Информация</h2>
-        <label for="name">Име:</label>
-        <input type="text" id="name" name="name" required><br>
-
-        <label for="job_title">Длъжност:</label>
-        <input type="text" id="job_title" name="job_title"><br>
-
-        <label for="email">Имейл:</label>
-        <input type="email" id="email" name="email" required><br>
-        
-        <h2>Умения</h2>
-        <p>Добавете основните си умения:</p>
-        <input type="text" name="skills[]" placeholder="PHP, MySQL, и т.н."><br>
-        
-        <h2>Професионален Опит (Първа позиция)</h2>
-        <div class="experience-item">
-            <label>Компания:</label>
-            <input type="text" name="experience[0][company]"><br>
-            <label>Длъжност:</label>
-            <input type="text" name="experience[0][title]"><br>
-            <label>Описание:</label>
-            <textarea name="experience[0][description]"></textarea>
-        </div>
-                    <button class="close-flip-btn">Затвори</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-wrapper">
-            <div class="card-inner" id="card-inner-3">
-                <div class="card card-front">
-                    <h3>3.</h3>
-                    <img src="readycv.png" alt="Икона за готово CV">
-                    
-                    <p>Изтегли своето готово CV</p>
-                </div>
-<button type="submit" class="step-button">
-            <div class="step-box">
-                <div class="step-number">3.</div>
-                <div class="step-icon"></div> <p><strong>Изтегли своето готово CV</strong></p>
-            </div>
-        </button>
+          <div class="form-element">
+            <button type="submit">Регистрирай се</button>
+          </div>
         </form>
-                <div class="card card-back">
-                    <h3>Готово!</h3>
-                    <p>Натиснете бутона, за да изтеглите файла.</p>
-                    <a href="#" class="download-link"><button>Изтегли CV</button></a>
-                    <button class="close-flip-btn">Затвори</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="portfolio">
-        <div class="portfolio">
-            <img src="Group 17.png" alt="Портфолио">
-            <section class="cards1-container">
-            <div class="card1">
-            <h3>Избери темплейт за портфолио</h3>
-            <img src="01(2).png" style="width: 140px; margin-left: 140px;" alt="Икона 1">
-            </div>
-
-            <div class="card1">
-            <h3>Сподели работата си<br> с нас</h3>
-            <img src="02.png" alt="Икона 2">
-            </div>
-
-            <div class="card1">
-            <h3>Изтегли своето готово портфолио</h3>
-                <img src="03.png" alt="Икона 3">
-            </div>
-            </section>
-        </div>
-    </section>
-
-    <section class="footer">
-        <video autoplay muted loop playsinline>
-            <source src="Footer 2.mp4" type="video/mp4">
-            Твоят браузър не поддържа видео таг.
-        </video>
-        <h1>Последвай ни в:</h1>
-        <div class="footer-social">
-            <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
-            <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-            <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-    </section>
+      </div>
+    </div>
+    <!-- ✅ Край на popup-а -->
     
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Меню и попъп
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
+      const menuToggle = document.getElementById("menuToggle");
+      const navMenu = document.getElementById("navMenu");
 
-    menuToggle.addEventListener("click", () => {
+      menuToggle.addEventListener("click", () => {
         navMenu.classList.toggle("active");
-    });
+      });
 
-    document.querySelector(".profile-btn").addEventListener("click", () => {
+      document.querySelector(".profile-btn").addEventListener("click", function() {
         document.querySelector(".overlay").classList.add("active");
         document.querySelector(".popup").classList.add("active");
-    });
+      });
 
-    document.querySelector(".popup .close-btn").addEventListener("click", () => {
+      document.querySelector(".popup .close-btn").addEventListener("click", function() {
         document.querySelector(".overlay").classList.remove("active");
         document.querySelector(".popup").classList.remove("active");
-    });
+      });
 
-    document.querySelector(".overlay").addEventListener("click", (e) => {
+      document.querySelector(".overlay").addEventListener("click", function(e) {
         if (e.target.classList.contains("overlay")) {
-            document.querySelector(".overlay").classList.remove("active");
-            document.querySelector(".popup").classList.remove("active");
+          document.querySelector(".overlay").classList.remove("active");
+          document.querySelector(".popup").classList.remove("active");
         }
-    });
+      });
+    </script>
+  </header>
+  <section class="hero">
+   <div class="background"></div>
+   <div class="phone">
+    <img src="phone 1.png">
+   </div>
+   <div class="text">
+<h1>Създай си CV без главоболие</h1>
+<h2>Не е нужно да имаш опит, за да<br>  изглеждаш готов.</h2>
+<p>Нашият CV Maker ще ти помогне да се представиш уверено, дори<br> ако това е първата ти работа.</p>
+ <a href="#" class="button">Създай сега</a>
+   </div>
+  </section>
+  <section class="steps">
+    <img src="Group 16.png">
+    <p>Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
+  </section>
+  <section class="cards-container">
+    <div class="card">
+      <h3>1.</h3>
+      <img src="design.png">
+      <p><strong>Избери темплейт за CV</strong></p>
+      
+    </div>
 
-    // FLIP карти
-    const cardWrappers = document.querySelectorAll('.card-wrapper');
-    cardWrappers.forEach(wrapper => {
-        const cardInner = wrapper.querySelector('.card-inner');
-        const front = wrapper.querySelector('.card-front');
-        const closeBtn = wrapper.querySelector('.close-flip-btn');
+    <div class="card">
+      <h3>2.</h3>
+      <img src="inf.png">
+      <p>Разкажи ни за себе си</p>
+      
+    </div>
 
-        front.addEventListener('click', e => {
-            e.stopPropagation();
-            cardInner.classList.add('flipped');
-        });
+    <div class="card">
+      <h3>3.</h3>
+      <img src="readycv.png">
+      <p>Изтегли своето готово CV</p>
+     
+    </div>
 
-        closeBtn.addEventListener('click', e => {
-            e.stopPropagation();
-            cardInner.classList.remove('flipped');
-        });
-    });
-});
-</script>
+  </section>
+  <section class="portfolio">
+    <div class="portfolio">
+      <img src="Group 17.png">
+      <section class="cards1-container">
+      <div class="card1">
+      <h3>Избери темплейт за портфолио</h3>
+      <img src="01(2).png" style="width: 140px; margin-left: 140px;">
+      
+      
+    </div>
 
+    <div class="card1">
+      <h3>Сподели работата си<br> с нас</h3>
+      <img src="02.png">
+     
+      
+    </div>
+
+    <div class="card1">
+      <h3>Изтегли своето готово портфолио</h3>
+       <img src="03.png">
+      
+     
+    </div>
+      </section>
+    </div>
+    
+  </section>
+    <section class="footer">
+    <video autoplay muted loop playsinline>
+        <source src="Footer 2.mp4" type="video/mp4">
+        Твоят браузър не поддържа видео таг.
+    </video>
+    <h1>Последвай ни в:</h1>
+    <div class="footer-social">
+      <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
+      <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </section>
 </body>
 </html>
