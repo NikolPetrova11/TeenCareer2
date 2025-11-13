@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $email, $hashed_password);
 
     if ($stmt->execute()) {
-        echo "<h3>✅ Регистрацията е успешна!</h3>";
-        echo "<a href='index.php'>Върни се към сайта</a>";
+        echo "<a href='myprofile.html'></a>";
+        
     } else {
         echo "⚠️ Грешка: " . $stmt->error;
     }
