@@ -205,7 +205,7 @@
     display: grid;
       grid-template-columns: repeat(3, 1fr); /* малко по-стабилно */
     gap: 25px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 80px auto;
     padding: 20px;
     
