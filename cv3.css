@@ -392,27 +392,3 @@
   margin-top: 12vh;
   font-size: clamp(16px, 3vw, 24px);
 }
-/* Custom styling for the modal transition */
-        .modal-overlay {
-            transition: opacity 0.3s ease-out;
-        }
-        .modal-content {
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            transform: scale(0.95);
-        }
-        .modal-hidden .modal-content {
-            transform: scale(0.9);
-            opacity: 0;
-        }
-        .modal-open .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-        .modal-hidden {
-            opacity: 0;
-            pointer-events: none; /* Allows clicks to pass through when hidden */
-        }
-        .modal-open {
-            opacity: 1;
-            pointer-events: auto;
-        }
