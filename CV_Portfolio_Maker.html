@@ -137,16 +137,45 @@
             <div class="flip-card-front">
                 <div class="card-number">2.</div>
                 <div class="card-icon">
+                  <img src="inf.png">
                     
                 </div>
+<<<<<<< Updated upstream
                 <p class="card-title"></p>
+=======
+                
+>>>>>>> Stashed changes
                 <button class="flip-button flip-forward-btn">Разкажи ни за себе си.</button> 
             </div>
             
             <div class="flip-card-back">
                 <div class="card-number">2.</div>
                 <p class="card-title"></p>
-                <p></p>
+                 <form action="generate_pdf.php" method="POST">
+        
+        <h2>Лична Информация</h2>
+        <label for="name">Име:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="job_title">Длъжност:</label>
+        <input type="text" id="job_title" name="job_title"><br>
+
+        <label for="email">Имейл:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <h2>Умения</h2>
+        <p>Добавете основните си умения:</p>
+        <input type="text" name="skills[]" placeholder="PHP, MySQL, и т.н."><br>
+        
+        <h2>Професионален Опит (Първа позиция)</h2>
+        <div class="experience-item">
+            <label>Компания:</label>
+            <input type="text" name="experience[0][company]"><br>
+            <label>Длъжност:</label>
+            <input type="text" name="experience[0][title]"><br>
+            <label>Описание:</label>
+            <textarea name="experience[0][description]"></textarea>
+        </div>
                 <button class="flip-button flip-back-btn">Затвори</button> 
             </div>
         </div>
@@ -160,8 +189,13 @@
                 <div class="card-icon">
                     
                 </div>
+<<<<<<< Updated upstream
                 <p class="card-title"></p>
                 <button class="flip-button flip-forward-btn">Изтегли своето готово CV</button> 
+=======
+                <img src="readycv.png">
+                <button class="flip-button flip-forward-btn">Изтегли готовото си CV</button> 
+>>>>>>> Stashed changes
             </div>
             
             <div class="flip-card-back">
