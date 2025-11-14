@@ -212,6 +212,7 @@
      text-align: center;
      color:#09989e;
 }
+/*KARTI*/
 .cards-container {
   display: flex;
   justify-content: center;
@@ -223,143 +224,127 @@
     z-index: 0; 
 }
 
-.card {
-  background: #F4EFF6;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 350px;
-  height: 400px;
-  padding: 25px;
+.flip-card-container {
+    width: 300px; /* Adjust size as needed */
+    height: 200px;
+    margin: 20px auto;
+    perspective: 1000px; 
+}
+
+/* The Card itself (will be the element that rotates) */
+/* 1. Основен Контейнер (flip-card-container) */
+.flip-card-container {
+    background-color: transparent;
+    width: 300px;
+    height: 350px;
+    perspective: 1000px; /* Ключово за 3D ефекта */
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+/* 2. Елементът, който се Обръща (flip-card) */
+.flip-card {
     position: relative;
-  transition: transform 0.3s, box-shadow 0.3s;
-    z-index: 1; /* картите стоят под линиите */
-    overflow: visible !important; /* МНОГО важно */
-    
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.card h3 {
-  background-color: #8274A1;
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  font-weight: bold;
-   margin: 0 0 20px 0;
-}
-
-.card p {
-  color: #8274A1;
-  font-size: 20px;
-  line-height: 1.5;
-  margin-top: 20px;
+    width: 100%;
+    height: 100%;
     text-align: center;
-  
-}
-.card img{
-  width: 220px;
-  height: auto;
-  margin-left: 45px;
-    margin-top: 5px;
-}
-.cards-container .card:not(:last-child)::before,
-.cards-container .card:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 4px;
-  background: #09989e;
-  border-radius: 4px;
-   z-index: 9999 !important;
+    transition: transform 0.6s; /* Анимация за скоростта на обръщане */
+    transform-style: preserve-3d; /* Ключово за 3D ефекта */
+    border-radius: inherit;
 }
 
-
-.cards-container .card:not(:last-child)::before {
-  right: -47px;
-  z-index: 2;
+/* 3. Състояние на Обръщане */
+/* Когато JavaScript добави клас 'flipped' към .flip-card-container, обръщаме .flip-card */
+.flip-card-container.flipped .flip-card {
+    transform: rotateY(180deg);
 }
 
-
-.cards-container .card:not(:last-child)::after {
-  right: -23px;
-  z-index: 10;
-}
-.portfolio img{
-  width: 60%;
-  margin-left: 390px;
-  margin-top: 80px;
-}
-.cards1-container {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-  margin-top: 120px;
-  flex-wrap: nowrap;
-   position: relative;
-    z-index: 0; 
-}
-.card1 {
-  background: #F4EFF6;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 350px;
-  height: 400px;
-  padding: 25px;
-    position: relative;
-  transition: transform 0.3s, box-shadow 0.3s;
-    z-index: 1; /* картите стоят под линиите */
-    overflow: visible !important; /* МНОГО важно */
-    
+/* 4. Предна и Задна Страна */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Гарантира, че обратната страна е скрита */
+    border-radius: inherit;
+    /* Добавете тук стиловете за оформление (flex, padding и т.н.) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.card1:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+/* 6. Задна Страна */
+.flip-card-back {
+    /* Започва обърната, за да бъде скрита */
+    transform: rotateY(180deg); 
+    background-color: #F4EFF6; 
 }
 
-.card1 h3 {
-
-  color: #8274A1 !important;
-  
-text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: bold;
-  margin: auto;
+/* 5. Предна Страна */
+.flip-card-front {
+    background-color: #F4EFF6; 
 }
 
+/* Card Number Badge */
+.card-number {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #9D7BCF; /* Purple background */
+    color: white;
+    font-weight: bold;
+    border-radius: 50%; /* Circular */
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+}
 
-.card1 img{
-  width: 180px;
-  height: auto;
-  margin-left: 110px;
-    margin-top: 218px;
+/* Icon Styling */
+.card-icon svg {
+    margin-bottom: 15px;
+    stroke: #20B2AA; /* Teal color for the icon */
+    fill: none; /* Make sure it's an outline icon */
+    width: 60px; /* Adjust icon size */
+    height: 60px;
 }
-.cards1-container .card:not(:last-child)::before,
-.cards1-container .card:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 4px;
-  background: #09989e;
-  border-radius: 4px;
-   z-index: 9999 !important;
+
+/* Title Styling */
+.card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px; /* Space between icon and text */
+    color: #5d5d5d;
 }
+
+/* Button Styling */
+#flipperButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #9D7BCF; /* Matching purple */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+#flipperButton:hover {
+    background-color: #7B5FA8; /* Slightly darker on hover */
+}
+.flip-card-back {
+    /* ... other styles ... */
+    transform: rotateY(180deg);
+    z-index: 1; /* This ensures the back face is in front of the rotated front face */
+}
+/*KRAI NA KARTI*/
 .footer {
   position: relative;
   width: 100%;

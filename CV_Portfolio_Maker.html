@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
-    <link rel="stylesheet" type="text/css" href="cv.css" />
+    <link rel="stylesheet" type="text/css" href="cv2.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -108,29 +108,107 @@
     <img src="Group 16.png">
     <p>Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
   </section>
-  <section class="cards-container">
-    <div class="card">
-      <h3>1.</h3>
-      <img src="design.png">
-      <p><strong>Избери темплейт за CV</strong></p>
-      
+ <section class="cards-container">
+    <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                <div class="card-number">1.</div>
+                <div class="card-icon">
+                    
+                </div>
+                <p class="card-title">Избери темплейт за CV</p>
+                <img src="design.png">
+                <button class="flip-button flip-forward-btn">Да действаме!</button> 
+            </div>
+            
+            <div class="flip-card-back">
+                <div class="card-number">1.</div>
+                <p class="card-title"></p>
+                <p></p>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-      <h3>2.</h3>
-      <img src="inf.png">
-      <p>Разкажи ни за себе си</p>
-      
+     <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                <div class="card-number">2.</div>
+                <div class="card-icon">
+                    
+                </div>
+                <p class="card-title">Избери темплейт за CV</p>
+                <button class="flip-button flip-forward-btn">Да действаме!</button> 
+            </div>
+            
+            <div class="flip-card-back">
+                <div class="card-number">2.</div>
+                <p class="card-title"></p>
+                <p></p>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-      <h3>3.</h3>
-      <img src="readycv.png">
-      <p>Изтегли своето готово CV</p>
-     
+     <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                <div class="card-number">3.</div>
+                <div class="card-icon">
+                    
+                </div>
+                <p class="card-title">Избери темплейт за CV</p>
+                <button class="flip-button flip-forward-btn">Да действаме!</button> 
+            </div>
+            
+            <div class="flip-card-back">
+                <div class="card-number">3.</div>
+                <p class="card-title"></p>
+                <p></p>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
     </div>
 
   </section>
+  <script>
+    
+    // 1. Намираме всички контейнери на картите (където ще добавим класа 'flipped')
+    // Използваме .flip-card-container, защото това е родителският елемент, 
+    // който би трябвало да държи класа 'flipped'.
+    const flipCardContainers = document.querySelectorAll('.flip-card-container'); 
+
+    // 2. Обхождаме всеки контейнер
+    flipCardContainers.forEach(container => {
+        // Намираме бутоните вътре в този конкретен контейнер
+        const frontButton = container.querySelector('.flip-forward-btn');
+        const backButton = container.querySelector('.flip-back-btn');
+
+        // Добавяме слушател към бутона на предната страна
+        if (frontButton) {
+            frontButton.addEventListener('click', function(e) {
+                e.preventDefault(); // Предотвратява евентуални грешки от стандартно поведение
+                e.stopPropagation(); 
+                // Добавяме класа 'flipped' към контейнера
+                container.classList.add('flipped'); 
+            });
+        }
+
+        // Добавяме слушател към бутона на задната страна
+        if (backButton) {
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // Премахваме класа 'flipped' от контейнера
+                container.classList.remove('flipped'); 
+            });
+        }
+    });
+</script>
+
   <section class="portfolio">
     <div class="portfolio">
       <img src="Group 17.png">
