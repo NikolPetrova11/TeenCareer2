@@ -1,0 +1,532 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+}
+
+/* ======================================= */
+/* HEADER & NAVIGATION */
+/* ======================================= */
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
+            height: 80px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8vw;
+            height: 80px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav-links ul {
+            display: flex;
+            gap: 3vw;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links ul li a {
+            text-decoration: none;
+            color: #09989e;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .nav-links ul li::after {
+            content:'';
+            width:0%;
+            height: 0.3vh;
+            background: #09989e;
+            display: block;
+            margin:auto;
+            transition:0.5s;
+        }
+
+        .nav-links ul li:hover::after {
+            width:100%;
+        }
+
+        .right-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image-wrapper{
+    margin-top: -385px;
+}
+.profile {
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: #09989e;
+            cursor: pointer;
+        }
+
+        .hero-video {
+  position: relative;
+  width: 84%;            
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;         
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 80px;       
+}
+
+/* ======================================= */
+/* HERO SECTION */
+/* ======================================= */
+
+.phone img{
+    position: absolute; 
+    width: 600px; /* Фиксирана ширина */
+    top: 48%; 
+    left: 30%;
+    z-index: 2; 
+    transform: translate(-50%, -50%);
+    background: transparent;
+}
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("Group 15 (1).png"); 
+    background-size: cover;
+    background-position: center;
+    z-index: 1; 
+}
+
+.hero .text {
+    position: absolute; /* Променено от relative на absolute за по-добър контрол */
+    z-index: 2;
+    /* Оптимизирано позициониране за да е отдясно */
+    top: 50%;
+    right: 8vw;
+    transform: translateY(-50%);
+    max-width: 400px;
+    color: #19989e;
+    background: transparent;
+}
+
+.hero h1 {
+    font-size: 36px;
+    color: #8274A1;
+    background: transparent;
+}
+
+.hero h2 {
+    margin-top: 50px;
+    font-size: 36px;
+    font-family: 'Caveat', cursive;
+    color: #09989e;
+    background: transparent;
+    line-height: 0.8;
+}
+
+.hero p {
+    margin-top: 25px;
+    font-size: 16px;
+    color: #8274A1;
+    background: transparent;
+    line-height: 1.2;
+}
+.button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff !important;
+    border: 2px solid #09989e;
+    padding: 9px 45px;
+    margin-top: 57px;
+     margin-left: -1px; 
+    font-size: 18px !important;
+    background: #09989e;
+     position: absolute; 
+    cursor: pointer;
+    border-radius: 25px;
+    z-index: 3;
+}
+
+.button:hover {
+    border: 2px solid #8274A1;
+    background: #8274A1;
+    transition: 1s;
+}
+
+/* ======================================= */
+/* STEPS SECTION */
+/* ======================================= */
+
+.steps {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    padding-top: 40px; /* Добавен, за да не се застъпва с hero */
+}
+
+.steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    
+}
+.steps p{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Caveat', cursive; /* Поправих на правилен font-family */
+    margin-top: 450px;
+    font-size: 40px;
+    text-align: center;
+    color:#09989e;
+}
+
+/* ======================================= */
+/* CARDS SECTION (KARTI) */
+/* ======================================= */
+
+/* **КОРЕКЦИЯ: Премахвам flex-wrap: wrap; за cards-container и осигурявам, че е центрирано** */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    /* flex-wrap: wrap; - премахнато */
+    flex-wrap: nowrap;
+    margin-top: 150px;
+    position: relative;
+    z-index: 0; 
+}
+
+.flip-card-container {
+    
+    width: 300px;
+    height: 350px;
+    perspective: 1000px; 
+    margin: 20px;
+    border-radius: 10px;
+    
+}
+
+/* 2. Елементът, който се Обръща (flip-card) */
+.flip-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s; 
+    transform-style: preserve-3d; 
+    border-radius: inherit;
+}
+
+/* 3. Състояние на Обръщане */
+.flip-card-container.flipped .flip-card {
+    transform: rotateY(180deg);
+}
+
+/* 4. Предна и Задна Страна */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; 
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 6. Задна Страна */
+.flip-card-back {
+    transform: rotateY(180deg); 
+    background-color: #F4EFF6; 
+}
+
+/* 5. Предна Страна */
+.flip-card-front {
+    background-color: #F4EFF6; 
+}
+
+/* Card Number Badge */
+.card-number {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #9D7BCF; 
+    color: white;
+    font-weight: bold;
+    border-radius: 50%; 
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+/* Title Styling */
+.card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px; 
+    color: #5d5d5d;
+}
+
+/* Button Styling (обединено) */
+#flipperButton, .flip-button, #openCvModalBtn, #cvForm button[type="submit"] { 
+    display: block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #9D7BCF; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+#flipperButton:hover, .flip-button:hover, #openCvModalBtn:hover, #cvForm button[type="submit"]:hover {
+    background-color: #7B5FA8; 
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    z-index: 1; 
+}
+
+/* ======================================= */
+/* FOOTER */
+/* ======================================= */
+
+.footer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  margin-top: 200px;
+}
+
+.footer video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+.footer-social a {
+  color: #fff !important;      
+  font-size: 1.5rem !important;  
+  transition: color 0.3s;
+  z-index: 2;
+  gap: 20px;
+}
+
+.footer-social a:hover {
+  color: #8274A1 !important;   
+}
+
+.footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+
+.footer-social {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  margin-top: 2vh;
+  justify-content: center; 
+  gap: 30px;           
+}
+.footer h1 {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  margin-top: 12vh;
+  font-size: clamp(16px, 3vw, 24px);
+}
+
+/* ======================================= */
+/* CV MODAL STYLES */
+/* ======================================= */
+
+.modal {
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+    visibility: hidden; /* Скрит по подразбиране */
+    opacity: 0;
+    transition: opacity 0.3s ease-out, visibility 0s 0.3s; /* Забавяне при скриване */
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+/* Това е ключовият клас, който JavaScript трябва да добавя! */
+.modal.modal-open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease-out; /* Без забавяне при показване */
+}
+/* ... останалите стилове за .modal-content и т.н. */
+
+.modal-content {
+    background-color: #fefefe;
+     margin: 10% auto;  display: flex; 
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%; 
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+/* Когато модалът е видим, съдържанието се скалира */
+.modal.modal-open .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#cvModal h2 {
+    color: #09989e; 
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.cv-close-btn {
+    color: #aaa;
+    position: absolute; /* Позициониране в горния десен ъгъл */
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.cv-close-btn:hover, .cv-close-btn:focus {
+    color: #000;
+}
+
+#cvForm .form-element label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #5d5d5d;
+}
+
+#cvForm .form-element input[type="text"], #cvForm .form-element input[type="email"], #cvForm .form-element input[type="tel"], #cvForm .form-element textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    font-family: inherit; 
+    font-size: 16px;
+    resize: vertical; /* Позволява resize само вертикално за textarea */
+}
+
+#cvForm button[type="submit"] {
+    width: 100%;
+    margin-top: 30px;
+    background-color: #09989e; 
+}
+
+#cvForm button[type="submit"]:hover {
+    background-color: #00798a; 
+}
+
