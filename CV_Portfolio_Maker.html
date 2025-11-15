@@ -176,10 +176,10 @@
 
   </section>
   
-      <div class="modal" id="cvModal">
+      <div  class="modal" id="cvModal">
         <div class="modal-content">
             <span class="close-btn cv-close-btn">&times;</span>
-            <h2>📝 Попълни Данни за Твоето CV</h2>
+            <h2> Попълни Данни за Твоето CV</h2>
             <form id="cvForm">
                 <div class="form-element">
                     <label for="cv-fullName">Име и Фамилия</label>
@@ -318,26 +318,68 @@ cvForm.addEventListener("submit", function(e) {
   <section class="portfolio">
     <div class="portfolio">
       <img src="Group 17.png">
-      <section class="cards1-container">
-      <div class="card1">
-      <h3>Избери темплейт за портфолио</h3>
-      <img src="01(2).png" style="width: 140px; margin-left: 140px;">
-      
-      
+      <section style="display: flex; gap: 60px;" class="cards1-container">
+       <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                
+                <div class="card-icon">    
+                </div>
+                <p  style="text-align: center; color: #8274A1" >Избери темплейт за <br> портфолио</p>
+                <img src="01.png"> 
+            </div>
+            
+            <div class="flip-card-back">
+                
+                <p style="text-align: center; color: #8274A1" class="card-title">Избери темплейт за <br>портфолио</p>
+                <p></p>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
     </div>
 
-    <div class="card1">
-      <h3>Сподели работата си<br> с нас</h3>
-      <img src="02.png">
-     
-      
+    <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                
+                <div class="card-icon">    
+                </div>
+                <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
+                <img src="02.png">
+                
+
+            </div>
+            
+            <div class="flip-card-back">
+                
+                <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
+                <p></p>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
     </div>
 
-    <div class="card1">
-      <h3>Изтегли своето готово портфолио</h3>
-       <img src="03.png">
-      
-     
+     <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                
+                <div class="card-icon">    
+                </div>
+                <p class="card-title" style="text-align: center; line-height:1.5; color: #8274A1">Изтегли готовото <br> си портфолио</p>
+                <img src="03.png">
+                
+
+            </div>
+            
+            <div class="flip-card-back">
+                <p class="card-title" style="text-align: center; color: #8274A1">Изтегли готовото <br> си портфолио </p>
+                <p></p>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
     </div>
       </section>
     </div>
