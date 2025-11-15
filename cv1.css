@@ -1,30 +1,9 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
-
-img, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-body {
-    overflow-x: hidden;
-    background-color: #f8f9fa;
-}
-
-/* ======================================= */
-/* HEADER & NAVIGATION */
-/* ======================================= */
-
-* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+          
             
         }
 
@@ -126,81 +105,67 @@ body {
             cursor: pointer;
         }
 
-        .hero-video {
-  position: relative;
-  width: 84%;            
-  aspect-ratio: 16 / 9;
-  margin: 0 auto;         
-  overflow: hidden;
-  border-radius: 12px;
-  margin-top: 80px;       
-}
-
-/* ======================================= */
-/* HERO SECTION */
-/* ======================================= */
-
 .phone img{
     position: absolute; 
-    width: 600px; /* Фиксирана ширина */
+ width:70%;
     top: 48%; 
-    left: 30%;
-    z-index: 2; 
-    transform: translate(-50%, -50%);
+   left: 30%;
+  z-index: 2; 
+  width: 600px;
+ 
+  transform: translate(-50%, -50%);
     background: transparent;
 }
 .hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh; /* или колкото искаш */
+  overflow: hidden;
 }
 
 .hero .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("Group 15 (1).png"); 
-    background-size: cover;
-    background-position: center;
-    z-index: 1; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("Group 15 (1).png"); /* или каквото ползваш */
+  background-size: cover;
+  background-position: center;
+  z-index: 1; /* Фонът е отзад */
 }
 
 .hero .text {
-    position: absolute; /* Променено от relative на absolute за по-добър контрол */
-    z-index: 2;
-    /* Оптимизирано позициониране за да е отдясно */
-    top: 50%;
-    right: 8vw;
-    transform: translateY(-50%);
-    max-width: 400px;
-    color: #19989e;
-    background: transparent;
+  position: relative;
+  z-index: 2;
+  margin-left: 1047px;
+  margin-top: 225px;
+  color: #19989e;
+   background: transparent;
 }
 
 .hero h1 {
-    font-size: 36px;
-    color: #8274A1;
-    background: transparent;
+  font-size: 36px;
+  color: #8274A1;
+  background: transparent;
 }
 
 .hero h2 {
-    margin-top: 50px;
-    font-size: 36px;
-    font-family: 'Caveat', cursive;
-    color: #09989e;
-    background: transparent;
+  margin-top: 50px;
+  font-size: 36px;
+   font-family: 'Caveat', cursive;
+  color: #09989e;
+  background: transparent;
     line-height: 0.8;
 }
 
 .hero p {
-    margin-top: 25px;
-    font-size: 16px;
-    color: #8274A1;
-    background: transparent;
-    line-height: 1.2;
+  margin-top: 25px;
+  font-size: 16px;
+  color: #8274A1;
+  
+  background: transparent;
+  line-height: 1.2;
 }
 .button {
     display: inline-block;
@@ -209,10 +174,10 @@ body {
     border: 2px solid #09989e;
     padding: 9px 45px;
     margin-top: 57px;
-     margin-left: -1px; 
+    margin-left: -1px;
     font-size: 18px !important;
     background: #09989e;
-     position: absolute; 
+    position: absolute;
     cursor: pointer;
     border-radius: 25px;
     z-index: 3;
@@ -224,15 +189,10 @@ body {
     transition: 1s;
 }
 
-/* ======================================= */
-/* STEPS SECTION */
-/* ======================================= */
-
 .steps {
     position: relative;
     width: 100%;
     height: 500px;
-    padding-top: 40px; /* Добавен, за да не се застъпва с hero */
 }
 
 .steps img {
@@ -240,134 +200,121 @@ body {
     left: 50%;
     transform: translateX(-50%);
     margin-top: 40px;
-    
+   
 }
 .steps p{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Caveat', cursive; /* Поправих на правилен font-family */
-    margin-top: 450px;
-    font-size: 40px;
-    text-align: center;
-    color:#09989e;
+    font-family: Caveat;
+     margin-top: 450px;
+     font-size: 30px;
+     font-size: 40px;
+     text-align: center;
+     color:#09989e;
 }
 
-/* ======================================= */
-/* CARDS SECTION (KARTI) */
-/* ======================================= */
-
-/* **КОРЕКЦИЯ: Премахвам flex-wrap: wrap; за cards-container и осигурявам, че е центрирано** */
-.cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    /* flex-wrap: wrap; - премахнато */
-    flex-wrap: nowrap;
-    margin-top: 150px;
-    position: relative;
-    z-index: 0; 
-}
+/* =======================================
+   FLIP КАРТИ – ВИЗИЯ КАТО НА ПРИМЕРА
+   (Функционалността НЕ се променя)
+======================================= */
 
 .flip-card-container {
-    
-    width: 300px;
-    height: 350px;
-    perspective: 1000px; 
-    margin: 20px;
-    border-radius: 10px;
-    
+    width: 320px;
+    height: 420px;
+    perspective: 1000px;
 }
 
-/* 2. Елементът, който се Обръща (flip-card) */
+/* Самата карта, която се върти */
 .flip-card {
-    position: relative;
     width: 100%;
     height: 100%;
-    text-align: center;
-    transition: transform 0.6s; 
-    transform-style: preserve-3d; 
-    border-radius: inherit;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    border-radius: 25px;
+    background: #F4EFF6;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
-/* 3. Състояние на Обръщане */
+/* Когато е обърната */
 .flip-card-container.flipped .flip-card {
     transform: rotateY(180deg);
 }
 
-/* 4. Предна и Задна Страна */
-.flip-card-front, .flip-card-back {
+/* Страни – отпред и отзад */
+.flip-card-front,
+.flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; 
-    border-radius: inherit;
+    backface-visibility: hidden;
+    border-radius: 25px;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
+    background: #F4EFF6;
 }
 
-/* 6. Задна Страна */
+/* Задната страна */
 .flip-card-back {
-    transform: rotateY(180deg); 
-    background-color: #F4EFF6; 
+    transform: rotateY(180deg);
 }
 
-/* 5. Предна Страна */
-.flip-card-front {
-    background-color: #F4EFF6; 
-}
-
-/* Card Number Badge */
+/* Кръгче с номера */
 .card-number {
     position: absolute;
     top: 15px;
     left: 15px;
-    background-color: #9D7BCF; 
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #8274A1;
     color: white;
-    font-weight: bold;
-    border-radius: 50%; 
-    width: 35px;
-    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.1em;
-}
-
-/* Title Styling */
-.card-title {
-    font-size: 1.2em;
+    font-size: 22px;
     font-weight: bold;
-    margin-top: 10px; 
-    color: #5d5d5d;
 }
 
-/* Button Styling (обединено) */
-#flipperButton, .flip-button, #openCvModalBtn, #cvForm button[type="submit"] { 
-    display: block;
-    margin: 20px auto;
-    padding: 10px 25px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #9D7BCF; 
+/* Иконите по средата */
+.flip-card-front img,
+.flip-card-back img {
+    width: 200px;
+    height: auto;
+    margin-top: 30px;
+}
+
+/* Бутоните */
+.flip-button,
+#openCvModalBtn {
+   
+    background: #8274A1;
     color: white;
     border: none;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  
 }
 
-#flipperButton:hover, .flip-button:hover, #openCvModalBtn:hover, #cvForm button[type="submit"]:hover {
-    background-color: #7B5FA8; 
+.flip-button:hover,
+#openCvModalBtn:hover {
+    background: #8274A1;
 }
 
-.flip-card-back {
-    transform: rotateY(180deg);
-    z-index: 1; 
+/* Подравняване на картите */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 100px;
 }
+
 
 /* ======================================= */
 /* FOOTER */
@@ -378,7 +325,7 @@ body {
   width: 100%;
   height: 300px;
   overflow: hidden;
-  margin-top: 200px;
+  
 }
 
 .footer video {
@@ -387,7 +334,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  
 }
 .footer-social a {
   color: #fff !important;      

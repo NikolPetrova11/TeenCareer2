@@ -133,9 +133,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #eef1f5;
+            background-color: #E3D7E8;
             color: #333;
             line-height: 1.6;
+            position: relative;
         }
 
         .container {
@@ -145,11 +146,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-top:-185px;
         }
 
         h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
+            color: #09989e;
+            border-bottom: 2px solid #;
             padding-bottom: 10px;
             margin-top: 20px;
             margin-bottom: 25px;
@@ -176,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #555;
+            color: #8274A1;
             font-size: 0.95em;
         }
 
@@ -192,14 +194,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         input[type="text"]:focus,
         input[type="number"]:focus {
-            border-color: #3498db;
+            border-color: #8274A1;
             outline: none;
             box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
         }
 
         button[type="submit"] {
             grid-column: 1 / -1;
-            background-color: #3498db;
+            background-color: #8274A1;
             color: white;
             padding: 12px 25px;
             border: none;
@@ -212,7 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         button[type="submit"]:hover {
-            background-color: #2980b9;
+            background-color: #09989e;
             transform: translateY(-2px);
         }
 
@@ -224,6 +226,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             border-radius: 10px;
             overflow: hidden;
+            
+        
         }
 
         th, td {
@@ -235,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         th {
-            background-color: #34495e;
+            background-color: #8274A1;
             color: white;
             font-weight: bold;
             text-transform: uppercase;
@@ -251,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         a {
-            color: #3498db;
+            color: #8274A1;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.2s ease;
@@ -259,7 +263,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         a:hover {
             text-decoration: underline;
-            color: #2980b9;
+            color: #8274A1;
         }
 
         p.no-results, p.error-message {
@@ -277,14 +281,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 15px;
             background-color: #e0f2f7;
             border: 1px solid #b3e5fc;
-            color: #01579b;
+            color: #8274A1;
             border-radius: 8px;
             font-size: 1.1em;
             text-align: center;
         }
+        .photo{
+            margin-left: 55%
+       
+            
+        }
+        .arrow{
+           
+            max-width:150px;
+            width: 100%;
+         
+    position: fixed;   /* стои винаги в горния ляв ъгъл */
+    top: 20px;
+    left: 20px;
+    width: 150px;
+    z-index: 99999;
+}
+            
+           
+        
     </style>
 </head>
 <body>
+    <img class="photo" src="0-02-05-b2e5265937e32c427cebb5bfeb3ecdb9a5f50602c038f9ffd6b2f32b7d4d1b80_1c8c6fe2f4ce6c07-removebg-preview.png">
+     <a href="searching.html"><img class="arrow" src="arrow67.png"></a>
 <div class="container">
     <h2>Търсене на работа</h2>
 
