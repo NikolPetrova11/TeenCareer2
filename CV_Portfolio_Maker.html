@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
-    <link rel="stylesheet" type="text/css" href="cv1.css" />
+    <link rel="stylesheet" type="text/css" href="cv2.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
-
 </head>
 <body>
     <header>
@@ -38,7 +35,6 @@
     
     <div class="overlay"></div>
     
-    <!-- ✅ Popup с вградена форма за регистрация -->
     <div class="popup">
       <div class="close-btn">&times;</div>
       <div class="form">
@@ -64,8 +60,6 @@
         </form>
       </div>
     </div>
-    <!-- ✅ Край на popup-а -->
-    
     <script>
       const menuToggle = document.getElementById("menuToggle");
       const navMenu = document.getElementById("navMenu");
@@ -74,6 +68,7 @@
         navMenu.classList.toggle("active");
       });
 
+      // Логика за регистрационния popup (Profile)
       document.querySelector(".profile-btn").addEventListener("click", function() {
         document.querySelector(".overlay").classList.add("active");
         document.querySelector(".popup").classList.add("active");
@@ -83,320 +78,333 @@
         document.querySelector(".overlay").classList.remove("active");
         document.querySelector(".popup").classList.remove("active");
       });
-
-      document.querySelector(".overlay").addEventListener("click", function(e) {
-        if (e.target.classList.contains("overlay")) {
-          document.querySelector(".overlay").classList.remove("active");
-          document.querySelector(".popup").classList.remove("active");
-        }
-      });
     </script>
   </header>
+  
   <section class="hero">
-   <div class="background"></div>
-   <div class="phone">
+    <div class="background"></div>
+    <div class="phone">
     <img src="phone 1.png">
-   </div>
-   <div class="text">
-<h1>Създай си CV без главоболие</h1>
-<h2>Не е нужно да имаш опит, за да<br>  изглеждаш готов.</h2>
-<p>Нашият CV Maker ще ти помогне да се представиш уверено, дори<br> ако това е първата ти работа.</p>
- <a href="#" class="button">Създай сега</a>
-   </div>
+    </div>
+    <div class="text">
+        <h1>Създай си CV без главоболие</h1>
+        <h2>Не е нужно да имаш опит, за да<br>  изглеждаш готов.</h2>
+        <p>Нашият CV Maker ще ти помогне да се представиш уверено, дори<br> ако това е първата ти работа.</p>
+        <a href="#" class="button">Създай сега</a>
+    </div>
   </section>
+  
   <section class="steps">
     <img src="Group 16.png">
     <p>Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
   </section>
- <section class="cards-container">
-    <div class="flip-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                <div class="card-number">1.</div>
-                <div class="card-icon">
-                    
-                </div>
-                
-                <img src="design.png">
-                <button class="flip-button flip-forward-btn">Избери темплейт за CV</button> 
-            </div>
-            
-            <div class="flip-card-back">
-                <div class="card-number">1.</div>
-                <p class="card-title"></p>
-                
-                <button class="flip-button flip-back-btn">Затвори</button> 
-            </div>
-        </div>
-    </div>
-
-     <div class="flip-card-container" id="cv-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                <div class="card-number">2.</div>
-                <div class="card-icon">
-                  <img src="inf.png">
-                </div>
-                <p class="card-title"></p>
-             <button class="flip-button" id="openCvModalBtn">Разкажи ни за себе си.</button> 
-            </div>
-            
-            <div class="flip-card-back">
-                <div class="card-number">2.</div>
-                <p class="card-title"></p>
-                
-                <button class="flip-button flip-back-btn">Затвори</button> 
-            </div>
-        </div>
-    </div>
-
-     <div class="flip-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                <div class="card-number">3.</div>
-                <div class="card-icon">    
-                </div>
-                <p class="card-title"></p>
-                <img src="readycv.png">
-                <button class="flip-button flip-forward-btn">Изтегли готовото си CV</button> 
-
-            </div>
-            
-            <div class="flip-card-back">
-                <div class="card-number">3.</div>
-                <p class="card-title"></p>
-                <p></p>
-                <button class="flip-button flip-back-btn">Затвори</button> 
-            </div>
-        </div>
-    </div>
-
-  </section>
-  
-      <div  class="modal" id="cvModal">
-        <div class="modal-content">
-            <span class="close-btn cv-close-btn">&times;</span>
-            <h2> Попълни Данни за Твоето CV</h2>
-            <form id="cvForm">
-                <div class="form-element">
-                    <label for="cv-fullName">Име и Фамилия</label>
-                    <input type="text" id="cv-fullName" name="fullName" placeholder="Напр. Иван Петров" required>
-                </div> 
-
-                <div class="form-element">
-                    <label for="cv-email">Имейл</label>
-                    <input type="email" id="cv-email" name="email" placeholder="Твоят имейл" required>
-                </div>
-
-                <div class="form-element">
-                    <label for="cv-phone">Телефон</label>
-                    <input type="tel" id="cv-phone" name="phone" placeholder="Напр. 0888123456">
+  
+  <section class="cards-container">
+    <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                <div class="card-number">1.</div>
+                <div class="card-icon">
+                    
                 </div>
                 
-                <div class="form-element">
-                    <label for="cv-education">Образование и Училище</label>
-                    <textarea id="cv-education" name="education" rows="3" placeholder="Къде учиш/си учил"></textarea>
-                </div>
+                <img src="design.png">
+                <button class="flip-button flip-forward-btn">Избери темплейт за CV</button> 
+            </div>
+            
+            <div class="flip-card-back">
+                <div class="card-number">1.</div>
+                <p class="card-title"></p>
                 
-                <div class="form-element">
-                    <label for="cv-experience">Професионален Опит (Дори и доброволчество)</label>
-                    <textarea id="cv-experience" name="experience" rows="5" placeholder="Опиши какво си правил"></textarea>
-                </div>
-
-                <div class="form-element">
-                    <button type="submit">Запази и Генерирай CV</button>
-                </div>
-            </form>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
         </div>
     </div>
-      <script>
-    
-    // ====================================================================
-    // СЪЩЕСТВУВАЩ JS КОД (за toggle менюто и регистрационния popup)
-    // Преместен в HEAD, за да не го повтарям. Ако не работи, върнете го тук.
-    // ====================================================================
 
-    // 1. Намираме всички контейнери на картите (където ще добавим класа 'flipped')
-    const flipCardContainers = document.querySelectorAll('.flip-card-container'); 
+      <div class="flip-card-container" id="cv-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                <div class="card-number">2.</div>
+                <div class="card-icon">
+                  <img src="inf.png">
+                </div>
+                <p class="card-title"></p>
+              <button class="flip-button" id="openCvModalBtn">Разкажи ни за себе си.</button> 
+            </div>
+            
+            <div class="flip-card-back">
+                <div class="card-number">2.</div>
+                <p class="card-title"></p>
+                
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
+    </div>
 
-    // 2. Обхождаме всеки контейнер
-    flipCardContainers.forEach(container => {
-        // Намираме бутоните вътре в този конкретен контейнер
-        const frontButton = container.querySelector('.flip-forward-btn');
-        const backButton = container.querySelector('.flip-back-btn');
+      <div class="flip-card-container">
+        <div class="flip-card">
+            
+            <div class="flip-card-front">
+                <div class="card-number">3.</div>
+                <div class="card-icon">    
+                </div>
+                <p class="card-title"></p>
+                <img src="readycv.png">
+                <button class="flip-button flip-forward-btn" id="downloadCvBtn">Изтегли готовото си CV</button> 
 
-        // Добавяме слушател към бутона на предната страна
-        // ИЗКЛЮЧВАМЕ КАРТА 2, тъй като нейният бутон вече има друго ID (openCvModalBtn)
-        if (frontButton && container.id !== 'cv-card-container') {
-            frontButton.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                e.stopPropagation(); 
-                container.classList.add('flipped'); 
-            });
-        }
+            </div>
+            
+            <div class="flip-card-back">
+                <div class="card-number">3.</div>
+                <p class="card-title"></p>
+                <p></p>
+                <button class="flip-button flip-back-btn">Затвори</button> 
+            </div>
+        </div>
+    </div>
 
-        // Добавяме слушател към бутона на задната страна
-        if (backButton) {
-            backButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                container.classList.remove('flipped'); 
-            });
-        }
-    });
+  </section>
+  
+    <div class="modal" id="cvModal">
+      <div class="modal-content">
+          <span class="close-btn cv-close-btn">&times;</span>
+          <h2>📝 Попълни Данни за Твоето CV</h2>
+          <form id="cvForm">
+              <div class="form-element">
+                  <label for="cv-fullName">Име и Фамилия</label>
+                  <input type="text" id="cv-fullName" name="fullName" placeholder="Напр. Иван Петров" required>
+              </div> 
 
-    // ===============================================
-    // НОВ JS КОД ЗА CV МОДАЛА (Карта 2)
-    // ===============================================
+              <div class="form-element">
+                  <label for="cv-email">Имейл</label>
+                  <input type="email" id="cv-email" name="email" placeholder="Твоят имейл" required>
+              </div>
 
-   // ... Вашият съществуващ код за обръщане на карти ...
+              <div class="form-element">
+                  <label for="cv-phone">Телефон</label>
+                  <input type="tel" id="cv-phone" name="phone" placeholder="Напр. 0888123456">
+              </div>
+              
+              <div class="form-element">
+                  <label for="cv-education">Образование и Училище</label>
+                  <textarea id="cv-education" name="education" rows="3" placeholder="Къде учиш/си учил"></textarea>
+              </div>
+              
+              <div class="form-element">
+                  <label for="cv-experience">Професионален Опит (Дори и доброволчество)</label>
+                  <textarea id="cv-experience" name="experience" rows="5" placeholder="Опиши какво си правил"></textarea>
+              </div>
 
-// ===============================================
-// НОВ JS КОД ЗА CV МОДАЛА (Карта 2) - ПОПРАВЕН
-// ===============================================
-
-const cvModal = document.getElementById("cvModal");
-const openCvModalBtn = document.getElementById("openCvModalBtn");
-const cvCloseBtn = document.querySelector(".cv-close-btn");
-const overlay = document.querySelector(".overlay"); 
-const registrationPopup = document.querySelector(".popup"); // Добавяме и за регистрационния popup
-
-// Отваряне на CV модала при клик на бутона от Карта 2
-if (openCvModalBtn) {
-    openCvModalBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        
-        // **ПОПРАВКА:** Добавяме класа 'modal-open' вместо да променяме style.display
-        cvModal.classList.add("modal-open");
-        
-        // Показваме overlay-а
-        overlay.classList.add("active");
-        
-        e.stopPropagation(); 
-    });
-}
-
-// Затваряне на CV модала при клик на X
-if (cvCloseBtn) {
-    cvCloseBtn.addEventListener("click", function() {
-        // **ПОПРАВКА:** Премахваме класа 'modal-open'
-        cvModal.classList.remove("modal-open");
-        overlay.classList.remove("active");
-    });
-}
-
-// Допълнение към съществуващата логика за клик върху overlay-а
-document.querySelector(".overlay").addEventListener("click", function(e) {
-    if (e.target.classList.contains("overlay")) {
-        // Затваряне на регистрационния popup
-        registrationPopup.classList.remove("active");
-        
-        // Затваряне на CV модала
-        cvModal.classList.remove("modal-open"); // **ПОПРАВКА:** Използваме remove("modal-open")
-        
-        // Скриване на overlay-а
-        overlay.classList.remove("active");
-    }
-});
-
-// Логика за изпращане на формуляра
-const cvForm = document.getElementById("cvForm");
-cvForm.addEventListener("submit", function(e) {
-    e.preventDefault(); 
+              <div class="form-element">
+                  <button type="submit">Запази и Генерирай CV</button>
+              </div>
+          </form>
+      </div>
+    </div>
     
-    alert("Данните за CV са запазени! Можете да продължите към изтегляне.");
+    <script>
+        
+        // ====================================================================
+        // ЛОГИКА ЗА ОБРЪЩАНЕ НА КАРТИТЕ (FLIP CARDS)
+        // ====================================================================
+
+        const flipCardContainers = document.querySelectorAll('.flip-card-container'); 
+
+        flipCardContainers.forEach(container => {
+            const frontButton = container.querySelector('.flip-forward-btn');
+            const backButton = container.querySelector('.flip-back-btn');
+
+            // Логика за обръщане напред (освен Карта 2 и Карта 3, които имат специална функция)
+            if (frontButton && container.id !== 'cv-card-container' && frontButton.id !== 'downloadCvBtn') {
+                frontButton.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    e.stopPropagation(); 
+                    container.classList.add('flipped'); 
+                });
+            }
+            
+            // Логика за обръщане назад
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    container.classList.remove('flipped'); 
+                });
+            }
+        });
+
+
+        // ===============================================
+        // ЛОГИКА ЗА CV МОДАЛА (Карта 2) И ГЕНЕРИРАНЕ НА PDF (Карта 3)
+        // ===============================================
+        
+        const cvModal = document.getElementById("cvModal");
+        const openCvModalBtn = document.getElementById("openCvModalBtn");
+        const cvCloseBtn = document.querySelector(".cv-close-btn");
+        const registrationPopup = document.querySelector(".popup"); 
+        const cvForm = document.getElementById("cvForm");
+        const downloadCvBtn = document.getElementById("downloadCvBtn"); // Бутонът от Карта 3
+        
+        // Глобална променлива за съхранение на данните от CV формата
+        let cvData = {}; 
+
+        // --- 1. Отваряне на CV модала (Карта 2) ---
+        if (openCvModalBtn) {
+            openCvModalBtn.addEventListener("click", function(e) {
+                e.preventDefault();
+                
+                // Активираме модала и overlay-а 
+                cvModal.classList.add("modal-open");
+                overlay.classList.add("active");
+                
+                e.stopPropagation(); 
+            });
+        }
+
+        // --- 2. Затваряне на CV модала при клик на X ---
+        if (cvCloseBtn) {
+            cvCloseBtn.addEventListener("click", function() {
+                cvModal.classList.remove("modal-open");
+                overlay.classList.remove("active");
+            });
+        }
+
+        // --- 3. Събиране и Запазване на Данните (при Submit на модала) ---
+        cvForm.addEventListener("submit", function(e) {
+            e.preventDefault(); 
+            
+            // Събиране на данните 
+            cvData.fullName = document.getElementById("cv-fullName").value;
+            cvData.email = document.getElementById("cv-email").value;
+            cvData.phone = document.getElementById("cv-phone").value;
+            cvData.education = document.getElementById("cv-education").value;
+            cvData.experience = document.getElementById("cv-experience").value;
+            
+            alert("Данните за CV са запазени! Можете да продължите към изтегляне (Стъпка 3).");
+            
+            // Затваряне на модала
+            cvModal.classList.remove("modal-open"); 
+            overlay.classList.remove("active");
+        });
+        
+        // --- 4. Изтегляне на PDF (при клик на Карта 3) ---
+        if (downloadCvBtn) {
+            downloadCvBtn.addEventListener("click", function(e) {
+                e.preventDefault();
+                
+                // Проверка дали има запазени данни от Стъпка 2
+                if (!cvData.fullName) {
+                    alert("Моля, първо попълнете и запазете данните си в Стъпка 2, за да генерирате CV.");
+                    return;
+                }
+
+                // Създаване на скрит формуляр за изпращане на POST заявка
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'generate_pdf.php'; 
+                form.target = '_blank'; // Отваря в нов таб
+                
+                // Добавяне на данните като скрити input полета
+                for (const key in cvData) {
+                    if (cvData.hasOwnProperty(key)) {
+                        const hiddenField = document.createElement('input');
+                        hiddenField.type = 'hidden';
+                        hiddenField.name = key; 
+                        hiddenField.value = cvData[key];
+
+                        form.appendChild(hiddenField);
+                    }
+                }
+
+                // Изпращане на формуляра и сваляне на PDF
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+            });
+        }
+
+
+        // --- 5. Обща логика за клик върху overlay-а (затваря и двата модала) ---
+        document.querySelector(".overlay").addEventListener("click", function(e) {
+            if (e.target.classList.contains("overlay")) {
+                registrationPopup.classList.remove("active");
+                cvModal.classList.remove("modal-open"); 
+                // Вашата логика за затваряне на регистрационния popup
+                document.querySelector(".popup").classList.remove("active"); 
+                
+                overlay.classList.remove("active");
+            }
+        });
+    </script>
+    <section class="portfolio">
+      <div class="portfolio">
+        <img src="Group 17.png" id="pi">
+        <section style="display: flex; gap: 60px;" class="cards1-container">
+          <div class="flip-card-container">
+            <div class="flip-card1">
+                <div class="flip-card-front">
+                    <div class="card-icon">    
+                    </div>
+                    <p  style="text-align: center; color: #8274A1" >Избери темплейт за <br> портфолио</p>
+                    <img src="01.png"> 
+                </div>
+                <div class="flip-card-back">
+                    <p style="text-align: center; color: #8274A1" class="card-title">Избери темплейт за <br>портфолио</p>
+                    <p></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container">
+            <div class="flip-card1">
+                <div class="flip-card-front">
+                    <div class="card-icon">    
+                    </div>
+                    <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
+                    <img src="02.png">
+                </div>
+                <div class="flip-card-back">
+                    <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
+                    <p></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container">
+            <div class="flip-card1">
+                <div class="flip-card-front">
+                    <div class="card-icon">    
+                    </div>
+                    <p class="card-title" style="text-align: center; line-height:1.5; color: #8274A1">Изтегли готовото <br> си портфолио</p>
+                    <img src="03.png">
+                </div>
+                <div class="flip-card-back">
+                    <p class="card-title" style="text-align: center; color: #8274A1">Изтегли готовото <br> си портфолио </p>
+                    <p></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
     
-    // Затваряне на модала след изпращане
-    cvModal.classList.remove("modal-open"); // **ПОПРАВКА:** Използваме remove("modal-open")
-    overlay.classList.remove("active");
-});
-</script>
-
-  <section class="portfolio">
-    <div class="portfolio">
-      <img src="Group 17.png">
-      <section style="display: flex; gap: 60px;" class="cards1-container">
-       <div class="flip-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                
-                <div class="card-icon">    
-                </div>
-                <p  style="text-align: center; color: #8274A1" >Избери темплейт за <br> портфолио</p>
-                <img src="01.png"> 
-            </div>
-            
-            <div class="flip-card-back">
-                
-                <p style="text-align: center; color: #8274A1" class="card-title">Избери темплейт за <br>портфолио</p>
-                <p></p>
-                <button class="flip-button flip-back-btn">Затвори</button> 
-            </div>
-        </div>
-    </div>
-
-    <div class="flip-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                
-                <div class="card-icon">    
-                </div>
-                <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
-                <img src="02.png">
-                
-
-            </div>
-            
-            <div class="flip-card-back">
-                
-                <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
-                <p></p>
-                <button class="flip-button flip-back-btn">Затвори</button> 
-            </div>
-        </div>
-    </div>
-
-     <div class="flip-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                
-                <div class="card-icon">    
-                </div>
-                <p class="card-title" style="text-align: center; line-height:1.5; color: #8274A1">Изтегли готовото <br> си портфолио</p>
-                <img src="03.png">
-                
-
-            </div>
-            
-            <div class="flip-card-back">
-                <p class="card-title" style="text-align: center; color: #8274A1">Изтегли готовото <br> си портфолио </p>
-                <p></p>
-                <button class="flip-button flip-back-btn">Затвори</button> 
-            </div>
-        </div>
-    </div>
-      </section>
-    </div>
-    
-  </section>
-    <section class="footer">
-    <video autoplay muted loop playsinline>
-        <source src="Footer 2.mp4" type="video/mp4">
-        Твоят браузър не поддържа видео таг.
-    </video>
-    <h1>Последвай ни в:</h1>
-    <div class="footer-social">
-      <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
-      <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-      <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-  </section>
+    <section class="footer">
+      <video autoplay muted loop playsinline>
+          <source src="Footer 2.mp4" type="video/mp4">
+          Твоят браузър не поддържа видео таг.
+      </video>
+      <h1>Последвай ни в:</h1>
+      <div class="footer-social">
+        <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
+        <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </section>
 </body>
 </html>

@@ -235,6 +235,7 @@
     border-radius: 25px;
     background: #F4EFF6;
     box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    justify-content: space-between;
 }
 
 /* Когато е обърната */
@@ -245,7 +246,7 @@
 /* Страни – отпред и отзад */
 .flip-card-front,
 .flip-card-back {
-    position: absolute;
+   position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
@@ -255,6 +256,8 @@
     flex-direction: column;
     align-items: center;
     background: #F4EFF6;
+    display: flex; 
+    box-sizing: border-box;
 }
 
 /* Задната страна */
@@ -282,9 +285,9 @@
 /* Иконите по средата */
 .flip-card-front img,
 .flip-card-back img {
-    width: 200px;
+    
     height: auto;
-    margin-top: 30px;
+    
 }
 
 /* Бутоните */
@@ -298,7 +301,7 @@
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    
   
 }
 
@@ -307,7 +310,7 @@
     background: #8274A1;
 }
 
-/* Подравняване на картите */
+
 .cards-container {
     display: flex;
     justify-content: center;
@@ -347,7 +350,7 @@
   font-size: 1.5rem !important;  
   transition: color 0.3s;
   z-index: 2;
-  gap: 20px;
+  
 }
 
 .footer-social a:hover {
@@ -368,8 +371,9 @@
   height: 100%;
   display: flex;
   margin-top: 2vh;
-  justify-content: center; 
-  gap: 30px;           
+  justify-content: center;
+  gap: 25px; 
+             
 }
 .footer h1 {
   position: relative;
@@ -412,7 +416,7 @@
 
 .modal-content {
     background-color: #fefefe;
-     margin: 10% auto;  display: flex; 
+     margin: 10% auto;  
     padding: 30px;
     border: 1px solid #888;
     width: 90%; 
@@ -474,12 +478,46 @@
 }
 
 #cvForm button[type="submit"] {
-    width: 100%;
+    width: 50%;
     margin-top: 30px;
-    background-color: #09989e; 
+    background-color: #09989e;
+    border: none; 
+    color: white;
+     border-radius: 20px;
+    justify-content: center;
 }
 
 #cvForm button[type="submit"]:hover {
     background-color: #00798a; 
 }
+.cards1-container {
+    display: flex;
+    gap: 60px;
+    justify-content: center; /* ЦЕНТРИРАНЕ! */
+    width: 100%; /* Гарантира, че контейнерът заема цялата ширина */
+    color: #8274A1;
+}
+
+.cards1-container img {
+    position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 180px;
+  font-weight: 700;
+  color: white;
+  opacity: 0.8;
+  line-height: 1;
+}
+.card-icon p {
+    font-size: 20px;
+  text-align: center;
+  color: #7d7390;
+}
+.pi{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+}
+
 

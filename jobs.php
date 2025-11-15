@@ -3,7 +3,7 @@
 // error_reporting(0); 
 
 // --- НАСТРОЙКИ ---
-$token = "apify_api_AO3crKcr2Eg2UNukesJkrk0OTbsEzE33VY3C"; // ТВОЯТ токен
+$token = "apify_api_qDQn1U5W18thP54TJ0Ci18Ex8oNpVN4gGV6H"; // ТВОЯТ токен
 $actorId = "worldunboxer~rapid-linkedin-scraper"; 
 
 $filtered = [];
@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         h2 {
             color: #09989e;
-            border-bottom: 2px solid #;
+            border-bottom: 2px solid ;
             padding-bottom: 10px;
             margin-top: 20px;
             margin-bottom: 25px;
