@@ -1,50 +1,60 @@
 <?php
 // generate_pdf.php
 
-// 1. Включете Dompdf и заредете класа
+// Включете Dompdf и заредете класа
 require 'vendor/autoload.php';
 use Dompdf\Dompdf;
-use Dompdf\Options;
 
-// 2. Вземете данните от формата
-// *** КЛЮЧОВАТА ПРОМЯНА Е ТУК ***
-// Използваме $_POST, който съдържа всички данни от формата
+// 1. Вземете данните от формата
 $data = [];
 
-// Проверяваме дали заявката е POST и дали има данни
 if (!empty($_POST)) {
-    // Основните полета
-    $data['name']       = $_POST['name'] ?? ''; 
-    $data['job_title']  = $_POST['job_title'] ?? ''; 
-    $data['phone']      = $_POST['phone'] ?? ''; 
-    $data['email']      = $_POST['email'] ?? ''; 
-    $data['address']    = $_POST['address'] ?? ''; 
-
-    // Масивите
-    $data['skills']     = $_POST['skills'] ?? [];
-    $data['experience'] = $_POST['experience'] ?? [];
-    $data['education']  = $_POST['education'] ?? []; // Ако имате полета за образование
+    // Безопасно събиране на всички данни
+    foreach ($_POST as $key => $value) {
+        // Прилагаме филтър за безопасност
+        $data[$key] = is_array($value) ? $value : trim(filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    }
+    
+    // Определяме кой темплейт да използваме (стойност по подразбиране е 'default')
+    $templateName = $data['template'] ?? 'default'; 
+    $templateFile = "template_{$templateName}.php"; // Напр. template_modern.php
+    
+    // За по-голяма съвместимост с данните от JS
+    $data['name'] = $data['fullName'] ?? ''; // fullName от JS да стане name за Dompdf
+    
 } else {
     // В случай, че някой директно отвори generate_pdf.php без POST данни
     die("Грешка: Не са изпратени данни. Моля, попълнете формата.");
 }
-// *** КРАЙ НА ПРОМЯНАТА ***
 
-// 3. Настройки на Dompdf 
-$options = new Options();
-// ... (останалите настройки) ...
-
-$dompdf = new Dompdf($options);
-
-// 4. Буфериране на HTML съдържанието
+// 2. Буфериране на HTML съдържанието
 ob_start();
-include 'CV_Portfolio_Maker.html'; 
+
+if (file_exists($templateFile)) {
+    // Включваме темплейтния файл, който ще използва данните от масива $data
+    include $templateFile; 
+} else {
+    // Ако файлът липсва (за да избегнем грешки), използваме default
+    include 'template_default.php';
+}
+
 $html = ob_get_clean();
 
-// 5. Зареждане на HTML и генериране
-// ... (останалата част от кода) ...
 
-// 6. Изпращане на PDF към браузъра за сваляне
+// 3. Настройки и генериране на Dompdf
+$dompdf = new Dompdf();
+
+$options = $dompdf->getOptions();
+$options->set('defaultFont', 'DejaVu Sans'); // Задава DejaVu Sans като основен шрифт за кирилица
+$dompdf->setOptions($options);
+// *******************************************************************
+
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'portrait'); 
+$dompdf->render();
+
+
+// 4. Изпращане на PDF към браузъра за сваляне
 $filename = "CV-" . str_replace(' ', '_', $data['name']) . ".pdf";
 
 $dompdf->stream($filename, [

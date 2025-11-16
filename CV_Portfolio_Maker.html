@@ -6,6 +6,7 @@
     <title>TeenCareer</title>
     <link rel="stylesheet" type="text/css" href="cv2.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
+    
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -60,113 +61,89 @@
         </form>
       </div>
     </div>
-    <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const navMenu = document.getElementById("navMenu");
-
-      menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-      });
-
-      // Логика за регистрационния popup (Profile)
-      document.querySelector(".profile-btn").addEventListener("click", function() {
-        document.querySelector(".overlay").classList.add("active");
-        document.querySelector(".popup").classList.add("active");
-      });
-
-      document.querySelector(".popup .close-btn").addEventListener("click", function() {
-        document.querySelector(".overlay").classList.remove("active");
-        document.querySelector(".popup").classList.remove("active");
-      });
-    </script>
   </header>
-  
-  <section class="hero">
-    <div class="background"></div>
-    <div class="phone">
-    <img src="phone 1.png">
-    </div>
-    <div class="text">
-        <h1>Създай си CV без главоболие</h1>
-        <h2>Не е нужно да имаш опит, за да<br>  изглеждаш готов.</h2>
-        <p>Нашият CV Maker ще ти помогне да се представиш уверено, дори<br> ако това е първата ти работа.</p>
-        <a href="#" class="button">Създай сега</a>
-    </div>
-  </section>
-  
-  <section class="steps">
-    <img src="Group 16.png">
-    <p>Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
-  </section>
-  
-  <section class="cards-container">
-    <div class="flip-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                <div class="card-number">1.</div>
-                <div class="card-icon">
+    
+    <section class="hero">
+        <div class="background"></div>
+        <div class="phone">
+        <img src="phone 1.png">
+        </div>
+        <div class="text">
+            <h1>Създай си CV без главоболие</h1>
+            <h2>Не е нужно да имаш опит, за да<br>  изглеждаш готов.</h2>
+            <p>Нашият CV Maker ще ти помогне да се представиш уверено, дори<br> ако това е първата ти работа.</p>
+            <a href="#cv-card-container" class="button">Създай сега</a>
+        </div>
+    </section>
+    
+    <section class="steps">
+        <img src="Group 16.png">
+        <p>Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
+    </section>
+    
+    <section class="cards-container">
+        <div class="flip-card-container">
+            <div class="flip-card">
+                <div class="flip-card-front">
+                    <div class="card-number">1.</div>
+                    <div class="card-icon">
+                        <img src="design.png">
+                    </div>
+                    <select id="template-selector" name="template" style="padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: inherit; width: 80%; margin-top: 15px; text-align: center;">
+                       <option value="text">Избери темплейт</option>
+                      <option value="default">Класически (Основен)</option>
+                        <option value="modern">Модерен (Пример)</option>
+                    </select>
                     
                 </div>
                 
-                <img src="design.png">
-                <button class="flip-button flip-forward-btn">Избери темплейт за CV</button> 
-            </div>
-            
-            <div class="flip-card-back">
-                <div class="card-number">1.</div>
-                <p class="card-title"></p>
-                
-                <button class="flip-button flip-back-btn">Затвори</button> 
-            </div>
-        </div>
-    </div>
-
-      <div class="flip-card-container" id="cv-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                <div class="card-number">2.</div>
-                <div class="card-icon">
-                  <img src="inf.png">
+                <div class="flip-card-back">
+                    <div class="card-number">1.</div>
+                    <p class="card-title"></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
                 </div>
-                <p class="card-title"></p>
-              <button class="flip-button" id="openCvModalBtn">Разкажи ни за себе си.</button> 
-            </div>
-            
-            <div class="flip-card-back">
-                <div class="card-number">2.</div>
-                <p class="card-title"></p>
-                
-                <button class="flip-button flip-back-btn">Затвори</button> 
             </div>
         </div>
-    </div>
-
-      <div class="flip-card-container">
-        <div class="flip-card">
-            
-            <div class="flip-card-front">
-                <div class="card-number">3.</div>
-                <div class="card-icon">    
+        <div class="flip-card-container" id="cv-card-container">
+            <div class="flip-card">
+                <div class="flip-card-front">
+                    <div class="card-number">2.</div>
+                    <div class="card-icon">
+                      <img src="inf.png">
+                    </div>
+                    <p class="card-title"></p>
+                  <button class="flip-button" id="openCvModalBtn">Разкажи ни за себе си.</button> 
                 </div>
-                <p class="card-title"></p>
-                <img src="readycv.png">
-                <button class="flip-button flip-forward-btn" id="downloadCvBtn">Изтегли готовото си CV</button> 
-
-            </div>
-            
-            <div class="flip-card-back">
-                <div class="card-number">3.</div>
-                <p class="card-title"></p>
-                <p></p>
-                <button class="flip-button flip-back-btn">Затвори</button> 
+                
+                <div class="flip-card-back">
+                    <div class="card-number">2.</div>
+                    <p class="card-title"></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
             </div>
         </div>
-    </div>
+        <div class="flip-card-container">
+            <div class="flip-card">
+                <div class="flip-card-front">
+                    <div class="card-number">3.</div>
+                    <div class="card-icon">     
+                    </div>
+                    <p class="card-title"></p>
+                    <img src="readycv.png">
+                    <button class="flip-button flip-forward-btn" id="downloadCvBtn">Изтегли готовото си CV</button> 
 
-  </section>
-  
+                </div>
+                
+                <div class="flip-card-back">
+                    <div class="card-number">3.</div>
+                    <p class="card-title"></p>
+                    <p></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
+            </div>
+        </div>
+        </section>
+    
     <div class="modal" id="cvModal">
       <div class="modal-content">
           <span class="close-btn cv-close-btn">&times;</span>
@@ -203,8 +180,94 @@
           </form>
       </div>
     </div>
-    
+    <section class="portfolio">
+      <div class="portfolio">
+        <img src="Group 17.png" id="pi">
+        <section style="display: flex; gap: 60px;" class="cards1-container">
+          <div class="flip-card-container">
+            <div class="flip-card1">
+                <div class="flip-card-front">
+                    <div class="card-icon">     
+                    </div>
+                    <p  style="text-align: center; color: #8274A1" >Избери темплейт за <br> портфолио</p>
+                    <img src="01.png"> 
+                </div>
+                <div class="flip-card-back">
+                    <p style="text-align: center; color: #8274A1" class="card-title">Избери темплейт за <br>портфолио</p>
+                    <p></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container">
+            <div class="flip-card1">
+                <div class="flip-card-front">
+                    <div class="card-icon">     
+                    </div>
+                    <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
+                    <img src="02.png">
+                </div>
+                <div class="flip-card-back">
+                    <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
+                    <p></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container">
+            <div class="flip-card1">
+                <div class="flip-card-front">
+                    <div class="card-icon">     
+                    </div>
+                    <p class="card-title" style="text-align: center; line-height:1.5; color: #8274A1">Изтегли готовото <br> си портфолио</p>
+                    <img src="03.png">
+                </div>
+                <div class="flip-card-back">
+                    <p class="card-title" style="text-align: center; color: #8274A1">Изтегли готовото <br> си портфолио </p>
+                    <p></p>
+                    <button class="flip-button flip-back-btn">Затвори</button> 
+                </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section class="footer">
+      <video autoplay muted loop playsinline>
+          <source src="Footer 2.mp4" type="video/mp4">
+          Твоят браузър не поддържа видео таг.
+      </video>
+      <h1>Последвай ни в:</h1>
+      <div class="footer-social">
+        <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
+        <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </section>
+
     <script>
+        // Логика за менюто и регистрационния popup
+        const menuToggle = document.getElementById("menuToggle");
+        const navMenu = document.getElementById("navMenu");
+        const registrationPopup = document.querySelector(".popup");
+        const overlay = document.querySelector(".overlay"); // Вече достъпен
+
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelector(".profile-btn").addEventListener("click", function() {
+            overlay.classList.add("active");
+            registrationPopup.classList.add("active");
+        });
+
+        document.querySelector(".popup .close-btn").addEventListener("click", function() {
+            overlay.classList.remove("active");
+            registrationPopup.classList.remove("active");
+        });
         
         // ====================================================================
         // ЛОГИКА ЗА ОБРЪЩАНЕ НА КАРТИТЕ (FLIP CARDS)
@@ -217,7 +280,7 @@
             const backButton = container.querySelector('.flip-back-btn');
 
             // Логика за обръщане напред (освен Карта 2 и Карта 3, които имат специална функция)
-            if (frontButton && container.id !== 'cv-card-container' && frontButton.id !== 'downloadCvBtn') {
+            if (frontButton && frontButton.id !== 'downloadCvBtn' && !frontButton.hasAttribute('onclick')) {
                 frontButton.addEventListener('click', function(e) {
                     e.preventDefault(); 
                     e.stopPropagation(); 
@@ -243,12 +306,22 @@
         const cvModal = document.getElementById("cvModal");
         const openCvModalBtn = document.getElementById("openCvModalBtn");
         const cvCloseBtn = document.querySelector(".cv-close-btn");
-        const registrationPopup = document.querySelector(".popup"); 
         const cvForm = document.getElementById("cvForm");
         const downloadCvBtn = document.getElementById("downloadCvBtn"); // Бутонът от Карта 3
+        const templateSelector = document.getElementById("template-selector"); // НОВ ЕЛЕМЕНТ
         
-        // Глобална променлива за съхранение на данните от CV формата
-        let cvData = {}; 
+        // Глобална променлива за съхранение на данните и избора на темплейт
+        let cvData = {
+            template: templateSelector.value || 'default' // Взимаме текущата стойност при стартиране
+        }; 
+
+        // Актуализираме cvData при промяна на селектора
+        if(templateSelector) {
+            templateSelector.addEventListener('change', function() {
+                cvData.template = this.value;
+            });
+        }
+
 
         // --- 1. Отваряне на CV модала (Карта 2) ---
         if (openCvModalBtn) {
@@ -275,14 +348,14 @@
         cvForm.addEventListener("submit", function(e) {
             e.preventDefault(); 
             
-            // Събиране на данните 
+            // Събиране на данните (текущият избор на темплейт е вече в cvData.template)
             cvData.fullName = document.getElementById("cv-fullName").value;
             cvData.email = document.getElementById("cv-email").value;
             cvData.phone = document.getElementById("cv-phone").value;
             cvData.education = document.getElementById("cv-education").value;
             cvData.experience = document.getElementById("cv-experience").value;
             
-            alert("Данните за CV са запазени! Можете да продължите към изтегляне (Стъпка 3).");
+            alert(`Данните за CV са запазени с темплейт: ${cvData.template}! Можете да продължите към изтегляне (Стъпка 3).`);
             
             // Затваряне на модала
             cvModal.classList.remove("modal-open"); 
@@ -306,9 +379,9 @@
                 form.action = 'generate_pdf.php'; 
                 form.target = '_blank'; // Отваря в нов таб
                 
-                // Добавяне на данните като скрити input полета
+                // Добавяне на данните като скрити input полета (включва и cvData.template)
                 for (const key in cvData) {
-                    if (cvData.hasOwnProperty(key)) {
+                    if (cvData.hasOwnProperty(key) && cvData[key] !== undefined) {
                         const hiddenField = document.createElement('input');
                         hiddenField.type = 'hidden';
                         hiddenField.name = key; 
@@ -331,80 +404,9 @@
             if (e.target.classList.contains("overlay")) {
                 registrationPopup.classList.remove("active");
                 cvModal.classList.remove("modal-open"); 
-                // Вашата логика за затваряне на регистрационния popup
-                document.querySelector(".popup").classList.remove("active"); 
-                
                 overlay.classList.remove("active");
             }
         });
     </script>
-    <section class="portfolio">
-      <div class="portfolio">
-        <img src="Group 17.png" id="pi">
-        <section style="display: flex; gap: 60px;" class="cards1-container">
-          <div class="flip-card-container">
-            <div class="flip-card1">
-                <div class="flip-card-front">
-                    <div class="card-icon">    
-                    </div>
-                    <p  style="text-align: center; color: #8274A1" >Избери темплейт за <br> портфолио</p>
-                    <img src="01.png"> 
-                </div>
-                <div class="flip-card-back">
-                    <p style="text-align: center; color: #8274A1" class="card-title">Избери темплейт за <br>портфолио</p>
-                    <p></p>
-                    <button class="flip-button flip-back-btn">Затвори</button> 
-                </div>
-            </div>
-          </div>
-
-          <div class="flip-card-container">
-            <div class="flip-card1">
-                <div class="flip-card-front">
-                    <div class="card-icon">    
-                    </div>
-                    <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
-                    <img src="02.png">
-                </div>
-                <div class="flip-card-back">
-                    <p class="card-title" style="text-align: center; color: #8274A1">Сподели работата си с<br> нас</p>
-                    <p></p>
-                    <button class="flip-button flip-back-btn">Затвори</button> 
-                </div>
-            </div>
-          </div>
-
-          <div class="flip-card-container">
-            <div class="flip-card1">
-                <div class="flip-card-front">
-                    <div class="card-icon">    
-                    </div>
-                    <p class="card-title" style="text-align: center; line-height:1.5; color: #8274A1">Изтегли готовото <br> си портфолио</p>
-                    <img src="03.png">
-                </div>
-                <div class="flip-card-back">
-                    <p class="card-title" style="text-align: center; color: #8274A1">Изтегли готовото <br> си портфолио </p>
-                    <p></p>
-                    <button class="flip-button flip-back-btn">Затвори</button> 
-                </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-    
-    <section class="footer">
-      <video autoplay muted loop playsinline>
-          <source src="Footer 2.mp4" type="video/mp4">
-          Твоят браузър не поддържа видео таг.
-      </video>
-      <h1>Последвай ни в:</h1>
-      <div class="footer-social">
-        <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
-        <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-        <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-    </section>
-</body>
+    </body>
 </html>
