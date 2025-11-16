@@ -1,5 +1,5 @@
 <style>
-    /* CSS за класическия (default) дизайн */
+
     body { font-family: 'DejaVu Sans', sans-serif; margin: 0; padding: 30px; font-size: 10pt; color: #333; }
     h1 { color: #2C3E50; border-bottom: 3px solid #3498DB; padding-bottom: 5px; margin-top: 0; font-size: 1.8em; }
     h2 { color: #34495E; font-size: 1.2em; margin-top: 20px; border-bottom: 1px solid #BDC3C7; padding-bottom: 3px;}

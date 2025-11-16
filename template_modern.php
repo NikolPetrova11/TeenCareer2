@@ -1,5 +1,5 @@
 <style>
-    /* CSS за модерния дизайн (две колони) */
+    
     body { font-family:'DejaVu Sans',  sans-serif; margin: 0; padding: 0; font-size: 10pt; }
     .cv-wrap { display: flex; width: 100%; }
     .sidebar { width: 30%; background-color: #E6E6FA; padding: 20px 10px; color: #333; height: 100%; float: left; }
@@ -7,7 +7,7 @@
     h1 { color: #483D8B; font-size: 1.5em; border-bottom: none; margin-bottom: 10px; }
     h2 { color: #483D8B; font-size: 1.1em; border-bottom: 2px solid #483D8B; padding-bottom: 3px; margin-top: 20px; }
     p { margin: 0 0 5px 0; line-height: 1.4; }
-    /* Тъй като Dompdf не работи добре с чист flex/grid, използваме float */
+   
 </style>
 <div class="cv-wrap">
     <div class="sidebar">
