@@ -285,22 +285,35 @@
 /* Иконите по средата */
 .flip-card-front img,
 .flip-card-back img {
-    
-    height: auto;
-    
+      justify-content: space-between;
+     height: auto;
+    max-width: 500px;
+    width: 80%;
+    padding: 67px 15px 15px;
+    display: block;     /* прави изображението блоков елемент */
+    margin: 0 auto;     
 }
-
+.flip-card-front,
+.flip-card-back {
+    display: flex;
+    justify-content: center; /* хоризонтално */
+    align-items: center;     /* вертикално */
+}
 /* Бутоните */
 .flip-button,
 #openCvModalBtn {
    
-    background: #8274A1;
+       background: #8274A1;
     color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 12px 0;
+    width: 80%;           /* еднаква ширина */
+    max-width: 250px;     /* фиксиран максимум */
+    text-align: center;
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: auto;   
     
   
 }
@@ -335,6 +348,7 @@
   width: 100%;
   height: 300px;
   overflow: hidden;
+  margin-top: 50px;
   
 }
 
@@ -455,7 +469,7 @@
 }
 
 .cv-close-btn:hover, .cv-close-btn:focus {
-    color: #000;
+    color: #09989e;
 }
 
 #cvForm .form-element label {
@@ -483,8 +497,9 @@
     background-color: #09989e;
     border: none; 
     color: white;
-     border-radius: 20px;
+     border-radius: 25px;
     justify-content: center;
+    padding: 10px;
 }
 
 #cvForm button[type="submit"]:hover {
@@ -496,28 +511,36 @@
     justify-content: center; /* ЦЕНТРИРАНЕ! */
     width: 100%; /* Гарантира, че контейнерът заема цялата ширина */
     color: #8274A1;
+   
 }
 
 .cards1-container img {
-    position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 180px;
-  font-weight: 700;
-  color: white;
-  opacity: 0.8;
-  line-height: 1;
+    position: relative;
+  bottom: -110px;
+  right: -20px;
+ width: 250px;
+
+  
 }
 .card-icon p {
     font-size: 20px;
   text-align: center;
   color: #7d7390;
+ 
 }
-.pi{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 40px;
+.portfolio1 img{
+       display: block;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 85%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.portfolioimg img{
+   position: relative;
+  bottom: -130px;
+  right: -20px;
+ width: 200px;
 }
 
 
