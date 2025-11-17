@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "teencareer2"; // смени името, ако базата е различна
+$dbname = "teencareer2"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
