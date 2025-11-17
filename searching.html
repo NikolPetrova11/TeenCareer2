@@ -108,14 +108,14 @@
     <p>Търсиш си първа работа, лятна позиция или нещо,<br>
       с което да хванеш малко опит и още повече увереност?<br>
       Тук е мястото </p>
-    <a href="#" class="button">Потърси сега</a>
+    <a href="#bg" class="button">Потърси сега</a>
   </section>
   <section class="whattoexpect">
     <img class="whattoexpectimg" src="Group 67.png" alt="What to expect">
   </section>
  
 
-    <div class="bg">
+    <div class="bg" id="bg">
   <section class="cards-container">
     <div class="card">
       <h3>Работа в заведение</h3>
@@ -188,6 +188,14 @@
     </div>
   </section>
   </section>
+  <script>
+document.querySelector('a[href="#bg"]').addEventListener("click", function(e) {
+    e.preventDefault();
+    document.querySelector("#bg").scrollIntoView({
+        behavior: "smooth"
+    });
+});
+</script>
 </body>
 
 </html>

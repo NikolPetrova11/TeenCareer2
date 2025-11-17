@@ -3,9 +3,12 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
-          
+           scroll-behavior: smooth;
             
         }
+         html {
+        scroll-behavior: smooth;
+    }
 
         img, video {
             max-width: 100%;
@@ -270,9 +273,12 @@
 .arrow1 img,
 .arrow2 img {
     position: absolute;
-    width: 120px;
-  
-    top:220%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;   /* можеш да промениш */
+    height: auto;
+    cursor: pointer;
+    z-index: 10;
 }
 .arrow1 img{
     left: 5%;

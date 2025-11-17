@@ -72,13 +72,13 @@
             <h1>Създай си CV без главоболие</h1>
             <h2>Не е нужно да имаш опит, за да<br>  изглеждаш готов.</h2>
             <p>Нашият CV Maker ще ти помогне да се представиш уверено, дори<br> ако това е първата ти работа.</p>
-            <a href="#cv-card-container" class="button">Създай сега</a>
+            <a href="#steps_p" class="button">Създай сега</a>
         </div>
     </section>
     
-    <section class="steps">
+    <section class="steps" id="steps">
         <img src="Group 16.png">
-        <p>Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
+        <p id="steps_p">Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
     </section>
     
     <section class="cards-container">
@@ -416,5 +416,13 @@
             }
         });
     </script>
+    <script>
+document.querySelector('a[href="#bg"]').addEventListener("click", function(e) {
+    e.preventDefault();
+    document.querySelector("#bg").scrollIntoView({
+        behavior: "smooth"
+    });
+});
+</script>
     </body>
 </html>
