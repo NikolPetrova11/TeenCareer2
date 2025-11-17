@@ -6,6 +6,9 @@
           
             
         }
+        html {
+    scroll-behavior: smooth;
+}
 
         img, video {
             max-width: 100%;
@@ -214,15 +217,16 @@
      color:#09989e;
 }
 
-/* =======================================
-   FLIP КАРТИ – ВИЗИЯ КАТО НА ПРИМЕРА
-   (Функционалността НЕ се променя)
-======================================= */
+.flip-card-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
 .flip-card-container {
     width: 320px;
     height: 420px;
     perspective: 1000px;
+      transition: transform 0.3s, box-shadow 0.3s;
 }
 
 /* Самата карта, която се върти */
