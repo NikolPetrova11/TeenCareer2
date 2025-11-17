@@ -295,14 +295,22 @@
     width: 100%;
     height: 400px;
 }
-.quotes_text img{
-    position: relative;
-    margin-top: 60px;
-    width:850px;
-    height: auto;
-    margin-left: 420px;
+.quotes_text {
+    display: flex;
+    justify-content: center; /* центрира по хоризонтала */
+    align-items: center;     /* центрира по вертикала */
+    width: 90vw;            /* използвай viewport width, за да е наистина централно */
+    margin: 0;               /* премахваме странични margin */
+    padding: 0;              /* премахваме padding */
+    box-sizing: border-box;
 }
 
+.quotes_text img {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;          /* гарантира центриране в контейнера */
+}
  .footer {
   position: relative;
   width: 100%;
@@ -515,9 +523,14 @@ margin-top: 510px;
 .quotes img{
   height: 350px;  
 }
-.quotes_text img{
-    width: 670px;
-    margin-left: 355px;
+.quotes_text {
+    display: flex;
+    justify-content: center; /* центрира по хоризонтала */
+    align-items: center;     /* центрира по вертикала */
+    width: 90vw;            /* използвай viewport width, за да е наистина централно */
+    margin: 0;               /* премахваме странични margin */
+    padding: 0;              /* премахваме padding */
+    box-sizing: border-box;
 }
 
 }
@@ -615,10 +628,7 @@ flex-direction: row;
 .quotes img{
   height: 350px;  
 }
-.quotes_text img{
-    width: 650px;
-    margin-left: 315px;
-}
+
 
 }
 @media(max-width: 1280px) {
@@ -740,11 +750,7 @@ margin-top: 480px;
 .quotes img{
   height: 300px;  
 }
-.quotes_text img{
-    width: 570px;
-    margin-left: 304px;
-    
-}
+
 .footer h1{
     font-size: clamp(14px, 2.5vw, 20px);
     margin-left: 200px;
@@ -897,10 +903,16 @@ padding: 6px 18px;
 .quotes img{
   height: 243px;  
 }
-.quotes_text img{
-    width: 520px;
-    margin-left: 190px;
+.quotes_text {
+    display: flex;
+    justify-content: center; /* центрира по хоризонтала */
+    align-items: center;     /* центрира по вертикала */
+    width: 85vw;            /* използвай viewport width, за да е наистина централно */
+    margin: 0;               /* премахваме странични margin */
+    padding: 0;              /* премахваме padding */
+    box-sizing: border-box;
 }
+
  .footer{
         height: 236px;
        
@@ -1089,15 +1101,17 @@ padding: 5px 14px;
         margin-top: -300px;
         margin-left: 68px;
     }
-.quotes img{
-  height: 180px;  
-  margin-top: -25px;
-  z-index: 10;
+    .quotes_text {
+    display: flex;
+    justify-content: center; /* центрира по хоризонтала */
+    align-items: center;     /* центрира по вертикала */
+    width: 83vw;            /* използвай viewport width, за да е наистина централно */
+    margin: 0;               /* премахваме странични margin */
+    padding: 0;              /* премахваме padding */
+    box-sizing: border-box;
 }
-.quotes_text img{
-    width: 410px;
-    margin-left: 120px;
-}
+
+
   .footer {
                 aspect-ratio: 16 / 3;
             }
@@ -1301,11 +1315,16 @@ padding: 2px 9px;
 .quotes img{
   height: 115px;  
 }
-.quotes_text img{
-    width: 285px;
-    margin-left: 60px;
+ .quotes_text {
+    display: flex;
+    justify-content: center; /* центрира по хоризонтала */
+    align-items: center;     /* центрира по вертикала */
+    width: 84vw;            /* използвай viewport width, за да е наистина централно */
+    margin: 0;               /* премахваме странични margin */
+    padding: 0;              /* премахваме padding */
+    box-sizing: border-box;
 }
-  .footer{
+ .footer{
         height: 99px;
        
     }
@@ -1343,10 +1362,7 @@ font-size: 0.7rem !important;
         margin-top: -267px;
         margin-left: 26px;
     }
-        .quotes_text img {
-        width: 285px;
-        margin-left: 38px;
-    }
+    
     .bg{
     min-height: 1100px;
      background-image: url("Group 18(11).png");
@@ -1386,10 +1402,16 @@ font-size: 0.7rem !important;
     .quotes img {
         height: 88px;
     }
-    .quotes_text img {
-        width: 274px;
-        margin-left: 19px;
-    }
+    .quotes_text {
+    display: flex;
+    justify-content: center; /* центрира по хоризонтала */
+    align-items: center;     /* центрира по вертикала */
+    width: 83vw;            /* използвай viewport width, за да е наистина централно */
+    margin: 0;               /* премахваме странични margin */
+    padding: 0;              /* премахваме padding */
+    box-sizing: border-box;
+}
+   
     .footer{
         height: 90px;
     }
@@ -1558,7 +1580,7 @@ padding: 2px 9px;
     }
   .arrow1 img {
    top: 90%;
-    left: 2%;
+    left: 3%;
      width: 45px;
     }
 
@@ -1578,10 +1600,15 @@ padding: 2px 9px;
 .quotes img{
   height: 85px;  
 }
-.quotes_text img{
-   width: 274px;
-            margin-left: -6px;
-        }
+.quotes_text {
+    display: flex;
+    justify-content: center; /* центрира по хоризонтала */
+    align-items: center;     /* центрира по вертикала */
+    width: 83vw;            /* използвай viewport width, за да е наистина централно */
+    margin: 0;               /* премахваме странични margin */
+    padding: 0;              /* премахваме padding */
+    box-sizing: border-box;
+}
 
   .footer{
         height: 80px;
