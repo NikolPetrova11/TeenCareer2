@@ -82,72 +82,71 @@
     </section>
     
     <section class="cards-container">
-        <div class="flip-card-container">
-            <div class="flip-card">
-                <div class="flip-card-front">
-                    <div class="card-number">1.</div>
-                    <div class="card-icon">
-                        <img src="design.png">
-                    </div>
-                    <select id="template-selector" name="template" 
-                    style="padding: 10px;  
-                    border-radius: 25px; border: 1px solid #8274A1; color:white; background-color: #8274A1; font-size: 16px;padding: 11px 0px;
-                    font-family: inherit; width: 80%; 
-                    margin-top: 15px; text-align: center;   width: 80%;           
-    max-width: 250px;    margin-top: auto;">
-                       <option value="text">Избери темплейт</option>
-                      <option value="default">Класически</option>
-                        <option value="modern">Модерен </option>
-                    </select>
-                    
-                </div>
-                
-                <div class="flip-card-back">
-                    <div class="card-number">1.</div>
-                    <p class="card-title"></p>
-                    <button class="flip-button flip-back-btn">Затвори</button> 
-                </div>
-            </div>
-        </div>
-        <div class="flip-card-container" id="cv-card-container">
-            <div class="flip-card">
-                <div class="flip-card-front">
-                    <div class="card-number">2.</div>
-                    <div class="card-icon">
-                      <img src="inf.png">
-                    </div>
-                    <p class="card-title"></p>
-                  <button class="flip-button" id="openCvModalBtn">Разкажи ни за себе си.</button> 
-                </div>
-                
-                <div class="flip-card-back">
-                    <div class="card-number">2.</div>
-                    <p class="card-title"></p>
-                    <button class="flip-button flip-back-btn">Затвори</button> 
-                </div>
-            </div>
-        </div>
-        <div class="flip-card-container">
-            <div class="flip-card">
-                <div class="flip-card-front">
-                    <div class="card-number">3.</div>
-                    <div class="card-icon">     
-                    </div>
-                    <p class="card-title"></p>
-                    <img src="readycv.png">
-                    <button class="flip-button flip-forward-btn" id="downloadCvBtn">Изтегли готовото си CV</button> 
 
+    <div class="flip-card-container">
+        <div class="flip-card">
+            <div class="flip-card-front">
+                <div class="card-number">1.</div>
+                <div class="card-icon">
+                    <img src="design.png">
                 </div>
-                
-                <div class="flip-card-back">
-                    <div class="card-number">3.</div>
-                    <p class="card-title"></p>
-                    <p></p>
-                    <button class="flip-button flip-back-btn">Затвори</button> 
-                </div>
+
+                <select id="template-selector" name="template" class="template-selector">
+                    <option value="text">Избери темплейт</option>
+                    <option value="default">Класически</option>
+                    <option value="modern">Модерен</option>
+                </select>
+            </div>
+
+            <div class="flip-card-back">
+                <div class="card-number">1.</div>
+                <p class="card-title"></p>
+                <button class="flip-button flip-back-btn">Затвори</button>
             </div>
         </div>
-        </section>
+    </div>
+
+    <div class="flip-card-container" id="cv-card-container">
+        <div class="flip-card">
+            <div class="flip-card-front">
+                <div class="card-number">2.</div>
+                <div class="card-icon">
+                    <img src="inf.png">
+                </div>
+                <p class="card-title"></p>
+                <button class="flip-button" id="openCvModalBtn">Разкажи ни за себе си.</button>
+            </div>
+
+            <div class="flip-card-back">
+                <div class="card-number">2.</div>
+                <p class="card-title"></p>
+                <button class="flip-button flip-back-btn">Затвори</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flip-card-container">
+        <div class="flip-card">
+            <div class="flip-card-front">
+                <div class="card-number">3.</div>
+                <div class="card-icon"></div>
+                <p class="card-title"></p>
+                <img src="readycv.png">
+                <button class="flip-button flip-forward-btn" id="downloadCvBtn">
+                    Изтегли готовото си CV
+                </button>
+            </div>
+
+            <div class="flip-card-back">
+                <div class="card-number">3.</div>
+                <p class="card-title"></p>
+                <button class="flip-button flip-back-btn">Затвори</button>
+            </div>
+        </div>
+    </div>
+
+</section>
+
     
     <div class="modal" id="cvModal">
       <div class="modal-content">
