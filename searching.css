@@ -287,7 +287,7 @@
     height: 900px;
     z-index: 55px;
     position: relative;
-    margin-top: -180px;
+    margin-top: 40px;
     margin-left: 520px;
 }
 .quotes img{
@@ -529,7 +529,7 @@ margin-top: 510px;
 
    
     position: relative;
-    margin-top: -110px;
+    margin-top: -90px;
     margin-left: 315px;
 }
 .quotes img{
