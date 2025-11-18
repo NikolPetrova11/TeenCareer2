@@ -36,62 +36,120 @@
         </button>
       </div>
     </div>
-    
     <div class="overlay"></div>
+   <div class="popup">
+    <div class="close-btn">&times;</div>
     
-    <!-- ✅ Popup с вградена форма за регистрация -->
-    <div class="popup">
-      <div class="close-btn">&times;</div>
-      <div class="form">
-        <form action="register.php" method="POST">
-          <div class="form-element">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Въведи имейл" required>
-          </div> 
-
-          <div class="form-element">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Въведи парола" required>
-          </div>
-
-          <div class="form-element">
-            <input type="checkbox" id="remember-me">
-            <label for="remember-me">Запомни ме</label>
-          </div>
-
-          <div class="form-element">
-            <button type="submit">Регистрирай се</button>
-          </div>
-        </form>
-      </div>
+    <div class="tab-header">
+        <button class="tab-btn active" data-form="login">Вход</button>
+        <button class="tab-btn" data-form="register">Регистрация</button>
     </div>
-    <!-- ✅ Край на popup-а -->
-    
-    <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const navMenu = document.getElementById("navMenu");
 
-      menuToggle.addEventListener("click", () => {
+    <div class="form-container">
+
+        <div class="form login-form-container active">
+            <form action="login.php" method="POST">
+                <h3>Вход</h3>
+                <div class="form-element">
+                    <label for="login-email">Email</label>
+                    <input type="email" name="email" id="login-email" placeholder="Въведи имейл" required>
+                </div> 
+ 
+                <div class="form-element">
+                    <label for="login-password">Парола</label>
+                    <input type="password" name="password" id="login-password" placeholder="Въведи парола" required>
+                </div>
+ 
+                <div class="form-element">
+                    <button type="submit">Вход</button>
+                </div>
+            </form>
+        </div>
+        <div class="form register-form-container">
+            <form action="register.php" method="POST">
+                <h3>Регистрация</h3>
+                <div class="form-element">
+                    <label for="register-email">Email</label>
+                    <input type="email" name="email" id="register-email" placeholder="Въведи имейл" required>
+                </div> 
+ 
+                <div class="form-element">
+                    <label for="register-password">Парола</label>
+                    <input type="password" name="password" id="register-password" placeholder="Въведи парола" required>
+                </div>
+ 
+                <div class="form-element">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Запомни ме</label>
+                </div>
+ 
+                <div class="form-element">
+                    <button type="submit">Регистрирай се</button>
+                </div>
+            </form>
+        </div>
+        </div> 
+</div>
+<script>
+  // Съществуваща логика за менюто
+  const menuToggle = document.getElementById("menuToggle");
+  const navMenu = document.getElementById("navMenu"); // Уверете се, че имате елемент с ID="navMenu"
+
+  menuToggle.addEventListener("click", () => {
+    // Уверете се, че navMenu съществува, преди да добавяте клас
+    if (navMenu) {
         navMenu.classList.toggle("active");
-      });
+    }
+  });
 
-      document.querySelector(".profile-btn").addEventListener("click", function() {
-        document.querySelector(".overlay").classList.add("active");
-        document.querySelector(".popup").classList.add("active");
-      });
+  // Логика за отваряне и затваряне на Popup
+  const profileBtn = document.querySelector(".profile-btn");
+  const overlay = document.querySelector(".overlay");
+  const popup = document.querySelector(".popup");
+  const closeBtn = document.querySelector(".popup .close-btn");
 
-      document.querySelector(".popup .close-btn").addEventListener("click", function() {
-        document.querySelector(".overlay").classList.remove("active");
-        document.querySelector(".popup").classList.remove("active");
-      });
+  profileBtn.addEventListener("click", function() {
+    overlay.classList.add("active");
+    popup.classList.add("active");
+  });
 
-      document.querySelector(".overlay").addEventListener("click", function(e) {
-        if (e.target.classList.contains("overlay")) {
-          document.querySelector(".overlay").classList.remove("active");
-          document.querySelector(".popup").classList.remove("active");
+  closeBtn.addEventListener("click", function() {
+    overlay.classList.remove("active");
+    popup.classList.remove("active");
+  });
+
+  overlay.addEventListener("click", function(e) {
+    if (e.target.classList.contains("overlay")) {
+        overlay.classList.remove("active");
+        popup.classList.remove("active");
+    }
+  });
+
+
+  // НОВА ЛОГИКА ЗА ТАБОВЕТЕ (ВХОД/РЕГИСТРАЦИЯ)
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const loginForm = document.querySelector(".login-form-container");
+  const registerForm = document.querySelector(".register-form-container");
+
+  tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        // Премахва "active" от всички бутони
+        tabButtons.forEach(btn => btn.classList.remove("active"));
+        // Добавя "active" към кликнатия бутон
+        button.classList.add("active");
+
+        const targetForm = button.getAttribute("data-form");
+
+        if (targetForm === "login") {
+            loginForm.classList.add("active");
+            registerForm.classList.remove("active");
+        } else if (targetForm === "register") {
+            loginForm.classList.remove("active");
+            registerForm.classList.add("active");
         }
-      });
-    </script>
+    });
+  });
+</script>
   </header>
 
     <section class="hero"></section>
