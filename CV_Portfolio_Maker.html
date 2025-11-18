@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
-    <link rel="stylesheet" type="text/css" href="cv.css" />
-    <link rel="stylesheet" type="text/css" href="login1.css" />
+    <link rel="stylesheet" type="text/css" href="CV1.css" />
+    <link rel="stylesheet" type="text/css" href="login.css" />
     
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
 
         <div class="form login-form-container active">
             <form action="login.php" method="POST">
-                <h3>Вход</h3>
+                
                 <div class="form-element">
                     <label for="login-email">Email</label>
                     <input type="email" name="email" id="login-email" placeholder="Въведи имейл" required>
@@ -65,7 +65,7 @@
         </div>
         <div class="form register-form-container">
             <form action="register.php" method="POST">
-                <h3>Регистрация</h3>
+                
                 <div class="form-element">
                     <label for="register-email">Email</label>
                     <input type="email" name="email" id="register-email" placeholder="Въведи имейл" required>
@@ -345,10 +345,8 @@
 
     <script>
         // Логика за менюто и регистрационния popup
-        const menuToggle = document.getElementById("menuToggle");
-        const navMenu = document.getElementById("navMenu");
         const registrationPopup = document.querySelector(".popup");
-        const overlay = document.querySelector(".overlay"); // Вече достъпен
+        // overlay е деклариран по-горе в друг <script>, затова тук не го пре-декларираме
 
         menuToggle.addEventListener("click", () => {
             navMenu.classList.toggle("active");

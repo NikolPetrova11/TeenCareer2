@@ -458,7 +458,7 @@
     color: #09989e; 
     margin-bottom: 20px;
     font-size: 1.5em;
-    text-align: center;
+    text-align: left;
 }
 
 .cv-close-btn {
@@ -520,8 +520,8 @@
 
 .cards1-container img {
     position: relative;
-  bottom: -110px;
-  right: -20px;
+  bottom: -148px;
+  right: -29px;
  width: 250px;
 
   
@@ -532,6 +532,7 @@
   color: #7d7390;
  
 }
+
 .portfolio1 img{
        display: block;
     margin: 0 auto;
@@ -542,8 +543,8 @@
 }
 .portfolioimg img{
    position: relative;
-  bottom: -130px;
-  right: -20px;
+  bottom: -149px;
+  right: -52px;
  width: 200px;
 }
 .template-selector {

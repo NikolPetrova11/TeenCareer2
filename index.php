@@ -6,7 +6,7 @@
     <title>TeenCareer</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="login1.css" />
+    <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -69,7 +69,7 @@
 
         <div class="form login-form-container active">
             <form action="login.php" method="POST">
-                <h3>Вход</h3>
+                
                 <div class="form-element">
                     <label for="login-email">Email</label>
                     <input type="email" name="email" id="login-email" placeholder="Въведи имейл" required>
@@ -87,7 +87,7 @@
         </div>
         <div class="form register-form-container">
             <form action="register.php" method="POST">
-                <h3>Регистрация</h3>
+                
                 <div class="form-element">
                     <label for="register-email">Email</label>
                     <input type="email" name="email" id="register-email" placeholder="Въведи имейл" required>
