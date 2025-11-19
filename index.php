@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="style1.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -32,28 +32,28 @@
 </head>
 <body>
  
-  <header>
-    <div class="header-container">
-      <a href="index.php">
+ <header>
+  <div class="header-container">
+    <a href="index.php">
       <img src="logo.png" class="logo" alt="TeenCareer">
-      </a>
+    </a>
 
-      <nav class="nav-links" id="navMenu">
-        <ul>
-          <li><a href="#">Да започнем</a></li>
-          <li><a href="searching.html">Хайде на работа!</a></li>
-          <li><a href="CV_Portfolio_Maker.html">Твоят стартов комплект</a></li>
-          <li><a href="tips.html">Съвети със стил</a></li>
-        </ul>
-      </nav>
+    <nav class="nav-links" id="navMenu">
+      <ul>
+        <li><a href="index.php">Да започнем</a></li>
+        <li><a href="searching.html">Хайде на работа!</a></li>
+        <li><a href="CV_Portfolio_Maker.html">Твоят стартов комплект</a></li>
+        <li><a href="tips.html">Съвети със стил</a></li>
+      </ul>
+    </nav>
 
-     <div class="right-buttons">
-    <button class="menu-toggle" id="menuToggle">☰</button>
-    <button class="profile-btn">
-      <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
-    </button>
-</div>
-</div>
+    <div class="right-buttons">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <button class="profile-btn">
+        <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
+      </button>
+    </div>
+  </div>
  
 <div class="overlay"></div>
  

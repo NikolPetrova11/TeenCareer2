@@ -117,6 +117,7 @@
     height: 100vh;
     background: url("Group 14(1).png") no-repeat center center/cover;
     z-index: 1;
+    margin-top: 50px;
 }
 
 .hero h1 {
@@ -433,22 +434,33 @@
 
 /* --------- МЕДИЙНИ ЗАПИТВАНИЯ --------- */
 @media (max-width: 1536px) {
-   .logo{
-    height: 55px;
-    margin-left: -20px;
-
+    .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8vw;
+    height: 80px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+       .logo {
+    height: 60px;
+    width: auto;
 }
 .nav-links ul {
    margin-top: 11px;
 }
 .nav-links ul li a {
-    font-size: 17px;
-
-        }
+    text-decoration: none;
+    color: #09989e;
+    font-weight: 600;
+    font-size: 18px;
+}
 .profile{
     height: 100%;
-    margin-top: 10px;
-    
+   border-radius: 50%;
+    object-fit: cover;
+    margin-right: -50px;
 }
 
 .hero{
@@ -547,11 +559,10 @@ margin-top: 510px;
 
 }
 @media (max-width: 1440px) {
-     .logo{
-    height: 55px;
-    margin-left: 10px;
-
-}
+     .logo {
+        height: 55px;
+        margin-left: 10px;
+    }
 .nav-links ul {
    margin-top: 11px;
 }
@@ -561,7 +572,7 @@ margin-top: 510px;
         }
 .profile{
     height: 90%;
-    margin-right: 27px;
+  
   
  
 }
@@ -657,11 +668,10 @@ flex-direction: row;
 }
 @media(max-width: 1280px) {
 
-    .logo{
-    height: 55px;
-       margin-left: 25px;
-
-}
+        .logo {
+        height: 55px;
+        margin-left: -5px;
+    }
 .nav-links ul {
    margin-top: 11px;
 }
@@ -672,7 +682,7 @@ flex-direction: row;
 .profile{
     height: 90%;
     margin-top: 10px;
-    margin-right: -20px;
+   
 }
 
 .hero{
@@ -807,22 +817,24 @@ margin-top: 480px;
 
 }
 .nav-links{
-    margin-left:  80px;
+    margin-left:  40px;
 }
 .nav-links ul {
-   margin-top: 11px;
-   gap: 1.5vw;
+   margin-top:15px;
+   gap: 1.8vw;
 
 }
 .nav-links ul li a {
-    font-size: 12px;
+    font-size: 14px;
+  
   
 
         }
 .profile{
     height: 75%;
     margin-top: 10px;
-    margin-right: -60px;
+    margin-right: -100px;
+  
 }
 
 .hero{

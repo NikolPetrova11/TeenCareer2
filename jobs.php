@@ -289,6 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .photo{
             margin-left: 55%
        
+       
             
         }
         .arrow{
@@ -302,7 +303,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: 150px;
     z-index: 99999;
 }
-            
+@media (max-width: 1024px) {
+        .container{
+            margin-left: 150px;
+            margin-right: -100px;
+        } 
+        .photo{
+            margin-left: 65%;
+
+        }
+
+} 
+@media (max-width: 768px) {
+        .container{
+            margin-left: 100px;
+            margin-right: -50px;
+        } 
+        .photo{
+            margin-left: 55%;
+
+        }
+    }
            
         
     </style>

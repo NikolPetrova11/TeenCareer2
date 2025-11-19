@@ -363,12 +363,22 @@ margin-left: 180px;
 
         /* --- Responsive --- */
         @media (max-width: 1536px){
-            .profile{
-                margin-right: 45px;
-            }
+            .logo {
+    height: 60px;
+    width: auto;
+}
             .image-wrapper_image-1{
     width: 80%;
 
+}
+.profile{
+    height: 100%;
+   border-radius: 50%;
+    object-fit: cover;
+    
+}
+.nav-links ul {
+   margin-top: 11px;
 }
 .image-wrapper_image-2{
 margin-top: -298px;
@@ -392,15 +402,24 @@ margin-left: 248px;
         }
     
         @media (max-width: 1440px) {
-            .profile{
-                margin-right: -5px;
-            }
+            .logo {
+        height: 55px;
+        margin-left: 50px;
+    }
+           .profile{
+    height: 90%;
+  margin-left: -70px;
+  
+ 
+}
             .header-container {
                 padding: 0 6vw;
             }
-            
+            .nav-links ul {
+   margin-top: 11px;
+}
             .nav-links ul li a {
-                font-size: 16px;
+                font-size: 17px;
             }
             
             .hero-video {
@@ -447,25 +466,46 @@ margin-left: 195px;
         margin-bottom: -60px;   
 }
     }
+    @media (max-width: 1280px) {
+        .nav-links ul li a {
+        font-size: 15px;
+        
+    }
+    .profile {
+        height: 90%;
+        margin-left: -120px;
+        margin-top: 10px;
+    }
+    .nav-links ul {
+   margin-left: -70px;
+    }
+}
 
         @media (max-width: 1024px) {
-            .profile{
-                margin-right: 40px;
-            }
+                .profile {
+                    margin-right: -70px;
+        height: 75%;
+        margin-top: 0px;
+        
+    }
             .icon-row { gap: 5vw; }
            
             
             .header-container {
                 padding: 0 5vw;
             }
-            
-            .logo {
-                height: 50px;
-            }
-            
+           .logo {
+        height: 40px;
+       
+        margin-left: 20px;
+    }
+            .nav-links ul {
+   margin-left: 0px;
+   margin-top: 5px;
+    }
             .nav-links ul li a {
-                font-size: 13px;
-                margin-top: 5px;
+                font-size: 14px;
+              
             }
             
             .hero-video {
@@ -521,6 +561,9 @@ margin-left: 167px;
         @media (max-width: 768px) {
             .menu-toggle { 
                 display: block; 
+                margin-right: -10px;
+                margin-top: -7px;
+                 width: 90%;
             }
 
             .header-container {
@@ -529,6 +572,7 @@ margin-left: 167px;
 
             .logo {
                 height: 45px;
+                 
             }
             
            .nav-links {
@@ -605,6 +649,11 @@ margin-left: 167px;
         margin-top: -145px;
         margin-left: 153px;
         width: 80%;
+    }
+    .profile{
+        margin-right: -90px;
+        width: 100%;
+        margin-top: -5px;
     }
             .footer {
                 aspect-ratio: 16 / 3;
@@ -686,6 +735,10 @@ margin-left: 130px;
   width: 100%;
   margin-top: -115px;
 }
+.profile-btn {
+                width: 50px;
+                height: 50px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -702,11 +755,11 @@ margin-left: 130px;
                 margin-left: -5px;
             }
             .profile{
-                margin-right: 0px;
+                margin-right: -100px;
             }
             .profile-btn {
-                width: 40px;
-                height: 40px;
+                width: 50px;
+                height: 50px;
             }
             
             .mission {
@@ -914,5 +967,6 @@ font-size: 0.6rem !important;
 font-size: 0.6rem !important; 
  margin-top: -1.5vh;
         }
+        
     }
 
