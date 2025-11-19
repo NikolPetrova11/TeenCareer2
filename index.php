@@ -99,11 +99,6 @@
                 </div>
  
                 <div class="form-element">
-                    <input type="checkbox" id="remember-me">
-                    <label for="remember-me">Запомни ме</label>
-                </div>
- 
-                <div class="form-element">
                     <button type="submit">Регистрирай се</button>
                 </div>
             </form>

@@ -145,6 +145,7 @@ body {
     border: 0.0625rem solid #aaa;
     border-radius: 0.3125rem;
     font-size: 0.9rem;
+    align-items: center;
 }
 
 
@@ -221,6 +222,27 @@ a:-webkit-any-link {
 
     .login-form-container,
     .register-form-container {
-        width: 75%;
+        width: 48%;
+ 
     }
+.tab-btn {
+    font-size: 0.65rem;
+    height: 4vh;
 }
+.login-form-container .form-element input[type="text"],
+.login-form-container .form-element input[type="password"],
+.login-form-container .form-element input[type="email"],
+.register-form-container .form-element input[type="text"],
+.register-form-container .form-element input[type="password"],
+.register-form-container .form-element input[type="email"] {
+    margin-top: 0.3125rem;
+    width: 100%;
+    padding: 0.5rem;
+    border: 0.0625rem solid #aaa;
+    font-size: 0.9rem;
+}
+}
+
+
+
+
