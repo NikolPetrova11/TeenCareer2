@@ -190,82 +190,86 @@
     background-repeat: no-repeat;
     background-position: center top;
 }
-.cards-container {
-    position: relative;     
- 
-    gap:30px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-   
+  .carousel-container {
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+        }
 
-   
+        .carousel-title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(100, 100, 120, 0.15);
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+        }
 
-    z-index: 2;
-}
-.card {
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 425px;
-  padding: 25px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-     margin-top: 230px;    
-      position: relative;
-    z-index: 9999;
-    height: 420px;
-}
+        .carousel-wrapper {
+            position: relative;
+            padding: 0 60px;
+        }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+        .carousel {
+            display: flex;
+            gap: 30px;
+            overflow: hidden;
+            scroll-behavior: smooth;
+            padding-top: 205px;
+            align-items: stretch;
+            margin-left: 130px;
+            
+        }
 
-.card h3 {
-  color: #09989e;
-  margin-bottom: 15px;
-  font-size: 24px;
-  
-}
+        .card {
+            min-width: calc(33.333% - 20px);
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-.card p {
-  color: #8274A1;
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: left;
-  font-weight: bold;
-  margin-top: 45px;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
 
-}
+        .card h2 {
+            color: #2db5a3;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
 
-.button1 {
-   position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%); /* по желание – центриране */
-  background-color: #6ad0cb;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
 
-    z-index: 9999 !important;
-   
+        .card button {
+            background: #2db5a3;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
 
-}
-.button1 a {
-  color: white !important;
-  text-decoration: none;
-}
-.button1:hover {
-  background-color: #4db5af;
-}
+        .card button:hover {
+            background: #25a089;
+        }
 
-.arrow1 img,
+       .arrow1 img,
 .arrow2 img {
     position: absolute;
     top: 350px; 
@@ -283,6 +287,22 @@
 .arrow2 img {
     right: 8%;
 }
+
+        @media (max-width: 1024px) {
+            .card {
+                min-width: calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .card {
+                min-width: 100%;
+            }
+            
+            .carousel-wrapper {
+                padding: 0 50px;
+            }
+        }
 .robot img{
     width: 75%;
     height: 900px;
@@ -511,11 +531,6 @@ margin-top: 510px;
 }
 
 
-
-
-
-
-
 .arrow1 img,
 .arrow2 img {
     position: absolute;
@@ -528,11 +543,11 @@ margin-top: 510px;
 }
 
 .arrow1 img {
-    left: 2%;
+    left: 5%;
 }
 
 .arrow2 img {
-    right: 6%;
+    right: -5%;
 }
 
 .robot img{
