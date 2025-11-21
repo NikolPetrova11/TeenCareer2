@@ -82,8 +82,10 @@
  
                 <div class="form-element">
                     <button type="submit">Вход</button>
+                   <a href="myprofile.php"><button type="submit">Моят профил</button></a> 
                 </div>
             </form>
+            
         </div>
         <div class="form register-form-container">
             <form action="register.php" method="POST">

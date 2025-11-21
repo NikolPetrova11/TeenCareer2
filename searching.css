@@ -231,6 +231,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
         }
 
         .card:hover {
@@ -239,7 +240,7 @@
         }
 
         .card h2 {
-            color: #2db5a3;
+            color: #08979D;
             font-size: 1.5rem;
             margin-bottom: 25px;
             font-weight: 600;
@@ -247,22 +248,25 @@
         }
 
         .card p {
-            color: #666;
+            color:#8274A1;
             line-height: 1.6;
             margin-bottom: 15px;
             font-size: 1rem;
         }
 
         .card button {
-            background: #2db5a3;
+            background: #6eced1;
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1rem;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 0.9rem;
             cursor: pointer;
             margin-top: 20px;
             transition: background 0.3s ease;
+            width: 229px;
+            height: 50px;
+            align-self: center;
         }
 
         .card button:hover {
@@ -522,6 +526,7 @@ margin-top: 510px;
 }
 .card{
     width: 350px;
+    
 }
 .card h3{
     font-size: 20px;

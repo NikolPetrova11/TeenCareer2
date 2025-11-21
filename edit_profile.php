@@ -83,21 +83,26 @@ $conn->close();
 <html lang="bg">
 <head>
     <meta charset="UTF-8">
+     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Редакция на Профил</title>
+
     <style>
         .edit-form { max-width: 500px; margin: 50px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .edit-form h2 { color: #8274A1; margin-bottom: 25px; text-align: center; }
-        .edit-form label { display: block; margin-bottom: 5px; font-weight: bold; color:#333; }
-        .edit-form input { width: 100%; padding: 10px; margin-bottom: 18px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .edit-form h2 { color: #8274A1; margin-bottom: 25px; text-align: center;font-family: 'Montserrat' }
+        .edit-form label { display: block; margin-bottom: 5px; font-weight: bold; color:#333; font-family: 'Montserrat'; }
+        .edit-form input { width: 100%; padding: 10px; margin-bottom: 18px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;font-family: 'Montserrat' }
         .success-message { color: green; font-weight: bold; margin-bottom: 15px; border: 1px solid green; padding: 10px; border-radius: 5px; background: #e6ffe6; }
-        .error-message { color: red; font-weight: bold; margin-bottom: 15px; border: 1px solid red; padding: 10px; border-radius: 5px; background: #ffe6e6; }
+        .error-message { color: red; font-weight: bold; margin-bottom: 15px; border: 1px solid red; padding: 10px; border-radius: 5px; background: #ffe6e6; font-family: 'Montserrat'}
         .buttons-group { display: flex; gap: 10px; margin-top: 20px; }
-        .btn { padding: 10px 20px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; }
+        .btn { padding: 10px 20px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; font-family: 'Montserrat'}
         .edit { background:#09989e; color:white; }
-        .profile { background:#8274A1 ; color:white; }
+        .profile { background:#8274A1 ; color:white; font-family: 'Montserrat'}
     </style>
 </head>
-<body>
+<body style="background-color:#E3D7E8;">
 
 <div class="edit-form">
     <h2>Редакция на Профил и Парола</h2>
@@ -121,7 +126,7 @@ $conn->close();
 
         <hr style="margin: 25px 0; border-top: 1px solid #eee;">
         
-        <h3>Смяна на Парола (Оставете празни, ако не искате да сменяте)</h3>
+        <h3 style="font-family: 'Montserrat'">Смяна на Парола (Оставете празни, ако не искате да сменяте)</h3>
         
         <label for="new_password">Нова Парола:</label>
         <input type="password" id="new_password" name="new_password">
