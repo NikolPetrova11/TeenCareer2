@@ -203,6 +203,7 @@
     left: 50%;
     transform: translateX(-50%);
     margin-top: 40px;
+    max-width: 1500px;
    
 }
 .steps p{
@@ -332,7 +333,7 @@
     display: flex;
     justify-content: center;
     gap: 60px;
-    margin-top: 100px;
+    margin-top: 169px;
 }
 .card-title p {
     font-size: 24px;
@@ -561,5 +562,1336 @@
     margin-top: auto;
     text-align: center;
 }
+.flip-card1 p {
+    font-size: 20px;
+  text-align: center;
+  color: #7d7390;
+  margin-top: 20px;
+ 
+}
+.card-title  {
+    font-size: 16px;
+   
+    color: #8274A1;
+    margin-top: -87px;
+    text-align: center;
+}
+.flip-card1 p {
+  font-size: 20px;
+  text-align: center;
+  color: #7d7390;
+  margin-top: -103px;
+}
+.flip-card-container {
+  width: 337px;
+  height: 420px;
+  perspective: 1000px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+@media (max-width: 1536px) {
+   
+   .hero {
+  position: relative;
+  width: 100%;
+  height: 81vh;
+  overflow: hidden;
+}
+  .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 765px;
+    margin-top: 225px;
+    color: #19989e;
+    background: transparent;
+  }
+.steps img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
+  max-width: 1300px;
+}
+.steps p {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Caveat;
+  margin-top: 450px;
+  font-size: 30px;
+  font-size: 37px;
+  text-align: center;
+  color: #09989e;
+}
+.hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+  }
+  .steps img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -69px;
+  max-width: 1236px;
+}
+}
+@media (max-width: 1440px) {
+  .logo{
+    height: 55px;
+    margin-left: 10px;
+
+}
+.nav-links ul {
+   margin-top: 11px;
+   margin-left: -50px;
+     gap: 3vw;
+}
+.nav-links ul li a {
+    font-size: 17px;
+
+        }
+.profile{
+    height: 90%;
+    margin-right: 30px;
+    
+  
+ 
+}
+.phone img {
+  position: absolute;
+  width: 70%;
+  top: 42%;
+  left: 30%;
+  z-index: 2;
+  width: 600px;
+  transform: translate(-50%, -50%);
+  background: transparent;
+}
+ .steps p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Caveat;
+    margin-top: 267px;
+    font-size: 30px;
+    font-size: 32px;
+    text-align: center;
+    color: #09989e;
+  }
+  .cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 15px;
+}
+.footer h1 {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  margin-top: 8vh;
+  font-size: clamp(16px, 3vw, 24px);
+}
+}
+@media (max-width: 1280px) {
+   .logo{
+    height: 55px;
+    margin-left: 10px;
+
+}
+.nav-links ul {
+   margin-top: 11px;
+   margin-left: -50px;
+     gap: 3vw;
+}
+.nav-links ul li a {
+    font-size: 15px;
+
+        }
+.profile{
+    height: 90%;
+    margin-right: 42px;
+}
+   .hero {
+    position: relative;
+    width: 100%;
+    height: 84vh;
+    overflow: hidden;
+  }
+   .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 711px;
+    margin-top: 225px;
+    color: #19989e;
+    background: transparent;
+  }
+  .hero h1 {
+  font-size: 32px;
+  color: #8274A1;
+  background: transparent;
+}
+.hero h2 {
+  margin-top: 50px;
+  font-size: 32px;
+  font-family: 'Caveat', cursive;
+  color: #09989e;
+  background: transparent;
+  line-height: 0.8;
+}
+.hero p {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #8274A1;
+  background: transparent;
+  line-height: 1.2;
+}
+.button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff !important;
+  border: 2px solid #09989e;
+  padding: 9px 45px;
+  margin-top: 57px;
+  margin-left: -1px;
+  font-size: 15px !important;
+  background: #09989e;
+  position: absolute;
+  cursor: pointer;
+  border-radius: 25px;
+  z-index: 3;
+}
+  .steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -116px;
+    max-width: 1115px;
+  }
+.steps p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Caveat;
+    margin-top: 219px;
+    font-size: 30px;
+    font-size: 29px;
+    text-align: center;
+    color: #09989e;
+  }
+ .cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: -58px;
+  }
+  .portfolio1 img {
+  display: block;
+  margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  max-width: 750px;
+  width: 85%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.footer h1 {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  margin-top: 8vh;
+  font-size: clamp(16px, 3vw, 24px);
+}
+.phone img {
+  position: absolute;
+  width: 70%;
+  top: 43%;
+  left: 30%;
+  z-index: 2;
+  width: 569px;
+  transform: translate(-50%, -50%);
+  background: transparent;
+}
+}
+@media (max-width: 1024px) {
+    .logo{
+    height: 40px;
+    margin-top: -5px;
+   margin-left: -10px;
+   
+
+}
+.nav-links{
+    margin-left:  20px;
+}
+.nav-links ul {
+    margin-top: 0px;
+    gap: 3vw;
+    margin-left: -8px;
+  }
+.nav-links ul li a {
+    font-size: 14px;
+  
+  
+  
+
+        }
+ .profile {
+    height: 75%;
+    margin-right: 4px;
+  }
+.hero {
+    position: relative;
+    width: 100%;
+    height: 54vh;
+    overflow: hidden;
+    margin-top: 50px;
+  }
+   .phone img {
+    position: absolute;
+    width: 70%;
+    top: 41%;
+    left: 26%;
+    z-index: 2;
+    width: 416px;
+    transform: translate(-50%, -50%);
+    background: transparent;
+  }
+  .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 490px;
+    margin-top: 152px;
+    color: #19989e;
+    background: transparent;
+  }
+  .hero h1 {
+    font-size: 28px;
+    color: #8274A1;
+    background: transparent;
+  }
+   .hero h2 {
+    margin-top: 30px;
+    font-size: 28px;
+    font-family: 'Caveat', cursive;
+    color: #09989e;
+    background: transparent;
+    line-height: 0.8;
+  }
+  .hero p {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #8274A1;
+    background: transparent;
+    line-height: 1.2;
+  }
+   .button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff !important;
+    border: 2px solid #09989e;
+    padding: 6px 32px;
+    margin-top: 33px;
+    margin-left: -1px;
+    font-size: 12px !important;
+    background: #09989e;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 25px;
+    z-index: 3;
+  }
+   .steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -79px;
+    max-width: 779px;
+  }
+  .steps p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Caveat;
+    margin-top: 136px;
+    font-size: 30px;
+    font-size: 22px;
+    text-align: center;
+    color: #09989e;
+  }
+  .cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 17px;
+    margin-top: -183px;
+  }
+  .flip-card-container {
+  width: 280px;
+  height: 402px;
+  perspective: 450px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.flip-button, #openCvModalBtn {
+  background: #8274A1;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  width: 80%;
+  max-width: 250px;
+  text-align: center;
+  border-radius: 25px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: auto;
+}
+.template-selector {
+  padding: 10px;
+  padding: 11px 0px;
+  border-radius: 25px;
+  border: 1px solid #8274A1;
+  color: white;
+  background-color: #8274A1;
+  font-size: 12px;
+  font-family: inherit;
+  width: 80%;
+  max-width: 250px;
+  margin-top: auto;
+  text-align: center;
+}
+ .portfolio1 img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    max-width: 663px;
+    width: 85%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .cards1-container {
+  display: flex;
+  gap: 17px;
+  justify-content: center;
+  width: 100%;
+  color: #8274A1;
+}
+.flip-card1 p {
+  font-size: 17px;
+  text-align: center;
+  color: #7d7390;
+  margin-top: -103px;
+}
+.portfolioimg img {
+  position: relative;
+  bottom: -152px;
+  right: -29px;
+  width: 200px;
+}
+.cards1-container img {
+  position: relative;
+  bottom: -146px;
+  right: -4px;
+  width: 250px;
+}
+ .footer{
+        height: 236px;
+       
+    }
+    .footer h1{
+        font-size: 19px;
+         margin-top: 6vh;
+         margin-left: 0px;
+    }
+    .footer-social a{ 
+font-size: 1.2rem !important; 
+ 
+        }
+        .footer-social a:first-child{
+      margin-left: 0px; }
+        .image-wrapper_image-1{
+    width: 80%;
+}
+}
+@media (max-width: 768px) {
+   .menu-toggle {
+    display: block;
+    margin-right: -11px;
+    z-index: 10;
+  }
+
+            .header-container {
+                padding: -1px 4vw;
+            }
+
+            .logo {
+                height: 45px;
+                margin-left: -5px;
+            }
+            
+             .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
 
 
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 1.1rem;
+                color: #09989e;
+                width: 100%;
+            }
+
+            /* Анимация на линковете */
+            .nav-links ul li {
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .nav-links.active ul li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
+            .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
+            .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
+            .profile {
+    height: 84%;
+    margin-top: 2px;
+    margin-right: 30px;
+  }
+    .hero {
+    position: relative;
+    width: 100%;
+    height: 37vh;
+    overflow: hidden;
+    margin-top: 80px;
+  }
+  .phone img {
+    position: absolute;
+    width: 70%;
+    top: 42%;
+    left: 25%;
+    z-index: 2;
+    width: 288px;
+    transform: translate(-50%, -50%);
+    background: transparent;
+  }
+   .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 340px;
+    margin-top: 121px;
+    color: #19989e;
+    background: transparent;
+  }
+  .hero h1 {
+    font-size: 22px;
+    color: #8274A1;
+    background: transparent;
+  }
+   .hero h2 {
+    margin-top: 9px;
+    font-size: 22px;
+    font-family: 'Caveat', cursive;
+    color: #09989e;
+    background: transparent;
+    line-height: 0.8;
+  }
+   .hero p {
+    margin-top: 24px;
+    font-size: 11px;
+    color: #8274A1;
+    background: transparent;
+    line-height: 1.2;
+  }
+   .button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff !important;
+    border: 2px solid #09989e;
+    padding: 6px 30px;
+    margin-top: 19px;
+    margin-left: -1px;
+    font-size: 10px !important;
+    background: #09989e;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 25px;
+    z-index: 3;
+  }
+   .steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -44px;
+    max-width: 638px;
+  }
+   .steps p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Caveat;
+    margin-top: 129px;
+    font-size: 30px;
+    font-size: 17px;
+    text-align: center;
+    color: #09989e;
+  }
+   .cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 17px;
+    margin-top: -232px;
+  }
+  .flip-card-container {
+    width: 217px;
+    height: 331px;
+    perspective: 450px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card-number {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  background: #8274A1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.flip-card-front img, .flip-card-back img {
+  justify-content: space-between;
+  height: auto;
+  max-width: 500px;
+  width: 80%;
+  padding: 76px 15px 8px;
+  display: block;
+  margin: 0 auto;
+}
+.template-selector {
+    padding: 10px;
+    padding: 10px 0px;
+    border-radius: 25px;
+    border: 1px solid #8274A1;
+    color: white;
+    background-color: #8274A1;
+    font-size: 10px;
+    font-family: inherit;
+    width: 80%;
+    max-width: 250px;
+    margin-top: auto;
+    text-align: center;
+  }
+  .flip-button, #openCvModalBtn {
+    background: #8274A1;
+    color: white;
+    border: none;
+    padding: 11px 0;
+    width: 80%;
+    max-width: 250px;
+    text-align: center;
+    border-radius: 25px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: auto;
+  }
+   .portfolio1 img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    max-width: 534px;
+    width: 85%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .flip-card1 p {
+    font-size: 12px;
+    text-align: center;
+    color: #7d7390;
+    margin-top: -103px;
+  }
+  .flip-card-front img, .flip-card-back img {
+    justify-content: space-between;
+    height: auto;
+    max-width: 500px;
+    width: 109%;
+    padding: 41px 23px 8px;
+    display: block;
+    margin: 0 auto;
+  }
+   .footer {
+                aspect-ratio: 16 / 3;
+            }
+            
+            .footer-social {
+                gap: 20px;
+            }
+            
+           
+            .footer{
+        height: 180px;
+       
+    }
+    .footer h1{
+        font-size: 16px;
+         margin-top: 5vh;
+    }
+    .footer-social a{ 
+font-size: 1rem !important; 
+margin-top: -1.5vh;
+        }
+  }
+  @media (max-width: 480px) {
+ .menu-toggle {
+    display: block;
+    margin-right: -45px;
+    z-index: 10;
+  }
+
+            .header-container {
+                padding: -1px 4vw;
+            }
+
+            .logo {
+    height: 45px;
+    margin-left: -20px;
+  }
+            
+             .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
+
+
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 1.1rem;
+                color: #09989e;
+                width: 100%;
+            }
+
+            /* Анимация на линковете */
+            .nav-links ul li {
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .nav-links.active ul li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
+            .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
+            .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
+            .profile {
+    height: 80%;
+    margin-top: 2px;
+    margin-right: -35px;
+  }
+    .cards-container {
+        flex-direction: column;   /* подрежда ги една под друга */
+        align-items: center;      /* центрира картите */
+        gap: 25px;                /* разстояние между тях */
+        margin-top: -150px;       /* можеш да коригираш според дизайна */
+    }
+
+    .flip-card-container {
+        width: 90%;        /* картата заема почти цялата ширина */
+        max-width: 320px;  /* максимална ширина */
+        height: 380px;     /* малко по-ниска карта */
+    }
+
+    .flip-card-front img,
+    .flip-card-back img {
+        width: 75%;         /* по-добро мащабиране на мобилно */
+        padding: 40px 10px 10px;
+    }
+
+    .flip-button,
+    #openCvModalBtn,
+    .template-selector {
+        font-size: 12px;
+        padding: 10px 0;
+        width: 70%;
+    }
+     .hero {
+    position: relative;
+    width: 100%;
+    height: 27vh;
+    overflow: hidden;
+    margin-top: 80px;
+  }
+ .phone img {
+    position: absolute;
+    width: 70%;
+    top: 40%;
+    left: 28%;
+    z-index: 2;
+    width: 216px;
+    transform: translate(-50%, -50%);
+    background: transparent;
+  }
+   .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 246px;
+    margin-top: 50px;
+    color: #19989e;
+    background: transparent;
+  }
+    .hero h1 {
+    font-size: 16px;
+    color: #8274A1;
+    background: transparent;
+  }
+   .hero h2 {
+    margin-top: 6px;
+    font-size: 17px;
+    font-family: 'Caveat', cursive;
+    color: #09989e;
+    background: transparent;
+    line-height: 0.8;
+  }
+  .hero p {
+    margin-top: 17px;
+    font-size: 9px;
+    color: #8274A1;
+    background: transparent;
+    line-height: 1.2;
+  }
+    .button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff !important;
+    border: 2px solid #09989e;
+    padding: 3px 17px;
+    margin-top: 13px;
+    margin-left: -1px;
+    font-size: 8px !important;
+    background: #09989e;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 25px;
+    z-index: 3;
+  }
+   .steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -16px;
+    max-width: 470px;
+  }
+   .steps p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Caveat;
+    margin-top: 108px;
+    font-size: 30px;
+    font-size: 13px;
+    text-align: center;
+    color: #09989e;
+  }
+  .cards-container .flip-card-container:first-child {
+    margin-top: -120px;
+  }
+    .flip-card-container {
+    width: 90%;
+    max-width: 296px;
+    height: 350px;
+  }
+    .cards1-container {
+        flex-direction: column;     /* една над друга */
+        align-items: center;        /* центриране */
+        gap: 25px;                  /* разстояние между картите */
+        margin-top: 0;              /* коригирай ако трябва */
+    }
+
+    .flip-card-container1 {
+        width: 90%;                 /* заема ширината на екрана */
+        max-width: 320px;           /* ограничение */
+        height: 380px;              /* добра височина за мобилно */
+    }
+
+    .flip-card-front1 img,
+    .flip-card-back1 img {
+        width: 75%;
+        padding: 40px 10px 10px;
+    }
+
+    .flip-button1,
+    #openCvModalBtn1,
+    .template-selector1 {
+        font-size: 12px;
+        padding: 10px 0;
+        width: 70%;
+    }
+    .flip-card-front img, .flip-card-back img {
+    width: 75%;
+    padding: 54px 15px 10px;
+   display: flex;
+    justify-content: center;
+  }
+  .flip-card1 p {
+    font-size: 15px;
+    text-align: center;
+    color: #7d7390;
+    margin-top: -103px;
+  }
+  .portfolio1 img {
+    display: block;
+    margin: 0 auto;
+   margin-left: 40px;
+    max-width: 534px;
+    width: 85%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .footer{
+        height: 99px;
+       
+    }
+    .footer h1{
+        font-size: 10px;
+         margin-top: 3vh;
+    }
+     .footer {
+                aspect-ratio: 16 / 3;
+                margin-top: 30px;
+            }
+            
+            .footer-social {
+                gap: 10px;
+            }
+.footer-social a{ 
+font-size: 0.7rem !important; 
+ margin-top: -1.5vh;
+        }
+
+
+}
+@media (max-width: 425px) {
+ .profile {
+    height: 80%;
+    margin-top: 2px;
+    margin-right: -30px;
+  }
+   .menu-toggle {
+    display: block;
+    margin-right: -45px;
+    z-index: 10;
+  }
+       .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
+
+
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 0.9rem;
+                color: #09989e;
+                width: 100%;
+            }
+            .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 229px;
+    margin-top: 50px;
+    color: #19989e;
+    background: transparent;
+  }
+   .steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -16px;
+    max-width: 407px;
+  }
+    .steps p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Caveat;
+    margin-top: 108px;
+    font-size: 30px;
+    font-size: 14px;
+    text-align: center;
+    color: #09989e;
+  }
+
+}  
+@media (max-width: 375px) {
+  .profile {
+    height: 80%;
+    margin-top: 2px;
+    margin-right: -40px;
+  }
+   .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
+
+
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 0.9rem;
+                color: #09989e;
+                width: 100%;
+            }
+            .menu-toggle {
+    display: block;
+    margin-right: -50px;
+    z-index: 10;
+  }
+    .phone img {
+    position: absolute;
+    width: 70%;
+    top: 41%;
+    left: 27%;
+    z-index: 2;
+    width: 195px;
+    transform: translate(-50%, -50%);
+    background: transparent;
+  }
+   .hero {
+    position: relative;
+    width: 100%;
+    height: 22vh;
+    overflow: hidden;
+    margin-top: 81px;
+  }
+   .hero h2 {
+    margin-top: 6px;
+    font-size: 14px;
+    font-family: 'Caveat', cursive;
+    color: #09989e;
+    background: transparent;
+    line-height: 0.8;
+  }
+     .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 196px;
+    margin-top: 25px;
+    color: #19989e;
+    background: transparent;
+  }
+  .hero p {
+    margin-top: 15px;
+    font-size: 8px;
+    color: #8274A1;
+    background: transparent;
+    line-height: 1.2;
+  }
+  .steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -16px;
+    max-width: 369px;
+  }
+   .steps p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Caveat;
+    margin-top: 95px;
+    font-size: 30px;
+    font-size: 13px;
+    text-align: center;
+    color: #09989e;
+  }
+  .footer{
+        height: 90px;
+    }
+}
+@media (max-width: 320px) {
+  .logo {
+    height: 39px;
+    margin-left: -17px;
+  }
+   .profile {
+    height: 74%;
+    margin-top: 2px;
+    margin-right: -27px;
+  }
+   .menu-toggle {
+    display: block;
+    margin-right: -45px;
+    z-index: 10;
+  }
+    .phone img {
+    position: absolute;
+    width: 70%;
+    top: 40%;
+    left: 23%;
+    z-index: 2;
+    width: 124px;
+    transform: translate(-50%, -50%);
+    background: transparent;
+  }
+    .hero .text {
+    position: relative;
+    z-index: 2;
+    margin-left: 136px;
+    margin-top: 23px;
+    color: #19989e;
+    background: transparent;
+  }
+   .hero {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    overflow: hidden;
+    margin-top: 80px;
+  }
+  .hero h2 {
+    margin-top: 6px;
+    font-size: 11px;
+    font-family: 'Caveat', cursive;
+    color: #09989e;
+    background: transparent;
+    line-height: 0.8;
+  }
+   .hero p {
+    margin-top: 11px;
+    font-size: 8px;
+    color: #8274A1;
+    background: transparent;
+    line-height: 1.2;
+  }
+    .button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff !important;
+    border: 2px solid #09989e;
+    padding: 1px 9px;
+    margin-top: 6px;
+    margin-left: -1px;
+    font-size: 6px !important;
+    background: #09989e;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 25px;
+    z-index: 3;
+  }
+   .steps img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    max-width: 305px;
+  }
+  .template-selector {
+    font-size: 10px;
+    padding: 8px 0px;
+    width: 70%;
+  }
+   .flip-card-container {
+    width: 90%;
+    max-width: 284px;
+    height: 336px;
+  }
+  .flip-card1 p {
+    font-size: 13px;
+    text-align: center;
+    color: #7d7390;
+    margin-top: -103px;
+  }
+  .footer{
+        height: 80px;
+       
+    }
+    .footer h1{
+        font-size: 10px;
+         margin-top: 2vh;
+    }
+     .footer {
+                aspect-ratio: 16 / 3;
+                margin-top: 30px;
+            }
+            
+            .footer-social {
+                gap: 8px;
+            }
+.footer-social a{ 
+font-size: 0.6rem !important; 
+ margin-top: -1.5vh;
+        }
+         .portfolio1 img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-left: 27px;
+    max-width: 534px;
+    width: 85%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  }
