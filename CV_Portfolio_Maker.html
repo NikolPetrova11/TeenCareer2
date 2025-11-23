@@ -276,47 +276,113 @@
         <div class="portfolio1">
         <img src="Group 17.png">
         </div>
-        <section  class="cards1-container">
-          <div class="flip-card-container">
-            <div class="flip-card1">
-                <div class="flip-card-front">
-                    <div class="card-icon1">     
-                    </div>
-                    <p  >Избери темплейт за <br> портфолио</p>
-                    <div class="portfolioimg">
-                    <img src="01(13).png"> 
+        <section class="portfolio">
+    <div class="portfolio">
+        <section class="cards1-container"> 
+            
+            <div class="flip-card-container" id="step1-container">
+                <div class="flip-card1">
+                    <div class="flip-card-front">
+                         <p>Избери темплейт за <br> портфолио</p>
+                        <div class="portfolioimg">
+                            <img src="01(13).png">
+                        </div>
                     </div>
                 </div>
-                
             </div>
-          </div>
 
-          <div class="flip-card-container">
-            <div class="flip-card1">
-                <div class="flip-card-front">
-                    <div class="card-icon1">     
+            <div class="flip-card-container" id="step2-container">
+                <div class="flip-card1">
+                    <div class="flip-card-front" id="upload-card-front">
+                         <p class="card-title" id="upload-text">Сподели работата си с<br> нас</p>
+                        <img src="02(2).png">
+                        
+                        <input type="file" id="portfolio-upload" accept=".pdf,.doc,.docx,.zip" style="display: none;">
                     </div>
-                    <p class="card-title" >Сподели работата си с<br> нас</p>
-                    <img src="02(2).png">
                 </div>
-               
             </div>
-          </div>
 
-          <div class="flip-card-container">
-            <div class="flip-card1">
-                <div class="flip-card-front">
-                    <div class="card-icon1">     
+            <div class="flip-card-container" id="step3-container">
+                <div class="flip-card1">
+                    <div class="flip-card-front" id="download-card-front">
+                         <p class="card-title" id="download-text">Изтегли готовото <br> си портфолио</p>
+                        <img src="03(1).png">
+                        
+                        <a id="portfolio-download-link" style="display: none;"></a>
                     </div>
-                   <p class="card-title" >Изтегли готовото <br> си портфолио</p>
-                    <img src="03(1).png">
                 </div>
-               
             </div>
-          </div>
+
         </section>
+    </div>
+</section>
       </div>
     </section>
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    // Взимане на елементите по ID
+    const uploadText = document.getElementById('upload-text');
+    const uploadInput = document.getElementById('portfolio-upload');
+    const downloadText = document.getElementById('download-text');
+    const downloadLink = document.getElementById('portfolio-download-link');
+    const step3Container = document.getElementById('step3-container');
+
+    // === ЛОГИКА ЗА СТЪПКА 2: Качване на файл ===
+    
+    // 1. При клик на текста "Сподели работата си..."
+    uploadText.addEventListener('click', () => {
+        // Програмно кликаме на скрития input[type="file"], за да отвори диалог за избор на файл
+        uploadInput.click();
+    });
+
+    // 2. При избор на файл (Сработва след като потребителят избере файл)
+    uploadInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            uploadText.innerHTML = `**Качен:** ${file.name}<br>Обработва се...`;
+            
+            // ❗❗ ВАЖНО: Тук трябва да се добави AJAX заявка за изпращане на файла към сървъра.
+            // ... Пример за AJAX (може да използвате fetch() или Axios) ...
+            
+            // След като сървърът успешно приеме и обработи файла:
+            
+            // Симулираме време за обработка и активираме Стъпка 3
+            setTimeout(() => {
+                activateDownloadStep('UNIQUE_PORTFOLIO_ID_FROM_SERVER'); // Използвайте реално ID от сървъра
+            }, 2000); 
+        }
+    });
+
+    // === ЛОГИКА ЗА СТЪПКА 3: Изтегляне ===
+
+    function activateDownloadStep(portfolioId) {
+        // Визуална промяна на карта 3, за да покаже, че е активна
+        step3Container.style.boxShadow = '0 0 20px rgba(9, 152, 158, 0.8)';
+        downloadText.style.color = '#09989e';
+        downloadText.style.cursor = 'pointer';
+        downloadText.innerHTML = '***КЛИКНИ ЗА ИЗТЕГЛЯНЕ!***';
+
+        // Добавяме функцията за изтегляне, която ще използва ID-то на генерираното портфолио
+        downloadText.onclick = () => startDownload(portfolioId);
+    }
+
+    function startDownload(portfolioId) {
+        // 1. Пътят към вашия PHP скрипт, който използва dompdf
+        // Сървърът ще знае кое портфолио да генерира по ID
+        const downloadUrl = `/path/to/your/pdf_generator.php?id=${portfolioId}`; 
+        
+        // 2. Настройка на скрития линк
+        downloadLink.href = downloadUrl;
+        downloadLink.download = 'My_Generated_Portfolio.pdf'; 
+
+        // 3. Задействане на изтеглянето
+        downloadLink.click();
+        
+        downloadText.textContent = "Изтеглянето стартира...";
+        downloadText.onclick = null; // Деактивираме повторно изтегляне веднага
+    }
+});
+    </script>
     <section class="footer">
       <video autoplay muted loop playsinline>
           <source src="Footer 2.mp4" type="video/mp4">
