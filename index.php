@@ -108,11 +108,8 @@
         </div> 
 </div>
 <script>
-  const isChrome = /Chrome/i.test(navigator.userAgent) && !/Edg/i.test(navigator.userAgent);
 
-if (isChrome) {
-    window.location.href = "";
-}
+
 
   // Съществуваща логика за менюто
   const menuToggle = document.getElementById("menuToggle");
