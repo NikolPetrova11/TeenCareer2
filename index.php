@@ -230,7 +230,7 @@
 
   <section class="footer">
     <video autoplay muted loop playsinline>
-        <source src="Footer 2.mp4" type="video/mp4">
+        <source src="Footer.mp4" type="video/mp4">
         Твоят браузър не поддържа видео таг.
     </video>
     <h1>Последвай ни в:</h1>
