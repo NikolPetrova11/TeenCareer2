@@ -1,83 +1,54 @@
 <?php
+session_start();
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'error' => 'Не е POST заявка']);
-    exit;
-}
-
+// Проверка дали файл е качен
 if (!isset($_FILES['portfolio_file'])) {
-    echo json_encode([
-        'success' => false, 
-        'error' => 'Няма качен файл',
-        'debug' => $_FILES
-    ]);
+    echo json_encode(['success' => false, 'error' => 'Няма качен файл!']);
     exit;
 }
 
 $file = $_FILES['portfolio_file'];
+$fileName = $file['name'];
+$fileTmpName = $file['tmp_name'];
+$fileSize = $file['size'];
+$fileError = $file['error'];
 
-if ($file['error'] !== UPLOAD_ERR_OK) {
-    $errorMessages = [
-        UPLOAD_ERR_INI_SIZE => 'Файлът е твърде голям (над php.ini лимит)',
-        UPLOAD_ERR_FORM_SIZE => 'Файлът е твърде голям',
-        UPLOAD_ERR_PARTIAL => 'Файлът е качен частично',
-        UPLOAD_ERR_NO_FILE => 'Не е избран файл',
-        UPLOAD_ERR_NO_TMP_DIR => 'Липсва временна директория',
-        UPLOAD_ERR_CANT_WRITE => 'Грешка при запис на диска',
-        UPLOAD_ERR_EXTENSION => 'PHP разширение спря качването'
-    ];
-    
-    echo json_encode([
-        'success' => false, 
-        'error' => $errorMessages[$file['error']] ?? 'Неизвестна грешка',
-        'error_code' => $file['error']
-    ]);
+// Проверка за грешки
+if ($fileError !== 0) {
+    echo json_encode(['success' => false, 'error' => 'Грешка при качване на файла!']);
     exit;
 }
 
-$portfolioId = uniqid('portfolio_', true);
-
-$uploadDir = __DIR__ . '/uploaded_portfolios/';
-if (!is_dir($uploadDir)) {
-    if (!mkdir($uploadDir, 0755, true)) {
-        echo json_encode([
-            'success' => false, 
-            'error' => 'Не може да се създаде директория',
-            'path' => $uploadDir
-        ]);
-        exit;
-    }
-}
-
-if (!is_writable($uploadDir)) {
-    echo json_encode([
-        'success' => false, 
-        'error' => 'Директорията няма права за писане',
-        'path' => $uploadDir
-    ]);
+// Проверка на размера (макс 10MB)
+if ($fileSize > 10 * 1024 * 1024) {
+    echo json_encode(['success' => false, 'error' => 'Файлът е твърде голям! (макс 10MB)']);
     exit;
 }
 
-$filename = $portfolioId . '_' . basename($file['name']);
-$filepath = $uploadDir . $filename;
+// Създаване на папка за портфолиата (ако не съществува)
+$uploadDir = 'uploads/portfolios/';
+if (!file_exists($uploadDir)) {
+    mkdir($uploadDir, 0777, true);
+}
 
-if (move_uploaded_file($file['tmp_name'], $filepath)) {
+// Генериране на уникален ID за гост (понеже нямаме ID от регистрация)
+// Този ID ще се използва само за уникалност на файла и връзката към PDF-а.
+$guestId = $_POST['user_id'] ?? rand(10000, 99999); 
+
+// Генериране на уникално име за файла
+$fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+$newFileName = 'portfolio_' . $guestId . '_' . time() . '.' . $fileExtension;
+$uploadPath = $uploadDir . $newFileName;
+
+// Преместване на файла
+if (move_uploaded_file($fileTmpName, $uploadPath)) {
+    // Връщаме генерирания ID, който ще се ползва от JS за download URL
     echo json_encode([
         'success' => true,
-        'portfolio_id' => $portfolioId,
-        'filename' => $filename,
-        'filepath' => $filepath
+        'portfolio_id' => $guestId, 
+        'filename' => $newFileName
     ]);
 } else {
-    echo json_encode([
-        'success' => false, 
-        'error' => 'Грешка при move_uploaded_file',
-        'tmp_name' => $file['tmp_name'],
-        'target_path' => $filepath
-    ]);
+    echo json_encode(['success' => false, 'error' => 'Грешка при записване на файла!']);
 }
-
 ?>

@@ -271,8 +271,8 @@
           </form>
       </div>
     </div>
-    <section class="portfolio">
-      <div class="portfolio">
+   <section class="portfolio">
+    <div class="portfolio">
         <div class="portfolio1">
         <img src="Group 17.png">
         </div>
@@ -280,15 +280,15 @@
     <div class="portfolio">
         <section class="cards1-container"> 
             
-           <div class="flip-card-container" id="step1-container">
+            <div class="flip-card-container" id="step1-container">
     <div class="flip-card1">
         <div class="flip-card-front">
-             <p>Избери темплейт за <br> портфолио</p>
-            <div class="portfolioimg">
-                <img src="01(13).png">
-            </div>
-            
-            
+               <p>Избери темплейт за <br> портфолио</p>
+             <div class="portfolioimg">
+                 <img src="01(13).png">
+             </div>
+             
+             
         </div>
     </div>
 </div>
@@ -296,10 +296,10 @@
             <div class="flip-card-container" id="step2-container">
                 <div class="flip-card1">
                     <div class="flip-card-front" id="upload-card-front">
-                         <p class="card-title" id="upload-text">Сподели работата си с<br> нас</p>
-                        <img src="02(2).png">
-                        
-                        <input type="file" id="portfolio-upload" accept=".pdf,.doc,.docx,.zip" style="display: none;">
+                           <p class="card-title" id="upload-text">Сподели работата си с<br> нас</p>
+                         <img src="02(2).png">
+                         
+                         <input type="file" id="portfolio-upload" accept=".pdf,.doc,.docx,.zip" style="display: none;">
                     </div>
                 </div>
             </div>
@@ -307,10 +307,10 @@
             <div class="flip-card-container" id="step3-container">
                 <div class="flip-card1">
                     <div class="flip-card-front" id="download-card-front">
-                         <p class="card-title" id="download-text">Изтегли готовото <br> си портфолио</p>
-                        <img src="03(1).png">
-                        
-                        <a id="portfolio-download-link" style="display: none;"></a>
+                           <p class="card-title" id="download-text">Изтегли готовото <br> си портфолио</p>
+                         <img src="03(1).png">
+                         
+                         <a id="portfolio-download-link" style="display: none;"></a>
                     </div>
                 </div>
             </div>
@@ -318,16 +318,17 @@
         </section>
     </div>
 </section>
-      </div>
+        </div>
     </section>
     <script>
-       document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
     const uploadText = document.getElementById('upload-text');
     const uploadInput = document.getElementById('portfolio-upload');
     const downloadText = document.getElementById('download-text');
     const downloadLink = document.getElementById('portfolio-download-link');
     const step3Container = document.getElementById('step3-container');
-    const userId = 1; // ✅ Слагай ID на потребителя тук
+    // Няма статичен userId. upload_portfolio.php ще генерира уникален.
+    const userId = null; 
 
     // === СТЪПКА 2: Качване на файл ===
     
@@ -344,6 +345,11 @@
             const formData = new FormData();
             formData.append('portfolio_file', file);
             
+            // Ако userId е наличен (регистриран потребител), го изпращаме
+            if (userId) {
+                formData.append('user_id', userId); 
+            }
+            
             // AJAX заявка за качване на файла
             fetch('upload_portfolio.php', {
                 method: 'POST',
@@ -352,8 +358,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    uploadText.innerHTML = `Качен: ${file.name}<br>✓ Готово!`;
-                    // Активираме Стъпка 3 с ID-то, върнато от сървъра
+                    // Променяме текста на Стъпка 2
+                    uploadText.innerHTML = `Качен: **${data.filename}**<br>✓ Готово!`; 
+                    
+                    // Активираме Стъпка 3 с уникалния ID, върнат от сървъра
                     activateDownloadStep(data.portfolio_id);
                 } else {
                     uploadText.innerHTML = `Грешка: ${data.error}`;
@@ -372,13 +380,13 @@
         step3Container.style.boxShadow = '0 0 20px rgba(9, 152, 158, 0.8)';
         downloadText.style.color = '#09989e';
         downloadText.style.cursor = 'pointer';
-        downloadText.innerHTML = 'КЛИКНИ ЗА ИЗТЕГЛЯНЕ!';
+        downloadText.innerHTML = 'Изтегли отново <br> портфолиото'; // или 'КЛИКНИ ЗА ИЗТЕГЛЯНЕ!'
 
         downloadText.onclick = () => startDownload(portfolioId);
     }
 
     function startDownload(portfolioId) {
-        // ✅ КОРИГИРАН ПЪТ - сменете с реалния път до вашия PHP файл
+        // Използваме върнатия ID, за да генерираме PDF
         const downloadUrl = `pdf_generator.php?id=${portfolioId}`; 
         
         // Директно отваряме URL-а за изтегляне
