@@ -6,24 +6,66 @@ require 'vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-// --- Премахната е логиката за свързване с базата данни ---
 
-// Вземаме ID-то, което се изпраща, но го използваме само за генериране на името на файла
-$portfolioId = $_GET['id'] ?? 'Guest';
+$data = $_SESSION['portfolio_data'] ?? [];
+$displayName = $data['full_name'] ?? "Гост Потребител";
+$contactEmail = $data['email'] ?? "N/A";
+$contactPhone = $data['phone'] ?? "N/A";
+$educationText = $data['education'] ?? "Няма въведено образование.";
+$experienceText = $data['experience'] ?? "Няма въведен опит.";
 
-// Статични/Примерни данни за гост потребител:
-$displayName = "Гост Потребител";
-$contactEmail = "guest@teencareer.bg";
-$contactPhone = "N/A";
 
-// HTML за PDF със статични данни
+$uploadedFileName = $_SESSION['uploaded_file_name'] ?? "Няма качен файл";
+
+
+if ($uploadedFileName != "Няма качен файл") {
+    $workHtml = '
+    <div class="skills-grid" style="display: block;">
+        <div class="skill-item" style="width: 100%; text-align: left;">
+            <div class="skill-icon" style="background: #e0d0b8; color: #5a4a3a; font-size: 24px; width: 50px; height: 50px; display: inline-flex; border-radius: 10px; margin-right: 15px; justify-content: center; align-items: center;">
+                📄
+            </div>
+            <div style="display: inline-block; vertical-align: top;">
+                <div style="font-weight: bold; font-size: 16px;">
+                    ' . htmlspecialchars($uploadedFileName) . ' 
+                </div>
+                <div style="font-size: 12px; color: #5a4a3a; margin-top: 5px;">
+                    
+                </div>
+            </div>
+        </div>
+    </div>';
+} else {
+    
+    $workHtml = '
+    <div class="skills-grid">
+        <div class="skill-item">
+            <div class="skill-icon">Ps</div>
+            <div style="font-weight: bold; font-size: 14px;">Photoshop</div>
+            <div style="font-size: 12px; color: #5a4a3a;">75%</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div>
+        </div>
+        <div class="skill-item">
+            <div class="skill-icon">Ai</div>
+            <div style="font-weight: bold; font-size: 14px;">Illustrator</div>
+            <div style="font-size: 12px; color: #5a4a3a;">85%</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+        </div>
+        <div class="skill-item">
+            <div class="skill-icon">Fg</div>
+            <div style="font-weight: bold; font-size: 14px;">Figma</div>
+            <div style="font-size: 12px; color: #5a4a3a;">80%</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+        </div>
+    </div>';
+}
+
 $html = '
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <style>
-        /* ... Вашите CSS стилове остават същите ... */
         @page { margin: 0; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -151,44 +193,27 @@ $html = '
 <body>
     <div class="header">
         <div class="name">' . htmlspecialchars($displayName) . '</div>
-        <h1>PORTFOLIO</h1>
-        <div class="subtitle">Примерен Дизайн</div>
+        <h1>ПОРТФОЛИО</h1>
+        <div class="subtitle"></div>
     </div>
 
     <div class="profile-section">
-        <div class="section-title">INTRODUCTION</div>
-        <div style="font-size: 14px; color: #5a4a3a; margin-bottom: 5px;">About Me</div>
+        <div class="section-title"> Представяне</div>
+        <div style="font-size: 14px; color: #5a4a3a; margin-bottom: 5px;">За мен</div>
         
         <div class="intro-text">
-            Здравейте! Аз съм **Гост Потребител**. Този PDF е генериран с примерни данни. За да създадете персонализирано портфолио, моля, регистрирайте се и попълнете профила си!
+            Здравейте! Аз съм **Гост Потребител**. Този PDF е генериран с данните, които въведохте във формата.
         </div>
         
-        <div class="section-title" style="margin-top: 20px;">Software Skills</div>
-        <div class="skills-grid">
-            <div class="skill-item">
-                <div class="skill-icon">Ps</div>
-                <div style="font-weight: bold; font-size: 14px;">Photoshop</div>
-                <div style="font-size: 12px; color: #5a4a3a;">75%</div>
-                <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">Ai</div>
-                <div style="font-weight: bold; font-size: 14px;">Illustrator</div>
-                <div style="font-size: 12px; color: #5a4a3a;">85%</div>
-                <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">Fg</div>
-                <div style="font-weight: bold; font-size: 14px;">Figma</div>
-                <div style="font-size: 12px; color: #5a4a3a;">80%</div>
-                <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
-            </div>
-        </div>
+        <div class="section-title" style="margin-top: 20px;">Моята работа</div>
+        
+        ' . $workHtml . '
+        
     </div>
 
     <div class="two-column">
         <div class="column">
-            <div class="section-header">• CONTACT •</div>
+            <div class="section-header">• КОНТАКТИ •</div>
             <div class="info-item">
                 <span class="info-icon">📞</span>
                 <span>' . htmlspecialchars($contactPhone) . '</span>
@@ -198,28 +223,23 @@ $html = '
                 <span>' . htmlspecialchars($contactEmail) . '</span>
             </div>
             <div class="info-item">
-                <span class="info-icon">📅</span>
-                <span>N/A</span>
-            </div>
-            <div class="info-item">
                 <span class="info-icon">👤</span>
                 <span>' . htmlspecialchars($displayName) . '</span>
             </div>
+            
         </div>
         
         <div class="column">
-            <div class="section-header">• EDUCATION •</div>
-            <div style="font-size: 12px; line-height: 1.6; margin-top: 10px;">
-                <strong>Примерна Гимназия</strong><br>
-                Специалност: Графичен дизайн<br>
-                2020 - 2025
+            <div class="section-header">• ОБРАЗОВАНИЕ •</div>
+            <div style="white-space: pre-wrap; font-size: 12px; line-height: 1.6; margin-top: 10px;">
+                ' . htmlspecialchars($educationText) . '
             </div>
         </div>
     </div>
 
     <div class="two-column">
         <div class="column">
-            <div class="section-header">• INTEREST •</div>
+            <div class="section-header">• ДРУГИ ИНТЕРЕСИ •</div>
             <div class="interest-tag">#design</div>
             <div class="interest-tag">#creative</div>
             <div class="interest-tag">#art</div>
@@ -227,11 +247,9 @@ $html = '
         </div>
         
         <div class="column">
-            <div class="section-header">• EXPERIENCE •</div>
-            <div style="font-size: 11px; padding: 10px; background: rgba(255,255,255,0.6); border-radius: 15px;">
-                <strong>Примерен Дизайнер</strong><br>
-                2023 - Настояще<br><br>
-                Работа по различни проекти включващи лого дизайн, банери, социални медии и уеб дизайн.
+            <div class="section-header">• ОПИТ •</div>
+            <div style="white-space: pre-wrap; font-size: 11px; padding: 10px; background: rgba(255,255,255,0.6); border-radius: 15px;">
+                ' . htmlspecialchars($experienceText) . '
             </div>
         </div>
     </div>
