@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
-    <link rel="stylesheet" type="text/css" href="cv1.css" />
+    <link rel="stylesheet" type="text/css" href="CV1.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
@@ -271,8 +271,8 @@
           </form>
       </div>
     </div>
-    <section class="portfolio">
-      <div class="portfolio">
+   <section class="portfolio">
+    <div class="portfolio">
         <div class="portfolio1">
         <img src="Group 17.png">
         </div>
@@ -280,53 +280,212 @@
     <div class="portfolio">
         <section class="cards1-container"> 
             
-           <div class="flip-card-container" id="step1-container">
+            <div class="flip-card-container" id="step1-container">
     <div class="flip-card1">
         <div class="flip-card-front">
-             <p>Избери темплейт за <br> портфолио</p>
-            <div class="portfolioimg">
-                <img src="01(13).png">
-            </div>
-            
-            
+               <p>Избери темплейт за <br> портфолио</p>
+             <div class="portfolioimg">
+                 <img src="01(13).png">
+             </div>
+             
+             
         </div>
     </div>
 </div>
 
-            <div class="flip-card-container" id="step2-container">
-                <div class="flip-card1">
-                    <div class="flip-card-front" id="upload-card-front">
-                         <p class="card-title" id="upload-text">Сподели работата си с<br> нас</p>
-                        <img src="02(2).png">
-                        
-                        <input type="file" id="portfolio-upload" accept=".pdf,.doc,.docx,.zip" style="display: none;">
+           <div class="flip-card-container" id="step2-container">
+    <div class="flip-card1">
+        <div class="flip-card-front" id="upload-card-front">
+            <p class="card-title" id="upload-text">Сподели работата си с<br> нас</p>
+            <img src="02(2).png">
+            <input type="file" id="portfolio-upload" accept=".pdf,.doc,.docx,.zip" style="display: none;">
+        </div>
+    </div>
+</div>
+
+<div class="flip-card-container" id="step3-container">
+    <div class="flip-card1">
+        <div class="flip-card-front" id="download-card-front">
+            <p class="card-title" id="download-text">Изтегли готовото <br> си портфолио</p>
+            <img src="03(1).png">
+            <a id="portfolio-download-link" style="display: none;"></a>
+        </div>
+    </div>
+</div>
+
+
+<div id="data-modal" style="display:none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+    <div style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 10px;">
+        <span id="close-modal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        <h3>📄 Попълни Данни за Твоето Порфолио</h3>
+        <form id="portfolio-data-form">
+            <label for="full_name"><br>Име и Фамилия</label>
+            <input type="text" id="full_name" name="full_name" placeholder="Напр. Иван Петров" required style="width: 100%; padding: 10px; margin: 5px 0 15px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+            <label for="email">Имейл</label>
+            <input type="email" id="email" name="email" placeholder="Твоят имейл" required style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+            <label for="phone">Телефон</label>
+            <input type="text" id="phone" name="phone" placeholder="Напр. 0888123456" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+            <label for="education">Образование и Училище</label>
+            <textarea id="education" name="education" placeholder="Къде учиш/си учил" rows="3" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
+
+            <label for="experience">Професионален Опит (Дори и доброволчество)</label>
+            <textarea id="experience" name="experience" placeholder="Опиши какво си правил" rows="5" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
+
+            <button type="submit" style="background-color: #09989e; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer; width: 100%;">Запази и Генерирай</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadText = document.getElementById('upload-text');
+    const uploadInput = document.getElementById('portfolio-upload');
+    const downloadText = document.getElementById('download-text');
+    const step3Container = document.getElementById('step3-container');
+
+    // Променливи за формата
+    const dataModal = document.getElementById('data-modal');
+    const closeModal = document.getElementById('close-modal');
+    const portfolioDataForm = document.getElementById('portfolio-data-form');
+    let formDataSubmitted = false; // Флаг, дали данните са изпратени
+    
+    const userId = null; 
+
+    // === 1. ЛОГИКА ЗА ФОРМАТА (Кликване върху Стъпка 2) ===
+
+    uploadText.addEventListener('click', () => {
+        // Проверяваме дали данните от формата са вече изпратени
+        if (!formDataSubmitted) {
+            dataModal.style.display = 'block'; // Показване на модала
+        } else {
+            // Ако данните са запазени, преминаваме към качване на файл
+            uploadInput.click();
+        }
+    });
+
+    // Затваряне на модала
+    closeModal.addEventListener('click', () => {
+        dataModal.style.display = 'none';
+    });
+
+    // Изпращане на данните от формата към PHP (save_session_data.php)
+    portfolioDataForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(portfolioDataForm);
+        
+        fetch('save_session_data.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                formDataSubmitted = true;
+                dataModal.style.display = 'none'; // Скриване на формата
+                uploadText.innerHTML = 'Данните запазени! <br> **Кликни за качване на файл**';
+                uploadText.style.cursor = 'pointer';
+
+                // Автоматично отваряне на полето за качване на файл след запазване
+                uploadInput.click(); 
+
+            } else {
+                alert('Грешка при запазване на данните.');
+            }
+        })
+        .catch(error => {
+            console.error('Грешка при изпращане на данни:', error);
+            alert('Възникна грешка!');
+        });
+    });
+
+
+    // === 2. ЛОГИКА ЗА КАЧВАНЕ НА ФАЙЛ (upload_portfolio.php) ===
+
+    uploadInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        
+        if (file && formDataSubmitted) { 
+            uploadText.innerHTML = `Качен: ${file.name}<br>Обработва се...`;
+            
+            const uploadFormData = new FormData();
+            uploadFormData.append('portfolio_file', file);
+            if (userId) {
+                uploadFormData.append('user_id', userId); 
+            }
+            
+            fetch('upload_portfolio.php', {
+                method: 'POST',
+                body: uploadFormData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    uploadText.innerHTML = `Качен: ${file.name}<br>✓ Готово!`;
+                    // Активираме Стъпка 3 с уникалния ID
+                    activateDownloadStep(data.portfolio_id);
+                } else {
+                    uploadText.innerHTML = `Грешка: ${data.error}`;
+                }
+            })
+            .catch(error => {
+                console.error('Грешка при качване:', error);
+                uploadText.innerHTML = 'Грешка при качване!';
+            });
+        } else if (!formDataSubmitted) {
+            uploadText.innerHTML = 'Първо попълни данните!';
+        }
+    });
+
+    // === 3. СТЪПКА 3: Изтегляне ===
+
+    function activateDownloadStep(portfolioId) {
+        step3Container.style.boxShadow = '0 0 20px rgba(9, 152, 158, 0.8)';
+        downloadText.style.color = '#09989e';
+        downloadText.style.cursor = 'pointer';
+        downloadText.innerHTML = 'КЛИКНИ ЗА ИЗТЕГЛЯНЕ!';
+
+        downloadText.onclick = () => startDownload(portfolioId);
+    }
+
+    function startDownload(portfolioId) {
+        const downloadUrl = `pdf_generator.php?id=${portfolioId}`; 
+        
+        window.open(downloadUrl, '_blank');
+        
+        downloadText.textContent = "Изтеглянето стартира...";
+        
+        setTimeout(() => {
+            downloadText.innerHTML = 'Изтегли отново <br> портфолиото';
+            downloadText.onclick = () => startDownload(portfolioId);
+        }, 2000);
+    }
+});
+</script>
                     </div>
                 </div>
             </div>
 
-            <div class="flip-card-container" id="step3-container">
-                <div class="flip-card1">
-                    <div class="flip-card-front" id="download-card-front">
-                         <p class="card-title" id="download-text">Изтегли готовото <br> си портфолио</p>
-                        <img src="03(1).png">
-                        
-                        <a id="portfolio-download-link" style="display: none;"></a>
-                    </div>
                 </div>
             </div>
 
         </section>
     </div>
 </section>
-      </div>
+        </div>
     </section>
     <script>
-       document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
     const uploadText = document.getElementById('upload-text');
     const uploadInput = document.getElementById('portfolio-upload');
     const downloadText = document.getElementById('download-text');
     const downloadLink = document.getElementById('portfolio-download-link');
     const step3Container = document.getElementById('step3-container');
+    // Няма статичен userId. upload_portfolio.php ще генерира уникален.
+    const userId = null; 
 
     // === СТЪПКА 2: Качване на файл ===
     
@@ -343,6 +502,11 @@
             const formData = new FormData();
             formData.append('portfolio_file', file);
             
+            // Ако userId е наличен (регистриран потребител), го изпращаме
+            if (userId) {
+                formData.append('user_id', userId); 
+            }
+            
             // AJAX заявка за качване на файла
             fetch('upload_portfolio.php', {
                 method: 'POST',
@@ -351,8 +515,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    uploadText.innerHTML = `Качен: ${file.name}<br>✓ Готово!`;
-                    // Активираме Стъпка 3 с ID-то, върнато от сървъра
+                    // Променяме текста на Стъпка 2
+                    uploadText.innerHTML = `Качен: **${data.filename}**<br>✓ Готово!`; 
+                    
+                    // Активираме Стъпка 3 с уникалния ID, върнат от сървъра
                     activateDownloadStep(data.portfolio_id);
                 } else {
                     uploadText.innerHTML = `Грешка: ${data.error}`;
@@ -371,13 +537,13 @@
         step3Container.style.boxShadow = '0 0 20px rgba(9, 152, 158, 0.8)';
         downloadText.style.color = '#09989e';
         downloadText.style.cursor = 'pointer';
-        downloadText.innerHTML = 'КЛИКНИ ЗА ИЗТЕГЛЯНЕ!';
+        downloadText.innerHTML = 'Изтегли отново <br> портфолиото'; // или 'КЛИКНИ ЗА ИЗТЕГЛЯНЕ!'
 
         downloadText.onclick = () => startDownload(portfolioId);
     }
 
     function startDownload(portfolioId) {
-        // ✅ КОРИГИРАН ПЪТ - сменете с реалния път до вашия PHP файл
+        // Използваме върнатия ID, за да генерираме PDF
         const downloadUrl = `pdf_generator.php?id=${portfolioId}`; 
         
         // Директно отваряме URL-а за изтегляне
