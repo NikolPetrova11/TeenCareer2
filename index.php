@@ -108,6 +108,12 @@
         </div> 
 </div>
 <script>
+  const isChrome = /Chrome/i.test(navigator.userAgent) && !/Edg/i.test(navigator.userAgent);
+
+if (isChrome) {
+    window.location.href = "";
+}
+
   // Съществуваща логика за менюто
   const menuToggle = document.getElementById("menuToggle");
   const navMenu = document.getElementById("navMenu"); // Уверете се, че имате елемент с ID="navMenu"
@@ -172,7 +178,7 @@
 
   <section class="hero-video">
     <video autoplay muted loop playsinline>
-        <source src="Header 3.mp4" type="video/mp4">
+        <source src="Header.mp4" type="video/mp4">
         Твоят браузър не поддържа видео таг.
     </video>
   </section>
