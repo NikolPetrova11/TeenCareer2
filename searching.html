@@ -172,69 +172,61 @@
     <img class="whattoexpectimg" src="Group 67.png" alt="What to expect">
   </section>
  
+<div class="bg" id="bg">
+<section class="cards-container">
 
-    <div class="bg" id="bg">
-  <section class="cards-container">
-    <div class="card">
-      <h3>Работа в заведение</h3>
-      
-      <p>Пица, кафе или сладолед – не е важно какво, важното е, че се учиш да работиш в екип, да комуникираш уверено и… винаги да знаеш къде има храна!<br></br>Подходяща за ваканции, след училище или уикенди.
-</p>
- <div class="card">
-      <h3>Асистент в магазин</h3>
-   
-      <p>Помагаш на клиенти, подреждаш стока, учиш се на отговорност и дори как се прави витрина.
-<br></br>Перфектно за хора, които обичат движението и искат разнообразие.</p>
-      
-
-      <button class="button1"><a href="jobs.php">Да действаме!</a></button>
-
-          <div class="card">
-      <h3>Гледане на деца или домашни любимци</h3>
-      
-      <p style="margin-top: 21px;">Ако си търпелив, забавен и обичаш животни (или малки братовчеди) – това може да е твоят старт.<br></br>Гъвкаво е и можеш да го съчетаеш с училище или други ангажименти.</p>
-
-      <button class="button1" ><a href="jobs.php">Да действаме!</a></button>
-
-     
-
-
-
-
-    </div>
-     <div class="arrow1">  <img src ="Arrow 2.png"></div>
-  
-   
  
-  <div class="arrow2"><img src="Arrow 1.png"></div>
-  </section>
+    <div class="card">
+        <h3>Работа в заведение</h3>
+
+        <p>
+            Пица, кафе или сладолед – не е важно какво, важното е, че се учиш да работиш в екип, 
+            да комуникираш уверено и… винаги да знаеш къде има храна!<br><br>
+            Подходяща за ваканции, след училище или уикенди.
+        </p>
+
+        <button class="button1"><a href="jobs.php">Да действаме!</a></button>
     </div>
 
-    <script>
-        const carousel = document.getElementById('carousel');
-        let currentIndex = 0;
-        
-        function slide(direction) {
-            const cardWidth = carousel.querySelector('.card').offsetWidth;
-            const gap = 30;
-            const scrollAmount = cardWidth + gap;
-            
-            currentIndex += direction;
-            
-            // Изчисляваме максималния индекс
-            const cards = carousel.querySelectorAll('.card');
-            const maxIndex = cards.length - 3; // Показваме 3 карти наведнъж
-            
-            // Ограничаваме индекса
-            if (currentIndex < 0) {
-                currentIndex = 0;
-            } else if (currentIndex > maxIndex) {
-                currentIndex = maxIndex;
-            }
-            
-            carousel.style.transform = `translateX(-${currentIndex * scrollAmount}px)`;
-        }
-    </script>
+    
+    <div class="card">
+        <h3>Асистент в магазин</h3>
+
+        <p>
+            Помагаш на клиенти, подреждаш стока, учиш се на отговорност 
+            и дори как се прави витрина.<br><br>
+            Перфектно за хора, които обичат движението и искат разнообразие.
+        </p>
+
+        <button class="button1"><a href="jobs.php">Да действаме!</a></button>
+    </div>
+
+    <!-- КАРТА 3 -->
+    <div class="card">
+        <h3>Гледане на деца или домашни любимци</h3>
+
+        <p style="margin-top: 21px;">
+            Ако си търпелив, забавен и обичаш животни (или малки братовчеди) – това може да е твоят старт.<br><br>
+            Гъвкаво е и можеш да го съчетаеш с училище или други ангажименти.
+        </p>
+
+        <button class="button1"><a href="jobs.php">Да действаме!</a></button>
+    </div>
+
+   
+    <div class="arrow1">
+        <img src="Arrow 2.png" alt="arrow">
+    </div>
+
+    <div class="arrow2">
+        <img src="Arrow 1.png" alt="arrow">
+    </div>
+
+</section>
+</div>
+
+
+  
 
 
  
