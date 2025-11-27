@@ -332,7 +332,7 @@
 }
 
 .quotes_text img {
-    max-width: 90%;
+    max-width: 75%;
     height: auto;
     display: block;
     margin: 0 auto;          /* гарантира центриране в контейнера */
