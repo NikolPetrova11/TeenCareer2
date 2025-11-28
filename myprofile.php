@@ -134,27 +134,110 @@ $conn->close();
 </div>
 
 <script>
+// Реалната парола от PHP
 const realPass = "<?php echo htmlspecialchars($user_data['password']); ?>";
 
-let visible = false;
-
-const passField = document.getElementById("passwordField");
-const eyeOpen = document.getElementById("eyeOpen");
-const eyeClosed = document.getElementById("eyeClosed");
-
-document.getElementById("togglePassword").addEventListener("click", () => {
-    if (!visible) {
-        passField.textContent = realPass;
-        eyeClosed.style.display = "none";
-        eyeOpen.style.display = "block";
-        visible = true;
-    } else {
-        passField.textContent = "********";
-        eyeOpen.style.display = "none";
-        eyeClosed.style.display = "block";
-        visible = false;
+// ==================== ФУНКЦИЯ ЗА ПОКАЗВАНЕ/СКРИВАНЕ НА ПАРОЛА ====================
+function setupPasswordToggle() {
+    const passField = document.getElementById("passwordField");
+    const eyeOpen = document.getElementById("eyeOpen");
+    const eyeClosed = document.getElementById("eyeClosed");
+    const toggleBtn = document.getElementById("togglePassword");
+    
+    if (toggleBtn) {
+        let visible = false;
+        
+        // Премахваме стари event listeners
+        const newToggleBtn = toggleBtn.cloneNode(true);
+        toggleBtn.parentNode.replaceChild(newToggleBtn, toggleBtn);
+        
+        newToggleBtn.addEventListener("click", () => {
+            if (!visible) {
+                passField.textContent = realPass;
+                document.getElementById("eyeClosed").style.display = "none";
+                document.getElementById("eyeOpen").style.display = "block";
+                visible = true;
+            } else {
+                passField.textContent = "********";
+                document.getElementById("eyeOpen").style.display = "none";
+                document.getElementById("eyeClosed").style.display = "block";
+                visible = false;
+            }
+        });
     }
+}
+
+// Инициализираме функцията за паролата при зареждане на страницата
+setupPasswordToggle();
+
+// ==================== ФУНКЦИОНАЛНОСТ ЗА ТАБОВЕ ====================
+
+const tabs = document.querySelectorAll('.tabs div');
+const card = document.querySelector('.card');
+
+// Запазваме оригиналното съдържание на "За мен"
+const originalContent = card.innerHTML;
+
+tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+        // Премахваме active класа от всички табове
+        tabs.forEach(t => t.classList.remove('active'));
+        
+        // Добавяме active класа на кликнатия таб
+        tab.classList.add('active');
+        
+        // Показваме съответното съдържание
+        if (index === 0) {
+            // ЗА МЕН - показваме оригиналното съдържание
+            card.innerHTML = originalContent;
+            
+            // Добавяме отново event listener за паролата
+            setupPasswordToggle();
+            
+        } else if (index === 1) {
+            // ЛЮБИМИ - празна бяла кутия
+            card.innerHTML = `
+                <h3>Любими</h3>
+                <div style="margin-top: 20px; padding: 60px 40px; background: white; border: 2px dashed #ddd; border-radius: 10px; text-align: center; color: #999; font-size: 16px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <p>Все още нямате запазени любими позиции</p>
+                </div>
+            `;
+            
+        } else if (index === 2) {
+            // CV ФАЙЛОВЕ - празна бяла кутия
+            card.innerHTML = `
+                <h3>CV файлове</h3>
+                <div style="margin-top: 20px; padding: 60px 40px; background: white; border: 2px dashed #ddd; border-radius: 10px; text-align: center; color: #999; font-size: 16px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <p>Все още нямате качени CV файлове</p>
+                </div>
+            `;
+            
+        } else if (index === 3) {
+          
+            card.innerHTML = `
+                <h3>Портфолиа</h3>
+                <div style="margin-top: 20px; padding: 60px 40px; background: white; border: 2px dashed #ddd; border-radius: 10px; text-align: center; color: #999; font-size: 16px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    <p>Все още нямате създадени портфолиа</p>
+                </div>
+            `;
+        }
+    });
 });
 </script>
+
 </body>
 </html>
