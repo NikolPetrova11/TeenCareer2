@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeenCareer</title>
 
-    <link rel="stylesheet" type="text/css" href="style1.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -33,31 +33,32 @@
 <body>
  
  <header>
-  <div class="header-container">
-    <a href="index.php">
+    <div class="header-container">
+     <a href="index.php">
       <img src="logo.png" class="logo" alt="TeenCareer">
-    </a>
+</a>
 
-    <nav class="nav-links" id="navMenu">
-      <ul>
-        <li><a href="index.php">Да започнем</a></li>
-        <li><a href="searching.html">Хайде на работа!</a></li>
-        <li><a href="CV_Portfolio_Maker.html">Твоят стартов комплект</a></li>
-        <li><a href="tips.html">Съвети със стил</a></li>
-      </ul>
-    </nav>
+      <nav class="nav-links" id="navMenu">
+        <ul>
+          <li><a href="index.php">Да започнем</a></li>
+          <li><a href="searching.html">Хайде на работа!</a></li>
+          <li><a href="CV_Portfolio_Maker.html">Твоят стартов комплект</a></li>
+          <li><a href="tips.html">Съвети със стил</a></li>
+        </ul>
+      </nav>
 
-    <div class="right-buttons">
-      <button class="menu-toggle" id="menuToggle">☰</button>
-      <button class="profile-btn">
-        <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
-      </button>
+      <div class="right-buttons">
+        <button class="menu-toggle" id="menuToggle" metod="post">☰</button>
+        <button class="profile-btn">
+          <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
+        </button>
+      </div>
     </div>
-  </div>
- 
-<div class="overlay"></div>
- 
-<div class="popup">
+    
+    <div class="overlay"></div>
+    
+    
+    <div class="popup">
     <div class="close-btn">&times;</div>
     
     <div class="tab-header">
@@ -82,10 +83,8 @@
  
                 <div class="form-element">
                     <button type="submit">Вход</button>
-                   <a href="myprofile.php"><button type="submit">Моят профил</button></a> 
                 </div>
             </form>
-            
         </div>
         <div class="form register-form-container">
             <form action="register.php" method="POST">
@@ -101,6 +100,11 @@
                 </div>
  
                 <div class="form-element">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Запомни ме</label>
+                </div>
+ 
+                <div class="form-element">
                     <button type="submit">Регистрирай се</button>
                 </div>
             </form>
@@ -108,21 +112,18 @@
         </div> 
 </div>
 <script>
-
-
-
-  // Съществуваща логика за менюто
+  
   const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); // Уверете се, че имате елемент с ID="navMenu"
+  const navMenu = document.getElementById("navMenu"); 
 
   menuToggle.addEventListener("click", () => {
-    // Уверете се, че navMenu съществува, преди да добавяте клас
+    
     if (navMenu) {
         navMenu.classList.toggle("active");
     }
   });
 
-  // Логика за отваряне и затваряне на Popup
+  
   const profileBtn = document.querySelector(".profile-btn");
   const overlay = document.querySelector(".overlay");
   const popup = document.querySelector(".popup");
@@ -146,16 +147,13 @@
   });
 
 
-  // НОВА ЛОГИКА ЗА ТАБОВЕТЕ (ВХОД/РЕГИСТРАЦИЯ)
   const tabButtons = document.querySelectorAll(".tab-btn");
   const loginForm = document.querySelector(".login-form-container");
   const registerForm = document.querySelector(".register-form-container");
 
   tabButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // Премахва "active" от всички бутони
         tabButtons.forEach(btn => btn.classList.remove("active"));
-        // Добавя "active" към кликнатия бутон
         button.classList.add("active");
 
         const targetForm = button.getAttribute("data-form");
@@ -170,7 +168,8 @@
     });
   });
 </script>
-  </header>
+   </header>
+
   
 
   <section class="hero-video">
