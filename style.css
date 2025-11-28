@@ -22,7 +22,7 @@
             z-index: 1000;
             background: white;
             box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
-            /* height: 80px; */
+             height: 80px; 
             /* overflow-x: hidden; */
         }
 
@@ -884,7 +884,7 @@ margin-left: 71px;
   }
    .footer-social {
                 gap: 12px;
-                margin-top: -9vh;
+                margin-top: -5vh;
             }
 }
 
@@ -897,7 +897,7 @@ margin-left: 71px;
   }
    .footer-social {
                 gap: 7px;
-                margin-top: -5vh;
+                margin-top: -2vh;
             }
 }
 @media (max-width: 375px) {
@@ -983,7 +983,7 @@ font-size: 0.6rem !important;
             
             .footer-social {
                 gap: 8px;
-                margin-top: -2vh;
+                margin-top: -1vh;
             }
 .footer-social a{ 
 font-size: 0.6rem !important; 
