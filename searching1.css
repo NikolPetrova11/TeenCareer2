@@ -154,7 +154,7 @@
     color: #fff !important;
     border: 2px solid #09989e;
     padding: 9px 45px;
-    margin-top: 470px;
+    margin-top: 900px;
     margin-left: 290px;
     font-size: 18px !important;
     background: #09989e;
@@ -429,6 +429,35 @@
 }
 
 /* --------- МЕДИЙНИ ЗАПИТВАНИЯ --------- */
+@media (max-width: 1920px) {
+  .arrow1 img {
+    left: 1%;   
+}
+.arrow2 img {
+    right: 1%; 
+}
+.card:first-child {
+    margin-left: 50px;
+  }
+  .robot img{
+    margin-top: -150px;
+  }
+  .footer-social{
+    margin-top: -11vh;
+  }
+  .button{
+    margin-left: 200px;
+  }
+  .hero h1{
+    margin-left: 200px;
+  }
+    .hero h2{
+        margin-left: 200px;
+    }
+    .hero p{
+        margin-left: 200px;
+}
+}
 @media (max-width: 1536px) {
     .header-container {
     display: flex;
@@ -596,7 +625,7 @@ margin-top: 510px;
     margin-left: 132px;
     font-size: 15px !important;
     padding: 8px 40px;
-margin-top: 510px;
+margin-top: 1070px;
 flex-direction: row;
 }
 .whattoexpectimg{
@@ -706,7 +735,7 @@ flex-direction: row;
     margin-left: 130px;
     font-size: 12px !important;
     padding: 8px 40px;
-margin-top: 480px;
+margin-top: 1000px;
 }
 .whattoexpectimg{
     width:56%;
@@ -833,7 +862,7 @@ margin-top: 480px;
   
    width: 100%;
    display: block;
-   height: 68%;
+   height: 87%;
    margin-top: 50px;
 }
 .header-container{
@@ -860,7 +889,7 @@ margin-top: 480px;
     margin-left: 82px;
     font-size: 10px !important;
     padding: 8px 40px;
-margin-top: 370px;
+margin-top: 730px;
 padding: 6px 18px;
 }
 .whattoexpectimg{
@@ -945,7 +974,7 @@ padding: 6px 18px;
     height: auto;
    
     position: relative;
-    margin-top: -77px;
+    margin-top: -300px;
     margin-left: 237px;
 }
 .quotes img{
@@ -1069,7 +1098,7 @@ font-size: 1.2rem !important;
     margin-right: -100px;
             }
 .hero{
-    height:52%;
+    height:66%;
     margin-top: 50px;
 
 }
@@ -1098,7 +1127,7 @@ font-size: 1.2rem !important;
     margin-left: 50px;
     font-size: 10px !important;
     padding: 8px 40px;
-margin-top: 280px;
+margin-top: 625px;
 padding: 5px 14px;
 }
 .whattoexpectimg{
@@ -1177,7 +1206,8 @@ padding: 5px 14px;
             }
             
             .footer-social {
-                gap: 25px;
+                gap: 20px;
+                margin-top: -10vh;
             }
             
            
@@ -1282,7 +1312,7 @@ font-size: 1rem !important;
     margin-right: -80px;
             }
 .hero{
-    height:23%;
+    height:39%;
     margin-top: 80px;
 
 }
@@ -1312,7 +1342,7 @@ font-size: 1rem !important;
     margin-left: 22px;
     font-size: 7px !important;
    
-margin-top: 150px;
+margin-top: 320px;
 padding: 2px 9px;
 }
 .whattoexpectimg{
@@ -1364,19 +1394,19 @@ padding: 2px 9px;
 }
 
 .arrow1 img {
-    left: 8%;
+    left: 6%;
 }
 
 .arrow2 img {
-    right: 8%;
+    right: 6%;
 }
 .robot img{
            width: 91%; 
 
         height: auto;
         position: relative;
-        margin-top: -50px;
-        margin-left: 43px;
+        margin-top: -280px;
+        margin-left: 32px;
 }
 .quotes img{
   height: 115px;  
@@ -1405,6 +1435,7 @@ padding: 2px 9px;
             
             .footer-social {
                 gap: 10px;
+                margin-top: -3vh;
             }
 .footer-social a{ 
 font-size: 0.7rem !important; 
@@ -1438,7 +1469,7 @@ font-size: 0.7rem !important;
         width: 95%;
         height: auto;
         position: relative;
-        margin-top: -60px;
+        margin-top: -285px;
         margin-left: 26px;
     }
     
@@ -1474,7 +1505,7 @@ font-size: 0.7rem !important;
         width: 95%;
         height: auto;
         position: relative;
-        margin-top: -40px;
+        margin-top: -250px;
         margin-left: 19px;
     }
     .bg{
@@ -1619,7 +1650,7 @@ font-size: 0.7rem !important;
     margin-left: 15px;
     font-size: 7px !important;
    
-margin-top: 130px;
+margin-top: 280px;
 padding: 2px 9px;
 }
 .whattoexpectimg{
@@ -1686,7 +1717,7 @@ padding: 2px 9px;
          width: 99%;
             height: auto;
             position: relative;
-            margin-top: -40px;
+            margin-top: -310px;
             margin-left: 6px;
 }
 .quotes img{

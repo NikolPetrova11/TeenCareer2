@@ -26,6 +26,7 @@
             background: white;
             box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
             height: 80px;
+            overflow-x: hidden;
         }
 
         .header-container {
@@ -400,6 +401,7 @@ margin-left: 248px;
   margin-top: -234px;
 }
         }
+      
     
         @media (max-width: 1440px) {
             .logo {
@@ -444,7 +446,7 @@ font-size: 1.4rem !important;
 
 }
 .footer-social{
-    margin-top: -15vh;
+    margin-top: -14vh;
 }
 .image-wrapper_image-2{
 margin-top: -263px;
@@ -559,6 +561,10 @@ margin-left: 167px;
   width: 100%;
   margin-top: -155px;
 }
+  .footer-social {
+                gap: 18px;
+                margin-top: -12vh;
+            }
         }
 
         @media (max-width: 768px) {
@@ -865,6 +871,10 @@ margin-left: 71px;
   width: 100%;
   margin-top: -73px;
 }
+  .footer-social {
+                gap: 12px;
+                margin-top: -11vh;
+            }
 }
 
 @media (max-width: 768px) {
@@ -873,6 +883,10 @@ margin-left: 71px;
     margin-top: 70px;     
     border-radius: 0;     
   }
+   .footer-social {
+                gap: 12px;
+                margin-top: -9vh;
+            }
 }
 
 @media (max-width: 480px) {
@@ -882,6 +896,10 @@ margin-left: 71px;
     border-radius: 0;
     aspect-ratio: 16 / 9; 
   }
+   .footer-social {
+                gap: 7px;
+                margin-top: -5vh;
+            }
 }
 @media (max-width: 375px) {
     .image-wrapper_image-1{
@@ -919,6 +937,7 @@ margin-left: 71px;
             
             .footer-social {
                 gap: 7px;
+                margin-top: -8vh;
             }
 .footer-social a{ 
 font-size: 0.6rem !important; 
@@ -965,6 +984,7 @@ font-size: 0.6rem !important;
             
             .footer-social {
                 gap: 8px;
+                margin-top: -2vh;
             }
 .footer-social a{ 
 font-size: 0.6rem !important; 
