@@ -21,17 +21,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 .main {
 
     margin-left:250px;
@@ -301,12 +290,6 @@ body {
     z-index: 99999;
 
 }
-
-
-
-
-
-
 
 @media (max-width: 900px) {
 
