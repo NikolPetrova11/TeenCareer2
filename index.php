@@ -35,7 +35,7 @@
  <header>
     <div class="header-container">
      <a href="index.php">
-      <img src="logo.png" class="logo" alt="TeenCareer">
+      <img src="photos/logo.png" class="logo" alt="TeenCareer">
 </a>
 
       <nav class="nav-links" id="navMenu">
@@ -50,7 +50,7 @@
       <div class="right-buttons">
         <button class="menu-toggle" id="menuToggle" metod="post">☰</button>
         <button class="profile-btn">
-          <img src="viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
+          <img src="photos/viber_image_2025-07-15_17-38-46-235.png" alt="Profile" class="profile">
         </button>
       </div>
     </div>
@@ -174,7 +174,7 @@
 
   <section class="hero-video">
     <video autoplay muted loop playsinline>
-        <source src="Header.mp4" type="video/mp4">
+        <source src="photos/Header.mp4" type="video/mp4">
         Твоят браузър не поддържа видео таг.
     </video>
   </section>
@@ -186,17 +186,17 @@
 
           <div class="icon-row">
               <div class="icon-wrapper">
-                  <img src="1.png" alt="">
+                  <img src="photos/1.png" alt="">
                   <p>Да започнеш търсенето.</p>
               </div>
 
               <div class="icon-wrapper">
-                  <img src="2.png" alt="">
+                  <img src="photos/2.png" alt="">
                   <p>Да знаеш, че можеш.</p>
               </div>
 
               <div class="icon-wrapper">
-                  <img src="3.png" alt="">
+                  <img src="photos/3.png" alt="">
                   <p>Да е с кураж и усмивка.</p>
               </div>
           </div>
@@ -211,25 +211,25 @@
 
   <div class="container">
     <div class="image-wrapper_image-1">
-        <img src="Desktop-1.1.png">
+        <img src="photos/Desktop-1.1.png">
     </div>
     
     <div class="image-wrapper_image-2">
-        <img src="Desktop-1.2.png">
+        <img src="photos/Desktop-1.2.png">
     </div>
     
     <div class="image-wrapper_image-3">
-        <img src="Desktop-1.3.png">
+        <img src="photos/Desktop-1.3.png">
     </div>
     
     <div class="image-wrapper_image-4">
-        <img src="Desktop-1.4(37).png">
+        <img src="photos/Desktop-1.4(37).png">
     </div>
   </div>
 
   <section class="footer">
     <video autoplay muted loop playsinline>
-        <source src="Footer.mp4" type="video/mp4">
+        <source src="photos/Footer.mp4" type="video/mp4">
         Твоят браузър не поддържа видео таг.
     </video>
     <h1>Последвай ни в:</h1>

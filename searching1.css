@@ -115,7 +115,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background: url("Group 14(1).png") no-repeat center center/cover;
+    background: url("photos/Group 14(1).png") no-repeat center center/cover;
     z-index: 1;
     margin-top: 50px;
 }
@@ -185,7 +185,7 @@
     width: 100%;
     height: auto;                
     min-height: 700px;          
-    background-image: url("Group 18.png");
+    background-image: url("photos/Group 18.png");
     background-size: 100% auto;   
     background-repeat: no-repeat;
     background-position: center top;
