@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="myprofile.css">
+    <title>TeenCareer Portal - Профил</title>
+</head>
+<body>
+
+<a href="/"><img class="arrow" src="arrow67.png"></a>
+
+<div class="main">
+    
+    <div class="header">
+        <h1>Моят профил</h1>
+    </div>
+
+    <div class="profile-header">
+        <img src="viber_image_2025-07-15_17-38-46-235.png">
+        <div>
+            <h3><div class="value" id="user-username">Зареждане...</div></h3>
+            <p>Регистриран потребител</p>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="active" data-index="0">За мен</div>
+        <div data-index="1">Любими</div>
+        <div data-index="2">CV файлове</div>
+        <div data-index="3">Портфолиа</div>
+    </div>
+
+    <div class="card" id="profile-card">
+        <h3>Лични данни</h3>
+        <div class="info-grid">
+            <div>
+                <div class="label">Дата на раждане:</div>
+                <div class="value" id="user-dob">--.--.----</div>
+            </div>
+            <div>
+                <div class="label">Email:</div>
+                <div class="value" id="user-email">------</div>
+            </div>
+            <div>
+                <div class="label">Телефон:</div>
+                <div class="value" id="user-phone">------</div>
+            </div>
+            <div>
+                <div class="label">Парола:</div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span class="value" id="passwordField">********</span>
+                    <small style="color: #888;">(защитена)</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn edit">Редактирай</button>
+            <button class="btn profile" onclick="logout()">Излез от профила</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Server info
+async function loadUserData() {
+    try {
+        const response = await fetch('/api/user-data');
+        if (!response.ok) {
+            window.location.href = '/'; 
+            return;
+        }
+
+        const user = await response.json();
+
+        document.getElementById('user-username').innerText = user.username || 'Потребител';
+        document.getElementById('user-email').innerText = user.email;
+        document.getElementById('user-phone').innerText = user.phone || 'Няма данни';
+        
+        if (user.dob) {
+            const date = new Date(user.dob);
+            document.getElementById('user-dob').innerText = date.toLocaleDateString('bg-BG') + ' г.';
+        }
+    } catch (err) {
+        console.error("Грешка при зареждане:", err);
+    }
+}
+
+// Tabs
+const tabs = document.querySelectorAll('.tabs div');
+const card = document.getElementById('profile-card');
+const originalContent = card.innerHTML; 
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const index = tab.getAttribute('data-index');
+
+        if (index === "0") {
+            card.innerHTML = originalContent;
+            loadUserData(); 
+        } else {
+            let title = tab.innerText;
+            card.innerHTML = `
+                <h3>${title}</h3>
+                <div style="margin-top: 20px; padding: 60px 40px; background: white; border: 2px dashed #ddd; border-radius: 10px; text-align: center; color: #999;">
+                    <p>Все още нямате съдържание в ${title.toLowerCase()}</p>
+                </div>
+            `;
+        }
+    });
+});
+
+// Logout
+async function logout() {
+    await fetch('/logout'); 
+    window.location.href = '/';
+}
+
+loadUserData();
+</script>
+
+</body>
+</html>
