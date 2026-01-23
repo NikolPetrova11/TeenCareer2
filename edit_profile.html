@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирай профил - TeenCareer Portal</title>
+    <link rel="stylesheet" href="myprofile.css">
+</head>
+<body>
+
+<a href="/profile"><img class="arrow" src="arrow67.png"></a>
+
+<div class="main">
+    <div class="header">
+        <h1>Редактирай профил</h1>
+    </div>
+
+    <div class="card">
+        <div id="error-message" class="error" style="display: none; color: red; margin-bottom: 15px;"></div>
+
+        <form id="editForm">
+            <div class="info-grid">
+                <div>
+                    <label>Потребителско име:</label>
+                    <input type="text" name="username" id="username">
+                </div>
+                
+                <div>
+                    <label>Дата на раждане:</label>
+                    <input type="date" name="dob" id="dob">
+                </div>
+                
+                <div>
+                    <label>Телефон:</label>
+                    <input type="text" name="phone" id="phone">
+                </div>
+                
+                <div>
+                    <label>Email:</label>
+                    <input type="email" name="email" id="email">
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="btn edit">Запази промените</button>
+                <a href="/profile"><button type="button" class="btn profile">Отказ</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 1. Зареждане на текущите данни
+    fetch('/api/user-data')
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                window.location.href = '/'; // Ако не е логнат
+                return;
+            }
+            
+            document.getElementById('username').value = data.username || '';
+            document.getElementById('phone').value = data.phone || '';
+            document.getElementById('email').value = data.email || '';
+            
+            if (data.dob) {
+                // Форматиране на датата за input type="date" (YYYY-MM-DD)
+                const date = new Date(data.dob);
+                const formattedDate = date.toISOString().split('T')[0];
+                document.getElementById('dob').value = formattedDate;
+            }
+        })
+        .catch(err => console.error('Error loading data:', err));
+
+    // 2. Обработка на формата
+    document.getElementById('editForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            username: document.getElementById('username').value,
+            dob: document.getElementById('dob').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value
+        };
+
+        try {
+            const response = await fetch('/api/update-profile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                window.location.href = '/profile';
+            } else {
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.textContent = result.error || 'Грешка при обновяване.';
+                errorDiv.style.display = 'block';
+            }
+        } catch (err) {
+            console.error('Error updating:', err);
+        }
+    });
+</script>
+
+</body>
+</html>

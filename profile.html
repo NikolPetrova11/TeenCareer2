@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<a href="/"><img class="arrow" src="arrow67.png"></a>
+<a href="/"><img class="arrow" src="photos/arrow67.png"></a>
 
 <div class="main">
     
@@ -17,7 +17,7 @@
     </div>
 
     <div class="profile-header">
-        <img src="viber_image_2025-07-15_17-38-46-235.png">
+        <img src="photos/viber_image_2025-07-15_17-38-46-235.png">
         <div>
             <h3><div class="value" id="user-username">Зареждане...</div></h3>
             <p>Регистриран потребител</p>
@@ -49,11 +49,58 @@
             <div>
                 <div class="label">Парола:</div>
                 <div style="display:flex; align-items:center; gap:10px;">
+                    <!-- Eye -->       
                     <span class="value" id="passwordField">********</span>
-                    <small style="color: #888;">(защитена)</small>
+        <span id="togglePassword" style="cursor:pointer; display:flex; align-items:center;">
+
+            <!-- Closed -->
+            <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                 viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94"></path>
+                <path d="M1 1l22 22"></path>
+            </svg>
+
+            <!-- Opened -->
+            <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                 viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+
+        </span>
+        <!-- Eye script -->
+<script>
+const realPass = "moqtaRealnaParola123";
+
+let visible = false;
+
+const passField = document.getElementById("passwordField");
+const eyeOpen = document.getElementById("eyeOpen");
+const eyeClosed = document.getElementById("eyeClosed");
+
+document.getElementById("togglePassword").addEventListener("click", () => {
+
+    if (!visible) {
+        // show
+        passField.textContent = realPass;
+        eyeClosed.style.display = "none";
+        eyeOpen.style.display = "block";
+        visible = true;
+    } else {
+        // hide
+        passField.textContent = "********";
+        eyeOpen.style.display = "none";
+        eyeClosed.style.display = "block";
+        visible = false;
+    }
+});
+</script>
                 </div>
             </div>
         </div>
+        
         
         <div class="buttons">
             <button class="btn edit">Редактирай</button>

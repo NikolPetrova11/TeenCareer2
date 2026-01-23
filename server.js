@@ -124,5 +124,24 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+// Update Profile API
+app.post('/api/update-profile', async (req, res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    
+    try {
+        const { username, dob, phone, email } = req.body;
+        await User.findByIdAndUpdate(req.session.userId, { username, dob, phone, email });
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Update error:", error);
+        res.status(500).json({ error: "Грешка при обновяване" });
+    }
+});
+
+// Edit Profile Page
+app.get('/edit-profile', redirectIfLoggedOut, (req, res) => {
+    res.sendFile(path.join(__dirname, 'edit_profile.html'));
+});
+
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
