@@ -140,7 +140,7 @@ app.post('/api/update-profile', async (req, res) => {
 
 // Edit Profile Page
 app.get('/edit-profile', redirectIfLoggedOut, (req, res) => {
-    res.sendFile(path.join(__dirname, 'edit_profile.html'));
+    res.sendFile(path.join(__dirname, 'edit-profile.html'));
 });
 
 const PORT = 3000;
