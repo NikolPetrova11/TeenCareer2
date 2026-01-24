@@ -654,6 +654,366 @@
         margin-top: -11vh !important;
     }
 }
+
+/* CV split */
+#cvModal .modal-content {
+    max-width: 90vw;
+    width: 95%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.cv-maker-wrapper {
+    display: flex;
+    flex: 1;
+    gap: 30px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.cv-form-side {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 15px;
+    border-right: 1px solid #eee;
+}
+
+.cv-preview-side {
+    flex: 1;
+    background-color: #525659;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.cv-paper {
+    background: white;
+    width: 100%;
+    max-width: 210mm;
+    min-height: 297mm;
+    padding: 40px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.preview-header {
+    border-bottom: 2px solid #09989e;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.preview-name {
+    font-size: 28px;
+    font-weight: bold;
+    color: #09989e;
+    text-transform: uppercase;
+    word-break: break-word;
+}
+
+.preview-contact {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #555;
+    word-break: break-all;
+}
+
+.preview-section {
+    margin-bottom: 25px;
+}
+
+.preview-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #8274A1;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.preview-content {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+@media (max-width: 1024px) {
+    .cv-maker-wrapper {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    
+    .cv-form-side {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        flex: none;
+    }
+    
+    .cv-preview-side {
+        flex: none;
+        height: 500px;
+    }
+    
+    #cvModal .modal-content {
+        height: auto;
+        max-height: 95vh;
+    }
+}
+
+/* Multi-step Form Styles */
+.form-step {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #09989e;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: #f0f8f8;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.file-upload-button {
+    background-color: #09989e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+} 
+/* --- TEMPLATE STYLES --- */
+
+/* 1. Класически Темплейт (Default) */
+.cv-paper.default {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #000;
+}
+
+.cv-paper.default .preview-header {
+    text-align: center;
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.cv-paper.default #preview-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    object-fit: cover;
+}
+
+.cv-paper.default .preview-name {
+    color: #000;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cv-paper.default .preview-section-title {
+    color: #000;
+    border-bottom: 1px solid #ccc;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* 2. Модерен Темплейт */
+.cv-paper.modern {
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+.cv-paper.modern .preview-header {
+    background-color: #f0f8f8; /* Светъл тюркоаз */
+    padding: 30px;
+    margin: -40px -40px 30px -40px; /* Разпъване до краищата */
+    border-bottom: none;
+    border-left: 10px solid #09989e;
+}
+
+.cv-paper.modern .preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cv-paper.modern #preview-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.cv-paper.modern .preview-name {
+    color: #09989e;
+    font-size: 36px;
+    font-weight: 800;
+    text-transform: none;
+}
+
+.cv-paper.modern .preview-section-title {
+    color: #8274A1;
+    border-bottom: 2px solid #8274A1;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* 3. Креативен Темплейт (Място за твоята снимка) */
+.cv-paper.creative {
+    font-family: 'Verdana', sans-serif;
+    color: #444;
+    border-top: 10px solid #FF6B6B; /* Пример: Цветна лента отгоре */
+}
+
+.cv-paper.creative .preview-header {
+    text-align: left;
+    border-bottom: 2px dashed #FF6B6B;
+    padding-bottom: 10px;
+}
+
+.cv-paper.creative .preview-name {
+    color: #FF6B6B;
+    font-size: 40px;
+    font-weight: normal;
+}
+
+.cv-paper.creative .preview-section-title {
+    background-color: #f9f9f9;
+    padding: 5px 10px;
+    border-left: 5px solid #FF6B6B;
+    color: #333;
+    border-bottom: none;
+}
+
+/* 4. Креативен Плейфул Темплейт (Базиран на изображението) */
+.cv-paper.playful {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: #C1ADE2; /* Основният лилав фон от картинката */
+    padding: 20px;
+    color: #444;
+}
+
+/* Горната секция със снимката и името */
+.cv-paper.playful .preview-header {
+    background: white;
+    border-radius: 40px; /* Силно заоблени ъгли */
+    padding: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-bottom: none; /* Премахване на стандартния бордър */
+}
+
+.cv-paper.playful #preview-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 4px solid #E996C3;
+    object-fit: cover;
+}
+
+.cv-paper.playful .preview-name {
+    color: #3B2E5A; /* Тъмно лилаво за името */
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+/* Етикета "Graphic Designer" */
+.cv-paper.playful .job-title-pill {
+    background-color: #6373FF;
+    color: white;
+    padding: 4px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Основната бяла карта за съдържанието */
+.cv-paper.playful .main-content-card {
+    background: white;
+    border-radius: 40px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr; /* По подразбиране 1 колона, може да се промени на 1.5fr 1fr ако има достатъчно секции */
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    .cv-paper.playful .main-content-card {
+        grid-template-columns: 1.5fr 1fr; /* Две колони на по-широк екран */
+    }
+}
+
+.cv-paper.playful .preview-section-title {
+    color: #3B2E5A;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: none;
+}
+
+/* Стил за Timeline (годините в розови кръгчета) */
+.cv-paper.playful .date-pill {
+    background-color: #E996C3;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
 @media (max-width: 1440px) {
   .logo{
     height: 55px;

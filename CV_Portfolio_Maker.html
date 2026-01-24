@@ -182,6 +182,8 @@
                     <option value="text">Избери темплейт</option>
                     <option value="default">Класически</option>
                     <option value="modern">Модерен</option>
+                    <option value="creative">Розов</option>
+                    <option value="playful">Playful (Лилав)</option>
                 </select>
             </div>
 
@@ -239,36 +241,132 @@
       <div class="modal-content">
           <span class="close-btn cv-close-btn">&times;</span>
           <h2>📝 Попълни Данни за Твоето CV</h2>
-          <form id="cvForm">
-              <div class="form-element">
-                  <label for="cv-fullName">Име и Фамилия</label>
-                  <input type="text" id="cv-fullName" name="fullName" placeholder="Напр. Иван Петров" required>
-              </div> 
+          
+          <div class="cv-maker-wrapper">
+              <!-- ЛЯВА ЧАСТ: ФОРМА -->
+              <div class="cv-form-side">
+                  <form id="cvForm">
+                      <!-- СТЪПКА 1: Лични данни -->
+                      <div class="form-step active" data-step="1">
+                          <h3 style="color:#8274A1; margin-bottom:15px;">Стъпка 1: Лични данни</h3>
+                          <div class="form-element">
+                              <label for="cv-fullName">Име и Фамилия</label>
+                              <input type="text" id="cv-fullName" name="fullName" placeholder="Напр. Иван Петров" required>
+                          </div> 
+                          <div class="form-element">
+                              <label for="cv-email">Имейл</label>
+                              <input type="email" id="cv-email" name="email" placeholder="Твоят имейл" required>
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-phone">Телефон</label>
+                              <input type="tel" id="cv-phone" name="phone" placeholder="Напр. 0888123456">
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-city">Град / Адрес</label>
+                              <input type="text" id="cv-city" name="city" placeholder="Напр. София">
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-date">Дата на раждане</label>
+                              <input type="text" id="cv-date" name="date" placeholder="Напр. 01.01.2005">
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-photo">Снимка</label>
+                              <input type="file" id="cv-photo" accept="image/*">
+                          </div>
+                      </div>
 
-              <div class="form-element">
-                  <label for="cv-email">Имейл</label>
-                  <input type="email" id="cv-email" name="email" placeholder="Твоят имейл" required>
+                      <!-- СТЪПКА 2: Опит и Образование -->
+                      <div class="form-step" data-step="2">
+                          <h3 style="color:#8274A1; margin-bottom:15px;">Стъпка 2: Опит и образование</h3>
+                          <div class="form-element">
+                              <label for="cv-education">Образование и Училище</label>
+                              <textarea id="cv-education" name="education" rows="3" placeholder="Къде учиш/си учил"></textarea>
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-experience">Професионален Опит</label>
+                              <textarea id="cv-experience" name="experience" rows="5" placeholder="Опиши какво си правил (стажове, доброволчество)"></textarea>
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-text">Повече за моя опит</label>
+                              <textarea id="cv-text" name="text" rows="5" placeholder="Опиши по-подробно с какво си се занимавал."></textarea>
+                          </div>
+                      </div>
+
+                      <!-- СТЪПКА 3: Умения и Други -->
+                      <div class="form-step" data-step="3">
+                          <h3 style="color:#8274A1; margin-bottom:15px;">Стъпка 3: Умения и Детайли</h3>
+                          <div class="form-element">
+                              <label for="cv-skills">Умения (разделени със запетая)</label>
+                              <textarea id="cv-skills" name="skills" rows="3" placeholder="Напр. MS Office, Photoshop, Комуникативност, Работа в екип"></textarea>
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-languages">Езици</label>
+                              <input type="text" id="cv-languages" name="languages" placeholder="Напр. Английски (B2), Немски (A1)">
+                          </div>
+                          <div class="form-element">
+                              <label for="cv-summary">За мен (Кратко представяне)</label>
+                              <textarea id="cv-summary" name="summary" rows="3" placeholder="Няколко думи за твоите цели и мотивация..."></textarea>
+                          </div>
+                      </div>
+
+                      <!-- Навигация -->
+                      <div class="form-navigation">
+                          <button type="button" class="nav-btn" id="prevBtn" style="visibility: hidden;">&larr; Назад</button>
+                          <button type="button" class="nav-btn" id="nextBtn">Напред &rarr;</button>
+                          <button type="submit" id="submitBtn" style="display: none; background-color: #09989e; color: white; border: none; border-radius: 25px; padding: 10px 20px; cursor: pointer;">Запази и Генерирай</button>
+                      </div>
+                  </form>
               </div>
 
-              <div class="form-element">
-                  <label for="cv-phone">Телефон</label>
-                  <input type="tel" id="cv-phone" name="phone" placeholder="Напр. 0888123456">
-              </div>
-              
-              <div class="form-element">
-                  <label for="cv-education">Образование и Училище</label>
-                  <textarea id="cv-education" name="education" rows="3" placeholder="Къде учиш/си учил"></textarea>
-              </div>
-              
-              <div class="form-element">
-                  <label for="cv-experience">Професионален Опит (Дори и доброволчество)</label>
-                  <textarea id="cv-experience" name="experience" rows="5" placeholder="Опиши какво си правил"></textarea>
-              </div>
+              <!-- ДЯСНА ЧАСТ: ПРЕГЛЕД -->
+              <div class="cv-preview-side">
+                  <div class="cv-paper">
+                      <div class="preview-header">
+                          <img id="preview-photo" src="" alt="Снимка" style="display: none;">
+                          <div class="header-info">
+                              <div class="preview-name" id="preview-fullName">Име и Фамилия</div>
+                              <div class="preview-contact">
+                                  <span id="preview-email">email@example.com</span> | 
+                                  <span id="preview-phone">0888123456</span> |
+                                  <span id="preview-city">Град</span> |
+                                  <span id="preview-date">Дата на раждане</span>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="main-content-card">
+                      <div class="preview-section" id="sec-summary" style="display:none;">
+                          <div class="preview-section-title">За мен</div>
+                          <div class="preview-content" id="preview-summary"></div>
+                      </div>
 
-              <div class="form-element">
-                  <button type="submit">Запази и Генерирай CV</button>
+                      <div class="preview-section">
+                          <div class="preview-section-title">Образование</div>
+                          <div class="preview-content" id="preview-education">Тук ще се появи информацията за твоето образование...</div>
+                      </div>
+
+                      <div class="preview-section">
+                          <div class="preview-section-title">Опит</div>
+                          <div class="preview-content" id="preview-experience">Тук ще се появи информацията за твоя опит...</div>
+                      </div>
+                      <div class="preview-section">
+                          <div class="preview-section-title">Повече за моя опит </div>
+                          <div class="preview-content" id="preview-text">Тук ще се появи подробна информацията за твоя опит...</div>
+                      </div>
+
+                      <div class="preview-section" id="sec-skills" style="display:none;">
+                          <div class="preview-section-title">Умения</div>
+                          <div class="preview-content" id="preview-skills"></div>
+                      </div>
+
+                      <div class="preview-section" id="sec-languages" style="display:none;">
+                          <div class="preview-section-title">Езици</div>
+                          <div class="preview-content" id="preview-languages"></div>
+                      </div>
+                      </div>
+                  </div>
               </div>
-          </form>
+          </div>
       </div>
     </div>
    <section class="portfolio">
@@ -635,16 +733,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const cvForm = document.getElementById("cvForm");
         const downloadCvBtn = document.getElementById("downloadCvBtn"); // Бутонът от Карта 3
         const templateSelector = document.getElementById("template-selector"); // НОВ ЕЛЕМЕНТ
+        const cvPaper = document.querySelector(".cv-paper"); // Листът за преглед
         
         // Глобална променлива за съхранение на данните и избора на темплейт
         let cvData = {
             template: templateSelector.value || 'default' // Взимаме текущата стойност при стартиране
         }; 
 
-        // Актуализираме cvData при промяна на селектора
+        // Функция за смяна на визуалния темплейт
+        function applyTemplate(templateName) {
+            // Премахваме старите класове
+            cvPaper.classList.remove('default', 'modern', 'creative', 'playful');
+            
+            // Добавяме новия клас (ако е 'text' или празно, слагаме default)
+            if (templateName === 'modern') {
+                cvPaper.classList.add('modern');
+            } else if (templateName === 'creative') {
+                cvPaper.classList.add('creative');
+            } else if (templateName === 'playful') {
+                cvPaper.classList.add('playful');
+            } else {
+                cvPaper.classList.add('default');
+            }
+        }
+
+        // Актуализираме cvData и визията при промяна на селектора
         if(templateSelector) {
+            applyTemplate(templateSelector.value); // Първоначално прилагане
             templateSelector.addEventListener('change', function() {
                 cvData.template = this.value;
+                applyTemplate(this.value);
             });
         }
 
@@ -678,8 +796,14 @@ document.addEventListener('DOMContentLoaded', () => {
             cvData.fullName = document.getElementById("cv-fullName").value;
             cvData.email = document.getElementById("cv-email").value;
             cvData.phone = document.getElementById("cv-phone").value;
+            cvData.city = document.getElementById("cv-city").value;
             cvData.education = document.getElementById("cv-education").value;
             cvData.experience = document.getElementById("cv-experience").value;
+            cvData.skills = document.getElementById("cv-skills").value;
+            cvData.languages = document.getElementById("cv-languages").value;
+            cvData.summary = document.getElementById("cv-summary").value;
+            cvData.date = document.getElementById("cv-date").value;
+            cvData.text = document.getElementById("cv-text").value;
             
             alert(`Данните за CV са запазени с темплейт: ${cvData.template}! Можете да продължите към изтегляне (Стъпка 3).`);
             
@@ -733,6 +857,119 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlay.classList.remove("active");
             }
         });
+
+        // --- 6. Live Preview Logic ---
+        const previewFields = {
+            'cv-fullName': 'preview-fullName',
+            'cv-email': 'preview-email',
+            'cv-phone': 'preview-phone',
+            'cv-city': 'preview-city',
+            'cv-education': 'preview-education',
+            'cv-experience': 'preview-experience',
+            'cv-skills': 'preview-skills',
+            'cv-languages': 'preview-languages',
+            'cv-summary': 'preview-summary',
+            'cv-date': 'preview-date',
+            'cv-text': 'preview-text'
+        };
+
+        // Секции, които се скриват, ако са празни
+        const optionalSections = {
+            'cv-skills': 'sec-skills',
+            'cv-languages': 'sec-languages',
+            'cv-summary': 'sec-summary'
+        };
+
+        for (const [inputId, previewId] of Object.entries(previewFields)) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            
+            if (input && preview) {
+                input.addEventListener('input', function() {
+                    preview.textContent = this.value || (inputId === 'cv-fullName' ? 'Име и Фамилия' : '...');
+                    
+                    // Логика за скриване/показване на секции
+                    if (optionalSections[inputId]) {
+                        const sec = document.getElementById(optionalSections[inputId]);
+                        if (sec) {
+                            sec.style.display = this.value.trim() ? 'block' : 'none';
+                        }
+                    }
+                });
+            }
+        }
+
+        // --- 7. Multi-step Form Logic ---
+        let currentStep = 1;
+        const totalSteps = 3;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const steps = document.querySelectorAll('.form-step');
+
+        function showStep(step) {
+            steps.forEach(s => s.classList.remove('active'));
+            document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+
+            // Бутони видимост
+            prevBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
+            
+            if (step === totalSteps) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        if (nextBtn && prevBtn) {
+            nextBtn.addEventListener('click', () => {
+                // Валидация на текущата стъпка
+                const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+                const requiredInputs = currentStepEl.querySelectorAll('[required]');
+                let valid = true;
+                
+                requiredInputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        valid = false;
+                        input.style.border = '1px solid red';
+                    } else {
+                        input.style.border = '1px solid #ccc';
+                    }
+                });
+
+                if (valid && currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        }
+
+        // --- 8. Photo Upload Logic ---
+        const photoInput = document.getElementById('cv-photo');
+        const previewPhoto = document.getElementById('preview-photo');
+
+        if (photoInput && previewPhoto) {
+            photoInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        previewPhoto.src = event.target.result;
+                        previewPhoto.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
     </script>
     <script>
 document.querySelector('a[href="#bg"]').addEventListener("click", function(e) {
