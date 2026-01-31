@@ -15,7 +15,7 @@
             display: block;
         }
 
-     
+     /* --- Menu --- */
 
         header {
             width: 100%;
@@ -26,7 +26,7 @@
             background: white;
             box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
              height: 80px; 
-            /* overflow-x: hidden; */
+            
         }
 
         .header-container {
@@ -37,6 +37,7 @@
             height: 80px;
             max-width: 1600px;
             margin: 0 auto;
+             overflow: hidden !important;
         }
 
         .logo {
@@ -96,6 +97,19 @@
     border-radius: 50%;
     object-fit: cover;
 }
+.profile-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
         .menu-toggle {
             display: none;
             font-size: 28px;
@@ -105,7 +119,7 @@
             cursor: pointer;
         }
 
-    
+    /* --- Hero Animation --- */
       .hero {
     position: relative;
     width: 100%;
@@ -190,7 +204,7 @@
             font-size: 17px;
             color: #8274A1;
             margin-top: 10px;
-            max-width: 190px !important;
+            max-width: 190px;
         }
 
         .cta {
@@ -283,7 +297,9 @@
         .b7 { width: 150px; height: 150px; right: 52%; --final-y: 2vh; animation: rise 9s ease-in-out, jitterA 5.5s ease-in-out infinite; animation-delay: 1.7s, 0s; }
         .b8 { width: 170px; height: 170px; left: 36%; --final-y: 0vh; animation: rise 9s ease-in-out, jitterB 4.8s ease-in-out infinite; animation-delay: 0.8s, 0s; }
         .b9 { width: 250px; height: 250px; left: 70%; --final-y: 2vh; animation: rise 9s ease-in-out, jitterC 5.2s ease-in-out infinite; animation-delay: 0.8s, 0s; }
-
+        
+        
+        /* --- Mission Vission Values --- */
  .mission {
             background-color: #84AEAD;
             padding: 15px 5vw;
@@ -337,7 +353,7 @@
 
        
 
-
+       /* --- Quotes --- */
        
          .quotes1 {
             margin-top: 10%;
@@ -374,7 +390,7 @@
             color:#84AEAD;
         }
 
-       
+       /* --- What the site contains --- */
         
 .image-wrapper_image-1{
     width: 80%;
@@ -400,7 +416,7 @@ margin-left: 180px;
   margin-top: -285px;
 }
         
-
+ /* --- Footer --- */
       
        
       .footer {
@@ -529,26 +545,41 @@ margin-left: 180px;
 
         /* --- Responsive --- */
         @media (max-width: 1536px){
-            .logo {
+            .profile-btn{
+                margin-right: 7px;
+            }
+ .logo {
     height: 60px;
     width: auto;
 }
-            .image-wrapper_image-1{
+.b3{
+    left: 16.5%;
+}
+.b7{
+    right: 47%;
+}
+.b9{
+    left: 67%;
+}
+.b2{
+    --final-y: 41vh;
+}
+.main-content{
+    left: 20%;
+}
+.image-wrapper_image-1{
     width: 80%;
 
 }
-.profile{
-    height: 100%;
-   border-radius: 50%;
-    object-fit: cover;
-    
+.girl{
+    right: 12%;
 }
 .nav-links ul {
    margin-top: 11px;
 }
 .image-wrapper_image-2{
-margin-top: -298px;
-margin-left: 308px;
+margin-top: -20%;
+margin-left: 20%;
  width: 80%;
  
 
@@ -556,29 +587,46 @@ margin-left: 308px;
 .image-wrapper_image-3{
 
   width: 80%;
-margin-top: -233px;
-margin-left: 248px;
+margin-top: -17%;
+margin-left: 12%;
  
     
 }
 .image-wrapper_image-4{
   width: 100%;
-  margin-top: -234px;
+  margin-top: -15.5%;
+  margin-left: -5%;
 }
         }
       
     
-        @media (max-width: 1440px) {
-            .logo {
+@media (max-width: 1440px) {
+.logo {
         height: 55px;
-        margin-left: 50px;
+        margin-left: 22%;
     }
-           .profile{
+.profile{
     height: 90%;
   margin-left: -70px;
   
  
 }
+ .profile-btn{
+                margin-right: -2px;
+            }
+.main-content{
+    left: 20%;
+}
+.girl{
+    right: 12%;
+}
+.b3 {
+        left: 14.5%;
+    }
+   .b2 {
+        --final-y: 40vh;
+        left: 54%;
+    }
             .header-container {
                 padding: 0 6vw;
             }
@@ -588,17 +636,7 @@ margin-left: 248px;
             .nav-links ul li a {
                 font-size: 17px;
             }
-            
-            .hero-video {
-                width: 88%;
-            }
-            .image-wrapper {
-    margin-top: -283px;}
-    
-    .footer{
-        height: 321px;
-       
-    }
+   
     .footer h1{
         font-size: 27px;
          margin-top: 11vh;
@@ -614,8 +652,8 @@ font-size: 1.4rem !important;
     margin-top: -14vh;
 }
 .image-wrapper_image-2{
-margin-top: -263px;
-margin-left: 288px;
+margin-top: -20%;
+margin-left: 20%;
  width: 80%;
  
 
@@ -623,20 +661,30 @@ margin-left: 288px;
 .image-wrapper_image-3{
 
   width: 80%;
-margin-top: -230px;
-margin-left: 195px;
+margin-top: -17%;
+margin-left: 12%;
+
  
     
 }
 .image-wrapper_image-4{
   width: 100%;
-  margin-top: -218px;
+  margin-top: -15.5%;
 }
 .quotes{
         margin-bottom: -60px;   
 }
     }
     @media (max-width: 1280px) {
+        .profile-btn{
+                margin-right: -25px;
+            }
+        .main-content{
+            left: 17%;
+        }
+        .girl{
+            right: 7.5%;
+        }
         .nav-links ul li a {
         font-size: 15px;
         
@@ -647,11 +695,69 @@ margin-left: 195px;
         margin-top: 10px;
     }
     .nav-links ul {
-   margin-left: -70px;
+   margin-left: -30px;
     }
 }
 
         @media (max-width: 1024px) {
+            .profile-btn{
+                margin-right: -2px;
+            }
+            .main-content{
+                left: 9%;
+            }
+            .girl{
+                right: -1.5%;
+            }
+            .logo1{
+                font-size: 35px;
+            }
+            .logo1 span{
+                font-size: 75px;
+            }
+            .tagline{
+                font-size: 20px;
+            }
+            .description{
+                font-size: 15px;
+            }
+            .main-quote{
+        font-size: 24px;
+        max-width: 182px;
+            }
+            .sub-quote{
+                max-width: 182px;
+                font-size: 15px;
+
+            }
+            .cta{
+        font-size: 15px;
+            }
+            .girl{
+                height: 90%;
+            }
+            .b3{
+    left: 0.5%;
+            }
+            .b6{
+    left: 21%;
+            }
+            .b1{
+    left: 28%;
+    --final-y: 63vh;
+            }
+.b5{
+    right: 9%;
+}
+.b4{
+    right: 13%;
+}
+.b9{
+    left: 73%;
+}
+.b8{
+    left:27%;
+}
                 .profile {
                     margin-right: -70px;
         height: 75%;
@@ -666,7 +772,6 @@ margin-left: 195px;
             }
            .logo {
         height: 40px;
-       
         margin-left: 20px;
     }
             .nav-links ul {
@@ -677,16 +782,12 @@ margin-left: 195px;
                 font-size: 14px;
               
             }
-            
-            .hero-video {
-                width: 90%;
-            }
-            
+          
             .footer {
                 aspect-ratio: 16 / 4;
             }
-            .quotes{
-        margin-bottom: -67px;
+            .quotes1{
+        margin-bottom: 16%;
     }
     .footer{
         height: 236px;
@@ -694,22 +795,21 @@ margin-left: 195px;
     }
     .footer h1{
         font-size: 19px;
-         margin-top: 6vh;
+      
     }
     .footer-social a{ 
 font-size: 1.2rem !important; 
         }
         .image-wrapper_image-1{
         
-        margin-top: -180px;
-
+        margin-top: -20%;
         width: 80%;
     }
 
 
 .image-wrapper_image-2{
-margin-top: -180px;
-margin-left: 206px;
+margin-top: -20%;
+margin-left: 20%;
  width: 80%;
  
 
@@ -717,14 +817,14 @@ margin-left: 206px;
 .image-wrapper_image-3{
 
   width: 80%;
-margin-top: -150px;
-margin-left: 167px;
+margin-top: -17%;
+margin-left: 12%;
  
     
 }
 .image-wrapper_image-4{
   width: 100%;
-  margin-top: -155px;
+  margin-top: -15.5%;
 }
   .footer-social {
                 gap: 18px;
@@ -733,15 +833,89 @@ margin-left: 167px;
         }
 
         @media (max-width: 768px) {
+            
+            .logo1 {
+        font-size: 30px;
+    }
+    .logo1 span {
+        font-size: 67px;
+    }
+    .tagline{
+        font-size: 17px;
+    }
+    .description{
+        font-size: 14px;
+        max-width: 165px;
+    }
+    .main-quote {
+        font-size: 22px;
+        max-width: 162px;
+    }
+    .sub-quote {
+        max-width: 162px;
+        font-size: 14px;
+    }
+    .cta {
+        font-size: 12px;
+    }
+        .girl {
+            right: -4%;
+        height: 75%;
+    }
+    .b9{
+        width: 200px;
+        height: 200px;
+    }
+    .b7{
+        width: 90px;
+        height: 90px;
+        right: 50%;
+    }
+    .b8{
+        width: 130px;
+        height: 130px;
+    }
+    .b3{
+        width: 70px;
+        height: 70px;
+    }
+    .b6{
+        width: 90px;
+        height: 90px;
+    }
+    .b2{
+        width: 100px;
+        height: 100px;
+        --final-y: 38vh;
+        left: 56%;
+    }
+    .b1{
+        width: 190px;
+        height: 190px;
+    }
+    .b5{
+        width: 95px;
+        height: 95px;
+        --final-y:51vh;
+    }
+    .b4{
+        width: 140px;
+        height: 140px;
+        --final-y: 54vh;
+    }
+    .hero{
+                height: 80%;       
+    }
             .menu-toggle { 
                 display: block; 
-                margin-right: -10px;
+                margin-right: 40px;
                 margin-top: -7px;
                  width: 90%;
             }
 
             .header-container {
                 padding: 0 4vw;
+                overflow: hidden;
             }
 
             .logo {
@@ -753,9 +927,9 @@ margin-left: 167px;
         position: absolute;
     top: 100%;
     right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
+    width: 90vw;         
+    max-width: 220px;   
+    box-sizing: border-box; 
     background: white;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -765,7 +939,7 @@ margin-left: 167px;
     transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
     z-index: 1000;
     padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
+    margin-right: 60px;       
 }
     
 
@@ -779,10 +953,10 @@ margin-left: 167px;
     .nav-links ul {
          display: flex;
     flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    padding: 1.5rem;       
     gap: 0.8rem;
     margin: 0;
-    box-sizing: border-box; /* за всеки случай */
+    box-sizing: border-box;
     }
 
 
@@ -799,7 +973,7 @@ margin-left: 167px;
                 width: 100%;
             }
 
-            /* Анимация на линковете */
+           
             .nav-links ul li {
                 opacity: 0;
                 transform: translateY(-10px);
@@ -816,18 +990,11 @@ margin-left: 167px;
             .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
             .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
             
-            .hero-video {
-                width: 92%;
-                margin-top: 70px;
-            }
-            .image-wrapper_image-2 {
-        margin-top: -145px;
-        margin-left: 153px;
-        width: 80%;
-    }
+        
+    
     .profile{
-        margin-right: -90px;
-        width: 100%;
+        margin-right: 10px;
+        width: 95%;
         margin-top: -5px;
     }
             .footer {
@@ -845,13 +1012,17 @@ margin-left: 167px;
     }
     .footer h1{
         font-size: 16px;
-         margin-top: 5vh;
+         margin-top: 6vh;
     }
     .footer-social a{ 
 font-size: 1rem !important; 
         }
+        .footer-social {
+                gap: 12px;
+                margin-top: -9vh;
+            }
             
-            /* Адаптивни стилове за Mission секцията */
+            
             .mission {
                 height: auto;
                 min-height: 252px;
@@ -888,32 +1059,29 @@ font-size: 1rem !important;
         margin-bottom: 45px;
     }
     .image-wrapper_image-1{
-    width: 80%;
+    width: 100%;
 
 }
 .image-wrapper_image-2{
-margin-top: -145px;
-margin-left: 153px;
- width: 80%;
+margin-top: -23%;
+margin-left: 5%;
+ width: 95%;
  
 
 }
 .image-wrapper_image-3{
 
-  width: 80%;
-margin-top: -113px;
-margin-left: 130px;
+  width: 100%;
+margin-top: -18%;
+margin-left: 1%;
  
     
 }
 .image-wrapper_image-4{
-  width: 100%;
-  margin-top: -115px;
+  width: 130%;
+  margin-top: -19%;
+  margin-left: -25%;
 }
-.profile-btn {
-                width: 50px;
-                height: 50px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1043,18 +1211,9 @@ margin-left: 71px;
             }
 }
 
-@media (max-width: 768px) {
-  .hero-video {
-    width: 100%;          
-    margin-top: 70px;     
-    border-radius: 0; 
-    z-index: 10;    
-  }
-   .footer-social {
-                gap: 12px;
-                margin-top: -5vh;
-            }
-}
+
+   
+
 
 @media (max-width: 480px) {
   .hero-video {
