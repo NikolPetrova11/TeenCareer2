@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("CV Portfolio Script Loaded - v2 (Ready)");
     // --- NAVIGATION & POPUP LOGIC ---
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
@@ -38,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (popup) popup.classList.remove("active");
                 const cvModal = document.getElementById("cvModal");
                 if (cvModal) cvModal.classList.remove("modal-open");
+                const portfolioModal = document.getElementById("portfolioModal");
+                if (portfolioModal) portfolioModal.classList.remove("modal-open");
             }
         });
     }
@@ -68,17 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadInput = document.getElementById('portfolio-upload');
     const downloadText = document.getElementById('download-text');
     const step3Container = document.getElementById('step3-container');
-    const dataModal = document.getElementById('data-modal');
-    const closeModal = document.getElementById('close-modal');
-    const portfolioDataForm = document.getElementById('portfolio-data-form');
+    const portfolioModal = document.getElementById('portfolioModal');
+    const portfolioCloseBtn = document.querySelector('.portfolio-close-btn');
+    const portfolioForm = document.getElementById('portfolioForm');
     let formDataSubmitted = false;
     const userId = null;
+    let portfolioData = {}; // Обект за съхранение на данните за портфолиото
 
     // Open modal or trigger upload
     if (uploadText) {
         uploadText.addEventListener('click', () => {
             if (!formDataSubmitted) {
-                dataModal.style.display = 'block';
+                if (portfolioModal) portfolioModal.classList.add('modal-open');
+                if (overlay) overlay.classList.add('active');
             } else {
                 uploadInput.click();
             }
@@ -86,33 +91,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Close modal
-    if (closeModal) {
-        closeModal.addEventListener('click', () => {
-            dataModal.style.display = 'none';
+    if (portfolioCloseBtn) {
+        portfolioCloseBtn.addEventListener('click', () => {
+            if (portfolioModal) portfolioModal.classList.remove('modal-open');
+            if (overlay) overlay.classList.remove('active');
         });
     }
 
     // Submit portfolio data
-    if (portfolioDataForm) {
-        portfolioDataForm.addEventListener('submit', (e) => {
+    if (portfolioForm) {
+        portfolioForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const formData = new FormData(portfolioDataForm);
+            
+            // Събиране на данните локално
+            portfolioData.full_name = document.getElementById('port-fullName').value;
+            portfolioData.email = document.getElementById('port-email').value;
+            portfolioData.phone = document.getElementById('port-phone').value;
+            portfolioData.education = document.getElementById('port-education').value;
+            portfolioData.experience = document.getElementById('port-experience').value;
 
-            fetch('save_session_data.php', { method: 'POST', body: formData })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        formDataSubmitted = true;
-                        dataModal.style.display = 'none';
-                        uploadText.innerHTML = 'Data saved! <br> **Click to upload file**';
-                        uploadText.style.cursor = 'pointer';
-                        uploadInput.click();
-                    } else {
-                        alert('Error saving data.');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+            formDataSubmitted = true;
+            if (portfolioModal) portfolioModal.classList.remove('modal-open');
+            if (overlay) overlay.classList.remove('active');
+            uploadText.innerHTML = 'Data saved! <br> **Click to upload file (Optional)**';
+            uploadText.style.cursor = 'pointer';
+            
+            // Активираме бутона за изтегляне веднага след попълване на данните
+            activateDownloadStep();
+            
+            // По желание може да отворим и прозореца за качване на файл, ако искате
+            // uploadInput.click(); 
         });
+    }
+
+    // Live Preview for Portfolio
+    const portfolioPreviewFields = {
+        'port-fullName': 'preview-port-fullName',
+        'port-email': 'preview-port-email',
+        'port-phone': 'preview-port-phone',
+        'port-education': 'preview-port-education',
+        'port-experience': 'preview-port-experience'
+    };
+
+    for (const [inputId, previewId] of Object.entries(portfolioPreviewFields)) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        if (input && preview) {
+            input.addEventListener('input', function() {
+                preview.textContent = this.value || '...';
+            });
+        }
     }
 
     // Handle file upload
@@ -130,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(data => {
                         if (data.success) {
                             uploadText.innerHTML = `Uploaded: ${file.name}<br>✓ Done!`;
-                            activateDownloadStep(data.portfolio_id);
+                            // activateDownloadStep(); // Вече е активирано при запазване на данните
                         } else {
                             uploadText.innerHTML = `Error: ${data.error}`;
                         }
@@ -143,14 +171,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Activate download step
-    function activateDownloadStep(portfolioId) {
+    function activateDownloadStep() {
         if (step3Container) step3Container.style.boxShadow = '0 0 20px rgba(9, 152, 158, 0.8)';
         if (downloadText) {
             downloadText.style.color = '#09989e';
             downloadText.style.cursor = 'pointer';
             downloadText.innerHTML = 'CLICK TO DOWNLOAD!';
             downloadText.onclick = () => {
-                window.open(`pdf_generator.php?id=${portfolioId}`, '_blank');
+                // Създаване на форма за изпращане към Node.js
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/generate-portfolio';
+                form.target = '_blank';
+
+                for (const key in portfolioData) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = portfolioData[key];
+                    form.appendChild(hiddenField);
+                }
+
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+
                 downloadText.textContent = "Download started...";
                 setTimeout(() => {
                     downloadText.innerHTML = 'Download again <br> portfolio';
@@ -285,39 +330,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Second page funktion
     function checkPageHeight() {
-        const paper = document.querySelector('.cv-paper');
-        if (!paper) return;
-        
-        // Reset height to auto to measure content correctly
-        paper.style.height = 'auto';
-
-        // Remove old markers
-        paper.querySelectorAll('.page-break-line').forEach(el => el.remove());
-        
-        // a4
-        const pageHeight = 1122; 
-        const totalHeight = paper.scrollHeight;
-        
-        if (totalHeight > pageHeight) {
-            const pages = Math.ceil(totalHeight / pageHeight);
+        // Проверяваме всички листове (и за CV, и за Портфолио)
+        const papers = document.querySelectorAll('.cv-paper');
+        papers.forEach(paper => {
+            if (paper.offsetParent === null) return; // Пропускаме скритите листове
             
-            // Force height to full pages
-            paper.style.height = (pages * pageHeight) + 'px';
+            // Reset height to auto to measure content correctly
+            paper.style.height = 'auto';
 
-            for (let i = 1; i < pages; i++) {
-                const marker = document.createElement('div');
-                marker.className = 'page-break-line';
-                marker.style.position = 'absolute';
-                marker.style.top = (pageHeight * i) + 'px';
-                marker.style.left = '0';
-                marker.style.width = '100%';
-                marker.style.borderTop = '2px dashed #09989e';
-                marker.style.opacity = '0.5';
-                marker.style.pointerEvents = 'none';
-                marker.innerHTML = `<span style="position:absolute; right:10px; top:-20px; color:#09989e; font-size:12px; font-weight:bold;">Край на страница ${i}</span>`;
-                paper.appendChild(marker);
+            // Remove old markers
+            paper.querySelectorAll('.page-break-line').forEach(el => el.remove());
+            
+            // a4 (1122px за Portrait, 794px за Landscape)
+            const pageHeight = paper.classList.contains('landscape') ? 794 : 1122; 
+            const totalHeight = paper.scrollHeight;
+            
+            if (totalHeight > pageHeight) {
+                const pages = Math.ceil(totalHeight / pageHeight);
+                
+                // Force height to full pages
+                paper.style.height = (pages * pageHeight) + 'px';
+
+                for (let i = 1; i < pages; i++) {
+                    const marker = document.createElement('div');
+                    marker.className = 'page-break-line';
+                    marker.style.position = 'absolute';
+                    marker.style.top = (pageHeight * i) + 'px';
+                    marker.style.left = '0';
+                    marker.style.width = '100%';
+                    marker.style.borderTop = '2px dashed #09989e';
+                    marker.style.opacity = '0.5';
+                    marker.style.pointerEvents = 'none';
+                    marker.innerHTML = `<span style="position:absolute; right:10px; top:-20px; color:#09989e; font-size:12px; font-weight:bold;">Край на страница ${i}</span>`;
+                    paper.appendChild(marker);
+                }
             }
-        }
+        });
     }
 
     for (const [inputId, previewId] of Object.entries(previewFields)) {

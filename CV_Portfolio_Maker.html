@@ -344,29 +344,77 @@
     </div>
 </div>
 
-<!-- Portfolio Data Modal -->
-<div id="data-modal" style="display:none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-    <div style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 10px;">
-        <span id="close-modal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
-        <h3>📄 Попълни Данни за Твоето Порфолио</h3>
-        <form id="portfolio-data-form">
-            <label for="full_name"><br>Име и Фамилия</label>
-            <input type="text" id="full_name" name="full_name" placeholder="Напр. Иван Петров" required style="width: 100%; padding: 10px; margin: 5px 0 15px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+<!-- Portfolio Data Modal (Split View) -->
+<div class="modal" id="portfolioModal">
+    <div class="modal-content">
+        <span class="close-btn portfolio-close-btn">&times;</span>
+        <h2>📄 Попълни Данни за Твоето Портфолио</h2>
+        
+        <div class="cv-maker-wrapper">
+            <!-- LEFT SIDE: FORM -->
+            <div class="cv-form-side">
+                <form id="portfolioForm">
+                    <div class="form-step active">
+                        <h3 style="color:#8274A1; margin-bottom:15px;">Лични данни и Опит</h3>
+                        <div class="form-element">
+                            <label for="port-fullName">Име и Фамилия</label>
+                            <input type="text" id="port-fullName" name="full_name" placeholder="Напр. Иван Петров" required>
+                        </div>
+                        <div class="form-element">
+                            <label for="port-email">Имейл</label>
+                            <input type="email" id="port-email" name="email" placeholder="Твоят имейл" required>
+                        </div>
+                        <div class="form-element">
+                            <label for="port-phone">Телефон</label>
+                            <input type="text" id="port-phone" name="phone" placeholder="Напр. 0888123456">
+                        </div>
+                        <div class="form-element">
+                            <label for="port-education">Образование</label>
+                            <textarea id="port-education" name="education" rows="3" placeholder="Къде учиш/си учил"></textarea>
+                        </div>
+                        <div class="form-element">
+                            <label for="port-experience">Професионален Опит & Проекти</label>
+                            <textarea id="port-experience" name="experience" rows="5" placeholder="Опиши проектите си"></textarea>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="submit" style="background-color: #09989e; color: white; border: none; border-radius: 25px; padding: 10px 20px; cursor: pointer; width: 100%;">Запази Данните</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-            <label for="email">Имейл</label>
-            <input type="email" id="email" name="email" placeholder="Твоят имейл" required style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            <!-- RIGHT SIDE: PREVIEW -->
+            <div class="cv-preview-side">
+                <div class="cv-paper default landscape">
+                    <div class="preview-header">
+                        <div class="header-info">
+                            <div class="preview-name" id="preview-port-fullName">Име и Фамилия</div>
+                            <div class="preview-contact">
+                                <span id="preview-port-email">email@example.com</span> | 
+                                <span id="preview-port-phone">0888123456</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="main-content-card">
+                        <div class="preview-section">
+                            <div class="preview-section-title">Образование</div>
+                            <div class="preview-content" id="preview-port-education">Тук ще се появи информацията за твоето образование...</div>
+                        </div>
 
-            <label for="phone">Телефон</label>
-            <input type="text" id="phone" name="phone" placeholder="Напр. 0888123456" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-
-            <label for="education">Образование и Училище</label>
-            <textarea id="education" name="education" placeholder="Къде учиш/си учил" rows="3" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
-
-            <label for="experience">Професионален Опит (Дори и доброволчество)</label>
-            <textarea id="experience" name="experience" placeholder="Опиши какво си правил" rows="5" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
-
-            <button type="submit" style="background-color: #09989e; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer; width: 100%;">Запази и Генерирай</button>
-        </form>
+                        <div class="preview-section">
+                            <div class="preview-section-title">Професионален Опит & Проекти</div>
+                            <div class="preview-content" id="preview-port-experience">Тук ще се появи информацията за твоя опит...</div>
+                        </div>
+                        
+                        <div style="margin-top: 50px; text-align: center; font-size: 12px; color: #aaa;">
+                            Създадено с TeenCareer Portfolio Maker
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -398,6 +446,6 @@
     </section>
 
     <!-- MAIN SCRIPT -->
-    <script src="cv_portfolio.js"></script>
+    <script src="cv_portfolio.js?v=3"></script>
     </body>
 </html>
