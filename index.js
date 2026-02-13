@@ -8,12 +8,12 @@ function startCycle() {
         ball.style.animation = '';
     });
 
-    // След 9 сек → всички изчезват
+    // After 9 sec -> all disappear
     setTimeout(() => {
         balls.forEach(ball => ball.classList.add('hide-all'));
     }, 9000);
 
-    // След 10 сек (9 + 1) → нов цикъл
+    // After 10 sec (9 + 1) -> new cycle
     setTimeout(startCycle, 9500);
 }
 
@@ -28,5 +28,3 @@ function updateHeaderHeight() {
 
   window.addEventListener('load', updateHeaderHeight);
   window.addEventListener('resize', updateHeaderHeight);
-  
-  

@@ -1,8 +1,8 @@
 <?php
-// Изключете показването на грешки за публично пускане
+// Disable error reporting for public release
 // error_reporting(0); 
 
-// --- НАСТРОЙКИ ---
+// --- SETTINGS ---
 $token = "apify_api_qDQn1U5W18thP54TJ0Ci18Ex8oNpVN4gGV6H"; // ТВОЯТ токен
 $actorId = "worldunboxer~rapid-linkedin-scraper"; 
 
@@ -10,7 +10,7 @@ $filtered = [];
 $searchPerformed = false;
 $errorMessage = null;
 
-// Функция за извличане на години стаж (Остава непроменена)
+// Function to extract years of experience (Remains unchanged)
 function extractExperienceYears($text) {
     if (!$text) return 0;
     $patterns = [
@@ -32,28 +32,28 @@ function extractExperienceYears($text) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $searchPerformed = true;
 
-    // Вход от формата
+    // Input from form
     $country = trim($_POST['country'] ?? '');
     $city = trim($_POST['city'] ?? '');
     $job = trim($_POST['job'] ?? '');
     $experience = (int) ($_POST['experience'] ?? 0);
 
-    // Форматиране на локацията
+    // Location formatting
     $location = $city ? "$city, $country" : $country;
 
-    // Подготовка на input за actor-а
+    // Prepare input for actor
     $input = [
         "jobs_entries" => 10,
         "location" => $location,
         "start_jobs" => 0
     ];
 
-    // Използване на правилния синхронен endpoint
+    // Use the correct synchronous endpoint
     $url = "https://api.apify.com/v2/acts/$actorId/run-sync-get-dataset-items?format=json";
 
     $ch = curl_init($url);
 
-    // Използване на Authorization Header за токена
+    // Use Authorization Header for token
     $headers = [
         "Content-Type: application/json",
         "Authorization: Bearer " . $token 
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($input));
-    curl_setopt($ch, CURLOPT_TIMEOUT, 300); // 5 минути таймаут
+    curl_setopt($ch, CURLOPT_TIMEOUT, 300); // 5 minutes timeout
 
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -71,18 +71,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($response === false) {
         $errorMessage = "cURL грешка: " . curl_error($ch);
     } 
-    // КОРЕКЦИЯ: Приемаме 200 И 201 като успешен резултат
+    // CORRECTION: Accept 200 AND 201 as success
     elseif ($httpCode !== 200 && $httpCode !== 201) { 
         $errorMessage = "Грешка при извикване на API (HTTP Code: {$httpCode}): " . $response;
     } 
     else {
-        // Данните са директно в $response
+        // Data is directly in $response
         $results = json_decode($response, true);
 
         if (!is_array($results)) {
             $errorMessage = "Няма данни от API-то или грешка в JSON: " . $response;
         } else {
-            // Филтриране на резултатите
+            // Filter results
             $filtered = array_filter($results, function($jobOffer) use ($city, $job, $experience, $country) {
                 if (!isset($jobOffer['location'], $jobOffer['job_title']) && !isset($jobOffer['job_description'])) {
                     return false;
@@ -93,21 +93,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $jobFunction = $jobOffer['job_function'] ?? '';
                 $jobDescription = $jobOffer['job_description'] ?? '';
 
-                // Филтър по град
+                // Filter by city
                 if (!empty($city) && stripos($jobLocation, $city) === false) {
                     return false;
                 }
-                // Филтър по държава
+                // Filter by country
                 if (empty($city) && !empty($country) && stripos($jobLocation, $country) === false) {
                      return false;
                 }
 
-                // Филтър по професия
+                // Filter by profession
                 if (!empty($job) && stripos($jobTitle, $job) === false && stripos($jobFunction, $job) === false) {
                     return false;
                 }
 
-                // Филтър по стаж
+                // Filter by experience
                 if ($experience > 0) {
                     $yearsFound = extractExperienceYears($jobDescription);
                     if ($yearsFound < $experience) {
@@ -356,7 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php if (isset($errorMessage)): ?>
         <p class="error-message">Възникна грешка: <?= htmlspecialchars($errorMessage) ?></p>
-    <?php elseif ($searchPerformed): // Показваме резултати само ако е извършено търсене ?>
+    <?php elseif ($searchPerformed): // Show results only if a search was performed ?>
         <h2>Резултати</h2>
         <?php if (empty($filtered)): ?>
             <p class="no-results">Няма намерени резултати, отговарящи на вашите критерии.</p>
@@ -398,7 +398,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tbody>
             </table>
         <?php endif; ?>
-    <?php else: // Ако страницата е заредена за първи път ?>
+    <?php else: // If the page is loaded for the first time ?>
          <p class="info-message">Моля, въведете критерии за търсене на работа.</p>
     <?php endif; ?>
 </div>

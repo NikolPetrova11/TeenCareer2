@@ -691,6 +691,7 @@
 }
 
 .cv-paper {
+    position: relative;
     background: white;
     width: 100%;
     max-width: 210mm;

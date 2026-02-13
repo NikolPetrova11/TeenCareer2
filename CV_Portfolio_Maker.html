@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
+    <!-- HEADER SECTION -->
     <header>
     <div class="header-container">
       <img src="photos/logo.png" class="logo" alt="TeenCareer">
@@ -34,6 +35,7 @@
       </div>
     </div>
     
+    <!-- LOGIN/REGISTER POPUP -->
     <div class="overlay"></div>
    <div class="popup">
     <div class="close-btn">&times;</div>
@@ -88,68 +90,9 @@
         </div>
         </div> 
 </div>
-<script>
-  // Съществуваща логика за менюто
-  const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); // Уверете се, че имате елемент с ID="navMenu"
-
-  menuToggle.addEventListener("click", () => {
-    // Уверете се, че navMenu съществува, преди да добавяте клас
-    if (navMenu) {
-        navMenu.classList.toggle("active");
-    }
-  });
-
-  // Логика за отваряне и затваряне на Popup
-  const profileBtn = document.querySelector(".profile-btn");
-  const overlay = document.querySelector(".overlay");
-  const popup = document.querySelector(".popup");
-  const closeBtn = document.querySelector(".popup .close-btn");
-
-  profileBtn.addEventListener("click", function() {
-    overlay.classList.add("active");
-    popup.classList.add("active");
-  });
-
-  closeBtn.addEventListener("click", function() {
-    overlay.classList.remove("active");
-    popup.classList.remove("active");
-  });
-
-  overlay.addEventListener("click", function(e) {
-    if (e.target.classList.contains("overlay")) {
-        overlay.classList.remove("active");
-        popup.classList.remove("active");
-    }
-  });
-
-
-  // НОВА ЛОГИКА ЗА ТАБОВЕТЕ (ВХОД/РЕГИСТРАЦИЯ)
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const loginForm = document.querySelector(".login-form-container");
-  const registerForm = document.querySelector(".register-form-container");
-
-  tabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        // Премахва "active" от всички бутони
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-        // Добавя "active" към кликнатия бутон
-        button.classList.add("active");
-
-        const targetForm = button.getAttribute("data-form");
-
-        if (targetForm === "login") {
-            loginForm.classList.add("active");
-            registerForm.classList.remove("active");
-        } else if (targetForm === "register") {
-            loginForm.classList.remove("active");
-            registerForm.classList.add("active");
-        }
-    });
-  });
-</script>
   </header>
     
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="background"></div>
         <div class="phone">
@@ -163,11 +106,13 @@
         </div>
     </section>
     
+    <!-- STEPS SECTION -->
     <section class="steps" id="steps">
         <img src="photos/Group 16.png">
         <p id="steps_p">Това не е просто бланка. Това е твоят входен билет към първата ти работа. Попълни го като победител.</p>
     </section>
     
+    <!-- CV MAKER CARDS SECTION -->
     <section class="cards-container">
 
     <div class="flip-card-container">
@@ -186,12 +131,6 @@
                     <option value="playful">Playful (Лилав)</option>
                 </select>
             </div>
-
-            <div class="flip-card-back">
-                <div class="card-number">1.</div>
-                <p class="card-title"></p>
-                <button class="flip-button flip-back-btn">Затвори</button>
-            </div>
         </div>
     </div>
 
@@ -204,12 +143,6 @@
                 </div>
                 <p class="card-title"></p>
                 <button class="flip-button" id="openCvModalBtn">Разкажи ни за себе си.</button>
-            </div>
-
-            <div class="flip-card-back">
-                <div class="card-number">2.</div>
-                <p class="card-title"></p>
-                <button class="flip-button flip-back-btn">Затвори</button>
             </div>
         </div>
     </div>
@@ -225,18 +158,12 @@
                     Изтегли готовото си CV
                 </button>
             </div>
-
-            <div class="flip-card-back">
-                <div class="card-number">3.</div>
-                <p class="card-title"></p>
-                <button class="flip-button flip-back-btn">Затвори</button>
-            </div>
         </div>
     </div>
 
 </section>
 
-    
+    <!-- CV MAKER MODAL -->
     <div class="modal" id="cvModal">
       <div class="modal-content">
           <span class="close-btn cv-close-btn">&times;</span>
@@ -349,9 +276,9 @@
                           <div class="preview-section-title">Опит</div>
                           <div class="preview-content" id="preview-experience">Тук ще се появи информацията за твоя опит...</div>
                       </div>
-                      <div class="preview-section">
+                      <div class="preview-section" id="sec-text" style="display:none;">
                           <div class="preview-section-title">Повече за моя опит </div>
-                          <div class="preview-content" id="preview-text">Тук ще се появи подробна информацията за твоя опит...</div>
+                          <div class="preview-content" id="preview-text"></div>
                       </div>
 
                       <div class="preview-section" id="sec-skills" style="display:none;">
@@ -369,6 +296,8 @@
           </div>
       </div>
     </div>
+
+   <!-- PORTFOLIO SECTION -->
    <section class="portfolio">
       <div class="img1" ><img src="photos/Group 17.png"></div>
     <div class="portfolio">
@@ -377,6 +306,7 @@
         </div>
         <section class="portfolio">
     <div class="portfolio">
+        <!-- Portfolio Cards -->
         <section class="cards1-container"> 
             
             <div class="flip-card-container" id="step1-container">
@@ -414,7 +344,7 @@
     </div>
 </div>
 
-
+<!-- Portfolio Data Modal -->
 <div id="data-modal" style="display:none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
     <div style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 10px;">
         <span id="close-modal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
@@ -440,226 +370,19 @@
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const uploadText = document.getElementById('upload-text');
-    const uploadInput = document.getElementById('portfolio-upload');
-    const downloadText = document.getElementById('download-text');
-    const step3Container = document.getElementById('step3-container');
-
-    // Променливи за формата
-    const dataModal = document.getElementById('data-modal');
-    const closeModal = document.getElementById('close-modal');
-    const portfolioDataForm = document.getElementById('portfolio-data-form');
-    let formDataSubmitted = false; // Флаг, дали данните са изпратени
-    
-    const userId = null; 
-
-    // === 1. ЛОГИКА ЗА ФОРМАТА (Кликване върху Стъпка 2) ===
-
-    uploadText.addEventListener('click', () => {
-        // Проверяваме дали данните от формата са вече изпратени
-        if (!formDataSubmitted) {
-            dataModal.style.display = 'block'; // Показване на модала
-        } else {
-            // Ако данните са запазени, преминаваме към качване на файл
-            uploadInput.click();
-        }
-    });
-
-    // Затваряне на модала
-    closeModal.addEventListener('click', () => {
-        dataModal.style.display = 'none';
-    });
-
-    // Изпращане на данните от формата към PHP (save_session_data.php)
-    portfolioDataForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(portfolioDataForm);
-        
-        fetch('save_session_data.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                formDataSubmitted = true;
-                dataModal.style.display = 'none'; // Скриване на формата
-                uploadText.innerHTML = 'Данните запазени! <br> **Кликни за качване на файл**';
-                uploadText.style.cursor = 'pointer';
-
-                // Автоматично отваряне на полето за качване на файл след запазване
-                uploadInput.click(); 
-
-            } else {
-                alert('Грешка при запазване на данните.');
-            }
-        })
-        .catch(error => {
-            console.error('Грешка при изпращане на данни:', error);
-            alert('Възникна грешка!');
-        });
-    });
-
-
-    // === 2. ЛОГИКА ЗА КАЧВАНЕ НА ФАЙЛ (upload_portfolio.php) ===
-
-    uploadInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        
-        if (file && formDataSubmitted) { 
-            uploadText.innerHTML = `Качен: ${file.name}<br>Обработва се...`;
-            
-            const uploadFormData = new FormData();
-            uploadFormData.append('portfolio_file', file);
-            if (userId) {
-                uploadFormData.append('user_id', userId); 
-            }
-            
-            fetch('upload_portfolio.php', {
-                method: 'POST',
-                body: uploadFormData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    uploadText.innerHTML = `Качен: ${file.name}<br>✓ Готово!`;
-                    // Активираме Стъпка 3 с уникалния ID
-                    activateDownloadStep(data.portfolio_id);
-                } else {
-                    uploadText.innerHTML = `Грешка: ${data.error}`;
-                }
-            })
-            .catch(error => {
-                console.error('Грешка при качване:', error);
-                uploadText.innerHTML = 'Грешка при качване!';
-            });
-        } else if (!formDataSubmitted) {
-            uploadText.innerHTML = 'Първо попълни данните!';
-        }
-    });
-
-    // === 3. СТЪПКА 3: Изтегляне ===
-
-    function activateDownloadStep(portfolioId) {
-        step3Container.style.boxShadow = '0 0 20px rgba(9, 152, 158, 0.8)';
-        downloadText.style.color = '#09989e';
-        downloadText.style.cursor = 'pointer';
-        downloadText.innerHTML = 'КЛИКНИ ЗА ИЗТЕГЛЯНЕ!';
-
-        downloadText.onclick = () => startDownload(portfolioId);
-    }
-
-    function startDownload(portfolioId) {
-        const downloadUrl = `pdf_generator.php?id=${portfolioId}`; 
-        
-        window.open(downloadUrl, '_blank');
-        
-        downloadText.textContent = "Изтеглянето стартира...";
-        
-        setTimeout(() => {
-            downloadText.innerHTML = 'Изтегли отново <br> портфолиото';
-            downloadText.onclick = () => startDownload(portfolioId);
-        }, 2000);
-    }
-});
-</script>
                     </div>
                 </div>
             </div>
 
                 </div>
             </div>
-
         </section>
     </div>
 </section>
         </div>
     </section>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    const uploadText = document.getElementById('upload-text');
-    const uploadInput = document.getElementById('portfolio-upload');
-    const downloadText = document.getElementById('download-text');
-    const downloadLink = document.getElementById('portfolio-download-link');
-    const step3Container = document.getElementById('step3-container');
-    // Няма статичен userId. upload_portfolio.php ще генерира уникален.
-    const userId = null; 
 
-    // === СТЪПКА 2: Качване на файл ===
-    
-    uploadText.addEventListener('click', () => {
-        uploadInput.click();
-    });
-
-    uploadInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            uploadText.innerHTML = `Качен: ${file.name}<br>Обработва се...`;
-            
-            // Създаваме FormData за изпращане на файла
-            const formData = new FormData();
-            formData.append('portfolio_file', file);
-            
-            // Ако userId е наличен (регистриран потребител), го изпращаме
-            if (userId) {
-                formData.append('user_id', userId); 
-            }
-            
-            // AJAX заявка за качване на файла
-            fetch('upload_portfolio.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Променяме текста на Стъпка 2
-                    uploadText.innerHTML = `Качен: **${data.filename}**<br>✓ Готово!`; 
-                    
-                    // Активираме Стъпка 3 с уникалния ID, върнат от сървъра
-                    activateDownloadStep(data.portfolio_id);
-                } else {
-                    uploadText.innerHTML = `Грешка: ${data.error}`;
-                }
-            })
-            .catch(error => {
-                console.error('Грешка:', error);
-                uploadText.innerHTML = 'Грешка при качване!';
-            });
-        }
-    });
-
-    // === СТЪПКА 3: Изтегляне ===
-
-    function activateDownloadStep(portfolioId) {
-        step3Container.style.boxShadow = '0 0 20px rgba(9, 152, 158, 0.8)';
-        downloadText.style.color = '#09989e';
-        downloadText.style.cursor = 'pointer';
-        downloadText.innerHTML = 'Изтегли отново <br> портфолиото'; // или 'КЛИКНИ ЗА ИЗТЕГЛЯНЕ!'
-
-        downloadText.onclick = () => startDownload(portfolioId);
-    }
-
-    function startDownload(portfolioId) {
-        // Използваме върнатия ID, за да генерираме PDF
-        const downloadUrl = `pdf_generator.php?id=${portfolioId}`; 
-        
-        // Директно отваряме URL-а за изтегляне
-        window.open(downloadUrl, '_blank');
-        
-        downloadText.textContent = "Изтеглянето стартира...";
-        
-        // След 2 секунди връщаме текста
-        setTimeout(() => {
-            downloadText.innerHTML = 'Изтегли отново <br> портфолиото';
-            downloadText.onclick = () => startDownload(portfolioId);
-        }, 2000);
-    }
-});
-    </script>
+    <!-- FOOTER SECTION -->
     <section class="footer">
       <video autoplay muted loop playsinline>
           <source src="photos/Footer 2.mp4" type="video/mp4">
@@ -674,320 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </section>
 
-    <script>
-        // Логика за менюто и регистрационния popup
-        const registrationPopup = document.querySelector(".popup");
-        // overlay е деклариран по-горе в друг <script>, затова тук не го пре-декларираме
-
-        menuToggle.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });
-
-        document.querySelector(".profile-btn").addEventListener("click", function() {
-            overlay.classList.add("active");
-            registrationPopup.classList.add("active");
-        });
-
-        document.querySelector(".popup .close-btn").addEventListener("click", function() {
-            overlay.classList.remove("active");
-            registrationPopup.classList.remove("active");
-        });
-        
-        // ====================================================================
-        // ЛОГИКА ЗА ОБРЪЩАНЕ НА КАРТИТЕ (FLIP CARDS)
-        // ====================================================================
-
-        const flipCardContainers = document.querySelectorAll('.flip-card-container'); 
-
-        flipCardContainers.forEach(container => {
-            const frontButton = container.querySelector('.flip-forward-btn');
-            const backButton = container.querySelector('.flip-back-btn');
-
-            // Логика за обръщане напред (освен Карта 2 и Карта 3, които имат специална функция)
-            if (frontButton && frontButton.id !== 'downloadCvBtn' && !frontButton.hasAttribute('onclick')) {
-                frontButton.addEventListener('click', function(e) {
-                    e.preventDefault(); 
-                    e.stopPropagation(); 
-                    container.classList.add('flipped'); 
-                });
-            }
-            
-            // Логика за обръщане назад
-            if (backButton) {
-                backButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    container.classList.remove('flipped'); 
-                });
-            }
-        });
-
-
-        // ===============================================
-        // ЛОГИКА ЗА CV МОДАЛА (Карта 2) И ГЕНЕРИРАНЕ НА PDF (Карта 3)
-        // ===============================================
-        
-        const cvModal = document.getElementById("cvModal");
-        const openCvModalBtn = document.getElementById("openCvModalBtn");
-        const cvCloseBtn = document.querySelector(".cv-close-btn");
-        const cvForm = document.getElementById("cvForm");
-        const downloadCvBtn = document.getElementById("downloadCvBtn"); // Бутонът от Карта 3
-        const templateSelector = document.getElementById("template-selector"); // НОВ ЕЛЕМЕНТ
-        const cvPaper = document.querySelector(".cv-paper"); // Листът за преглед
-        
-        // Глобална променлива за съхранение на данните и избора на темплейт
-        let cvData = {
-            template: templateSelector.value || 'default' // Взимаме текущата стойност при стартиране
-        }; 
-
-        // Функция за смяна на визуалния темплейт
-        function applyTemplate(templateName) {
-            // Премахваме старите класове
-            cvPaper.classList.remove('default', 'modern', 'creative', 'playful');
-            
-            // Добавяме новия клас (ако е 'text' или празно, слагаме default)
-            if (templateName === 'modern') {
-                cvPaper.classList.add('modern');
-            } else if (templateName === 'creative') {
-                cvPaper.classList.add('creative');
-            } else if (templateName === 'playful') {
-                cvPaper.classList.add('playful');
-            } else {
-                cvPaper.classList.add('default');
-            }
-        }
-
-        // Актуализираме cvData и визията при промяна на селектора
-        if(templateSelector) {
-            applyTemplate(templateSelector.value); // Първоначално прилагане
-            templateSelector.addEventListener('change', function() {
-                cvData.template = this.value;
-                applyTemplate(this.value);
-            });
-        }
-
-
-        // --- 1. Отваряне на CV модала (Карта 2) ---
-        if (openCvModalBtn) {
-            openCvModalBtn.addEventListener("click", function(e) {
-                e.preventDefault();
-                
-                // Активираме модала и overlay-а 
-                cvModal.classList.add("modal-open");
-                overlay.classList.add("active");
-                
-                e.stopPropagation(); 
-            });
-        }
-
-        // --- 2. Затваряне на CV модала при клик на X ---
-        if (cvCloseBtn) {
-            cvCloseBtn.addEventListener("click", function() {
-                cvModal.classList.remove("modal-open");
-                overlay.classList.remove("active");
-            });
-        }
-
-        // --- 3. Събиране и Запазване на Данните (при Submit на модала) ---
-        cvForm.addEventListener("submit", function(e) {
-            e.preventDefault(); 
-            
-            // Събиране на данните (текущият избор на темплейт е вече в cvData.template)
-            cvData.fullName = document.getElementById("cv-fullName").value;
-            cvData.email = document.getElementById("cv-email").value;
-            cvData.phone = document.getElementById("cv-phone").value;
-            cvData.city = document.getElementById("cv-city").value;
-            cvData.education = document.getElementById("cv-education").value;
-            cvData.experience = document.getElementById("cv-experience").value;
-            cvData.skills = document.getElementById("cv-skills").value;
-            cvData.languages = document.getElementById("cv-languages").value;
-            cvData.summary = document.getElementById("cv-summary").value;
-            cvData.date = document.getElementById("cv-date").value;
-            cvData.text = document.getElementById("cv-text").value;
-            
-            alert(`Данните за CV са запазени с темплейт: ${cvData.template}! Можете да продължите към изтегляне (Стъпка 3).`);
-            
-            // Затваряне на модала
-            cvModal.classList.remove("modal-open"); 
-            overlay.classList.remove("active");
-        });
-        
-        // --- 4. Изтегляне на PDF (при клик на Карта 3) ---
-        if (downloadCvBtn) {
-            downloadCvBtn.addEventListener("click", function(e) {
-                e.preventDefault();
-                
-                // Проверка дали има запазени данни от Стъпка 2
-                if (!cvData.fullName) {
-                    alert("Моля, първо попълнете и запазете данните си в Стъпка 2, за да генерирате CV.");
-                    return;
-                }
-
-                // Създаване на скрит формуляр за изпращане на POST заявка
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'generate_pdf.php'; 
-                form.target = '_blank'; // Отваря в нов таб
-                
-                // Добавяне на данните като скрити input полета (включва и cvData.template)
-                for (const key in cvData) {
-                    if (cvData.hasOwnProperty(key) && cvData[key] !== undefined) {
-                        const hiddenField = document.createElement('input');
-                        hiddenField.type = 'hidden';
-                        hiddenField.name = key; 
-                        hiddenField.value = cvData[key];
-
-                        form.appendChild(hiddenField);
-                    }
-                }
-
-                // Изпращане на формуляра и сваляне на PDF
-                document.body.appendChild(form);
-                form.submit();
-                document.body.removeChild(form);
-            });
-        }
-
-
-        // --- 5. Обща логика за клик върху overlay-а (затваря и двата модала) ---
-        document.querySelector(".overlay").addEventListener("click", function(e) {
-            if (e.target.classList.contains("overlay")) {
-                registrationPopup.classList.remove("active");
-                cvModal.classList.remove("modal-open"); 
-                overlay.classList.remove("active");
-            }
-        });
-
-        // --- 6. Live Preview Logic ---
-        const previewFields = {
-            'cv-fullName': 'preview-fullName',
-            'cv-email': 'preview-email',
-            'cv-phone': 'preview-phone',
-            'cv-city': 'preview-city',
-            'cv-education': 'preview-education',
-            'cv-experience': 'preview-experience',
-            'cv-skills': 'preview-skills',
-            'cv-languages': 'preview-languages',
-            'cv-summary': 'preview-summary',
-            'cv-date': 'preview-date',
-            'cv-text': 'preview-text'
-        };
-
-        // Секции, които се скриват, ако са празни
-        const optionalSections = {
-            'cv-skills': 'sec-skills',
-            'cv-languages': 'sec-languages',
-            'cv-summary': 'sec-summary'
-        };
-
-        for (const [inputId, previewId] of Object.entries(previewFields)) {
-            const input = document.getElementById(inputId);
-            const preview = document.getElementById(previewId);
-            
-            if (input && preview) {
-                input.addEventListener('input', function() {
-                    preview.textContent = this.value || (inputId === 'cv-fullName' ? 'Име и Фамилия' : '...');
-                    
-                    // Логика за скриване/показване на секции
-                    if (optionalSections[inputId]) {
-                        const sec = document.getElementById(optionalSections[inputId]);
-                        if (sec) {
-                            sec.style.display = this.value.trim() ? 'block' : 'none';
-                        }
-                    }
-                });
-            }
-        }
-
-        // --- 7. Multi-step Form Logic ---
-        let currentStep = 1;
-        const totalSteps = 3;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const submitBtn = document.getElementById('submitBtn');
-        const steps = document.querySelectorAll('.form-step');
-
-        function showStep(step) {
-            steps.forEach(s => s.classList.remove('active'));
-            document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
-
-            // Бутони видимост
-            prevBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
-            
-            if (step === totalSteps) {
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'inline-block';
-            } else {
-                nextBtn.style.display = 'inline-block';
-                submitBtn.style.display = 'none';
-            }
-        }
-
-        if (nextBtn && prevBtn) {
-            nextBtn.addEventListener('click', () => {
-                // Валидация на текущата стъпка
-                const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
-                const requiredInputs = currentStepEl.querySelectorAll('[required]');
-                let valid = true;
-                
-                requiredInputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        valid = false;
-                        input.style.border = '1px solid red';
-                    } else {
-                        input.style.border = '1px solid #ccc';
-                    }
-                });
-
-                if (valid && currentStep < totalSteps) {
-                    currentStep++;
-                    showStep(currentStep);
-                }
-            });
-
-            prevBtn.addEventListener('click', () => {
-                if (currentStep > 1) {
-                    currentStep--;
-                    showStep(currentStep);
-                }
-            });
-        }
-
-        // --- 8. Photo Upload Logic ---
-        const photoInput = document.getElementById('cv-photo');
-        const previewPhoto = document.getElementById('preview-photo');
-
-        if (photoInput && previewPhoto) {
-            photoInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        previewPhoto.src = event.target.result;
-                        previewPhoto.style.display = 'block';
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-    </script>
-    <script>
-document.querySelector('a[href="#bg"]').addEventListener("click", function(e) {
-    e.preventDefault();
-    document.querySelector("#bg").scrollIntoView({
-        behavior: "smooth"
-    });
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-
-    menuToggle.addEventListener("click", function () {
-        navLinks.classList.toggle("active");
-    });
-});
-</script>
+    <!-- MAIN SCRIPT -->
+    <script src="cv_portfolio.js"></script>
     </body>
 </html>
