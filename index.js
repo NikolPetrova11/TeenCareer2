@@ -28,3 +28,5 @@ function updateHeaderHeight() {
 
   window.addEventListener('load', updateHeaderHeight);
   window.addEventListener('resize', updateHeaderHeight);
+  
+  
