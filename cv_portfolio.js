@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // По желание може да отворим и прозореца за качване на файл, ако искате
             // uploadInput.click(); 
+            if (uploadInput) uploadInput.click(); 
         });
     }
 
