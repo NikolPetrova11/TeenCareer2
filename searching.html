@@ -254,6 +254,18 @@
     </div>
   </section>
   </section>
+  <div id="chatButton" onclick="toggleChat()">💬</div>
+  <!-- Chat box -->
+<div id="chatBox">
+  
+  <div id="chatHeader">TeenBot</div>
+  <div id="chatMessages"></div>
+
+  <div id="chatInputArea">
+    <input type="text" id="chatInput" placeholder="Напиши нещо...">
+    <button id="sendBtn" onclick="sendMessage()">➤</button>
+  </div>
+</div>
   <script>
 document.querySelector('a[href="#bg"]').addEventListener("click", function(e) {
     e.preventDefault();
@@ -261,6 +273,11 @@ document.querySelector('a[href="#bg"]').addEventListener("click", function(e) {
         behavior: "smooth"
     });
 });
+
+function toggleChat() {
+  const box = document.getElementById("chatBox");
+  box.style.display = (box.style.display === "flex") ? "none" : "flex";
+}
 </script>
 </body>
 

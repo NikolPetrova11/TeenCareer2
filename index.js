@@ -88,19 +88,15 @@ function updateHeaderHeight() {
 function klik() {
   window.location.href = "searching.html";
 }
-
-function toggleChat() {
-  const box = document.getElementById("chatBox");
-  box.style.display = (box.style.display === "flex") ? "none" : "flex";
+function klik1() {
+  window.location.href = "CV_Portfolio_Maker.html";
+}
+function klik2() {
+  window.location.href = "CV_Portfolio_Maker.html";
+}
+function klik3() {
+  window.location.href = "tips.html";
 }
 
-function sendMessage() {
-  const input = document.getElementById("chatInput");
-  const messages = document.getElementById("chatMessages");
 
-  if (input.value.trim() === "") return;
 
-  // Показва съобщението на потребителя
-  messages.innerHTML += "<div><b>Ти:</b> " + input.value + "</div>";
-
-}

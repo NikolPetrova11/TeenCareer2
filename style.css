@@ -26,7 +26,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1000;
+            z-index: 10000;
             background: white;
             box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
              height: 80px; 
@@ -475,6 +475,8 @@ margin-left: 180px;
   margin-top: 12vh;
   font-size: clamp(16px, 3vw, 24px);
 }
+
+/*--- Clickable zones ---*/
  .container1 {
     position: relative;
    
@@ -490,75 +492,42 @@ margin-left: 180px;
     background-color: transparent; 
     border-radius: 30px;
     cursor: pointer;
+    z-index: 1000;
+  }
+   .clickZone1 {
+    position: absolute;
+    top: 80.8%;      
+    left: 61.4%;     
+    width: 395px;
+    height: 50px;
+    background-color: transparent; 
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 2000;
+  }
+   .clickZone2 {
+    position: absolute;
+    top: 66.8%;      
+    left: 20.4%;     
+    width: 412px;
+    height: 50px;
+    background-color: transparent; 
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 3000;
+  }
+   .clickZone3 {
+    position: absolute;
+    top: 40.8%;      
+    left: 54.4%;     
+    width: 240px;
+    height: 45px;
+    background-color: transparent;  
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 3000;
   }
 
-  #chatButton {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #007bff;
-  color: white;
-  border: none;
-  font-size: 26px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-/* Чат прозорец */
-#chatBox {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 300px;
-  height: 380px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  font-family: Arial;
-}
-
-/* Header */
-#chatHeader {
-  background: #007bff;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-}
-
-/* Messages */
-#chatMessages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  font-size: 14px;
-}
-
-/* Input зона */
-#chatInputArea {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-
-#chatInput {
-  flex: 1;
-  border: none;
-  padding: 10px;
-  outline: none;
-}
-
-#sendBtn {
-  border: none;
-  background: #007bff;
-  color: white;
-  padding: 10px 15px;
-  cursor: pointer;
-}
 
         /* POPUP */
         .popup {
@@ -685,8 +654,25 @@ margin-left: 12%;
   margin-top: -15.5%;
   margin-left: -5%;
 }
+.clickZone{
+    width: 234px;
+    height: 40px;
+}
+.clickZone1{
+    width: 320px;
+    height: 40px;
+}
+.clickZone2{
+    left: 22.4%;
+    width: 345px;
+    height: 40px;
+}
+.clickZone3{   
+    left: 54.4%;
+    width: 210px;  
+    height: 40px;
         }
-      
+    }
     
 @media (max-width: 1440px) {
 .logo {
@@ -762,7 +748,21 @@ margin-left: 12%;
 .quotes{
         margin-bottom: -60px;   
 }
+.clickZone{
+    width: 218px;
+
+}
+.clickZone1{
+    width: 300px;
+}
+.clickZone2{
+    width: 325px;
     }
+.clickZone3{
+    width: 200px;
+}
+    
+}
     @media (max-width: 1280px) {
         .profile-btn{
                 margin-right: 0px;
@@ -787,6 +787,22 @@ margin-left: 12%;
     }
     .b3{
     left: 8.5%;
+    }
+    .clickZone{
+    width: 193px;
+    height: 35px;
+    }
+    .clickZone1{
+    width: 270px;
+    height: 35px;
+    }
+    .clickZone2{
+    width: 290px;
+    height: 35px;
+    }
+    .clickZone3{
+    width: 175px;
+    height: 35px;
     }
 }
 
@@ -920,6 +936,23 @@ margin-left: 12%;
   .footer-social {
                 gap: 18px;
                 margin-top: -12vh;
+            }
+            .clickZone{
+    width: 154px;
+    height: 28px;
+}
+.clickZone1{
+    width: 213px;
+    height: 30px;
+    }
+.clickZone2{
+    width: 230px;
+    height: 30px;
+    }
+.clickZone3{
+    width: 143px;
+    height: 30px;
+    
             }
         }
 
@@ -1175,6 +1208,27 @@ margin-left: 1%;
   margin-top: -19%;
   margin-left: -25%;
 }
+.clickZone{
+    width: 150px;
+    height: 26px;
+    left: 71.4%;
+}
+.clickZone1{
+    width: 188px;
+    height: 26px;
+    left: 54.4%;
+    }
+.clickZone2{
+    width: 210px;
+    height: 26px;
+    left: 14.4%;
+    }
+.clickZone3{
+    width: 133px;
+    height: 26px;
+    left: 52.4%;
+    
+}
         }
 
         @media (max-width: 480px) {
@@ -1392,7 +1446,7 @@ margin-left: 0%;
 .image-wrapper_image-4{
   width: 140%;
   margin-top: -21%;
-  margin-left: -30%;
+  margin-left: -26%;
 }
   .footer-social {
                 gap: 12px;
@@ -1408,7 +1462,29 @@ margin-left: 0%;
                 gap: 7px;
                 margin-top: -4vh;
             }
+            .clickZone{
+    width: 100px;
+    height: 17px;
+    left: 67.4%;
+    
+            }
+.clickZone1{
+    width: 140px;  
+    height: 17px;
+    left: 56.4%;
+    }
+.clickZone2{
+    width: 150px;  
+    height: 17px;
+    left: 14.4%;
         }
+.clickZone3{
+    width: 90px;
+    height: 17px;
+    left: 57.4%;
+            }
+        
+    }
             @media (max-width: 425px){
                 
                 .b1{
@@ -1433,6 +1509,28 @@ margin-left: 0%;
 
         margin-left: 7%;
     }
+    .clickZone{
+    width: 90px;
+    height: 17px;
+    left: 67.4%;
+    
+            }
+.clickZone1{
+    width: 125px;  
+    height: 17px;
+    left: 56.4%;
+
+    }
+.clickZone2{
+    width: 127px;   
+    height: 17px;
+    left: 21.4%;
+        }
+.clickZone3{
+    width: 80px;
+    height: 17px;
+    left: 57.4%;
+            }
             }
 
 @media (max-width: 375px) {
@@ -1451,10 +1549,25 @@ margin-left: 0%;
 
 
   
-    .image-wrapper_image-1{
-        margin-top: 10px;
-        width: 140%;
-        margin-left: -40%;
+ .clickZone {
+        width: 78px;
+        height: 17px;
+        left: 67.4%;
+        top:74%;
+    }
+.clickZone1 {
+        width: 142px;
+        height: 20px;
+    }
+    .clickZone2 {
+        width: 143px;
+        left: 18.4%;
+    }
+    .clickZone3 {
+        width: 105px;
+        height: 20px;
+            left: 44.4%;
+            top: 37.4%;
     }
     .image-wrapper_image-2 {
         margin-top: -33%;
@@ -1468,8 +1581,8 @@ margin-left: 0%;
     }
         .image-wrapper_image-4 {
         width: 160%;
-        margin-top: -28%;
-        margin-left: -33%;
+        margin-top: -29%;
+        margin-left: -32%;
     }
     .nav-links ul li a {
                 
@@ -1596,8 +1709,8 @@ font-size: 0.6rem !important;
         margin-left: 0%;
     }
         .image-wrapper_image-4 {
-        margin-left: -33%;
-        margin-top: -28%;
+        margin-left: -32%;
+        margin-top: -29%;
         width: 160%;
     }
     .footer{
@@ -1623,5 +1736,18 @@ font-size: 0.6rem !important;
  margin-top: -1.5vh;
         }
         
+        .clickZone{
+    width: 99px;
+   left: 57.4%;  
+        }
+.clickZone1{
+    width: 123px;
     }
-
+.clickZone2{
+    width: 123px;
+    }
+.clickZone3{
+    width: 90px;
+   
+            }
+    }
