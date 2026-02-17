@@ -50,12 +50,12 @@
 </div>
 
 <script>
-    // 1. Зареждане на текущите данни
+    // 1. Load current data
     fetch('/api/user-data')
         .then(res => res.json())
         .then(data => {
             if (data.error) {
-                window.location.href = '/'; // Ако не е логнат
+                window.location.href = '/'; // If not logged in
                 return;
             }
             
@@ -64,7 +64,7 @@
             document.getElementById('email').value = data.email || '';
             
             if (data.dob) {
-                // Форматиране на датата за input type="date" (YYYY-MM-DD)
+                // Format date for input type="date" (YYYY-MM-DD)
                 const date = new Date(data.dob);
                 const formattedDate = date.toISOString().split('T')[0];
                 document.getElementById('dob').value = formattedDate;
@@ -72,7 +72,7 @@
         })
         .catch(err => console.error('Error loading data:', err));
 
-    // 2. Обработка на формата
+    // 2. Form handling
     document.getElementById('editForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         

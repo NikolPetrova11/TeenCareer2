@@ -44,7 +44,7 @@
     
     <div class="overlay"></div>
     
-    <!-- ✅ Popup с вградена форма за регистрация -->
+    <!-- ✅ Popup with embedded registration form -->
     <div class="popup">
     <div class="close-btn">&times;</div>
     
@@ -99,18 +99,18 @@
         </div> 
 </div>
 <script>
-  // Съществуваща логика за менюто
+  // Existing menu logic
   const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); // Уверете се, че имате елемент с ID="navMenu"
+  const navMenu = document.getElementById("navMenu"); // Ensure element with ID="navMenu" exists
 
   menuToggle.addEventListener("click", () => {
-    // Уверете се, че navMenu съществува, преди да добавяте клас
+    // Ensure navMenu exists before adding class
     if (navMenu) {
         navMenu.classList.toggle("active");
     }
   });
 
-  // Логика за отваряне и затваряне на Popup
+  // Popup open/close logic
   const profileBtn = document.querySelector(".profile-btn");
   const overlay = document.querySelector(".overlay");
   const popup = document.querySelector(".popup");
@@ -134,16 +134,16 @@
   });
 
 
-  // НОВА ЛОГИКА ЗА ТАБОВЕТЕ (ВХОД/РЕГИСТРАЦИЯ)
+  // NEW TAB LOGIC (LOGIN/REGISTER)
   const tabButtons = document.querySelectorAll(".tab-btn");
   const loginForm = document.querySelector(".login-form-container");
   const registerForm = document.querySelector(".register-form-container");
 
   tabButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // Премахва "active" от всички бутони
+        // Removes "active" from all buttons
         tabButtons.forEach(btn => btn.classList.remove("active"));
-        // Добавя "active" към кликнатия бутон
+        // Adds "active" to the clicked button
         button.classList.add("active");
 
         const targetForm = button.getAttribute("data-form");

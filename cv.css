@@ -421,21 +421,21 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
     
-    visibility: hidden; /* Скрит по подразбиране */
+    visibility: hidden; 
     opacity: 0;
-    transition: opacity 0.3s ease-out, visibility 0s 0.3s; /* Забавяне при скриване */
+    transition: opacity 0.3s ease-out, visibility 0s 0.3s; 
     display: flex; 
     align-items: center;
     justify-content: center;
 }
 
-/* Това е ключовият клас, който JavaScript трябва да добавя! */
+
 .modal.modal-open {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.3s ease-out; /* Без забавяне при показване */
+    transition: opacity 0.3s ease-out; 
 }
-/* ... останалите стилове за .modal-content и т.н. */
+
 
 .modal-content {
     background-color: #fefefe;
@@ -453,7 +453,7 @@
     opacity: 0;
 }
 
-/* Когато модалът е видим, съдържанието се скалира */
+
 .modal.modal-open .modal-content {
     transform: scale(1);
     opacity: 1;
@@ -468,7 +468,7 @@
 
 .cv-close-btn {
     color: #aaa;
-    position: absolute; /* Позициониране в горния десен ъгъл */
+    position: absolute;
     top: 10px;
     right: 15px;
     font-size: 32px;
@@ -497,7 +497,7 @@
     box-sizing: border-box; 
     font-family: inherit; 
     font-size: 16px;
-    resize: vertical; /* Позволява resize само вертикално за textarea */
+    resize: vertical; 
 }
 
 #cvForm button[type="submit"] {
@@ -517,8 +517,8 @@
 .cards1-container {
     display: flex;
     gap: 60px;
-    justify-content: center; /* ЦЕНТРИРАНЕ! */
-    width: 100%; /* Гарантира, че контейнерът заема цялата ширина */
+    justify-content: center; 
+    width: 100%; 
     color: #8274A1;
    
 }
@@ -527,7 +527,7 @@
     width: 900px;
     margin-bottom: 50px;
     position: relative;
-    left: 50%;       /* премества се 50% от собствената си ширина */
+    left: 50%;       
     transform: translateX(-50%);
 }
 .cards1-container img {
@@ -656,7 +656,8 @@
 }
 
 /* CV split */
-#cvModal .modal-content {
+#cvModal .modal-content,
+#portfolioModal .modal-content {
     max-width: 90vw;
     width: 95%;
     height: 90vh;
@@ -684,13 +685,13 @@
     flex: 1;
     background-color: #525659;
     padding: 20px;
-    overflow-y: auto;
+    overflow: auto; 
     display: flex;
-    justify-content: center;
     border-radius: 5px;
 }
 
 .cv-paper {
+    position: relative;
     background: white;
     width: 100%;
     max-width: 210mm;
@@ -700,6 +701,7 @@
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
     color: #333;
+    margin: auto; 
 }
 
 .preview-header {
@@ -763,7 +765,8 @@
         height: 500px;
     }
     
-    #cvModal .modal-content {
+    #cvModal .modal-content,
+    #portfolioModal .modal-content {
         height: auto;
         max-height: 95vh;
     }
@@ -2292,3 +2295,22 @@ font-size: 0.6rem !important;
             }
          
     }
+
+/* --- PORTFOLIO LANDSCAPE STYLES --- */
+.cv-paper.landscape {
+    width: 297mm; /* Фиксирана ширина за да е широко */
+    max-width: none; /* Премахваме ограничението */
+    min-height: 210mm; /* Височина на A4 Landscape */
+}
+
+.cv-paper.landscape .main-content-card {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    text-align: left;
+}
+
+.cv-paper.landscape .preview-section {
+    flex: 1; /* Равни колони */
+    min-width: 0;
+}

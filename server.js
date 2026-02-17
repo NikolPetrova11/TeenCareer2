@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const session = require('express-session');
+const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 const app = express();
 
@@ -21,9 +23,6 @@ app.use(express.static(__dirname));
 
 // DataBase connection
 const dbURI = 'mongodb+srv://teencareer_db_user:jO38uGY9loz1xVar@cluster0.ylxecao.mongodb.net/TeenCareerDB?retryWrites=true&w=majority';
-mongoose.connect(dbURI)
-  .then(() => console.log('Connected to MongoDB Atlas!'))
-  .catch((err) => console.error('Error connecting:', err));
 
 // User info
 const userSchema = new mongoose.Schema({
@@ -143,5 +142,233 @@ app.get('/edit-profile', redirectIfLoggedOut, (req, res) => {
     res.sendFile(path.join(__dirname, 'edit-profile.html'));
 });
 
+// Generate PDF Route
+app.post('/generate-pdf', async (req, res) => {
+    console.log("Generating CV PDF...");
+    const { fullName, email, phone, city, education, experience, skills, languages, summary, date, text, template } = req.body;
+
+    // 1. Read the CSS file to include styles in the PDF
+    let css = '';
+    try {
+        css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
+    } catch (e) {
+        console.error("Could not read cv.css", e);
+    }
+
+    // 2. Construct the HTML structure (similar to your preview)
+    const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            ${css}
+            body { background: white; margin: 0; padding: 0; }
+            .cv-paper {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+                width: 100%;
+                min-height: 100vh;
+                padding: 40px;
+            }
+            /* Ensure background colors print correctly */
+            * { -webkit-print-color-adjust: exact; }
+        </style>
+    </head>
+    <body>
+        <div class="cv-preview-side" style="padding:0; background:white; display:block;">
+            <div class="cv-paper ${template || 'default'}">
+                <div class="preview-header">
+                    <div class="header-info">
+                        <div class="preview-name">${fullName || ''}</div>
+                        <div class="preview-contact">
+                            ${email ? `<span>${email}</span> | ` : ''}
+                            ${phone ? `<span>${phone}</span> | ` : ''}
+                            ${city ? `<span>${city}</span> | ` : ''}
+                            ${date ? `<span>${date}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="main-content-card">
+                    ${summary ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">За мен</div>
+                        <div class="preview-content">${summary.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${education ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Образование</div>
+                        <div class="preview-content">${education.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${experience ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Опит</div>
+                        <div class="preview-content">${experience.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${text ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Повече за моя опит</div>
+                        <div class="preview-content">${text.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${skills ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Умения</div>
+                        <div class="preview-content">${skills.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${languages ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Езици</div>
+                        <div class="preview-content">${languages}</div>
+                    </div>` : ''}
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+
+    try {
+        // 3. Launch Puppeteer to generate PDF
+        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+        const page = await browser.newPage();
+        
+        // Set content and wait for fonts/network
+        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+        
+        const pdfBuffer = await page.pdf({ 
+            format: 'A4', 
+            printBackground: true,
+            margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' }
+        });
+
+        await browser.close();
+
+        // 4. Send PDF to client
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`,
+            'Content-Length': pdfBuffer.length
+        });
+        res.send(pdfBuffer);
+
+    } catch (error) {
+        console.error("PDF Generation Error:", error);
+        res.status(500).send("Error generating PDF");
+    }
+});
+
+// Generate Portfolio PDF Route
+app.post('/generate-portfolio', async (req, res) => {
+    console.log("Generating Portfolio PDF...");
+    const { full_name, email, phone, education, experience } = req.body;
+
+    // 1. Read the CSS file (Same as CV logic)
+    let css = '';
+    try {
+        css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
+    } catch (e) {
+        console.error("Could not read cv.css", e);
+    }
+
+    // 2. Construct HTML using cv.css classes for consistency
+    const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            ${css}
+            body { background: white; margin: 0; padding: 0; }
+            .cv-paper {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+                width: 100%;
+                min-height: 100vh;
+                padding: 40px;
+            }
+            /* Ensure background colors print correctly */
+            * { -webkit-print-color-adjust: exact; }
+            
+            /* Portfolio specific overrides reusing CV classes */
+            .preview-header { text-align: center; border-bottom: 2px solid #09989e; display: block; }
+            .preview-name { color: #8274A1; font-size: 36px; text-align: center; }
+            .preview-contact { justify-content: center; margin-top: 10px; }
+        </style>
+    </head>
+    <body>
+        <div class="cv-preview-side" style="padding:0; background:white; display:block;">
+            <div class="cv-paper default landscape">
+                <div class="preview-header">
+                    <div class="preview-name">${full_name || 'Portfolio'}</div>
+                    <div class="preview-contact">
+                        ${email ? `<span>${email}</span>` : ''}
+                        ${phone ? ` | <span>${phone}</span>` : ''}
+                    </div>
+                </div>
+
+                <div class="main-content-card">
+                    ${education ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Образование</div>
+                        <div class="preview-content">${education.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${experience ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Професионален Опит & Проекти</div>
+                        <div class="preview-content">${experience.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+                    
+                    <div style="margin-top: 50px; text-align: center; font-size: 12px; color: #aaa;">
+                        Създадено с TeenCareer Portfolio Maker
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+
+    try {
+        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+        const page = await browser.newPage();
+        
+        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+        
+        const pdfBuffer = await page.pdf({ 
+            format: 'A4', 
+            printBackground: true,
+            landscape: true // <-- Това прави PDF-а хоризонтален
+        });
+
+        await browser.close();
+
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`,
+            'Content-Length': pdfBuffer.length
+        });
+        res.send(pdfBuffer);
+    } catch (error) {
+        console.error("Portfolio PDF Error:", error);
+        res.status(500).send("Error generating Portfolio PDF");
+    }
+});
+
 const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+mongoose.connect(dbURI)
+  .then(() => {
+    console.log('Connected to MongoDB Atlas!');
+    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+  })
+  .catch((err) => console.error('Error connecting:', err));

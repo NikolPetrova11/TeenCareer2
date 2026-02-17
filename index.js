@@ -94,3 +94,13 @@ function toggleChat() {
   box.style.display = (box.style.display === "flex") ? "none" : "flex";
 }
 
+function sendMessage() {
+  const input = document.getElementById("chatInput");
+  const messages = document.getElementById("chatMessages");
+
+  if (input.value.trim() === "") return;
+
+  // Показва съобщението на потребителя
+  messages.innerHTML += "<div><b>Ти:</b> " + input.value + "</div>";
+
+}
