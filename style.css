@@ -475,7 +475,90 @@ margin-left: 180px;
   margin-top: 12vh;
   font-size: clamp(16px, 3vw, 24px);
 }
+ .container1 {
+    position: relative;
+   
+  }
 
+
+  .clickZone {
+    position: absolute;
+    top: 73%;      
+    left: 57.4%;     
+    width: 288px;
+    height: 50px;
+    background-color: transparent; 
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  #chatButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #007bff;
+  color: white;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Чат прозорец */
+#chatBox {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  height: 380px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Arial;
+}
+
+/* Header */
+#chatHeader {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* Messages */
+#chatMessages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+/* Input зона */
+#chatInputArea {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+#chatInput {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+
+#sendBtn {
+  border: none;
+  background: #007bff;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+}
 
         /* POPUP */
         .popup {
@@ -546,20 +629,6 @@ margin-left: 180px;
         .overlay.active {
             display: block;
         }
-.zone {
-  position: absolute;
-  background: rgba(123, 91, 189, 0.35); 
-  z-index: 1002;
-  border-radius: 25px;
-}
-
-/* зона 1 */
-.zone1 {
-top: 18%;
-  left: 0%;
-  width: 120px;
-  height: 40px;
-}
 
 
         /* --- Responsive --- */
