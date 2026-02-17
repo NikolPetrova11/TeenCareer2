@@ -15,6 +15,7 @@
 
 
     
+    
 
 </head>
 <body>
@@ -98,63 +99,7 @@
         </div>
         </div> 
 </div>
-<script>
-  
-  const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); 
 
-  menuToggle.addEventListener("click", () => {
-    
-    if (navMenu) {
-        navMenu.classList.toggle("active");
-    }
-  });
-
-  
-  const profileBtn = document.querySelector(".profile-btn");
-  const overlay = document.querySelector(".overlay");
-  const popup = document.querySelector(".popup");
-  const closeBtn = document.querySelector(".popup .close-btn");
-
-  profileBtn.addEventListener("click", function() {
-    overlay.classList.add("active");
-    popup.classList.add("active");
-  });
-
-  closeBtn.addEventListener("click", function() {
-    overlay.classList.remove("active");
-    popup.classList.remove("active");
-  });
-
-  overlay.addEventListener("click", function(e) {
-    if (e.target.classList.contains("overlay")) {
-        overlay.classList.remove("active");
-        popup.classList.remove("active");
-    }
-  });
-
-
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const loginForm = document.querySelector(".login-form-container");
-  const registerForm = document.querySelector(".register-form-container");
-
-  tabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-
-        const targetForm = button.getAttribute("data-form");
-
-        if (targetForm === "login") {
-            loginForm.classList.add("active");
-            registerForm.classList.remove("active");
-        } else if (targetForm === "register") {
-            loginForm.classList.remove("active");
-            registerForm.classList.add("active");
-        }
-    });
-  });
-</script>
    </header>
 
   
@@ -218,12 +163,13 @@
   </section>     
 
   <div class="container">
-   
+   <div class="container1">
     <div class="image-wrapper_image-1">
-  <a href="searching.html" class="zone zone1"></a>
         <img src="photos/Desktop-1.1.png">
+        
     </div>
-    
+    <div class="clickZone" onclick="klik()"></div>
+    </div>
     <div class="image-wrapper_image-2">
         <img src="photos/Desktop-1.2.png">
     </div>
@@ -250,6 +196,18 @@
       <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </section>
+  <button id="chatButton" onclick="toggleChat()">💬</button>
+
+<!-- Chat box -->
+<div id="chatBox">
+  <div id="chatHeader">Chatbot</div>
+  <div id="chatMessages"></div>
+
+  <div id="chatInputArea">
+    <input type="text" id="chatInput" placeholder="Напиши нещо...">
+    <button id="sendBtn" onclick="sendMessage()">➤</button>
+  </div>
+</div>
   <script src="index.js"></script>
 </body>
 </html>
