@@ -1,19 +1,21 @@
+/* JavaScript code for TeenCareer website */
+/*-- Animations Balls --*/
 const balls = document.querySelectorAll('.ball');
 
 function startCycle() {
     balls.forEach(ball => {
         ball.classList.remove('hide-all');
         ball.style.animation = 'none';
-        ball.offsetHeight; // force reflow
+        ball.offsetHeight;
         ball.style.animation = '';
     });
 
-    // След 9 сек → всички изчезват
+    
     setTimeout(() => {
         balls.forEach(ball => ball.classList.add('hide-all'));
     }, 9000);
 
-    // След 10 сек (9 + 1) → нов цикъл
+    
     setTimeout(startCycle, 9500);
 }
 
@@ -28,7 +30,9 @@ function updateHeaderHeight() {
 
   window.addEventListener('load', updateHeaderHeight);
   window.addEventListener('resize', updateHeaderHeight);
-  
+
+  /*-- Navigation --*/
+
   const menuToggle = document.getElementById("menuToggle");
   const navMenu = document.getElementById("navMenu"); 
 
@@ -39,7 +43,8 @@ function updateHeaderHeight() {
     }
   });
 
-  
+  /*-- POP-UP --*/
+
   const profileBtn = document.querySelector(".profile-btn");
   const overlay = document.querySelector(".overlay");
   const popup = document.querySelector(".popup");
@@ -84,6 +89,7 @@ function updateHeaderHeight() {
     });
   });
 
+  /*-- Clicable zone --*/
   
 function klik() {
   window.location.href = "searching.html";
