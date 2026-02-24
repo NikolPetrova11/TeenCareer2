@@ -17,14 +17,11 @@
 </head>
 
 <body>
-
-
    <header>
     <div class="header-container">
      <a href="index.php">
       <img src="photos/logo.png" class="logo" alt="TeenCareer">
 </a>
-
       <nav class="nav-links" id="navMenu">
         <ul>
           <li><a href="index.php">Да започнем</a></li>
@@ -43,8 +40,6 @@
     </div>
     
     <div class="overlay"></div>
-    
-    <!-- ✅ Popup with embedded registration form -->
     <div class="popup">
     <div class="close-btn">&times;</div>
     
@@ -98,66 +93,6 @@
         </div>
         </div> 
 </div>
-<script>
-  // Existing menu logic
-  const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); // Ensure element with ID="navMenu" exists
-
-  menuToggle.addEventListener("click", () => {
-    // Ensure navMenu exists before adding class
-    if (navMenu) {
-        navMenu.classList.toggle("active");
-    }
-  });
-
-  // Popup open/close logic
-  const profileBtn = document.querySelector(".profile-btn");
-  const overlay = document.querySelector(".overlay");
-  const popup = document.querySelector(".popup");
-  const closeBtn = document.querySelector(".popup .close-btn");
-
-  profileBtn.addEventListener("click", function() {
-    overlay.classList.add("active");
-    popup.classList.add("active");
-  });
-
-  closeBtn.addEventListener("click", function() {
-    overlay.classList.remove("active");
-    popup.classList.remove("active");
-  });
-
-  overlay.addEventListener("click", function(e) {
-    if (e.target.classList.contains("overlay")) {
-        overlay.classList.remove("active");
-        popup.classList.remove("active");
-    }
-  });
-
-
-  // NEW TAB LOGIC (LOGIN/REGISTER)
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const loginForm = document.querySelector(".login-form-container");
-  const registerForm = document.querySelector(".register-form-container");
-
-  tabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        // Removes "active" from all buttons
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-        // Adds "active" to the clicked button
-        button.classList.add("active");
-
-        const targetForm = button.getAttribute("data-form");
-
-        if (targetForm === "login") {
-            loginForm.classList.add("active");
-            registerForm.classList.remove("active");
-        } else if (targetForm === "register") {
-            loginForm.classList.remove("active");
-            registerForm.classList.add("active");
-        }
-    });
-  });
-</script>
    </header>
   <section class="hero">
     <h1><b>Намери първата си работа</b></h1>
@@ -225,12 +160,6 @@
 </section>
 </div>
 
-
-  
-
-
- 
-
 <section class="robot">
   <img src="photos/Group 19.png">
 </section>
@@ -250,31 +179,37 @@
     </div>
   </section>
   </section>
-  <div id="chatButton" onclick="toggleChat()">💬</div>
-  <!-- Chat box -->
-<div id="chatBox">
   
-  <div id="chatHeader">TeenBot</div>
-  <div id="chatMessages"></div>
-
-  <div id="chatInputArea">
-    <input type="text" id="chatInput" placeholder="Напиши нещо...">
-    <button id="sendBtn" onclick="sendMessage()">➤</button>
-  </div>
+ <!-- CHAT BUTTON -->
+<div id="chatToggle">
+  <i class="fas fa-robot"></i>
 </div>
-  <script>
-document.querySelector('a[href="#bg"]').addEventListener("click", function(e) {
-    e.preventDefault();
-    document.querySelector("#bg").scrollIntoView({
-        behavior: "smooth"
-    });
-});
 
-function toggleChat() {
-  const box = document.getElementById("chatBox");
-  box.style.display = (box.style.display === "flex") ? "none" : "flex";
-}
+<!-- CHAT APP -->
+<div id="chatApp">
+
+  <!-- SIDEBAR -->
+  <div id="chatSidebar">
+    
+    <button onclick="newChat()">+ Нов чат</button>
+    <div id="chatHistory"></div>
+  </div>
+
+  <!-- CHAT AREA -->
+  <div id="chatMain">
+    <div id="chatHeader">TeenBot Assistant</div>
+
+    <div id="chatMessages"></div>
+
+    <div id="chatInputArea">
+      <input id="chatInput" placeholder="Питай нещо..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+</div>
 </script>
+<script src="searching.js"></script>
 </body>
 
 </html>
