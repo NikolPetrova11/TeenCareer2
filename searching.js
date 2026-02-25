@@ -85,4 +85,10 @@ function newChat(){
     });
   });
 
-  
+ document.querySelector('.button').addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });

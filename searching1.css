@@ -1,32 +1,36 @@
+/* =========================================
+   1. Global Styles & Resets
+   ========================================= */
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-           scroll-behavior: smooth;
-          
-            
-        }
-         html {
-        scroll-behavior: smooth;
-    }
-    html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
     width: 100%;
     overflow-x: hidden;
 }
 
-        img, video {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+body {
+    background-color: white !important;
+}
 
-        body {
-            overflow-x: hidden;
-            background-color: white !important;
-        }
-/* HEADER */
-       header {
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   2. Header & Navigation
+   ========================================= */
+header {
     width: 100%;
     position: fixed;
     top: 0;
@@ -114,7 +118,9 @@
     cursor: pointer;
 }
 
-/* HERO */
+/* =========================================
+   3. Hero Section
+   ========================================= */
 .hero {
     position: relative;
     width: 100%;
@@ -126,19 +132,20 @@
 .hero h1 {
     position: absolute;
     margin-top: 10%;
-    margin-left: 16%;
+    margin-left: 17%;
     color: #19989e;
     font-size: 34px;
     z-index: 2;
 }
+
 h1 span {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .hero h2 {
     position: absolute;
     margin-top: 13%;
-    margin-left: 16%;
+    margin-left: 17%;
     color: #8274A1;
     font-size: 28px;
     z-index: 2;
@@ -148,7 +155,7 @@ h1 span {
 .hero p {
     position: absolute;
     margin-top: 17%;
-    margin-left: 16%;
+    margin-left: 17%;
     color: #8274A1;
     font-size: 16px;
     line-height: 1.8;
@@ -156,35 +163,35 @@ h1 span {
 }
 
 .button {
-    
     text-decoration: none;
     color: #fff !important;
     border: 2px solid #09989e;
     padding: 9px 45px;
     margin-top: 48%;
-    margin-left: 16%;
+    margin-left: 17%;
     font-size: 18px !important;
     background: #09989e;
     position: absolute;
     cursor: pointer;
     border-radius: 25px;
     z-index: 3;
-}
-
-.button:hover {
-    border: 2px solid #8274A1;
-    background: #8274A1;
     transition: 1s;
 }
 
+.button:hover {
+    border-color: #8274A1;
+    background: #8274A1;
+}
+
+/* =========================================
+   4. Content & Cards
+   ========================================= */
 .whattoexpectimg {
     width: auto;
     height: auto;
-    align-items: center;
     display: block;
     margin: 100px auto;
 }
-
 
 .bg {
     margin-top: -50px;
@@ -197,20 +204,19 @@ h1 span {
     background-repeat: no-repeat;
     background-position: center top;
 }
-  .cards-container {
+
+.cards-container {
     position: relative;     
     display: flex;
     justify-content: center; 
     flex-wrap: wrap; 
     z-index: 2;
-    padding: 20px;
+    padding: 10% 20px 20px;
     width: 100%;
-    box-sizing: border-box;
-     padding-top: 10%;
 }
 
 .card {
-    margin-top: 20px;
+    margin: 10px;
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -222,117 +228,102 @@ h1 span {
     z-index: 10;
     height: 420px;
     flex: 0 1 425px;
-    margin: 10px; 
-}
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-       .card h3 {
-  color: #09989e;
-  margin-bottom: 15px;
-  font-size: 24px;
-  
 }
 
-       .card p {
-  color: #8274A1;
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: left;
-  font-weight: bold;
-  margin-top: 45px;
-       }
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
 
-        .button1 {
-   position: absolute;
+.card h3 {
+    color: #09989e;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.card p {
+    color: #8274A1;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 45px;
+}
+
+.button1 {
+    position: absolute;
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%); 
-  background-color: #6ad0cb;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  z-index: 9999 !important;
-        }
-
-       .button1 a {
-  color: white !important;
-  text-decoration: none;
+    background-color: #6ad0cb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 9999 !important;
 }
+
+.button1 a {
+    color: white !important;
+    text-decoration: none;
+}
+
 .button1:hover {
-  background-color: #4db5af;
+    background-color: #4db5af;
 }
 
-       .arrow1 img,
-.arrow2 img {
+.arrow1 img, .arrow2 img {
     position: absolute;
     top: 350px; 
     width: 120px;
     height: auto;
     cursor: pointer;
     z-index: 10;
-    transform: none;
 }
 
-.arrow1 img {
-    left: 5%;
-}
+.arrow1 img { left: 5%; }
+.arrow2 img { right: 5%; }
 
-.arrow2 img {
-    right: 5%;
-}
+/* =========================================
+   5. Robot & Quotes
+   ========================================= */
 .robot img{
     width: 75%;
     height: 900px;
-    z-index: 55px;
+    z-index: 55;
     position: relative;
     margin-top: -10%;
     margin-left: 25%;
 }
+
 .quotes img{
     position: relative;
     margin-top: -3%;
     width: 100%;
     height: 400px;
 }
+
 .quotes_text {
     display: flex;
     justify-content: center; 
     align-items: center;    
-    width: 90vw;           
-    margin: 0;              
-    padding: 0;              
-    box-sizing: border-box;
+    width: 100%;           
+    margin: 0 auto;         
 }
 
 .quotes_text img {
-    max-width: 75%;
-    height: auto;
+    max-width: 100%; 
+    height: auto;     
     display: block;
-    margin: 0 auto;        
+    margin: 0 auto;
 }
 
-#chatToggle{
-position:fixed;
-bottom:20px;
-right:20px;
-width:65px;
-height:65px;
-background:#8274A1;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:99999;
-
-}
+/* =========================================
+   6. Footer
+   ========================================= */
 .footer {
     position: relative;
     width: 100%;
@@ -341,6 +332,12 @@ z-index:99999;
     background: linear-gradient(270deg, #8274A1, #84AEAD, #5a4a8c, #4a908a);
     background-size: 400% 400%;
     animation: animated-gradient 15s ease infinite;
+}
+
+@keyframes animated-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .footer-social {
@@ -374,12 +371,6 @@ z-index:99999;
     font-family: "Caveat", cursive;
 }
 
-@keyframes animated-gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 .social {
     position: relative;
     z-index: 1001;
@@ -404,117 +395,126 @@ z-index:99999;
     max-width: 130px;
 }
 
-/* ROBOT ICON */
-#chatToggle i{
-font-size:30px;
-color:white;
+/* =========================================
+   7. Chat Widget
+   ========================================= */
+#chatToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 65px;
+    height: 65px;
+    background: #8274A1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 99999;
 }
 
-/* CHAT APP */
-#chatApp{
-position:fixed;
-bottom:100px;
-right:20px;
-width:520px;
-height:500px;
-background:#8274A1;
-border-radius:15px;
-display:none;
-overflow:hidden;
-font-family:Montserrat;
-
-z-index:99999;
+#chatToggle i {
+    font-size: 30px;
+    color: white;
 }
 
-/* SIDEBAR */
-#chatSidebar{
-width:160px;
-background:#8274A1;
-color:white;
-padding:10px;
-display:flex;
-flex-direction:column;
+#chatApp {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 520px;
+    height: 500px;
+    background: #8274A1;
+    border-radius: 15px;
+    display: none;
+    overflow: hidden;
+    font-family: Montserrat;
+    z-index: 99999;
 }
 
-#chatSidebar button{
-background:#ccabd8;
-border:none;
-color:white;
-padding:8px;
-border-radius:8px;
-cursor:pointer;
-margin-bottom:10px;
+#chatSidebar {
+    width: 160px;
+    background: #8274A1;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-.chatItem{
-background:#ccabd8;
-padding:8px;
-margin:5px 0;
-border-radius:8px;
-cursor:pointer;
+#chatSidebar button {
+    background: #ccabd8;
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
-/* MAIN CHAT */
-#chatMain{
-flex:1;
-display:flex;
-flex-direction:column;
-background:#ccabd8;
-color:#e5d6eb;
+.chatItem {
+    background: #ccabd8;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-#chatHeader{
-padding:14px;
-background:#8274A1;
-font-weight:bold;
-font-size: 21px;
+#chatMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ccabd8;
+    color: #e5d6eb;
 }
 
-#chatMessages{
-flex:1;
-overflow-y:auto;
-padding:15px;
+#chatHeader {
+    padding: 14px;
+    background: #8274A1;
+    font-weight: bold;
+    font-size: 21px;
 }
 
-.msg{
-margin:8px 0;
-padding:10px;
-border-radius:10px;
-max-width:80%;
+#chatMessages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
 }
 
-.user{
-background:#ccabd8;
-margin-left:auto;
+.msg {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
 }
 
-.bot{
-background:#8274A1;
+.user { background: #ccabd8; margin-left: auto; }
+.bot { background: #8274A1; }
+
+#chatInputArea {
+    display: flex;
+    background: #8274A1;
 }
 
-/* INPUT */
-#chatInputArea{
-display:flex;
-background:#8274A1;
+#chatInput {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: #e5d6eb;
+    color: #8274A1;
+    outline: none;
 }
 
-#chatInput{
-flex:1;
-padding:12px;
-border:none;
-background:#e5d6eb;
-color:white;
-outline:none;
+#chatInputArea button {
+    background: #8274A1;
+    border: none;
+    width: 60px;
+    color: #e5d6eb;
+    cursor: pointer;
 }
 
-#chatInputArea button{
-background:#8274A1;
-border:none;
-width:60px;
-color:#e5d6eb;
-cursor:pointer;
-}
-/* POPUP */
+/* =========================================
+   8. Popup / Modal
+   ========================================= */
 .popup {
     position: fixed;
     top: 50%;
@@ -542,14 +542,8 @@ cursor:pointer;
     cursor: pointer;
 }
 
-.form-element {
-    margin-bottom: 15px;
-}
-
-.form-element label {
-    display: block;
-    margin-bottom: 5px;
-}
+.form-element { margin-bottom: 15px; }
+.form-element label { display: block; margin-bottom: 5px; }
 
 .form-element input[type="email"],
 .form-element input[type="password"] {
@@ -580,961 +574,340 @@ cursor:pointer;
     display: none;
 }
 
-/* --------- МЕДИЙНИ ЗАПИТВАНИЯ --------- */
+/* =========================================
+   9. Media Queries
+   ========================================= */
 
+/* --- 1536px --- */
 @media (max-width: 1536px) {
-
-       .logo {
-    height: 60px;
-    width: auto;
-}
-.profile-btn {
-        margin-right: 0px;
-    }
-    .logo {
-        height: 60px;
-        width: auto;
-    }
-.nav-links ul {
-   margin-top: 11px;
-}
-
-
-.hero{
-    width:100%;
-     height: 100%;
-}
-.hero h1{
-    margin-left: 8.2%;
-    margin-top: 13%;
-}
-.hero h2{
-    margin-left: 8.2%;
-    margin-top: 16.5%;
-}
-.hero p{
-    margin-left: 8.2%;
-    margin-top: 22%;
-}
-.button{
-    margin-left: 8.2%;
-    margin-top: 61%;
-}
-.whattoexpectimg{
-    width:60%;
-}
-
-.bg{
-    min-height: 750px;
-}
-.cards-container{
-    padding-top: 12%;
-}
-.card{
-    flex: 0 1 400px;
+    .logo { height: 60px; width: auto; }
+    .profile-btn { margin-right: 0px; }
+    .nav-links ul { margin-top: 11px; }
     
-}
-.card h3{
-    font-size: 20px;
-}
-.card p{
-    font-size: 15.5px;
-}
-.arrow1 img {
-    left: 2.5%;
+    .hero { width: 100%; height: 100%; }
+    .hero h1 { margin-left: 8.2%; margin-top: 13%; }
+    .hero h2 { margin-left: 8.2%; margin-top: 16.5%; }
+    .hero p { margin-left: 8.2%; margin-top: 22%; }
+    .button { margin-left: 8.2%; margin-top: 61%; }
+    
+    .whattoexpectimg { width: 60%; }
+    .bg { min-height: 750px; }
+    .cards-container { padding-top: 12%; }
+    .card { flex: 0 1 400px; }
+    .card h3 { font-size: 20px; }
+    .card p { font-size: 15.5px; }
+    
+    .arrow1 img { left: 2.5%; }
+    .arrow2 img { right: 2.5%; }
+    
+    .robot img {
+        width: 77%;
+        height: auto;
+        margin-top: -13%;
+        margin-left: 26%;
+    }
+    .quotes img { height: 350px; }
+    .quotes_text { margin: 0; padding: 0; }
+    
+    .social { margin-top: -9.9%; margin-left: 32%; }
+    .social1 { margin-top: -8.8%; margin-left: 57%; }
+    .social2 { margin-top: -0.2%; margin-left: 59.8%; }
 }
 
-.arrow2 img {
-    right: 2.5%;
-}
-
-.robot img{
-    width: 77%;
-    height: auto;
-    position: relative;
-    margin-top: -13%;
-    margin-left: 26%;
-}
-.quotes img{
-  height: 350px;  
-}
-.quotes_text {
-    display: flex;
-    justify-content: center; 
-    align-items: center;     
-    width: 90vw;            
-    margin: 0;               
-    padding: 0;             
-    box-sizing: border-box;
-}
- .social {
-        position: relative;
-        margin-top: -9.9%;
-        margin-left: 32%;
-    }
-    .social1 {
-        position: relative;
-        margin-top: -8.8%;
-        margin-left: 57%;
-    }
-    .social2 {
-        position: relative;
-        margin-top: -0.2%;
-        margin-left: 59.8%;
-    }
-
-}
+/* --- 1440px --- */
 @media (max-width: 1440px) {
-    .logo {
-        height: 55px;
-        margin-left: 22%;
+    .logo { height: 55px; margin-left: 22%; }
+    .profile { height: 90%; margin-left: -70px; }
+    .profile-btn { margin-right: 0px; }
+    
+    .hero { width: 100%; height: 100%; }
+    .hero h1 { margin-left: 11.2%;}
+    .hero h2 { margin-left: 11.2%;}
+    .hero p { margin-left: 11.2%;}
+    .button { margin-left: 11.2%;}
+    .whattoexpectimg { width: 60%; margin: 20px auto; }
+    .bg { min-height: 750px; }
+    
+    .card { flex: 0 1 375px; }
+    .card h3 { font-size: 20px; }
+    .card p { font-size: 15.5px; }
+    
+    .arrow1 img { left: 2.5%; }
+    .arrow2 img { right: 2.5%; }
+    
+    .robot img {
+        width: 77%;
+        height: auto;
+        margin-top: -15%;
+        margin-left: 27%;
     }
-    .profile {
-        height: 90%;
-        margin-left: -70px;
-    }
-    .profile-btn {
-        margin-right: 0px;
-    }
-
-.hero{
-    width:100%;
-     height: 100%;
-}
-
-.whattoexpectimg{
-    width:60%;
-    margin: 20px auto;
-}
-
-.bg{
-    min-height: 750px;
-}
-.card{
-   flex: 0 1 375px;
-}
-.card h3{
-    font-size: 20px;
-}
-.card p{
-    font-size: 15.5px;
-}
-.arrow1 img {
-    left: 2.5%;
-}
-
-.arrow2 img {
-    right: 2.5%;
-}
-
-.robot img{
-    width: 77%;
-    height: auto;
-    position: relative;
-    margin-top: -15%;
-    margin-left: 27%;
-}
-.quotes img{
-  height: 350px;  
-}
- .footer h1 {
-        font-size: 27px;
-        margin-top: 4vh;
-    }
+    .quotes img { height: 350px; }
+    
+    .footer h1 { font-size: 27px; margin-top: 4vh; }
     .footer-social a { font-size: 1.4rem !important; }
-    .image-wrapper_image-1 { width: 80%; }
     .footer-social { margin-top: -7vh; }
 }
 
-@media(max-width: 1280px) {
+/* --- 1280px --- */
+@media (max-width: 1280px) {
     .profile-btn { margin-right: 0px; }
     .nav-links ul li a { font-size: 15px; }
-    .profile {
-        height: 90%;
-        margin-left: -120px;
-        margin-top: 10px;
-    }
+    .profile { height: 90%; margin-left: -120px; margin-top: 10px; }
     .nav-links ul { margin-left: -30px; }
-.hero{
-  
-   width: 100%;
-   display: block;
-   height: 100%;
-}
-.hero h1 {
-        margin-left: 11.2%;
-        margin-top: 19%;
-        font-size: 32px;
-}
-.hero h2 {
-        margin-left: 11.2%;
-        margin-top: 22.5%;
-        font-size: 26px;
-}
-    .hero p {
-        margin-left: 11.2%;
-        margin-top: 29.5%;
-    }
-        .button {
-        margin-left: 11.2%;
-        margin-top: 78%;
-        padding: 7px 28px;
-            font-size: 16px !important;
-    }
-.whattoexpectimg{
-    width:60%;
-    margin: 10px auto;
-}
-.bg{
-    min-height: 750px;
-}
-.card {
- flex: 0 1 350px;
- height: 355px;
+    
+    .hero { width: 100%; display: block; height: 100%; }
+    .hero h1 { margin-left: 11.2%; margin-top: 19%; font-size: 32px; }
+    .hero h2 { margin-left: 11.2%; margin-top: 22.5%; font-size: 26px; }
+    .hero p { margin-left: 11.2%; margin-top: 29.5%; }
+    .button { margin-left: 11.2%; margin-top: 78%; padding: 7px 28px; font-size: 16px !important; }
+    
+    .whattoexpectimg { width: 60%; margin: 10px auto; }
+    .bg { min-height: 750px; }
+    .card { flex: 0 1 350px; height: 355px; }
+    .card p { font-size: 12.5px; }
+    
+    .arrow1 img, .arrow2 img { top: 50%; width: 80px; }
+    .arrow1 img { left: 2%; }
+    .arrow2 img { right: 2%; }
+    
+    .robot img { width: 77%; margin-top: -22%; margin-left: 27%; }
+    .quotes img { height: 300px; }
+    
+    .social { margin-left: 30%; }
+    .social1 { margin-top: -10.8%; margin-left: 57%; }
+    
+    #chatToggle { width: 60px; height: 60px; }
+    #chatApp { width: 485px; height: 450px; }
+    .quotes_text img { max-width: 55%; }
 }
 
-.card p{
-    font-size: 12.5px;
-}
-
-  .arrow1 img,
-.arrow2 img {
-    top:50%; 
-    width: 80px;
-   
-}
-
-.arrow1 img {
-    left: 2%;
-}
-
-.arrow2 img {
-    right: 2%;
-}
-.robot img{
-    width: 77%;
-    margin-top: -22%;
-    margin-left: 27%;
-}
-.quotes img{
-  height: 300px;  
-
-}
-.social { margin-left: 30%; }
-    .social1 {
-        position: relative;
-        margin-top: -10.8%;
-        margin-left: 57%;
-    }
-    #chatToggle {
-        width: 60px;
-        height: 60px;
-    }
-    #chatApp {
-        width: 485px;
-        height: 450px;
-    }
-    .quotes_text img {
-    max-width: 55%;
-    }
-}
-
+/* --- 1024px --- */
 @media (max-width: 1024px) {
- .profile-btn { margin-right: 0px; }
- .profile {
-        margin-right: -70px;
-        height: 75%;
-        margin-top: 0px;
-    }
-    .icon-row { gap: 5vw; }
+    .profile-btn { margin-right: 0px; }
+    .profile { margin-right: -70px; height: 75%; margin-top: 0px; }
     .header-container { padding: 0 5vw; }
     .logo { height: 40px; margin-left: 20px; }
     .nav-links ul { margin-left: 0px; margin-top: 5px; }
     .nav-links ul li a { font-size: 14px; }
-
-.hero{
-  
-   width: 100%;
-   display: block;
-   height: 100%;
-}
-    .hero h1 {
-        margin-left: 7.2%;
-        margin-top: 19%;
-        font-size: 28px;
-    }
-    .hero h2 {
-        margin-left: 7.2%;
-        margin-top: 23%;
-        font-size: 22px;
-    }
-        .hero p {
-        margin-left: 7.2%;
-        margin-top: 31.5%;
-        width: 500px;
-        line-height: 1.3;
-    }
-    .button {
-        margin-left: 7.2%;
-        margin-top: 88%;
-        padding: 7px 23px;
-        font-size: 14px !important;
-    }
-
-.whattoexpectimg{
-    width:65%;
-
-}
-.bg{
-    min-height: 720px;
-}
-
-.card p{
-    font-size: 11.5px;
-}
-.card h3{
-    font-size: 16px;
-}
-    .card {
-        flex: 0 1 278px;
-        height: 314px;
-    }
-    .cards-container {
-        padding-top: 10%;
-    }
-
-.button1 a{
-    font-size: 10px !important;
-}
-.arrow1 img,
-.arrow2 img {
-    position: absolute;
-    top: 50%; 
-    width: 75px;
-}
-
-.arrow1 img {
-    left: 1.5%;
-}
-
-.arrow2 img {
-    right: 1.5%;
-}
-.robot img{
-    margin-top: -35%;
-    margin-left: 27%;
-}
-.quotes img{
-  height: 243px;  
-}
-.quotes_text {
-    display: flex;
-    justify-content: center; /* центрира по хоризонтала */
-    align-items: center;     /* центрира по вертикала */
-    width: 85vw;            /* използвай viewport width, за да е наистина централно */
-    margin: 0;               /* премахваме странични margin */
-    padding: 0;              /* премахваме padding */
-    box-sizing: border-box;
-}
-
-.footer-social { gap: 18px; margin-top: -7vh; }
-.footer h1 { font-size: 22px; }
+    
+    .hero { width: 100%; display: block; height: 100%; }
+    .hero h1 { margin-left: 7.2%; margin-top: 19%; font-size: 28px; }
+    .hero h2 { margin-left: 7.2%; margin-top: 23%; font-size: 22px; }
+    .hero p { margin-left: 7.2%; margin-top: 31.5%; width: 500px; line-height: 1.3; }
+    .button { margin-left: 7.2%; margin-top: 88%; padding: 7px 23px; font-size: 14px !important; }
+    
+    .whattoexpectimg { width: 65%; }
+    .bg { min-height: 720px; }
+    .card { flex: 0 1 278px; height: 314px; }
+    .card h3 { font-size: 16px; }
+    .card p { font-size: 11.5px; }
+    .cards-container { padding-top: 10%; }
+    
+    .button1 a { font-size: 10px !important; }
+    .arrow1 img, .arrow2 img { top: 50%; width: 75px; }
+    .arrow1 img { left: 1.5%; }
+    .arrow2 img { right: 1.5%; }
+    
+    .robot img { margin-top: -35%; margin-left: 27%; }
+    .quotes img { height: 243px; }
+    .quotes_text { width: 85vw; margin: 0 auto; padding: 0; }
+    
+    .footer-social { gap: 18px; margin-top: -7vh; }
+    .footer h1 { font-size: 22px; }
     .footer-social a { font-size: 1.2rem !important; }
     .social { margin-left: 26%; margin-top: -13.9%; }
     .social1 { margin-top: -12.8%; }
-        #chatToggle {
-        width: 55px;
-        height: 55px;
-    }
-    #chatToggle i {
-    font-size: 27px;
-    }
-    #chatHeader {
-    font-size: 19px;
-}
-#chatSidebar button {
-    padding: 6px;
-    font-size: 12px;
-}
-        #chatApp {
-        width: 475px;
-        height: 435px;
-}
-.chatItem {
-    padding: 6px;
-    margin: 3px 0;
-    border-radius: 8px;
-     font-size: 12px;
-}
-}
-
-
-@media (max-width: 768px) {
-     .menu-toggle { 
-                display: block; 
-                margin-right: -65px;
-                z-index: 10;
-            }
-
-            .header-container {
-                padding: -1px 4vw;
-            }
-
-            .logo {
-                height: 45px;
-                margin-left: -5px;
-            }
-            
-             .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;     
-    max-width: 220px; 
-    box-sizing: border-box;
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;     
-}
     
-
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
-    }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
-    }
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 1.1rem;
-                color: #09989e;
-                width: 100%;
-            }
-
-            /* Анимация на линковете */
-            .nav-links ul li {
-                opacity: 0;
-                transform: translateY(-10px);
-                transition: opacity 0.3s ease, transform 0.3s ease;
-            }
-
-            .nav-links.active ul li {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
-            .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
-            .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
-.hero{
-     background-image: url("photos/Group\ 14\(3\).png");
-     height: 80%;
-     width: 110%;
-}
-    .hero h1 {
-        margin-left: 4.2%;
-        margin-top: 18%;
-        font-size: 25px;
-    }
-    .hero h2 {
-        margin-left: 4.2%;
-        margin-top: 23%;
-        font-size: 20px;
-    }
-    .hero p {
-        margin-left: 4.2%;
-        margin-top: 31.5%;
-        width: 290px;
-        font-size: 14px;
-    }
-    .button {
-        margin-left: 4.2%;
-        margin-top: 92%;
-        padding: 5px 15px;
-        font-size: 13px !important;
-    }
-.bg{
-    min-height: 1000px;
-     background-image: url("photos/Group\ 18\(4\).png");
-}
-    .whattoexpectimg {
-        width: 82%;
-    }
-    .cards-container {
-        padding-top: 12%;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .card {
-    width: 290px;
-    flex: 0 1 308px;
-    }
-
-    .button1 {
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-  .arrow1 img,
-.arrow2 img {
-    top: 200px; 
-    width: 85px;
+    #chatToggle { width: 55px; height: 55px; }
+    #chatToggle i { font-size: 27px; }
+    #chatHeader { font-size: 19px; }
+    #chatSidebar button { padding: 6px; font-size: 12px; }
+    #chatApp { width: 475px; height: 435px; }
+    .chatItem { padding: 6px; margin: 3px 0; font-size: 12px; }
 }
 
-.arrow1 img {
-    left: 15%;
-}
-
-.arrow2 img {
-    right: 15%;
-}
-    .robot img {
-        width: 91%;
-        margin-top: -17%;
-        margin-left: 10%;
+/* --- 768px --- */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; margin-right: -65px; z-index: 10; }
+    .header-container { padding: -1px 4vw; }
+    .logo { height: 45px; margin-left: -5px; }
+    
+    .nav-links {
+        position: absolute; top: 100%; right: 0; width: 90vw; max-width: 220px;
+        background: white; border-radius: 0.5rem; overflow: hidden;
+        opacity: 0; max-height: 0; transform: translateY(-20px);
+        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+        z-index: 1000; padding: 0; margin-right: 60px;
     }
-    .quotes img{
-    height: 180px;
-    }
-.quotes_text img {
-    max-width: 70%;
-    height: auto;}
-.footer-social { gap: 25px; }
+    .nav-links.active { max-height: 500px; opacity: 1; transform: translateY(0); }
+    .nav-links ul { flex-direction: column; padding: 1.5rem; gap: 0.8rem; margin: 0; }
+    .nav-links ul li { width: 100%; text-align: left; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+    .nav-links ul li a { text-align: left; display: block; font-size: 1.1rem; width: 100%; }
+    .nav-links.active ul li { opacity: 1; transform: translateY(0); }
+    .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
+    
+    .hero { background-image: url("photos/Group 14(3).png"); height: 80%; width: 110%; }
+    .hero h1 { margin-left: 4.2%; margin-top: 18%; font-size: 25px; }
+    .hero h2 { margin-left: 4.2%; margin-top: 23%; font-size: 20px; }
+    .hero p { margin-left: 4.2%; margin-top: 31.5%; width: 290px; font-size: 14px; }
+    .button { margin-left: 4.2%; margin-top: 92%; padding: 5px 15px; font-size: 13px !important; }
+    
+    .bg { min-height: 1000px; background-image: url("photos/Group 18(4).png"); }
+    .whattoexpectimg { width: 82%; }
+    .cards-container { padding-top: 12%; flex-direction: column; align-items: center; }
+    .card { width: 290px; flex: 0 1 308px; }
+    .button1 { bottom: 20px; left: 50%; transform: translateX(-50%); }
+    
+    .arrow1 img, .arrow2 img { top: 200px; width: 85px; }
+    .arrow1 img { left: 15%; }
+    .arrow2 img { right: 15%; }
+    
+    .robot img { width: 91%; margin-top: -17%; margin-left: 10%; }
+    .quotes img { height: 180px; }
+    .quotes_text img { max-width: 70%; }
+    
+    .footer-social { gap: 12px; margin-top: -7.5vh; }
     .footer h1 { font-size: 20px; margin-top: 5vh; }
     .footer-social a { font-size: 1rem !important; }
-    .footer-social { gap: 12px; margin-top: -7.5vh; }
     .social { width: 130px; margin-top: -15.9%; margin-left: 24%; }
     .social1 { margin-top: -13.8%; margin-left: 59%; }
     .social2 { max-width: 110px; margin-left: 60.8%; }
 }
 
+/* --- 480px --- */
 @media (max-width: 480px) {
-    .hero{
-         background-image: url("photos/Group\ 14\(4\).png");
-         width: 155%;
-    }
-    .hero h1{
-        font-size: 23px;
-    }
-        .hero h2 {
-        margin-top: 22%;
-        font-size: 18px;
-    }
-    .hero p{
-        font-size: 13px;
-    }
-    .button {
-        font-size: 12px !important;
-    }
-
-.whattoexpectimg{
-            width: 110%;
-            margin: 40px auto;
-}
-.bg{
-    min-height: 1500px;
-     background-image: url("photos/Group\ 18\(5\).png");
-}
-.cards-container{
-    padding-top: 13%;
-}
-.card{
-    width: 283px;
-    flex: 0 1 296px;
-}
-   
-  .arrow1 img,
-.arrow2 img {
-    position: absolute;
-    top: 15%; 
-    width: 80px;
-}
-
-.arrow1 img {
-    left: 5%;
-}
-
-.arrow2 img {
-    right: 5%;
-}
-.robot img{
-height: 120%;
-           width: 100%;
-        height: auto;
-        position: relative;
-        margin-top: -121%;
-        margin-left: 32px;
-}
-.quotes img{
-  height: 115px;  
-}
- .quotes_text {
-    display: flex;
-    justify-content: center; /* центрира по хоризонтала */
-    align-items: center;     /* центрира по вертикала */
-    width: 84vw;            /* използвай viewport width, за да е наистина централно */
-    margin: 0;               /* премахваме странични margin */
-    padding: 0;              /* премахваме padding */
-    box-sizing: border-box;
-}
- .footer{
-        height: 99px;
-       
-    }
-    .footer h1{
-        font-size: 10px;
-         margin-top: 3vh;
-    }
-     .footer {
-                aspect-ratio: 16 / 3;
-                margin-top: 30px;
-            }
-            
-            .footer-social {
-                gap: 10px;
-                margin-top: -2vh;
-            }
-.footer-social a{ 
-font-size: 0.7rem !important; 
- margin-top: -1.5vh;
-        }
-}
- @media(max-width: 425px) {
-    .whattoexpectimg{
-        width: 100%;
-        margin-left: 5px;
-    }
-   .arrow1 img,
-.arrow2 img {
-    position: absolute;
-    top: 125px; 
-    width: 75px;
-    height: auto;
-    cursor: pointer;
-    z-index: 10;
-    transform: none;
-}
-
-.arrow1 img {
-    left: 3%;
-}
-
-.arrow2 img {
-    right: 3%;
-}
-    .robot img {
-        width: 95%;
-        height: auto;
-        position: relative;
-        margin-top: -285px;
-        margin-left: 26px;
-    }
+    .hero { background-image: url("photos/Group 14(4).png"); width: 155%; }
+    .hero h1 { font-size: 23px; }
+    .hero h2 { margin-top: 22%; font-size: 18px; }
+    .hero p { font-size: 13px; }
+    .button { font-size: 12px !important; }
     
-    .bg{
-    min-height: 1100px;
-     background-image: url("Group 18(11).png");
-}
- }
-@media(max-width: 375px) {
-   .arrow1 img,
-.arrow2 img {
-    position: absolute;
-    top: 125px; 
-    width: 65px;
-    height: auto;
-    cursor: pointer;
-    z-index: 10;
-    transform: none;
-}
-
-.arrow1 img {
-    left: 1%;
-}
-
-.arrow2 img {
-    right: 1%;
-}
-    .whattoexpectimg {
-        width: 100%;
-        margin-left: 0px;
-}
-.robot img {
-        width: 95%;
-        height: auto;
-        position: relative;
-        margin-top: -250px;
-        margin-left: 19px;
-    }
-    .bg{
-    min-height: 1100px;
-     background-image: url("Group 18(10).png");
-}
-.card:first-child {
-    margin-top: 55px; /* само първата карта е отместена надолу */
-}
-
-    .quotes img {
-        height: 88px;
-    }
-    .quotes_text {
-    display: flex;
-    justify-content: center; /* центрира по хоризонтала */
-    align-items: center;     /* центрира по вертикала */
-    width: 83vw;            /* използвай viewport width, за да е наистина централно */
-    margin: 0;               /* премахваме странични margin */
-    padding: 0;              /* премахваме padding */
-    box-sizing: border-box;
-}
-   
-    .footer{
-        height: 90px;
-    }
-
-}
- 
-
-    @media(max-width: 320px) {
-  
-.menu-toggle { 
-                display: block; 
-                margin-right: -50px;
-                margin-top: 5px;
-                z-index: 10;
-            }
-
-            .logo {
-                height: 35px;
-                margin-left: 20px;
-            }
-            
-             .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
-}
+    .whattoexpectimg { width: 110%; max-width: none; margin: 42px auto; position: relative; left: 50%; transform: translateX(-50%); }
+    .bg { min-height: 1500px; background-image: url("photos/Group 18(5).png"); }
+    .cards-container { padding-top: 13%; }
+    .card { width: 283px; flex: 0 1 296px; }
     
-
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
-    }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
-    }
-
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 0.9rem;
-                color: #09989e;
-                width: 100%;
-            }
-
-            /* Анимация на линковете */
-            .nav-links ul li {
-                opacity: 0;
-                transform: translateY(-10px);
-                transition: opacity 0.3s ease, transform 0.3s ease;
-            }
-
-            .nav-links.active ul li {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
-            .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
-            .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
-            .profile{
-                height: 80%;
-    margin-top: 7px;
-    margin-right: -50px;
-            }
-.hero{
-    height:24%;
-    margin-top: 80px;
-
-}
-.header-container{
-    padding: 0 12vw; 
-    margin-left: -50px;
-    height: 70px;
-}
-.hero h1{
-    margin-left: 15px;
-    font-size: 12px;
-    margin-top: 25px;
-}
-.hero h2{
-    margin-left: 15px;
-    font-size: 10px;
-    margin-top: 44px;
-}
-.hero p{
-    margin-left: 15px;
-    font-size: 7px;
-    margin-top: 81px;
-    padding-right: 53%;
-    line-height: 1.2;
-}
-.button{
-    margin-left: 15px;
-    font-size: 7px !important;
-   
-margin-top: 280px;
-padding: 2px 9px;
-}
-.whattoexpectimg{
-            width: 110%;
-        margin-left: 5px;
-}
-.bg{
-    min-height: 1100px;
-     background-image: url("Group 18(9).png");
+    .arrow1 img, .arrow2 img { top: 15%; width: 80px; }
+    .arrow1 img { left: 5%; }
+    .arrow2 img { right: 5%; }
     
-}
-   .cards-container {
-        flex-direction: column; /* една под друга */
-        align-items: center;    /* центриране на картите */
-        gap: 10px;
-       
-    }
-
-    .card {
-        width: 207px;           /* фиксирана ширина */
-        margin-top: 0;
-        height: 250px;
+    .robot img { width: 110%; margin-top: -113%; margin-left: -1%; max-width: none; content: url("photos/Group 19(1).png"); }
+    .quotes img { height: 115px; }
+    .quotes_text img { max-width: 75%; }
     
-    }
-    .card:first-child {
-    margin-top: 50px; /* само първата карта е отместена надолу */
-}
-.card h3{
-    font-size: 14px;
-}
-.card p{
-    font-size: 9px;
-    margin-top: 20px;
-}
-
-    .button1 {
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-
-    }
-    .button1 a{
-        font-size: 8px !important;
-    }
-  .arrow1 img,
-.arrow2 img {
-    position: absolute;
-    top: 120px; 
-    width: 55px;
-    height: auto;
-    cursor: pointer;
-    z-index: 10;
-    transform: none;
+    .footer-social { gap: 7px; margin-top: -1vh; }
+    .footer h1 { font-size: 18px; margin-top: 3vh; }
+    .footer-social a { font-size: 0.9rem !important; margin-top: -7vh; }
+    .social { width: 100px; margin-top: -25.9%; margin-left: 19%; }
+    .social1 { max-width: 40px; margin-top: -16.8%; margin-left: 62%; }
+    .social2 { max-width: 80px; margin-top: -0.2%; margin-left: 64.8%; }
+    .footer { height: 100px; }
+    
+    #chatApp { width: 374px; height: 397px; }
+    #chatHeader { font-size: 17px; }
+    #chatSidebar button { padding: 7px; font-size: 11px; }
+    #chatInput { padding: 8px; }
+    .chatItem { font-size: 10px; }
+    #chatToggle { width: 47px; height: 47px; }
+    #chatToggle i { font-size: 23px; }
 }
 
-.arrow1 img {
-    left: 0.5%;
+/* --- 425px --- */
+@media (max-width: 425px) {
+    .hero { height: 70%; width: 155%; }
+    .hero h2 { margin-top: 23%; }
+    .hero p { margin-top: 32.5%; }
+    .button { margin-top: 99%; }
+    
+    .arrow1 img, .arrow2 img { top: 15%; width: 75px; }
+    .arrow1 img { left: 1.5%; }
+    .arrow2 img { right: 1.5%; }
+    
+    .bg { min-height: 1200px; background-image: url("photos/Group 18(11).png"); }
+    .robot img { margin-top: -55%; }
+    .quotes img { height: 100px; }
+    
+    .social { width: 90px; margin-top: -28.9%; margin-left: 16%; }
+    .social1 { max-width: 35px; margin-top: -17.8%; margin-left: 65%; }
+    .social2 { max-width: 75px; margin-top: 0.8%; margin-left: 65.8%; }
+    
+    #chatApp { width: 353px; height: 346px; }
+    #chatInput { padding: 5px; }
+    #chatHeader { font-size: 16px; }
 }
 
-.arrow2 img {
-    right: 0.5%;
-}
-.robot img{
-         width: 99%;
-            height: auto;
-            position: relative;
-            margin-top: -310px;
-            margin-left: 6px;
-}
-.quotes img{
-  height: 85px;  
-}
-.quotes_text {
-    display: flex;
-    justify-content: center; /* центрира по хоризонтала */
-    align-items: center;     /* центрира по вертикала */
-    width: 83vw;            /* използвай viewport width, за да е наистина централно */
-    margin: 0;               /* премахваме странични margin */
-    padding: 0;              /* премахваме padding */
-    box-sizing: border-box;
+/* --- 375px --- */
+@media (max-width: 375px) {
+    .hero { background-image: url("photos/Group 14(5).png"); height: 69%; width: 104%; }
+    .hero h1 { font-size: 21px; margin-top: 37%; }
+    .hero h2 { margin-top: 45%; font-size: 16px; }
+    .hero p { margin-top: 59.5%; font-size: 12px; }
+    .button { margin-top: 170%; font-size: 11px !important; }
+    
+    .card { width: 254px; flex: 0 1 283px; }
+    .card p { margin-top: 24px; }
+    .button1 { padding: 7px 20px; }
+    
+    .arrow1 img, .arrow2 img { top: 15%; width: 65px; }
+    .arrow1 img { left: 1%; }
+    .arrow2 img { right: 1%; }
+    
+    .whattoexpectimg { width: 130%; }
+    .robot img { width: 115%; margin-top: -47%; margin-left: -4%; }
+    .quotes_text img { max-width: 85%; }
+    .bg { min-height: 1100px; background-image: url("photos/Group 18(11).png"); }
+    .quotes img { height: 88px; }
+    
+    .footer { height: 80px; }
+    .footer h1 { font-size: 18px; margin-top: 2vh; }
+    .social { width: 85px; margin-top: -22.9%; margin-left: 13%; }
+    .social2 { max-width: 70px; margin-top: -0.2%; margin-left: 67.8%; }
+    .footer-social { gap: 7px; margin-top: -3vh; }
+    .footer-social a { font-size: 0.8rem !important; margin-top: -1.5vh; }
+    
+    #chatMain { width: 250px; }
+    #chatApp { width: 336px; height: 344px; }
 }
 
-  .footer{
-        height: 80px;
-       
-    }
-    .footer h1{
-        font-size: 10px;
-         margin-top: 2vh;
-    }
-     .footer {
-                aspect-ratio: 16 / 3;
-                margin-top: 30px;
-            }
-            
-            .footer-social {
-                gap: 8px;
-                margin-top: -1vh;
-            }
-.footer-social a{ 
-font-size: 0.6rem !important; 
- margin-top: -1.5vh;
-        }
-    }
- 
+/* --- 320px --- */
+@media (max-width: 320px) {
+    .nav-links ul li a { font-size: 0.9rem; }
+    .hero { height: 61%; width: 103%; }
+    .button { margin-top: 180%; font-size: 9px !important; }
+    .hero h1 { font-size: 21px; margin-top: 30%; line-height: 1; }
+    .hero h2 { font-size: 14px; }
+    
+    .whattoexpectimg { width: 134%; }
+    .bg { min-height: 1100px; background-image: url("photos/Group 18(11).png"); }
+    .card { width: 213px; flex: 0 1 250px; }
+    .card h3 { font-size: 14px; }
+    .card p { font-size: 9px; margin-top: 20px; }
+    
+    .button1 { bottom: 20px; left: 50%; transform: translateX(-50%); }
+    .button1 a { font-size: 8px !important; }
+    
+    .arrow1 img, .arrow2 img { top: 15%; width: 55px; }
+    .arrow1 img { left: 0.5%; }
+    .arrow2 img { right: 0.5%; }
+    
+    .robot img { width: 126%; margin-top: -297px; margin-left: -23px; }
+    .quotes img { height: 75px; }
+    
+    .footer { height: 80px; }
+    .footer h1 { font-size: 16px; margin-top: 2vh; }
+    .social { width: 80px; margin-top: -24.9%; margin-left: 11%; }
+    .social1 { max-width: 30px; margin-top: -19.8%; margin-left: 67%; }
+    .social2 { max-width: 65px; margin-top: -0.2%; margin-left: 69.2%; }
+    .footer-social { gap: 8px; margin-top: -3vh; }
+    .footer-social a { font-size: 0.7rem !important; margin-top: -1.5vh; }
+    
+    #chatToggle { width: 43px; height: 43px; }
+    #chatToggle i { font-size: 21px; }
+    #chatApp { width: 281px; height: 333px; }
+    #chatHeader { font-size: 15px; padding: 13px; }
+    #chatInputArea button { width: 45px; }
+    .chatItem { font-size: 12px; }
+}
