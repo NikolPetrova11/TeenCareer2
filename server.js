@@ -1,4 +1,5 @@
 //Libraries
+require('dotenv').config(); // Зарежда променливите на средата от .env файла
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
@@ -6,6 +7,8 @@ const path = require('path');
 const session = require('express-session');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+const { GoogleGenerativeAI } = require("@google/generative-ai"); // Импортираме Gemini библиотеката
+const cors = require('cors'); // Импортираме CORS middleware
 
 const app = express();
 
@@ -17,9 +20,40 @@ app.use(session({
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
 
+app.use(cors()); // Активираме CORS за всички заявки
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
+
+// --- КОНФИГУРАЦИЯ НА GEMINI ---
+// Използвай API ключ от .env файла за сигурност
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+// Нов ендпойнт за чатбота
+app.post('/chat', async (req, res) => {
+    try {
+        const { message } = req.body; // Получаваме съобщението (професията) от фронтенда
+        if (!message) {
+            return res.status(400).json({ error: "Моля, въведете професия." });
+        }
+
+        // Избираме модел на Gemini (например "gemini-pro" за текст)
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+        // Създаваме промпт за генериране на въпроси за интервю
+        const prompt = `Генерирай 5 въпроса за интервю за работа за позицията "${message}". Въпросите трябва да са подходящи за тийнейджъри или хора, които започват първа работа. Форматирай отговора като номериран списък.`;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text(); // Извличаме текстовия отговор от Gemini
+
+        res.json({ reply: text }); // Изпращаме отговора обратно към фронтенда
+
+    } catch (error) {
+        console.error("Грешка при комуникация с Gemini:", error);
+        res.status(500).json({ error: "Грешка при комуникация с бота. Моля, опитайте отново по-късно." });
+    }
+});
 
 // DataBase connection
 const dbURI = 'mongodb+srv://teencareer_db_user:jO38uGY9loz1xVar@cluster0.ylxecao.mongodb.net/TeenCareerDB?retryWrites=true&w=majority';

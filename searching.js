@@ -1,90 +1,20 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const chatToggle = document.getElementById('chatToggle');
+    const chatApp = document.getElementById('chatApp');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendButton = chatApp.querySelector('#chatInputArea button');
 
-/*<-- CHAT BOT -->*/
-const chatApp = document.getElementById("chatApp");
-const chatToggle = document.getElementById("chatToggle");
-const messages = document.getElementById("chatMessages");
-const history = document.getElementById("chatHistory");
-
-let chatCount = 0;
-
-chatToggle.onclick = () => {
-  chatApp.style.display =
-    chatApp.style.display === "flex" ? "none" : "flex";
-};
-
-function newChat(){
-  chatCount++;
-
-  const item=document.createElement("div");
-  item.className="chatItem";
-  item.innerText="Chat "+chatCount;
-
-  item.onclick=()=>{
-    messages.innerHTML="";
-  }
-
-  history.appendChild(item);
-  messages.innerHTML="";
-}
-/*<-- POP UP -->*/
-
-  const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); 
-  menuToggle.addEventListener("click", () => {
-    
-    if (navMenu) {
-        navMenu.classList.toggle("active");
-    }
-  });
-
-  // Popup open/close logic
-  const profileBtn = document.querySelector(".profile-btn");
-  const overlay = document.querySelector(".overlay");
-  const popup = document.querySelector(".popup");
-  const closeBtn = document.querySelector(".popup .close-btn");
-
-  profileBtn.addEventListener("click", function() {
-    overlay.classList.add("active");
-    popup.classList.add("active");
-  });
-
-  closeBtn.addEventListener("click", function() {
-    overlay.classList.remove("active");
-    popup.classList.remove("active");
-  });
-
-  overlay.addEventListener("click", function(e) {
-    if (e.target.classList.contains("overlay")) {
-        overlay.classList.remove("active");
-        popup.classList.remove("active");
-    }
-  });
-
-
-  // NEW TAB LOGIC (LOGIN/REGISTER)
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const loginForm = document.querySelector(".login-form-container");
-  const registerForm = document.querySelector(".register-form-container");
-
-  tabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-       
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-    
-        button.classList.add("active");
-
-        const targetForm = button.getAttribute("data-form");
-
-        if (targetForm === "login") {
-            loginForm.classList.add("active");
-            registerForm.classList.remove("active");
-        } else if (targetForm === "register") {
-            loginForm.classList.remove("active");
-            registerForm.classList.add("active");
+    // Показване/скриване на чат прозореца
+    chatToggle.addEventListener('click', () => {
+        chatApp.style.display = chatApp.style.display === 'flex' ? 'none' : 'flex';
+        if (chatApp.style.display === 'flex') {
+            chatInput.focus();
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Скрол до долу
         }
     });
-  });
 
+<<<<<<< Updated upstream
  document.querySelector('.button').addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
@@ -92,3 +22,79 @@ function newChat(){
       target.scrollIntoView({ behavior: 'smooth' });
     }
   });
+=======
+    // Функция за добавяне на съобщение към чата
+    function addMessage(sender, text) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('chat-message', sender);
+        
+        // Базови стилове за съобщенията (препоръчително е да ги преместите в searching1.css)
+        if (sender === 'user') {
+            messageElement.style.textAlign = 'right';
+            messageElement.style.backgroundColor = '#e0f7fa'; // Светлосиньо за потребителя
+            messageElement.style.borderRadius = '10px';
+            messageElement.style.padding = '8px';
+            messageElement.style.margin = '5px 0';
+            messageElement.style.marginLeft = 'auto'; // Избутва съобщението на потребителя вдясно
+            messageElement.style.maxWidth = '80%';
+        } else {
+            messageElement.style.textAlign = 'left';
+            messageElement.style.backgroundColor = '#f0f0f0'; // Светлосиво за бота
+            messageElement.style.borderRadius = '10px';
+            messageElement.style.padding = '8px';
+            messageElement.style.margin = '5px 0';
+            messageElement.style.marginRight = 'auto'; // Избутва съобщението на бота вляво
+            messageElement.style.maxWidth = '80%';
+        }
+        
+        messageElement.innerHTML = `<strong>${sender === 'user' ? 'Вие' : 'TeenBot'}:</strong> ${text}`;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Скрол до долу
+    }
+
+    // Функция за изпращане на съобщение към бекенда
+    window.sendMessage = async function() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        addMessage('user', message);
+        chatInput.value = ''; // Изчистваме полето веднага
+
+        try {
+            addMessage('bot', 'TeenBot пише...'); // Показваме индикатор за писане
+
+            const response = await fetch('http://localhost:3000/chat', { // Уверете се, че URL-ът съвпада с вашия Node.js сървър
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            // Премахваме индикатора за писане преди да добавим реалния отговор
+            chatMessages.removeChild(chatMessages.lastChild);
+            addMessage('bot', data.reply || data.error); // Показваме отговора или грешката
+
+        } catch (error) {
+            console.error('Грешка при комуникация с бота:', error);
+            chatMessages.removeChild(chatMessages.lastChild); // Премахваме индикатора за писане
+            addMessage('bot', 'Грешка: Нещо се обърка при комуникацията с бота. Моля, опитайте отново.');
+        }
+    };
+
+    // Изпращане на съобщение при натискане на Enter
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Функция за нов чат (извиква се при натискане на бутона "+ Нов чат")
+    window.newChat = function() {
+        chatMessages.innerHTML = ''; // Изчистваме всички съобщения
+        addMessage('bot', 'Здравейте! Аз съм TeenBot. Кажете ми каква професия ви интересува и аз ще ви задам въпроси за интервю.');
+    };
+
+    // Първоначално съобщение при отваряне на чата
+    newChat();
+});
+>>>>>>> Stashed changes
