@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-<<<<<<< Updated upstream
  document.querySelector('.button').addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       target.scrollIntoView({ behavior: 'smooth' });
     }
   });
-=======
+
     // Функция за добавяне на съобщение към чата
     function addMessage(sender, text) {
         const messageElement = document.createElement('div');
@@ -97,4 +96,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Първоначално съобщение при отваряне на чата
     newChat();
 });
->>>>>>> Stashed changes
+
