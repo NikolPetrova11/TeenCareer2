@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Базови стилове за съобщенията (препоръчително е да ги преместите в searching1.css)
         if (sender === 'user') {
             messageElement.style.textAlign = 'right';
-            messageElement.style.backgroundColor = '#e0f7fa'; // Светлосиньо за потребителя
+            messageElement.style.backgroundColor = '#e5d6eb'; // Светлосиньо за потребителя
+            messageElement.style.color = '#8274A1';
             messageElement.style.borderRadius = '10px';
             messageElement.style.padding = '8px';
             messageElement.style.margin = '5px 0';
@@ -38,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             messageElement.style.maxWidth = '80%';
         } else {
             messageElement.style.textAlign = 'left';
-            messageElement.style.backgroundColor = '#f0f0f0'; // Светлосиво за бота
+            messageElement.style.backgroundColor = '#e5d6eb'; // Светлосиво за бота
+            messageElement.style.color = '#8274A1';
             messageElement.style.borderRadius = '10px';
             messageElement.style.padding = '8px';
             messageElement.style.margin = '5px 0';

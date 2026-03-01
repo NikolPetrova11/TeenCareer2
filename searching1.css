@@ -837,6 +837,7 @@ h1 span {
     #chatApp { width: 353px; height: 346px; }
     #chatInput { padding: 5px; }
     #chatHeader { font-size: 16px; }
+    #chatMessages{font-size: 12px;}
 }
 
 /* --- 375px --- */
