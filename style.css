@@ -951,7 +951,7 @@ header {
     .main-content {
         position: relative;
         left: -1.5%;
-        margin-top: 40px;
+        margin-top: 40px; 
     }
     .cta { font-size: 11px; }
     .girl {

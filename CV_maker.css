@@ -1203,26 +1203,73 @@ padding-left: 5%;
  
 }
 @media (max-width: 768px) {
-   .menu-toggle { display: block; margin-right: -65px; z-index: 10; }
-    .header-container { padding: -1px 4vw; }
-    .logo { height: 45px; margin-left: -5px; }
-    
-    .nav-links {
-        position: absolute; top: 100%; right: 0; width: 90vw; max-width: 220px;
-        background: white; border-radius: 0.5rem; overflow: hidden;
-        opacity: 0; max-height: 0; transform: translateY(-20px);
-        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-        z-index: 1000; padding: 0; margin-right: 60px;
+   .profile-btn { margin-right: -40px; }
+    .menu-toggle {
+        display: block;
+        margin-right: 40px;
+        margin-top: -7px;
+        width: 90%;
     }
-    .nav-links.active { max-height: 500px; opacity: 1; transform: translateY(0); }
-    .nav-links ul { flex-direction: column; padding: 1.5rem; gap: 0.8rem; margin: 0; }
-    .nav-links ul li { width: 100%; text-align: left; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
-    .nav-links ul li a { text-align: left; display: block; font-size: 1.1rem; width: 100%; }
-    .nav-links.active ul li { opacity: 1; transform: translateY(0); }
+    .header-container { padding: 0 4vw; overflow: hidden; }
+    .logo { height: 45px; }
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 90vw;
+        max-width: 220px;
+        box-sizing: border-box;
+        background: white;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-20px);
+        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+        z-index: 1000;
+        padding: 0;
+        margin-right: 60px;
+    }
+    .nav-links.active {
+        max-height: 500px;
+        opacity: 1;
+        transform: translateY(0);
+        z-index: 9999;
+    }
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 0.8rem;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .nav-links ul li { width: 100%; text-align: left; }
+    .nav-links ul li a {
+        text-align: left;
+        display: block;
+        font-size: 1.1rem;
+        color: #09989e;
+        width: 100%;
+    }
+    .nav-links ul li {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .nav-links.active ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
     .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
     .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
     .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
     .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
+    .profile {
+        margin-right: 10px;
+        width: 95%;
+        margin-top: -5px;
+    }
     .hero .background {
       background-image: url("photos/Group 15(1).png");
       height: 100%;
@@ -1305,107 +1352,67 @@ padding-left: 5%;
     }
   }
   @media (max-width: 480px) {
- .menu-toggle {
-    display: block;
-    margin-right: -45px;
-    z-index: 10;
+ .menu-toggle { margin-right: -10px; }
+    .header-container { padding: 0 4vw; height: 70px; }
+    .logo { height: 42px; margin-left: -5px; }
+    .profile { margin-right: -90px; }
+    .profile-btn { width: 40px; height: 40px;  margin-right: -20px; }
+       .hero .background {
+        background-image: url("photos/Group 15(2).png");
+        height: 70%;
+        width: 182%;
+    }
+ .phone img {
+    width: 65%;
+    top: 35%;
+        left: 32%;
   }
-
-            .header-container {
-                padding: -1px 4vw;
-            }
-
-            .logo {
-    height: 45px;
-    margin-left: -20px;
-  }
-            
-             .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
+.hero .text{
+    margin-top: 21%;
+        margin-left: 56%;
 }
-    
-
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
-    }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
-    }
-
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 1.1rem;
-                color: #09989e;
-                width: 100%;
-            }
-
-            /* Анимация на линковете */
-            .nav-links ul li {
-                opacity: 0;
-                transform: translateY(-10px);
-                transition: opacity 0.3s ease, transform 0.3s ease;
-            }
-
-            .nav-links.active ul li {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
-            .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
-            .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
-            .profile {
-    height: 80%;
-    margin-top: 2px;
-    margin-right: -35px;
+    .hero h1 {
+    font-size: 19px;
+  
+  }
+   .hero h2 {
+    font-size: 17px;
+   
+  }
+  .hero p {
+   margin-top: 7%;
+    font-size: 12px;
+  }
+    .button {
+    padding: 3px 17px;
+    font-size: 10px !important;
+    margin-top: 15%;
+  }
+   .steps img {
+   width:105%;
+margin-top: -64%;
+  }
+   .steps p {
+    margin-top:-36%;
+    font-size: 22px;
+    line-height: 1;
   }
     .cards-container {
-        flex-direction: column;   /* подрежда ги една под друга */
-        align-items: center;      /* центрира картите */
-        gap: 25px;                /* разстояние между тях */
-        margin-top: -150px;       /* можеш да коригираш според дизайна */
+        flex-direction: column;   
+        align-items: center;     
+        gap: 25px;               
+        margin-top: -95%;   
     }
 
     .flip-card-container {
-        width: 90%;        /* картата заема почти цялата ширина */
-        max-width: 320px;  /* максимална ширина */
-        height: 380px;     /* малко по-ниска карта */
+        width: 90%;        
+        max-width: 320px;  
+        height: 380px;     
     }
 
     .flip-card-front img,
     .flip-card-back img {
-        width: 75%;         /* по-добро мащабиране на мобилно */
+        width: 75%;        
         padding: 40px 10px 10px;
     }
 
@@ -1416,103 +1423,23 @@ padding-left: 5%;
         padding: 10px 0;
         width: 70%;
     }
-     .hero {
-    position: relative;
-    width: 100%;
-        height: 43vh;
-    overflow: hidden;
-    margin-top: 80px;
-  }
- .phone img {
-    position: absolute;
-    width: 70%;
-    top: 40%;
-    left: 28%;
-    z-index: 2;
-    width: 216px;
-    transform: translate(-50%, -50%);
-    background: transparent;
-  }
-   .hero .text {
-    position: relative;
-    z-index: 2;
-    margin-left: 246px;
-    margin-top: 50px;
-    color: #19989e;
-    background: transparent;
-  }
-    .hero h1 {
-    font-size: 16px;
-    color: #8274A1;
-    background: transparent;
-  }
-   .hero h2 {
-    margin-top: 6px;
-    font-size: 17px;
-    font-family: 'Caveat', cursive;
-    color: #09989e;
-    background: transparent;
-    line-height: 0.8;
-  }
-  .hero p {
-    margin-top: 17px;
-    font-size: 9px;
-    color: #8274A1;
-    background: transparent;
-    line-height: 1.2;
-  }
-    .button {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff !important;
-    border: 2px solid #09989e;
-    padding: 3px 17px;
-    margin-top: 30px;
-    margin-left: -1px;
-    font-size: 8px !important;
-    background: #09989e;
-    position: absolute;
-    cursor: pointer;
-    border-radius: 25px;
-    z-index: 3;
-  }
-   .steps img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: -16px;
-    max-width: 470px;
-  }
-   .steps p {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: Caveat;
-    margin-top: 108px;
-    font-size: 30px;
-    font-size: 13px;
-    text-align: center;
-    color: #09989e;
-  }
-  .cards-container .flip-card-container:first-child {
-    margin-top: -120px;
-  }
+
     .flip-card-container {
     width: 90%;
     max-width: 296px;
     height: 350px;
   }
     .cards1-container {
-        flex-direction: column;     /* една над друга */
-        align-items: center;        /* центриране */
-        gap: 25px;                  /* разстояние между картите */
-        margin-top: 0;              /* коригирай ако трябва */
+        flex-direction: column;    
+        align-items: center;       
+        gap: 25px;                  
+        margin-top: 0;             
     }
 
     .flip-card-container1 {
-        width: 90%;                 /* заема ширината на екрана */
-        max-width: 320px;           /* ограничение */
-        height: 380px;              /* добра височина за мобилно */
+        width: 90%;               
+        max-width: 320px;       
+        height: 380px;              
     }
 
     .flip-card-front1 img,
@@ -1535,378 +1462,186 @@ padding-left: 5%;
     justify-content: center;
   }
   .flip-card1 p {
-    font-size: 15px;
-    text-align: center;
-    color: #7d7390;
-    margin-top: -103px;
+    font-size: 17px;
+    margin-top: -5%;
   }
-  .portfolio1 img {
-    display: block;
-    margin: 0 auto;
-   margin-left: 40px;
-    max-width: 534px;
-    width: 85%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-  .footer{
-        height: 99px;
-        width: 105%;
-       
+  .img1 img {
+        max-width: 450px;
+        margin-top: 7%;
+        margin-bottom: 12%;
     }
-    .footer h1{
-        font-size: 10px;
-         margin-top: 3vh;
-    }
-     .footer {
-                aspect-ratio: 16 / 3;
-                margin-top: 30px;
-            }
-            
-            .footer-social {
-                gap: 10px;
-                margin-top: -4vh !important;
-            }
-.footer-social a{ 
-font-size: 0.7rem !important; 
- margin-top: -1.5vh;
-        }
-
-
+  
+  .footer-social { gap: 7px; margin-top: -1vh; }
+    .footer h1 { font-size: 18px; margin-top: 3vh; }
+    .footer-social a { font-size: 0.9rem !important; margin-top: -7vh; }
+    .social { width: 100px; margin-top: -25.9%; margin-left: 19%; }
+    .social1 { max-width: 40px; margin-top: -16.8%; margin-left: 62%; }
+    .social2 { max-width: 80px; margin-top: -0.2%; margin-left: 64.8%; }
+    .footer { height: 100px; }
 }
 @media (max-width: 425px) {
- .profile {
-    height: 80%;
-    margin-top: 2px;
-    margin-right: -30px;
-  }
-   .menu-toggle {
-    display: block;
-    margin-right: -45px;
-    z-index: 10;
-  }
-       .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
-}
-    
-
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
+     .phone img {
+        width: 62%;
+        top: 36%;
+        left: 30%;
+     }
+     .hero .text {
+        margin-top: 25%;
+        margin-left: 52%;
     }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
+      .social { width: 90px; margin-top: -28.9%; margin-left: 16%; }
+    .social1 { max-width: 35px; margin-top: -17.8%; margin-left: 65%; }
+    .social2 { max-width: 75px; margin-top: 0.8%; margin-left: 65.8%; }
+ .steps img {
+        margin-top: -78%;
     }
-
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 0.9rem;
-                color: #09989e;
-                width: 100%;
-            }
-            .hero .text {
-    position: relative;
-    z-index: 2;
-    margin-left: 212px;
-    margin-top: 38px;
-    color: #19989e;
-    background: transparent;
-    padding-right: 20px;
-  }
-   .steps img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: -16px;
-    max-width: 407px;
-  }
     .steps p {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: Caveat;
-    margin-top: 108px;
-    font-size: 30px;
-    font-size: 14px;
-    text-align: center;
-    color: #09989e;
-  }
+        margin-top: -49%;
+        font-size: 20px;
+        line-height: 1;
+    }
+    .cards-container {
+        margin-top: -126%;
+    }
+        .flip-card-front img, .flip-card-back img {
+        width: 67%;
+        }
+            .flip-card-container {
+        height: 315px;
+    }
+    .img1 img {
+        max-width: 400px;
+    }
+        .flip-card1 p {
+        margin-top: 4%;
+    }
+    .hero h1 {
+        font-size: 20px;
+    }
 
 }  
 @media (max-width: 375px) {
-  .profile {
-    height: 80%;
-    margin-top: 2px;
-    margin-right: -40px;
-  }
-   .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
-}
-    
-
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
+  .footer { height: 80px; }
+    .footer h1 { font-size: 18px; margin-top: 2vh; }
+    .social { width: 85px; margin-top: -22.9%; margin-left: 13%; }
+    .social2 { max-width: 70px; margin-top: -0.2%; margin-left: 67.8%; }
+    .footer-social { gap: 7px; margin-top: -3vh; }
+    .footer-social a { font-size: 0.8rem !important; margin-top: -1.5vh; }
+        .hero .background {
+        width: 194%;
+                height: 68%;
     }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
+        .phone img {
+        width: 63%;
+        top: 36%;
+        left: 28%;
     }
-
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 0.9rem;
-                color: #09989e;
-                width: 100%;
-            }
-            .menu-toggle {
-    display: block;
-    margin-right: -50px;
-    z-index: 10;
-  }
-    .phone img {
-    position: absolute;
-    width: 70%;
-    top: 41%;
-    left: 27%;
-    z-index: 2;
-    width: 195px;
-    transform: translate(-50%, -50%);
-    background: transparent;
-  }
-   .hero {
-    position: relative;
-    width: 100%;
-    height: 22vh;
-    overflow: hidden;
-    margin-top: 81px;
-  }
-   .hero h2 {
-    margin-top: 6px;
-    font-size: 14px;
-    font-family: 'Caveat', cursive;
-    color: #09989e;
-    background: transparent;
-    line-height: 0.8;
-  }
-     .hero .text {
-    position: relative;
-    z-index: 2;
-    margin-left: 196px;
-    margin-top: 25px;
-    color: #19989e;
-    background: transparent;
-  }
-  .hero p {
-    margin-top: 15px;
-    font-size: 8px;
-    color: #8274A1;
-    background: transparent;
-    line-height: 1.2;
-  }
-  .steps img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: -16px;
-    max-width: 369px;
-  }
-   .steps p {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: Caveat;
-    margin-top: 95px;
-    font-size: 30px;
-    font-size: 13px;
-    text-align: center;
-    color: #09989e;
-  }
-  .footer{
-        height: 90px;
+        .hero .text {
+        margin-top: 33%;
+        margin-left: 50%;
+    }
+        .hero h1 {
+        font-size: 20px;
+    }
+        .hero h2 {
+        font-size: 20px;
+    }
+        .hero p {
+        margin-top: 7%;
+        font-size: 11px;
+    }
+    .button{
+        margin-top: 30%;
+    }
+        .steps img {
+      margin-top: -91%;
+        width: 117%;
+         content: url("photos/Group 16(1).png");
+    }
+        .steps p {
+        margin-top: -56%;
+        font-size: 18px;
+    }
+        .cards-container {
+        margin-top: -147%;
+    }
+        .flip-card-front img, .flip-card-back img {
+        width: 63%;
+    }
+        .flip-button, #openCvModalBtn, .template-selector {
+        font-size: 11px;
+        padding: 7px 0px;
+        width: 70%;
+    }
+        .flip-card-container {
+        height: 300px;
+        max-width: 275px;
+    }
+        .flip-card1 p {
+        font-size: 15px;
+        }
+            .img1 img {
+        max-width: 370px;
     }
 }
 @media (max-width: 320px) {
-  .logo {
-    height: 39px;
-    margin-left: -17px;
-  }
-   .profile {
-    height: 74%;
-    margin-top: 2px;
-    margin-right: -27px;
-  }
-   .menu-toggle {
-    display: block;
-    margin-right: -45px;
-    z-index: 10;
-  }
-    .phone img {
-    position: absolute;
-    width: 70%;
-    top: 40%;
-    left: 23%;
-    z-index: 2;
-    width: 124px;
-    transform: translate(-50%, -50%);
-    background: transparent;
-  }
+ .footer { height: 80px; }
+    .footer h1 { font-size: 16px; margin-top: 2vh; }
+    .social { width: 80px; margin-top: -24.9%; margin-left: 11%; }
+    .social1 { max-width: 30px; margin-top: -19.8%; margin-left: 67%; }
+    .social2 { max-width: 65px; margin-top: -0.2%; margin-left: 69.2%; }
+    .footer-social { gap: 8px; margin-top: -3vh; }
+    .footer-social a { font-size: 0.7rem !important; margin-top: -1.5vh; }
+    .clickZone { width: 99px; left: 57.4%; }
+    .clickZone1 { width: 123px; }
+    .clickZone2 { width: 123px; }
+    .clickZone3 { width: 90px; }
+    .hero .background {
+        width: 193%;
+        height: 62%;
+    }
+.phone img {
+        top: 34%;
+    }
+        .hero h1 {
+        font-size: 18px;
+    }
+        .hero h2 {
+        font-size: 18px;
+    }
+        .hero p {
+        font-size: 10.5px;
+    }
+        .button {
+        padding: 3px 17px;
+        font-size: 9px !important;
+        margin-top: 46%;
+}
     .hero .text {
-    position: relative;
-    z-index: 2;
-    margin-left: 136px;
-    margin-top: 23px;
-    color: #19989e;
-    background: transparent;
-  }
-   .hero {
-    position: relative;
-    width: 100%;
-    height: 34vh;
-    overflow: hidden;
-    margin-top: 80px;
-  }
-  .hero h2 {
-    margin-top: 6px;
-    font-size: 11px;
-    font-family: 'Caveat', cursive;
-    color: #09989e;
-    background: transparent;
-    line-height: 0.8;
-  }
-   .hero p {
-    margin-top: 11px;
-    font-size: 8px;
-    color: #8274A1;
-    background: transparent;
-    line-height: 1.2;
-  }
-    .button {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff !important;
-    border: 2px solid #09989e;
-    padding: 1px 9px;
-    margin-top: 20px;
-    margin-left: -1px;
-    font-size: 6px !important;
-    background: #09989e;
-    position: absolute;
-    cursor: pointer;
-    border-radius: 25px;
-    z-index: 3;
-  }
-   .steps img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 8px;
-    max-width: 305px;
-  }
-  .template-selector {
-    font-size: 10px;
-    padding: 8px 0px;
-    width: 70%;
-  }
-   .flip-card-container {
-    width: 90%;
-    max-width: 284px;
-    height: 336px;
-  }
-  .flip-card1 p {
-    font-size: 13px;
-    text-align: center;
-    color: #7d7390;
-    margin-top: -103px;
-  }
-  .footer{
-        height: 80px;
+        margin-top: 36%;
        
     }
-    .footer h1{
-        font-size: 10px;
-         margin-top: 2vh;
+.steps img {
+    width: 122%;
+        margin-top: -125%;
+         content: url("photos/Group 16(1).png");
     }
-     .footer {
-                aspect-ratio: 16 / 3;
-                margin-top: 30px;
-            }
-            
-            .footer-social {
-                gap: 8px;
-                margin-top: -3vh !important;
-            }
-.footer-social a{ 
-font-size: 0.6rem !important; 
- margin-top: -1.5vh;
-        }
-         .portfolio1 img {
-    display: block;
-    margin: 0 auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: auto;
-    margin-left: 27px;
-    max-width: 534px;
-    width: 85%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-  }
+    .steps p {
+        
+        margin-top: -89%;
+        font-size: 18px;
+    }
+        .cards-container {
+        margin-top: -200%;
+    }
+        .flip-button, #openCvModalBtn, .template-selector {
+        font-size: 10px;
+    }
+        .flip-card-container {
+        height: 275px;
+        max-width: 255px;
+    }
+        .flip-card1 p {
+        font-size: 14px;
+    }
+}
