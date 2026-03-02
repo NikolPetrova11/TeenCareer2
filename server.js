@@ -1,5 +1,5 @@
 //Libraries
-require('dotenv').config(); // Зарежда променливите на средата от .env файла
+require('dotenv').config(); 
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
@@ -7,8 +7,8 @@ const path = require('path');
 const session = require('express-session');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-const { GoogleGenerativeAI } = require("@google/generative-ai"); // Импортираме Gemini библиотеката
-const cors = require('cors'); // Импортираме CORS middleware
+const { GoogleGenerativeAI } = require("@google/generative-ai"); 
+const cors = require('cors'); 
 
 const app = express();
 
@@ -20,37 +20,35 @@ app.use(session({
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
 
-app.use(cors()); // Активираме CORS за всички заявки
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
 // --- КОНФИГУРАЦИЯ НА GEMINI ---
-// Използвай API ключ от .env файла за сигурност
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Нов ендпойнт за чатбота
 app.post('/chat', async (req, res) => {
     try {
-        const { message } = req.body; // Получаваме съобщението (професията) от фронтенда
+        const { message } = req.body; 
         if (!message) {
-            return res.status(400).json({ error: "Моля, въведете професия." });
+            return res.status(400).json({ error: "Моля, въведете съобщение." });
         }
 
-        // Избираме модел на Gemini (например "gemini-pro" за текст)
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        console.log("Сървърът получи съобщение:", message);
 
-        // Създаваме промпт за генериране на въпроси за интервю
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
         const prompt = `Генерирай 5 въпроса за интервю за работа за позицията "${message}". Въпросите трябва да са подходящи за тийнейджъри или хора, които започват първа работа. Форматирай отговора като номериран списък.`;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text(); // Извличаме текстовия отговор от Gemini
+        const text = response.text(); 
 
-        res.json({ reply: text }); // Изпращаме отговора обратно към фронтенда
+        res.json({ reply: text }); 
 
     } catch (error) {
-        console.error("Грешка при комуникация с Gemini:", error);
+        console.error("Грешка при комуникация с Gemini:", error.message || error);
         res.status(500).json({ error: "Грешка при комуникация с бота. Моля, опитайте отново по-късно." });
     }
 });
@@ -181,7 +179,6 @@ app.post('/generate-pdf', async (req, res) => {
     console.log("Generating CV PDF...");
     const { fullName, email, phone, city, education, experience, skills, languages, summary, date, text, template } = req.body;
 
-    // 1. Read the CSS file to include styles in the PDF
     let css = '';
     try {
         css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
@@ -189,7 +186,6 @@ app.post('/generate-pdf', async (req, res) => {
         console.error("Could not read cv.css", e);
     }
 
-    // 2. Construct the HTML structure (similar to your preview)
     const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -304,15 +300,12 @@ app.post('/generate-portfolio', async (req, res) => {
     console.log("Generating Portfolio PDF...");
     const { full_name, email, phone, education, experience } = req.body;
 
-    // 1. Read the CSS file (Same as CV logic)
     let css = '';
     try {
         css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
     } catch (e) {
         console.error("Could not read cv.css", e);
     }
-
-    // 2. Construct HTML using cv.css classes for consistency
     const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -382,7 +375,7 @@ app.post('/generate-portfolio', async (req, res) => {
         const pdfBuffer = await page.pdf({ 
             format: 'A4', 
             printBackground: true,
-            landscape: true // <-- Това прави PDF-а хоризонтален
+            landscape: true 
         });
 
         await browser.close();
@@ -406,3 +399,4 @@ mongoose.connect(dbURI)
     app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
   })
   .catch((err) => console.error('Error connecting:', err));
+  
