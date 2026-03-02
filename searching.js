@@ -13,6 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const cardsContainer = document.querySelector('.cards-container');
+    const arrowRight = document.querySelector('.arrow1');
+    const arrowLeft = document.querySelector('.arrow2');
+
+    function rotateRight() {
+        const first = cardsContainer.querySelector('.card');
+        if (first) cardsContainer.appendChild(first);
+    }
+
+    function rotateLeft() {
+        const cards = cardsContainer.querySelectorAll('.card');
+        if (cards.length > 0) {
+            const last = cards[cards.length - 1];
+            cardsContainer.insertBefore(last, cards[0]);
+        }
+    }
+
+    if (arrowRight) arrowRight.addEventListener('click', rotateRight);
+    if (arrowLeft) arrowLeft.addEventListener('click', rotateLeft);
+
  document.querySelector('.button').addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
