@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (sender === 'user') {
             messageElement.style.textAlign = 'right';
-            messageElement.style.backgroundColor = '#e0f7fa'; 
+            messageElement.style.backgroundColor = '#e0f7fa'; // Светлосиньо за потребителя
             messageElement.style.borderRadius = '10px';
             messageElement.style.padding = '8px';
             messageElement.style.margin = '5px 0';
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageElement.style.maxWidth = '80%';
         } else {
             messageElement.style.textAlign = 'left';
-            messageElement.style.backgroundColor = '#f0f0f0'; 
+            messageElement.style.backgroundColor = '#f0f0f0'; // Светлосиво за бота
             messageElement.style.borderRadius = '10px';
             messageElement.style.padding = '8px';
             messageElement.style.margin = '5px 0';
