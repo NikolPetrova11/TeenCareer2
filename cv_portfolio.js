@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(data => {
                         if (data.success) {
                             uploadText.innerHTML = `Uploaded: ${file.name}<br>✓ Done!`;
-                            // activateDownloadStep(); // Вече е активирано при запазване на данните
+                            // activateDownloadStep(); 
                         } else {
                             uploadText.innerHTML = `Error: ${data.error}`;
                         }
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadText.style.cursor = 'pointer';
             downloadText.innerHTML = 'CLICK TO DOWNLOAD!';
             downloadText.onclick = () => {
-                // Създаване на форма за изпращане към Node.js
+                
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = '/generate-portfolio';
