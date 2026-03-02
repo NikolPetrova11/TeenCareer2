@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const { GoogleGenerativeAI } = require("@google/generative-ai"); 
@@ -14,9 +15,10 @@ const app = express();
 
 // Sessions
 app.use(session({
-    secret: 'your_secret_key',
+    secret: process.env.SESSION_SECRET || 'your_secret_key',
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: dbURI }),
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
 
@@ -25,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// --- КОНФИГУРАЦИЯ НА GEMINI ---
+// GEMINI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.post('/chat', async (req, res) => {
@@ -62,7 +64,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   dob: Date,
-  phone: String
+  phone: String,
+  cvs: [{ data: mongoose.Schema.Types.Mixed, createdAt: { type: Date, default: Date.now } }],
+  portfolios: [{ data: mongoose.Schema.Types.Mixed, createdAt: { type: Date, default: Date.now } }]
 });
 const User = mongoose.model('User', userSchema);
 
@@ -92,6 +96,43 @@ app.get('/api/user-data', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "Грешка" });
     }
+});
+
+// save CV for logged-in users
+app.post('/save-cv', async (req,res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    const cvData = req.body;
+    try {
+        await User.findByIdAndUpdate(req.session.userId, {$push: { cvs: { data: cvData } }});
+        res.json({ success: true });
+    } catch(err) {
+        console.error("Error saving CV:", err);
+        res.status(500).json({ error: "Грешка при съхранение" });
+    }
+});
+
+app.post('/save-portfolio', async (req,res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    const portData = req.body;
+    try {
+        await User.findByIdAndUpdate(req.session.userId, {$push: { portfolios: { data: portData } }});
+        res.json({ success: true });
+    } catch(err) {
+        console.error("Error saving portfolio:", err);
+        res.status(500).json({ error: "Грешка при съхранение" });
+    }
+});
+
+app.get('/api/user-cvs', async (req,res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    const user = await User.findById(req.session.userId).select('cvs');
+    res.json(user.cvs || []);
+});
+
+app.get('/api/user-portfolios', async (req,res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    const user = await User.findById(req.session.userId).select('portfolios');
+    res.json(user.portfolios || []);
 });
 
 // Login

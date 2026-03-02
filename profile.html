@@ -149,6 +149,83 @@ tabs.forEach(tab => {
         if (index === "0") {
             card.innerHTML = originalContent;
             loadUserData(); 
+        } else if (index === "2") {
+            // load CVs
+            card.innerHTML = `<h3>CV файлове</h3><div id="cv-list">Зареждане...</div>`;
+            fetch('/api/user-cvs').then(r=>{
+                if (!r.ok) throw new Error('fetch');
+                return r.json();
+            }).then(cvs=>{
+                const list = document.getElementById('cv-list');
+                if (!cvs.length) {
+                    list.innerHTML = `<p>Все още нямате CV файлове.</p>`;
+                    return;
+                }
+                list.innerHTML = '';
+                cvs.forEach((item,i)=>{
+                    const div = document.createElement('div');
+                    div.className = 'saved-item';
+                    const date = new Date(item.createdAt).toLocaleString('bg-BG');
+                    div.innerHTML = `<span>CV №${i+1} (${date})</span> <button data-index="${i}" class="gen-cv">Генерирай</button>`;
+                    list.appendChild(div);
+                });
+                list.addEventListener('click', e=>{
+                    if (e.target.classList.contains('gen-cv')) {
+                        const idx = e.target.getAttribute('data-index');
+                        const cv = cvs[idx].data;
+                        // post to generate-pdf
+                        const form = document.createElement('form');
+                        form.method='POST'; form.action='/generate-pdf'; form.target='_blank';
+                        for(const k in cv){
+                            const inp=document.createElement('input');
+                            inp.type='hidden'; inp.name=k; inp.value=cv[k];
+                            form.appendChild(inp);
+                        }
+                        document.body.appendChild(form); form.submit(); document.body.removeChild(form);
+                    }
+                });
+            }).catch(err=>{
+                console.error(err);
+                document.getElementById('cv-list').innerHTML = '<p>Грешка при зареждане.</p>';
+            });
+        } else if (index === "3") {
+            // load portfolios
+            card.innerHTML = `<h3>Портфолиа</h3><div id="port-list">Зареждане...</div>`;
+            fetch('/api/user-portfolios').then(r=>{
+                if (!r.ok) throw new Error('fetch');
+                return r.json();
+            }).then(ps=>{
+                const list = document.getElementById('port-list');
+                if (!ps.length) {
+                    list.innerHTML = `<p>Все още нямате портфолиа.</p>`;
+                    return;
+                }
+                list.innerHTML = '';
+                ps.forEach((item,i)=>{
+                    const div = document.createElement('div');
+                    div.className = 'saved-item';
+                    const date = new Date(item.createdAt).toLocaleString('bg-BG');
+                    div.innerHTML = `<span>Портфолио №${i+1} (${date})</span> <button data-index="${i}" class="gen-port">Генерирай</button>`;
+                    list.appendChild(div);
+                });
+                list.addEventListener('click', e=>{
+                    if (e.target.classList.contains('gen-port')) {
+                        const idx = e.target.getAttribute('data-index');
+                        const port = ps[idx].data;
+                        const form = document.createElement('form');
+                        form.method='POST'; form.action='/generate-portfolio'; form.target='_blank';
+                        for(const k in port){
+                            const inp=document.createElement('input');
+                            inp.type='hidden'; inp.name=k; inp.value=port[k];
+                            form.appendChild(inp);
+                        }
+                        document.body.appendChild(form); form.submit(); document.body.removeChild(form);
+                    }
+                });
+            }).catch(err=>{
+                console.error(err);
+                document.getElementById('port-list').innerHTML = '<p>Грешка при зареждане.</p>';
+            });
         } else {
             let title = tab.innerText;
             card.innerHTML = `

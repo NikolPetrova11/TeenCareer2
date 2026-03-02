@@ -198,6 +198,31 @@ body {
 
 
 .value {
+}
+
+/* saved lists */
+.saved-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.saved-item button {
+    background:#09989e;
+    color:#fff;
+    border:none;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.saved-item button:hover {
+    background:#077b8b;
+}
+
+.value {
 
     color:#777;
 

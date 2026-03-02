@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const portfolioForm = document.getElementById('portfolioForm');
     let formDataSubmitted = false;
     const userId = null;
-    let portfolioData = {}; // Обект за съхранение на данните за портфолиото
+    let portfolioData = {}; 
 
     // Open modal or trigger upload
     if (uploadText) {
@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         portfolioForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Събиране на данните локално
             portfolioData.full_name = document.getElementById('port-fullName').value;
             portfolioData.email = document.getElementById('port-email').value;
             portfolioData.phone = document.getElementById('port-phone').value;
@@ -115,11 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (overlay) overlay.classList.remove('active');
             uploadText.innerHTML = 'Data saved! <br> **Click to upload file (Optional)**';
             uploadText.style.cursor = 'pointer';
-            
-            // Активираме бутона за изтегляне веднага след попълване на данните
+
+            // save portfolio to server if logged in
+            fetch('/save-portfolio', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(portfolioData)
+            }).then(r => {
+                if (r.ok) return r.json();
+                if (r.status === 401) throw new Error('not_logged');
+                throw new Error('save_failed');
+            }).then(() => {
+                console.log('Portfolio stored');
+            }).catch(err => {
+                if (err.message === 'not_logged') {
+                    alert('Трябва да си влязъл в профила, за да запазиш портфолио.');
+                } else {
+                    console.error('Portfolio save error', err);
+                }
+            });
             activateDownloadStep();
-            
-            // По желание може да отворим и прозореца за качване на файл, ако искате
             // uploadInput.click(); 
             if (uploadInput) uploadInput.click(); 
         });
@@ -272,9 +286,28 @@ document.addEventListener('DOMContentLoaded', () => {
             cvData.date = document.getElementById("cv-date").value;
             cvData.text = document.getElementById("cv-text").value;
 
-            alert(`CV data saved with template: ${cvData.template}! Proceed to download.`);
-            cvModal.classList.remove("modal-open");
-            overlay.classList.remove("active");
+            // saving to server if logged in
+            fetch('/save-cv', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cvData)
+            }).then(r => {
+                if (r.ok) return r.json();
+                if (r.status === 401) throw new Error('not_logged');
+                throw new Error('save_failed');
+            }).then(() => {
+                alert(`CV data saved with template: ${cvData.template}! Proceed to download.`);
+            }).catch(err => {
+                if (err.message === 'not_logged') {
+                    alert('Трябва да си влязъл в профила, за да запазиш CV.');
+                } else {
+                    console.error('CV save error', err);
+                    alert('Грешка при запазване на CV.');
+                }
+            }).finally(() => {
+                cvModal.classList.remove("modal-open");
+                overlay.classList.remove("active");
+            });
         });
     }
 
@@ -331,18 +364,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Second page funktion
     function checkPageHeight() {
-        // Проверяваме всички листове (и за CV, и за Портфолио)
         const papers = document.querySelectorAll('.cv-paper');
         papers.forEach(paper => {
-            if (paper.offsetParent === null) return; // Пропускаме скритите листове
+            if (paper.offsetParent === null) return; 
             
             // Reset height to auto to measure content correctly
             paper.style.height = 'auto';
 
             // Remove old markers
             paper.querySelectorAll('.page-break-line').forEach(el => el.remove());
-            
-            // a4 (1122px за Portrait, 794px за Landscape)
+
             const pageHeight = paper.classList.contains('landscape') ? 794 : 1122; 
             const totalHeight = paper.scrollHeight;
             
