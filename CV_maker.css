@@ -1,3 +1,9 @@
+/* ===================================================================
+   CV_maker.css - Подреден и коментиран (с включен хедър/футър)
+   Версия: 2.1
+   =================================================================== */
+
+/* === 1. ГЛОБАЛНИ СТИЛОВЕ И НУЛИРАНЕ === */
 * {
     margin: 0;
     padding: 0;
@@ -20,9 +26,7 @@ img, video {
     display: block;
 }
 
-/* =========================================
-   2. Header & Navigation
-   ========================================= */
+/* === 2. ХЕДЪР И НАВИГАЦИЯ === */
 header {
     width: 100%;
     position: fixed;
@@ -110,20 +114,12 @@ header {
     color: #09989e;
     cursor: pointer;
 }
-.phone img{
-    position: absolute; 
- width:70%;
-    top: 48%; 
-   left: 30%;
-  z-index: 2; 
-  width: 600px;
-  transform: translate(-50%, -50%);
-    background: transparent;
-}
+
+/* === 3. ГЛАВНА СЕКЦИЯ (HERO) === */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -136,7 +132,16 @@ header {
   background-image: url("photos/Group 15 (1).png");
   background-size: cover;
   background-position: center;
-  z-index: 1; 
+  z-index: 1;
+}
+
+.phone img {
+    position: absolute;
+    width: 600px;
+    top: 48%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 .hero .text {
@@ -145,22 +150,19 @@ header {
   margin-left: 54.5%;
   margin-top: 10%;
   color: #19989e;
-   background: transparent;
 }
 
 .hero h1 {
   font-size: 36px;
   color: #8274A1;
-  background: transparent;
 }
 
 .hero h2 {
   margin-top: 5%;
   font-size: 36px;
-   font-family: 'Caveat', cursive;
+  font-family: 'Caveat', cursive;
   color: #09989e;
-  background: transparent;
-    line-height: 0.8;
+  line-height: 0.8;
 }
 
 .hero p {
@@ -168,9 +170,9 @@ header {
   font-size: 16px;
   color: #8274A1;
   font-weight: 500;
-  background: transparent;
   line-height: 1.2;
 }
+
 .button {
     display: inline-block;
     text-decoration: none;
@@ -184,14 +186,15 @@ header {
     cursor: pointer;
     border-radius: 25px;
     z-index: 3;
+    transition: background-color 0.5s, border-color 0.5s;
 }
 
 .button:hover {
-    border: 2px solid #8274A1;
+    border-color: #8274A1;
     background: #8274A1;
-    transition: 1s;
 }
 
+/* === 4. СЕКЦИЯ "СТЪПКИ" === */
 .steps {
     position: relative;
     width: 100%;
@@ -204,34 +207,34 @@ header {
     transform: translateX(-50%);
     margin-top: 4%;
     max-width: 1500px;
-   
 }
-.steps p{
+
+.steps p {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-family: Caveat;
-     margin-top: 23%;
-     font-size: 40px;
-     text-align: center;
-     color:#09989e;
+    font-family: 'Caveat', cursive;
+    margin-top: 23%;
+    font-size: 40px;
+    text-align: center;
+    color: #09989e;
 }
-/* ======================================= */
-/* CARDS 1   */
-/* ======================================= */
-.cards-container {
+
+/* === 5. КАРТИ ЗА СЪЗДАВАНЕ НА CV И ПОРТФОЛИО === */
+.cards-container,
+.cards1-container {
     display: flex;
     justify-content: center;
     gap: 60px;
     margin-top: 10%;
 }
+
 .flip-card-container {
   width: 337px;
   height: 420px;
   perspective: 1000px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
 
 .flip-card {
     width: 100%;
@@ -242,11 +245,10 @@ header {
     border-radius: 25px;
     background: #F4EFF6;
     box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    justify-content: space-between;
 }
 
 .flip-card-front {
-   position: absolute;
+    position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
@@ -255,8 +257,8 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background: #F4EFF6;
-    display: flex; 
     box-sizing: border-box;
 }
 
@@ -277,42 +279,60 @@ header {
 }
 
 .flip-card-front img {
-      justify-content: space-between;
-     height: auto;
+    height: auto;
     max-width: 500px;
     width: 80%;
     padding: 67px 15px 15px;
-    display: block;    
-    margin: 0 auto;     
+    display: block;
+    margin: 0 auto;
 }
-.flip-card-front {
-    display: flex;
-    justify-content: center; 
-    align-items: center;    
-}
-/* Бутоните */
+
+/* Общ стил за бутоните в картите */
 .flip-button,
-#openCvModalBtn {
-   
-       background: #8274A1;
+#openCvModalBtn,
+.template-selector {
+    background: #8274A1;
     color: white;
     border: none;
     padding: 12px 0;
-    width: 80%;           
-    max-width: 250px;     
+    width: 80%;
+    max-width: 250px;
     text-align: center;
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: auto;   
+    margin-top: auto; /* Избутва бутона в долната част */
     font-weight: 600;
-  
+    transition: background-color 0.3s;
 }
 
 .flip-button:hover,
-#openCvModalBtn:hover {
-    background: #8274A1;
+#openCvModalBtn:hover,
+.template-selector:hover {
+    background: #6c5f8a;
 }
+
+.template-selector {
+    padding: 11px 0px;
+    border: 1px solid #8274A1;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.cards1-container {
+   margin-bottom: 8%;
+}
+
+.flip-card1 p {
+    font-size: 20px;
+    text-align: center;
+    color: #7d7390;
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+/* === 6. ИНФОРМАЦИОННИ ИЗОБРАЖЕНИЯ === */
 .img1 img {
     max-width: 900px;
     position: relative;
@@ -321,60 +341,22 @@ header {
     margin-top: 5%;
     margin-bottom: 5%;
 }
-.template-selector {
-    padding: 10px;
-    padding: 11px 0px;
-    border-radius: 25px;
-    border: 1px solid #8274A1;
-    color: white;
-    background-color: #8274A1;
-    font-size: 16px;
-    font-family: inherit;
-    width: 80%;
-    max-width: 250px;
-    margin-top: auto;
-    text-align: center;
-    font-weight: 600;
-}
-.cards1-container {
-    display: flex;
-    gap: 60px;
-    justify-content: center; 
-    width: 100%; 
-    color: #8274A1;
-   margin-bottom: 8%;
-}
 
-.flip-card1 p {
-    font-size: 20px;
-  text-align: center;
-  color: #7d7390;
-  margin-top: 20px;
- font-weight: 700;
-}
-
-.portfolio1 img{
-       display: block;
-    margin: 0 auto;
+.portfolio1 img {
+    display: block;
+    margin: 50px auto;
     max-width: 2000px;
     width: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
-.portfolioimg img{
+
+.portfolioimg img {
    position: relative;
-  bottom: 0px;
-  right: 0px;
- width: 250px;
+   bottom: 0px;
+   right: 0px;
+   width: 250px;
 }
 
-
-
-
-/* ======================================= */
-/* CV MODAL STYLES */
-/* ======================================= */
-
+/* === 7. МОДАЛНИ ПРОЗОРЦИ И ФОРМИ === */
 .modal {
     position: fixed;
     z-index: 1001;
@@ -384,39 +366,36 @@ header {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    
-    visibility: hidden; 
+    visibility: hidden;
     opacity: 0;
-    transition: opacity 0.3s ease-out, visibility 0s 0.3s; 
-    display: flex; 
+    transition: opacity 0.3s ease-out, visibility 0s 0.3s;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
 .modal.modal-open {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.3s ease-out; 
+    transition: opacity 0.3s ease-out;
 }
-
 
 .modal-content {
     background-color: #fefefe;
-     margin: 10% auto;  
-    padding: 30px;
+    padding: 20px;
     border: 1px solid #888;
-    width: 90%; 
-    max-width: 600px;
+    width: 95%;
+    max-width: 90vw;
+    height: 82vh;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     position: relative;
-    
     transform: scale(0.95);
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
 }
-
 
 .modal.modal-open .modal-content {
     transform: scale(1);
@@ -424,7 +403,7 @@ header {
 }
 
 #cvModal h2 {
-    color: #09989e; 
+    color: #09989e;
     margin-bottom: 20px;
     font-size: 1.5em;
     text-align: left;
@@ -440,100 +419,32 @@ header {
     font-weight: bold;
     cursor: pointer;
     line-height: 1;
+    transition: color 0.3s;
 }
 
-.cv-close-btn:hover,
-.cv-close-btn:focus,
+.cv-close-btn:hover, .cv-close-btn:focus,
 .portfolio-close-btn:hover, .portfolio-close-btn:focus {
     color: #09989e;
 }
 
-#cvForm .form-element label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #5d5d5d;
-}
-
-#cvForm .form-element input[type="text"], #cvForm .form-element input[type="email"], #cvForm .form-element input[type="tel"], #cvForm .form-element textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
-    font-family: inherit; 
-    font-size: 16px;
-    resize: vertical; 
-}
-
-#cvForm .form-element input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    background-color: #fdfdfd;
-    border: 2px solid #e1e1e1;
-    border-radius: 12px;
-    font-family: 'Montserrat', sans-serif;
-    color: #555;
-    cursor: pointer;
-}
-
-#cvForm .form-element input[type="file"]::file-selector-button {
-    background-color: #09989e;
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 600;
-    margin-right: 15px;
-    transition: background-color 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
-}
-
-#cvForm .form-element input[type="file"]::file-selector-button:hover {
-    background-color: #8274A1;
-}
-
-#cvForm button[type="submit"] {
-    width: 50%;
-    margin-top: 30px;
-    background-color: #09989e;
-    border: none; 
-    color: white;
-     border-radius: 25px;
-    justify-content: center;
-    padding: 10px;
-}
-
-#cvForm button[type="submit"]:hover {
-    background-color: #00798a; 
-}
-
-/* Portfolio Form Styling */
-#portfolioForm {
+/* --- Общи стилове за формите --- */
+#cvForm, #portfolioForm {
     padding: 0 5px;
 }
-.cv-paper.landscape .main-content-card {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    text-align: left;
-}
 
-.cv-paper.landscape .preview-section {
-    flex: 1; /* Равни колони */
-    min-width: 0;
-}
+#cvForm .form-element label,
 #portfolioForm label {
     display: block;
     margin-top: 15px;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #8274A1;
-    font-size: 15px;
+    color: #5d5d5d;
 }
 
+#cvForm .form-element input[type="text"],
+#cvForm .form-element input[type="email"],
+#cvForm .form-element input[type="tel"],
+#cvForm .form-element textarea,
 #portfolioForm input[type="text"],
 #portfolioForm input[type="email"],
 #portfolioForm input[type="tel"],
@@ -548,8 +459,11 @@ header {
     color: #333;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    resize: vertical;
 }
 
+#cvForm .form-element input:focus,
+#cvForm .form-element textarea:focus,
 #portfolioForm input:focus,
 #portfolioForm textarea:focus {
     border-color: #09989e;
@@ -558,9 +472,30 @@ header {
     box-shadow: 0 4px 10px rgba(9, 152, 158, 0.1);
 }
 
-#portfolioForm textarea {
-    min-height: 100px;
-    resize: vertical;
+#cvForm .form-element input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    background-color: #fdfdfd;
+    border: 2px solid #e1e1e1;
+    border-radius: 12px;
+    color: #555;
+    cursor: pointer;
+}
+
+#cvForm .form-element input[type="file"]::file-selector-button {
+    background-color: #09989e;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#cvForm .form-element input[type="file"]::file-selector-button:hover {
+    background-color: #8274A1;
 }
 
 #portfolioForm button[type="submit"] {
@@ -582,23 +517,59 @@ header {
     background-color: #8274A1;
     transform: translateY(-2px);
 }
-.cv-paper.landscape {
-    width: 297mm;
-    max-width: none; 
-    min-height: 210mm; 
+
+/* --- Стъпки във формата --- */
+.form-step {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
-/* CV split */
-#cvModal .modal-content,
-#portfolioModal .modal-content {
-    max-width: 90vw;
-    width: 95%;
-    height: 82vh;
+.form-step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-navigation {
     display: flex;
-    flex-direction: column;
-    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 
+.nav-btn, #cvForm button[type="submit"] {
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background-color: #09989e;
+    color: white;
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-btn:hover, #cvForm button[type="submit"]:hover {
+    background-color: #8274A1;
+    transform: translateY(-2px);
+}
+
+#prevBtn {
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+#prevBtn:hover {
+    background-color: #e0e0e0;
+}
+
+/* === 8. ПРЕГЛЕД НА CV И СТИЛОВЕ ЗА ШАБЛОНИ === */
 .cv-maker-wrapper {
     display: flex;
     flex: 1;
@@ -618,7 +589,7 @@ header {
     flex: 1;
     background-color: #525659;
     padding: 20px;
-    overflow: auto; 
+    overflow: auto;
     display: flex;
     border-radius: 5px;
 }
@@ -634,7 +605,25 @@ header {
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
     color: #333;
-    margin: auto; 
+    margin: auto;
+}
+
+.cv-paper.landscape {
+    width: 297mm;
+    max-width: none;
+    min-height: 210mm;
+}
+
+.cv-paper.landscape .main-content-card {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    text-align: left;
+}
+
+.cv-paper.landscape .preview-section {
+    flex: 1;
+    min-width: 0;
 }
 
 .preview-header {
@@ -678,82 +667,18 @@ header {
     white-space: pre-wrap;
     word-break: break-word;
 }
-* Multi-step Form Styles */
-.form-step {
-    display: none;
-    animation: fadeIn 0.4s ease-in-out;
-}
 
-.form-step.active {
-    display: block;
-}
+/* --- Специфични стилове за шаблоните --- */
 
-.form-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-}
-
-.nav-btn, #cvForm button[type="submit"] {
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 12px 25px;
-    border-radius: 25px;
-    background-color: #09989e;
-    color: white;
-    transition: transform 0.2s, background-color 0.3s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.nav-btn:hover, #cvForm button[type="submit"]:hover {
-    background-color: #8274A1;
-    transform: translateY(-2px);
-}
-
-#prevBtn {
-    background-color: #f0f0f0;
-    color: #555;
-}
-
-#prevBtn:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-2px);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.file-upload-button {
-    background-color: #09989e;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-} 
-/* --- TEMPLATE STYLES --- */
-
-/* 1. Класически Темплейт (Default) */
+/* 1. Класически (Default) */
 .cv-paper.default {
     font-family: 'Georgia', 'Times New Roman', serif;
     color: #000;
 }
-
 .cv-paper.default .preview-header {
     text-align: center;
     border-bottom: 1px solid #000;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
 }
-
 .cv-paper.default #preview-photo {
     width: 120px;
     height: 120px;
@@ -761,84 +686,65 @@ header {
     margin: 0 auto 15px auto;
     object-fit: cover;
 }
-
 .cv-paper.default .preview-name {
     color: #000;
     font-size: 32px;
-    text-transform: uppercase;
     letter-spacing: 1px;
 }
-
 .cv-paper.default .preview-section-title {
     color: #000;
     border-bottom: 1px solid #ccc;
     font-family: 'Arial', sans-serif;
-    text-transform: uppercase;
     font-size: 16px;
     margin-top: 20px;
 }
 
-/* 2. Модерен Темплейт */
+/* 2. Модерен */
 .cv-paper.modern {
     font-family: 'Montserrat', 'Segoe UI', sans-serif;
-    color: #333;
 }
-
 .cv-paper.modern .preview-header {
-    background-color: #f0f8f8; /* Светъл тюркоаз */
+    background-color: #f0f8f8;
     padding: 30px;
-    margin: -40px -40px 30px -40px; /* Разпъване до краищата */
+    margin: -40px -40px 30px -40px;
     border-bottom: none;
     border-left: 10px solid #09989e;
-}
-
-.cv-paper.modern .preview-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .cv-paper.modern #preview-photo {
     width: 100px;
     height: 100px;
     border-radius: 10px;
     object-fit: cover;
 }
-
 .cv-paper.modern .preview-name {
     color: #09989e;
     font-size: 36px;
     font-weight: 800;
     text-transform: none;
 }
-
 .cv-paper.modern .preview-section-title {
     color: #8274A1;
     border-bottom: 2px solid #8274A1;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: bold;
 }
 
-/* 3. Креативен Темплейт (Място за твоята снимка) */
+/* 3. Креативен */
 .cv-paper.creative {
     font-family: 'Verdana', sans-serif;
     color: #444;
-    border-top: 10px solid #FF6B6B; /* Пример: Цветна лента отгоре */
+    border-top: 10px solid #FF6B6B;
 }
-
 .cv-paper.creative .preview-header {
     text-align: left;
     border-bottom: 2px dashed #FF6B6B;
-    padding-bottom: 10px;
 }
-
 .cv-paper.creative .preview-name {
     color: #FF6B6B;
     font-size: 40px;
     font-weight: normal;
 }
-
 .cv-paper.creative .preview-section-title {
     background-color: #f9f9f9;
     padding: 5px 10px;
@@ -847,27 +753,24 @@ header {
     border-bottom: none;
 }
 
-/* 4. Креативен Плейфул Темплейт (Базиран на изображението) */
+/* 4. Закачлив (Playful) */
 .cv-paper.playful {
     font-family: 'Inter', 'Segoe UI', sans-serif;
-    background-color: #C1ADE2; /* Основният лилав фон от картинката */
+    background-color: #C1ADE2;
     padding: 20px;
     color: #444;
 }
-
-/* Горната секция със снимката и името */
 .cv-paper.playful .preview-header {
     background: white;
-    border-radius: 40px; /* Силно заоблени ъгли */
+    border-radius: 40px;
     padding: 30px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 25px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    border-bottom: none; /* Премахване на стандартния бордър */
+    border-bottom: none;
 }
-
 .cv-paper.playful #preview-photo {
     width: 130px;
     height: 130px;
@@ -875,16 +778,13 @@ header {
     border: 4px solid #E996C3;
     object-fit: cover;
 }
-
 .cv-paper.playful .preview-name {
-    color: #3B2E5A; /* Тъмно лилаво за името */
+    color: #3B2E5A;
     font-size: 38px;
     font-weight: 900;
     line-height: 1;
     margin-bottom: 5px;
 }
-
-/* Етикета "Graphic Designer" */
 .cv-paper.playful .job-title-pill {
     background-color: #6373FF;
     color: white;
@@ -895,30 +795,24 @@ header {
     font-weight: bold;
     display: inline-block;
 }
-
-/* Основната бяла карта за съдържанието */
 .cv-paper.playful .main-content-card {
     background: white;
     border-radius: 40px;
     padding: 40px;
     display: grid;
-    grid-template-columns: 1fr; /* По подразбиране 1 колона, може да се промени на 1.5fr 1fr ако има достатъчно секции */
+    grid-template-columns: 1fr;
     gap: 30px;
 }
-
 .cv-paper.playful .preview-section-title {
     color: #3B2E5A;
     font-size: 20px;
     font-weight: 800;
-    text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     border-bottom: none;
 }
-
-/* Стил за Timeline (годините в розови кръгчета) */
 .cv-paper.playful .date-pill {
     background-color: #E996C3;
     color: white;
@@ -929,9 +823,8 @@ header {
     display: inline-block;
     margin-bottom: 5px;
 }
-/* =========================================
-   6. Footer
-   ========================================= */
+
+/* === 9. ФУТЪР === */
 .footer {
     position: relative;
     width: 100%;
@@ -981,7 +874,7 @@ header {
 
 .social {
     position: relative;
-    z-index: 1001;
+    z-index: 101;
     margin-top: -7.9%;
     margin-left: 34%;
     max-width: 165px;
@@ -989,7 +882,7 @@ header {
 
 .social1 {
     position: relative;
-    z-index: 1001;
+    z-index: 101;
     margin-top: -6.8%;
     margin-left: 56%;
     max-width: 50px;
@@ -997,651 +890,301 @@ header {
 
 .social2 {
     position: relative;
-    z-index: 1001;
+    z-index: 101;
     margin-top: -0.2%;
     margin-left: 58.8%;
     max-width: 130px;
 }
 
-/* =========================================
-   6. Responsive Design
-   ========================================= */
-
+/* === 10. РЕСПОНСИВ ДИЗАЙН (MEDIA QUERIES) === */
 
 @media (max-width: 1536px) {
-    .hero .background{
-        height: 118%;
-    }
-  .hero .text {
-    margin-left: 50%;
-  }
-  .phone img {
- top: 50%;
-  }
-.steps p{
-    margin-top: 27%;
-}
-.logo { height: 60px; width: auto; }
-    .profile-btn { margin-right: 0px; }
+    /* Header */
+    .logo { height: 60px; }
     .nav-links ul { margin-top: 11px; }
+    
+    /* Hero */
+    .hero .background { height: 118%; }
+    .hero .text { margin-left: 50%; }
+    .phone img { top: 50%; }
+    
+    /* Steps */
+    .steps p { margin-top: 27%; }
+    
+    /* Footer */
     .social { margin-top: -9.9%; margin-left: 32%; }
     .social1 { margin-top: -8.8%; margin-left: 57%; }
     .social2 { margin-top: -0.2%; margin-left: 59.8%; }
 }
 
 @media (max-width: 1440px) {
-    .hero .background {
-        height: 123%;
-    }
-.logo { height: 55px; margin-left: 22%; }
+    /* Header */
+    .logo { height: 55px; margin-left: 22%; }
     .profile { height: 90%; margin-left: -70px; }
-    .profile-btn { margin-right: 0px; }
-
-.phone img {
-  width: 40%;
-  left: 28.5%;
-  top: 54%;
-}
-.hero .text {
-        margin-left: 49%;
-        margin-top: 12%;
-    }
-.steps p {
-        margin-top: 29%;
-    }
-    #cvModal .modal-content, #portfolioModal .modal-content {
-    height: 78vh;
-}
- .footer h1 { font-size: 27px; margin-top: 4vh; }
-    .footer-social a { font-size: 1.4rem !important; }
+    
+    /* Hero */
+    .hero .background { height: 123%; }
+    .phone img { width: 40%; left: 28.5%; top: 54%; }
+    .hero .text { margin-left: 49%; margin-top: 12%; }
+    
+    /* Steps */
+    .steps p { margin-top: 29%; }
+    
+    /* Modal */
+    #cvModal .modal-content, #portfolioModal .modal-content { height: 78vh; }
+    
+    /* Footer */
+    .footer h1 { font-size: 27px; }
     .footer-social { margin-top: -7vh; }
+    .footer-social a { font-size: 1.4rem !important; }
 }
-@media (max-width: 1280px) {
-   .profile-btn { margin-right: 0px; }
-    .nav-links ul li a { font-size: 15px; }
-    .profile { height: 90%; margin-left: -120px; margin-top: 10px; }
-    .nav-links ul { margin-left: -30px; }
-   .phone img {
-  width: 43%;
-  top: 56%;
-  left: 30%;
-}
-  .hero h1 {
-  font-size: 32px;
-}
-.hero h2 {
-  font-size: 32px;
-}
-.hero p {
-  font-size: 14px;
-}
-.button{
-    padding: 8px 35px;
-    margin-top: 9%;
-    font-size: 15px !important;
-}
-    .hero .text {
-       margin-top: 17%;
-    }
-.steps img{
-    width:90%;
-}
-.steps p{
-    font-size: 36px;
-}
-.img1 img {
-max-width: 850px;
-}
- 
- .social { margin-left: 30%; }
-    .social1 { margin-top: -10.8%; margin-left: 57%; }
 
+@media (max-width: 1280px) {
+    /* Header */
+    .nav-links ul li a { font-size: 15px; }
+    .profile { margin-left: -120px; margin-top: 10px; }
+    .nav-links ul { margin-left: -30px; }
+    
+    /* Hero */
+    .phone img { width: 43%; top: 56%; left: 30%; }
+    .hero h1, .hero h2 { font-size: 32px; }
+    .hero p { font-size: 14px; }
+    .button { padding: 8px 35px; margin-top: 9%; font-size: 15px !important; }
+    .hero .text { margin-top: 17%; }
+    
+    /* Steps */
+    .steps img { width: 90%; }
+    .steps p { font-size: 36px; }
+    
+    /* Images */
+    .img1 img { max-width: 850px; }
+    
+    /* Footer */
+    .social { margin-left: 30%; }
+    .social1 { margin-top: -10.8%; margin-left: 57%; }
 }
+
 @media (max-width: 1024px) {
-    .cv-maker-wrapper {
-        flex-direction: column;
-        overflow-y: auto;
-    }
-    
-    .cv-form-side {
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-        flex: none;
-    }
-    
-    .cv-preview-side {
-        flex: none;
-        height: 500px;
-    }
-    
-    #cvModal .modal-content,
-    #portfolioModal .modal-content {
-        height: auto;
-        max-height: 79vh;
-    }
-    .profile-btn { margin-right: 0px; }
-    .profile { margin-right: -70px; height: 75%; margin-top: 0px; }
+    /* Header */
     .header-container { padding: 0 5vw; }
     .logo { height: 40px; margin-left: 20px; }
     .nav-links ul { margin-left: 0px; margin-top: 5px; }
     .nav-links ul li a { font-size: 14px; }
+    .profile { margin-right: -70px; height: 75%; margin-top: 0px; }
+    
+    /* Modal Layout */
+    .cv-maker-wrapper { flex-direction: column; overflow-y: auto; }
+    .cv-form-side { border-right: none; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; flex: none; }
+    .cv-preview-side { flex: none; height: 500px; }
+    #cvModal .modal-content, #portfolioModal .modal-content { height: auto; max-height: 79vh; }
 
-  .hero .background {
-        height: 98%;
-    }
-    .phone img{
-        top: 44%;
-        left: 28%;
-    }
-  .hero h1 {
-    font-size: 28px;
-  }
-   .hero h2 {
-    font-size: 28px;
-  }
-  .hero p {
-    font-size: 14px;
-    padding-right: 17%;
-  }
-   .button {
-    padding: 6px 32px;
-    font-size: 12px !important;
-    margin-top: 12%;
-  }
- .steps img{
-    margin-top: -8%;
- }
-     .steps p {
-        font-size: 30px;
-        margin-top: 17%;
-    }
-    .cards-container{
-        margin-top: -8%;
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-    .flip-card-container{
-        height: 370px;
-    }
-.flip-button, #openCvModalBtn {
-  padding: 12px 0;
-  font-size: 12px;
-}
-.template-selector {
-  padding: 10px 0px;
-  font-size: 12px;
-
-}
-    .img1 img {
-        max-width: 750px;
-    }
-  .cards1-container {
-  display: flex;
-  gap: 17px;
-  justify-content: center;
-  width: 100%;
-padding-right: 5%;
-padding-left: 5%;
-}
-.flip-card1 p {
-  font-size: 17px;
-  text-align: center;
-  color: #7d7390;
-  
-}
-.portfolioimg img {
-  width: 200px;
-}
-
-.footer-social { gap: 18px; margin-top: -7vh; }
+    /* Hero */
+    .hero .background { height: 98%; }
+    .phone img { top: 44%; left: 28%; }
+    .hero h1, .hero h2 { font-size: 28px; }
+    .hero p { font-size: 14px; padding-right: 17%; }
+    .button { padding: 6px 32px; font-size: 12px !important; margin-top: 12%; }
+    
+    /* Steps */
+    .steps img { margin-top: -8%; }
+    .steps p { font-size: 30px; margin-top: 17%; }
+    
+    /* Cards */
+    .cards-container { margin-top: -8%; padding: 0 5%; }
+    .cards1-container { gap: 17px; padding: 0 5%; }
+    .flip-card-container { height: 370px; }
+    .flip-button, #openCvModalBtn, .template-selector { padding: 10px 0px; font-size: 12px; }
+    .flip-card1 p { font-size: 17px; }
+    .portfolioimg img { width: 200px; }
+    
+    /* Images */
+    .img1 img { max-width: 750px; }
+    
+    /* Footer */
     .footer h1 { font-size: 22px; }
+    .footer-social { gap: 18px; margin-top: -7vh; }
     .footer-social a { font-size: 1.2rem !important; }
     .social { margin-left: 26%; margin-top: -13.9%; }
     .social1 { margin-top: -12.8%; }
- 
-}
-@media (max-width: 768px) {
-   .profile-btn { margin-right: -40px; }
-    .menu-toggle {
-        display: block;
-        margin-right: 40px;
-        margin-top: -7px;
-        width: 90%;
-    }
-    .header-container { padding: 0 4vw; overflow: hidden; }
-    .logo { height: 45px; }
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 90vw;
-        max-width: 220px;
-        box-sizing: border-box;
-        background: white;
-        border-radius: 0.5rem;
-        overflow: hidden;
-        opacity: 0;
-        max-height: 0;
-        transform: translateY(-20px);
-        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-        z-index: 1000;
-        padding: 0;
-        margin-right: 60px;
-    }
-    .nav-links.active {
-        max-height: 500px;
-        opacity: 1;
-        transform: translateY(0);
-        z-index: 9999;
-    }
-    .nav-links ul {
-        display: flex;
-        flex-direction: column;
-        padding: 1.5rem;
-        gap: 0.8rem;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    .nav-links ul li { width: 100%; text-align: left; }
-    .nav-links ul li a {
-        text-align: left;
-        display: block;
-        font-size: 1.1rem;
-        color: #09989e;
-        width: 100%;
-    }
-    .nav-links ul li {
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .nav-links.active ul li {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
-    .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
-    .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
-    .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
-    .profile {
-        margin-right: 10px;
-        width: 95%;
-        margin-top: -5px;
-    }
-    .hero .background {
-      background-image: url("photos/Group 15(1).png");
-      height: 100%;
-      width: 135%;
-    }
-    .phone img{
-        width:57%;
-        top: 48%;
-        left: 30%;
-    }
-  .hero .text{
-    margin-top: 30%;
-    margin-left: 51%;
-  }
-  .hero h1 {
-    font-size: 22px;
-  }
-   .hero h2 {
-    font-size: 22px;
-  }
-   .hero p {
-    font-size: 12px;
-  }
-   .button {
-    padding: 5px 27px;
-    font-size: 11px !important;
-  
-  }
-     .steps img {
-        margin-top: -14%;
-        width: 95%;
-    }
-   .steps p {
-    margin-top: 12%;
-    font-size: 22px;
-  }
-   .cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 17px;
-            margin-top: -29%;
-  }
-  .flip-card-container {
-    width: 217px;
-    height: 331px;
-  }
-  .card-number {
-  width: 37px;
-  height: 37px;
-  font-size: 18px;
 }
 
-.template-selector {
-    font-size: 9.5px;
-  }
-  .flip-button, #openCvModalBtn {
-    font-size: 9.5px;
-  }
-  
-  .flip-card1 p {
-    font-size: 13px;
-    margin-top: 5%;
-  }
-  .flip-card-front img, .flip-card-back img {
-    max-width: 500px;
-    width: 85%;
-   
-  }
-  .img1 img {
-        max-width: 600px;
+@media (max-width: 768px) {
+    /* Header & Mobile Menu */
+    .header-container { padding: 0 4vw; overflow: hidden; }
+    .logo { height: 45px; }
+    .menu-toggle { display: block; margin-right: 40px; margin-top: -7px; }
+    .nav-links {
+        position: absolute; top: 100%; right: 60px; width: 90vw; max-width: 220px;
+        background: white; border-radius: 0.5rem; overflow: hidden;
+        opacity: 0; max-height: 0;
+        transform: translateY(-20px);
+        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+        z-index: 9999;
     }
-.footer-social { gap: 12px; margin-top: -7.5vh; }
+    .nav-links.active { max-height: 500px; opacity: 1; transform: translateY(0); }
+    .nav-links ul { flex-direction: column; padding: 1.5rem; gap: 0.8rem; margin: 0; }
+    .nav-links ul li { width: 100%; text-align: left; }
+    .nav-links ul li a { display: block; font-size: 1.1rem; }
+    .profile { margin-right: 10px; width: 95%; margin-top: -5px; }
+    .profile-btn { margin-right: -40px; }
+    
+    /* Hero */
+    .hero .background { background-image: url("photos/Group 15(1).png"); height: 100%; width: 135%; }
+    .phone img { width: 57%; top: 48%; left: 30%; }
+    .hero .text { margin-top: 30%; margin-left: 51%; }
+    .hero h1, .hero h2 { font-size: 22px; }
+    .hero p { font-size: 12px; }
+    .button { padding: 5px 27px; font-size: 11px !important; }
+    
+    /* Steps */
+    .steps img { margin-top: -14%; width: 95%; }
+    .steps p { margin-top: 12%; font-size: 22px; }
+    
+    /* Cards */
+    .cards-container { gap: 17px; margin-top: -29%; }
+    .flip-card-container { width: 217px; height: 331px; }
+    .card-number { width: 37px; height: 37px; font-size: 18px; }
+    .template-selector, .flip-button, #openCvModalBtn { font-size: 9.5px; }
+    .flip-card1 p { font-size: 13px; margin-top: 5%; }
+    .flip-card-front img { width: 85%; }
+    
+    /* Images */
+    .img1 img { max-width: 600px; }
+    
+    /* Footer */
     .footer h1 { font-size: 20px; margin-top: 5vh; }
+    .footer-social { gap: 12px; margin-top: -7.5vh; }
     .footer-social a { font-size: 1rem !important; }
     .social { width: 130px; margin-top: -15.9%; margin-left: 24%; }
     .social1 { margin-top: -13.8%; margin-left: 59%; }
     .social2 { max-width: 110px; margin-left: 60.8%; }
-          .cv-paper.playful .main-content-card {
-        grid-template-columns: 1.5fr 1fr; 
-    }
-  }
-  @media (max-width: 480px) {
- .menu-toggle { margin-right: -10px; }
-    .header-container { padding: 0 4vw; height: 70px; }
-    .logo { height: 42px; margin-left: -5px; }
-    .profile { margin-right: -90px; }
-    .profile-btn { width: 40px; height: 40px;  margin-right: -20px; }
-       .hero .background {
-        background-image: url("photos/Group 15(2).png");
-        height: 70%;
-        width: 182%;
-    }
- .phone img {
-    width: 65%;
-    top: 35%;
-        left: 32%;
-  }
-.hero .text{
-    margin-top: 21%;
-        margin-left: 56%;
 }
-    .hero h1 {
-    font-size: 19px;
-  
-  }
-   .hero h2 {
-    font-size: 17px;
-   
-  }
-  .hero p {
-   margin-top: 7%;
-    font-size: 12px;
-  }
-    .button {
-    padding: 3px 17px;
-    font-size: 10px !important;
-    margin-top: 15%;
-  }
-   .steps img {
-   width:105%;
-margin-top: -64%;
-  }
-   .steps p {
-    margin-top:-36%;
-    font-size: 22px;
-    line-height: 1;
-  }
-    .cards-container {
-        flex-direction: column;   
-        align-items: center;     
-        gap: 25px;               
-        margin-top: -95%;   
-    }
 
-    .flip-card-container {
-        width: 90%;        
-        max-width: 320px;  
-        height: 380px;     
-    }
-
-    .flip-card-front img,
-    .flip-card-back img {
-        width: 75%;        
-        padding: 40px 10px 10px;
-    }
-
-    .flip-button,
-    #openCvModalBtn,
-    .template-selector {
-        font-size: 12px;
-        padding: 10px 0;
-        width: 70%;
-    }
-
-    .flip-card-container {
-    width: 90%;
-    max-width: 296px;
-    height: 350px;
-  }
-    .cards1-container {
-        flex-direction: column;    
-        align-items: center;       
-        gap: 25px;                  
-        margin-top: 0;             
-    }
-
-    .flip-card-container1 {
-        width: 90%;               
-        max-width: 320px;       
-        height: 380px;              
-    }
-
-    .flip-card-front1 img,
-    .flip-card-back1 img {
-        width: 75%;
-        padding: 40px 10px 10px;
-    }
-
-    .flip-button1,
-    #openCvModalBtn1,
-    .template-selector1 {
-        font-size: 12px;
-        padding: 10px 0;
-        width: 70%;
-    }
-    .flip-card-front img, .flip-card-back img {
-    width: 75%;
-    padding: 54px 15px 10px;
-   display: flex;
-    justify-content: center;
-  }
-  .flip-card1 p {
-    font-size: 17px;
-    margin-top: -5%;
-  }
-  .img1 img {
-        max-width: 450px;
-        margin-top: 7%;
-        margin-bottom: 12%;
-    }
-  
-  .footer-social { gap: 7px; margin-top: -1vh; }
+@media (max-width: 480px) {
+    /* Header */
+    .header-container { height: 70px; padding: 0 4vw; }
+    .logo { height: 42px; margin-left: -5px; }
+    .menu-toggle { margin-right: -10px; }
+    .profile-btn { width: 40px; height: 40px; margin-right: -20px; }
+    .profile { margin-right: -90px; }
+    
+    /* Hero */
+    .hero .background { background-image: url("photos/Group 15(2).png"); height: 70%; width: 182%; }
+    .phone img { width: 65%; top: 35%; left: 32%; }
+    .hero .text { margin-top: 21%; margin-left: 56%; }
+    .hero h1 { font-size: 19px; }
+    .hero h2 { font-size: 17px; }
+    .hero p { margin-top: 7%; font-size: 12px; }
+    .button { padding: 3px 17px; font-size: 10px !important; margin-top: 15%; }
+    
+    /* Steps */
+    .steps img { width: 105%; margin-top: -64%; }
+    .steps p { margin-top: -36%; font-size: 22px; line-height: 1; }
+    
+    /* Cards */
+    .cards-container, .cards1-container { flex-direction: column; align-items: center; gap: 25px; }
+    .cards-container { margin-top: -95%; }
+    .cards1-container { margin-top: 0; }
+    .flip-card-container { width: 90%; max-width: 296px; height: 350px; }
+    .flip-card-front img { width: 75%; padding: 54px 15px 10px; }
+    .flip-button, #openCvModalBtn, .template-selector { font-size: 12px; padding: 10px 0; width: 70%; }
+    .flip-card1 p { font-size: 17px; margin-top: -5%; }
+    
+    /* Images */
+    .img1 img { max-width: 450px; margin: 7% auto 12% auto; }
+    
+    /* Footer */
+    .footer { height: 100px; }
     .footer h1 { font-size: 18px; margin-top: 3vh; }
+    .footer-social { gap: 7px; margin-top: -1vh; }
     .footer-social a { font-size: 0.9rem !important; margin-top: -7vh; }
     .social { width: 100px; margin-top: -25.9%; margin-left: 19%; }
     .social1 { max-width: 40px; margin-top: -16.8%; margin-left: 62%; }
     .social2 { max-width: 80px; margin-top: -0.2%; margin-left: 64.8%; }
-    .footer { height: 100px; }
 }
+
 @media (max-width: 425px) {
-     .phone img {
-        width: 62%;
-        top: 36%;
-        left: 30%;
-     }
-     .hero .text {
-        margin-top: 25%;
-        margin-left: 52%;
-    }
-      .social { width: 90px; margin-top: -28.9%; margin-left: 16%; }
+    /* Hero */
+    .phone img { width: 62%; top: 36%; left: 30%; }
+    .hero .text { margin-top: 25%; margin-left: 52%; }
+    .hero h1 { font-size: 20px; }
+    
+    /* Steps */
+    .steps img { margin-top: -78%; }
+    .steps p { margin-top: -49%; font-size: 20px; }
+    
+    /* Cards */
+    .cards-container { margin-top: -126%; }
+    .flip-card-front img { width: 67%; }
+    .flip-card-container { height: 315px; }
+    .flip-card1 p { margin-top: 4%; }
+    
+    /* Images */
+    .img1 img { max-width: 400px; }
+    
+    /* Footer */
+    .social { width: 90px; margin-top: -28.9%; margin-left: 16%; }
     .social1 { max-width: 35px; margin-top: -17.8%; margin-left: 65%; }
     .social2 { max-width: 75px; margin-top: 0.8%; margin-left: 65.8%; }
- .steps img {
-        margin-top: -78%;
-    }
-    .steps p {
-        margin-top: -49%;
-        font-size: 20px;
-        line-height: 1;
-    }
-    .cards-container {
-        margin-top: -126%;
-    }
-        .flip-card-front img, .flip-card-back img {
-        width: 67%;
-        }
-            .flip-card-container {
-        height: 315px;
-    }
-    .img1 img {
-        max-width: 400px;
-    }
-        .flip-card1 p {
-        margin-top: 4%;
-    }
-    .hero h1 {
-        font-size: 20px;
-    }
+}
 
-}  
 @media (max-width: 375px) {
-  .footer { height: 80px; }
+    /* Hero */
+    .hero .background { width: 194%; height: 68%; }
+    .phone img { width: 63%; top: 36%; left: 28%; }
+    .hero .text { margin-top: 33%; margin-left: 50%; }
+    .hero h1, .hero h2 { font-size: 20px; }
+    .hero p { margin-top: 7%; font-size: 11px; }
+    .button { margin-top: 30%; }
+    
+    /* Steps */
+    .steps img { margin-top: -91%; width: 117%; content: url("photos/Group 16(1).png"); }
+    .steps p { margin-top: -56%; font-size: 18px; }
+    
+    /* Cards */
+    .cards-container { margin-top: -147%; }
+    .flip-card-front img { width: 63%; }
+    .flip-button, #openCvModalBtn, .template-selector { font-size: 11px; padding: 7px 0px; width: 70%; }
+    .flip-card-container { height: 300px; max-width: 275px; }
+    .flip-card1 p { font-size: 15px; }
+    
+    /* Images */
+    .img1 img { max-width: 370px; }
+    
+    /* Footer */
+    .footer { height: 80px; }
     .footer h1 { font-size: 18px; margin-top: 2vh; }
-    .social { width: 85px; margin-top: -22.9%; margin-left: 13%; }
-    .social2 { max-width: 70px; margin-top: -0.2%; margin-left: 67.8%; }
     .footer-social { gap: 7px; margin-top: -3vh; }
     .footer-social a { font-size: 0.8rem !important; margin-top: -1.5vh; }
-        .hero .background {
-        width: 194%;
-                height: 68%;
-    }
-        .phone img {
-        width: 63%;
-        top: 36%;
-        left: 28%;
-    }
-        .hero .text {
-        margin-top: 33%;
-        margin-left: 50%;
-    }
-        .hero h1 {
-        font-size: 20px;
-    }
-        .hero h2 {
-        font-size: 20px;
-    }
-        .hero p {
-        margin-top: 7%;
-        font-size: 11px;
-    }
-    .button{
-        margin-top: 30%;
-    }
-        .steps img {
-      margin-top: -91%;
-        width: 117%;
-         content: url("photos/Group 16(1).png");
-    }
-        .steps p {
-        margin-top: -56%;
-        font-size: 18px;
-    }
-        .cards-container {
-        margin-top: -147%;
-    }
-        .flip-card-front img, .flip-card-back img {
-        width: 63%;
-    }
-        .flip-button, #openCvModalBtn, .template-selector {
-        font-size: 11px;
-        padding: 7px 0px;
-        width: 70%;
-    }
-        .flip-card-container {
-        height: 300px;
-        max-width: 275px;
-    }
-        .flip-card1 p {
-        font-size: 15px;
-        }
-            .img1 img {
-        max-width: 370px;
-    }
+    .social { width: 85px; margin-top: -22.9%; margin-left: 13%; }
+    .social2 { max-width: 70px; margin-top: -0.2%; margin-left: 67.8%; }
 }
+
 @media (max-width: 320px) {
- .footer { height: 80px; }
+    /* Hero */
+    .hero .background { width: 193%; height: 62%; }
+    .phone img { top: 34%; }
+    .hero h1, .hero h2 { font-size: 18px; }
+    .hero p { font-size: 10.5px; }
+    .button { padding: 3px 17px; font-size: 9px !important; margin-top: 46%; }
+    .hero .text { margin-top: 36%; }
+    
+    /* Steps */
+    .steps img { width: 122%; margin-top: -125%; content: url("photos/Group 16(1).png"); }
+    .steps p { margin-top: -89%; font-size: 18px; }
+    
+    /* Cards */
+    .cards-container { margin-top: -200%; }
+    .flip-button, #openCvModalBtn, .template-selector { font-size: 10px; }
+    .flip-card-container { height: 275px; max-width: 255px; }
+    .flip-card1 p { font-size: 14px; }
+    
+    /* Footer */
+    .footer { height: 80px; }
     .footer h1 { font-size: 16px; margin-top: 2vh; }
+    .footer-social { gap: 8px; margin-top: -3vh; }
+    .footer-social a { font-size: 0.7rem !important; margin-top: -1.5vh; }
     .social { width: 80px; margin-top: -24.9%; margin-left: 11%; }
     .social1 { max-width: 30px; margin-top: -19.8%; margin-left: 67%; }
     .social2 { max-width: 65px; margin-top: -0.2%; margin-left: 69.2%; }
-    .footer-social { gap: 8px; margin-top: -3vh; }
-    .footer-social a { font-size: 0.7rem !important; margin-top: -1.5vh; }
-    .clickZone { width: 99px; left: 57.4%; }
-    .clickZone1 { width: 123px; }
-    .clickZone2 { width: 123px; }
-    .clickZone3 { width: 90px; }
-    .hero .background {
-        width: 193%;
-        height: 62%;
-    }
-.phone img {
-        top: 34%;
-    }
-        .hero h1 {
-        font-size: 18px;
-    }
-        .hero h2 {
-        font-size: 18px;
-    }
-        .hero p {
-        font-size: 10.5px;
-    }
-        .button {
-        padding: 3px 17px;
-        font-size: 9px !important;
-        margin-top: 46%;
-}
-    .hero .text {
-        margin-top: 36%;
-       
-    }
-.steps img {
-    width: 122%;
-        margin-top: -125%;
-         content: url("photos/Group 16(1).png");
-    }
-    .steps p {
-        
-        margin-top: -89%;
-        font-size: 18px;
-    }
-        .cards-container {
-        margin-top: -200%;
-    }
-        .flip-button, #openCvModalBtn, .template-selector {
-        font-size: 10px;
-    }
-        .flip-card-container {
-        height: 275px;
-        max-width: 255px;
-    }
-        .flip-card1 p {
-        font-size: 14px;
-    }
 }
