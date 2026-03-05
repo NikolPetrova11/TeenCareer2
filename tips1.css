@@ -1,0 +1,987 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+:root {
+    --header-height: 80px;
+}
+
+img, video {
+    height: auto;
+    display: block;
+}
+
+/* === 2. ХЕДЪР И НАВИГАЦИЯ === */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    background: white;
+    box-shadow: 0 0.2vh 0.8vh rgba(0,0,0,0.1);
+    height: 80px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8vw;
+    height: 80px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 3vw;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links ul li a {
+    text-decoration: none;
+    color: #09989e;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 0.3vh;
+    background: #09989e;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+
+.right-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.profile {
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #09989e;
+    cursor: pointer;
+}
+
+   .hero {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("photos/Group 23(4).png") no-repeat center center/cover;
+    z-index: 1;
+    
+}
+.steps h1{
+    font-size: 30px;
+    color: #8274A1;
+    text-align: center;
+    margin-top: 8%;
+   
+}
+.p1{
+    font-size: 20px;
+    color: #09989e;
+    text-align: center;
+    margin-top: 1%;
+   
+}
+.img1 img{
+    margin-top: 3%;
+    margin-left: 12%;
+    width: 90%;
+    height: 90%;
+}
+.img2 img{
+    margin-top: -17%;
+    width: 90%;
+    height: 90%;
+}
+.img3 img{
+    margin-top: -13%;
+    margin-left: 10%;
+    width: 90%;
+    height: 90%;
+}
+.p2{
+    margin-top: 2%;
+    line-height: 1.2;
+    font-size: 32px;
+    color: #8274A1;
+    text-align: center;
+    font-family: "Caveat", sans-serif;
+}
+.h2{
+    margin-top: 3.5%;
+    font-size: 30px;
+    color: #09989e;
+    text-align: center; 
+}
+.ball{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: url("photos/Group 29(1).png") no-repeat center center/cover;
+    z-index: 1;
+    margin-top: 8%;
+}
+.ball h1{
+  
+    font-size: 27px;
+    color: #8274A1;
+    text-align: center;
+     position: absolute;
+     max-width: 700px;
+    top: 40%;
+     left: 50%;
+    transform: translateX(-50%);
+    font-weight: 650;
+}
+.button {
+    text-decoration: none;
+    color: #fff !important;
+    border: 2px solid #8274A1;
+    padding: 7px 40px;
+    font-size: 18px !important;
+    background: #8274A1;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 25px;
+    z-index: 3;
+    transition: 1s;
+    text-align: center;
+    top: 62%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.button:hover {
+    border-color: #09989e;
+    background: #09989e;
+}
+
+.notes h1{
+     font-size: 30px;
+      color: #09989e;
+      text-align: center;
+      position: relative;
+      margin-top: 9.5%;
+}
+.chek{
+    position: relative;
+     left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1%;
+    
+}
+.notes-grid {
+    display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    max-width: 1400px;
+    margin: 60px auto;
+    padding-left: 20%;
+    padding-right: 20%;
+    gap:20px;
+}
+.notes-grid img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+.notes {
+    width: 100%;
+    max-width: 1400px !important; /* или каквото ти трябва */
+    margin: 0 auto;
+    display: block; /* увери се, че не е flex или inline */
+}
+.footer {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background: linear-gradient(270deg, #8274A1, #84AEAD, #5a4a8c, #4a908a);
+    background-size: 400% 400%;
+    animation: animated-gradient 15s ease infinite;
+}
+
+@keyframes animated-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.footer-social {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    margin-top: -6vh;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-social a {
+    color: #fff !important;
+    font-size: 1.5rem !important;
+    transition: color 0.3s;
+    z-index: 2;
+}
+
+.footer-social a:hover {
+    color: #8274A1 !important;
+}
+
+.footer h1 {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+    margin-top: 4vh;
+    font-size: 32px;
+    font-family: "Caveat", cursive;
+}
+
+.social {
+    position: relative;
+    z-index: 1001;
+    margin-top: -7.9%;
+    margin-left: 34%;
+    max-width: 165px;
+}
+
+.social1 {
+    position: relative;
+    z-index: 1001;
+    margin-top: -6.8%;
+    margin-left: 56%;
+    max-width: 50px;
+}
+
+.social2 {
+    position: relative;
+    z-index: 1001;
+    margin-top: -0.2%;
+    margin-left: 58.8%;
+    max-width: 130px;
+}
+@media (max-width: 1536px){
+ 
+.logo { height: 60px; width: auto; }
+    .profile-btn { margin-right: 0px; }
+    .nav-links ul { margin-top: 11px; }
+    .img1 img{
+        margin-left: 10%;
+    }
+       .social { margin-top: -9.9%; margin-left: 32%; }
+    .social1 { margin-top: -8.8%; margin-left: 57%; }
+    .social2 { margin-top: -0.2%; margin-left: 59.8%; }
+
+}
+@media (max-width:1440px){
+   .logo { height: 55px; margin-left: 22%; }
+    .profile { height: 90%; margin-left: -70px; }
+    .profile-btn { margin-right: 0px; }
+    .footer h1 { font-size: 27px; margin-top: 4vh; }
+    .footer-social a { font-size: 1.4rem !important; }
+    .footer-social { margin-top: -7vh; }
+}
+@media (max-width: 1280px){
+         .profile-btn { margin-right: 0px; }
+    .nav-links ul li a { font-size: 15px; }
+    .profile { height: 90%; margin-left: -120px; margin-top: 10px; }
+    .nav-links ul { margin-left: -30px; }
+    .steps h1 {
+    font-size: 27px;
+    }
+    .p1{
+        font-size: 19px;
+    }
+    .h2 {
+    margin-top: 5.5%;
+    }
+    .ball h1 {
+    font-size: 25px;
+    }
+    .button{
+    padding: 5px 30px;
+    font-size: 17px !important;
+    }
+    .notes h1 {
+    font-size: 28px;
+    }
+    .chek{
+        max-width: 175px;
+    }
+    .notes-grid img {
+    width: 80%;
+    }
+     .social { margin-left: 30%; }
+    .social1 { margin-top: -10.8%; margin-left: 57%; }
+}
+@media (max-width: 1024px){
+       .profile-btn { margin-right: 0px; }
+    .profile { margin-right: -70px; height: 75%; margin-top: 0px; }
+    .header-container { padding: 0 5vw; }
+    .logo { height: 40px; margin-left: 20px; }
+    .nav-links ul { margin-left: 0px; margin-top: 5px; }
+    .nav-links ul li a { font-size: 14px; }
+    .hero {
+    height: 90%;
+    margin-top: 5%;
+    }
+        .steps h1 {
+        font-size: 25px;
+    }
+    .h2 {
+    font-size: 27px;
+    }
+    .p2 {
+    font-size: 27px;
+    }
+        .ball h1 {
+        font-size: 24px;
+    }
+        .notes h1 {
+        font-size: 26px;
+    }
+        .chek {
+        max-width: 165px;
+    }
+        .notes-grid img {
+        width: 78%;
+    }
+    .footer-social { gap: 18px; margin-top: -7vh; }
+    .footer h1 { font-size: 22px; }
+    .footer-social a { font-size: 1.2rem !important; }
+    .social { margin-left: 26%; margin-top: -13.9%; }
+    .social1 { margin-top: -12.8%; }
+
+}
+@media (max-width: 768px){
+    .notes-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+      .menu-toggle {
+        display: block;
+        margin-right: 40px;
+        margin-top: -7px;
+        width: 90%;
+    }
+    .header-container { padding: 0 4vw; overflow: hidden; }
+    .logo { height: 45px; }
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 90vw;
+        max-width: 220px;
+        box-sizing: border-box;
+        background: white;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-20px);
+        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+        z-index: 1000;
+        padding: 0;
+        margin-right: 60px;
+    }
+    .nav-links.active {
+        max-height: 500px;
+        opacity: 1;
+        transform: translateY(0);
+        z-index: 9999;
+    }
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 0.8rem;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .nav-links ul li { width: 100%; text-align: left; }
+    .nav-links ul li a {
+        text-align: left;
+        display: block;
+        font-size: 1.1rem;
+        color: #09989e;
+        width: 100%;
+    }
+    .nav-links ul li {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .nav-links.active ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .nav-links.active ul li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links.active ul li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links.active ul li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links.active ul li:nth-child(4) { transition-delay: 0.4s; }
+    .profile {
+        margin-right: 10px;
+        width: 95%;
+        margin-top: -5px;
+    }
+    .profile-btn { margin-right: -40px; }
+    .hero {
+        height: 75%;
+    }
+        .steps h1 {
+        font-size: 24px;
+    }
+        .p1 {
+        font-size: 18px;
+    }
+        .img1 img {
+        margin-left: -4%;
+        width: 110%;
+    }
+    .img2 img{
+         width: 110%;
+         margin-left: -12%;
+    }
+    .img3 img{
+       width: 110%; 
+       margin-left: -7%;
+    
+    }
+    .h2{
+        font-size: 24px;
+    margin-top: 10.5%;
+    }
+.p2 {
+        font-size: 25px;
+    }
+    .ball{
+        height: 267px;
+    }
+        .ball h1 {
+        font-size: 20px;
+    }
+        .button {
+        padding: 3px 24px;
+        font-size: 14px !important;
+    }
+    .notes h1 {
+        font-size: 23px;
+    }
+        .chek {
+        max-width: 155px;
+    }
+     .footer-social { gap: 12px; margin-top: -7.5vh; }
+    .footer h1 { font-size: 20px; margin-top: 5vh; }
+    .footer-social a { font-size: 1rem !important; }
+    .social { width: 130px; margin-top: -15.9%; margin-left: 24%; }
+    .social1 { margin-top: -13.8%; margin-left: 59%; }
+    .social2 { max-width: 110px; margin-left: 60.8%; }
+}
+@media (max-width: 480px){
+    .notes-grid {
+        grid-template-columns: 1fr;
+    }
+    .menu-toggle { margin-right: -10px; }
+    .header-container { padding: 0 4vw; height: 70px; }
+    .logo { height: 42px; margin-left: -5px; }
+    .profile { margin-right: -90px; }
+    .profile-btn { width: 40px; height: 40px; }
+    .profile-btn { margin-right: -20px; } 
+        .hero {
+        height: 60%;
+    }
+    .steps h1 {
+    margin-top: 14%;
+}
+    .steps h1 {
+        font-size: 22px;
+    }
+    .p1 {
+        font-size: 17px;
+    }
+}
+@media (max-width: 425px){
+    
+.hero {
+    height: 48vh;
+    margin-top: 50px;
+  }
+   .img1 img {
+    margin-top: 50px;
+    margin-left: 65px;
+    width: 85%;
+    height: 90%;
+  }
+    .img2 img {
+    margin-top: -78px;
+    width: 85%;
+    height: 90%;
+  }
+    .img3 img {
+    margin-top: -47px;
+    margin-left: 63px;
+    width: 85%;
+    height: 90%;
+  }
+  .h2 {
+    margin-top: 72px;
+    font-size: 18px;
+    color: #09989e;
+    text-align: center;
+  }
+     .ball p {
+    font-size: 6px;
+    color: #E3D7E8;
+    text-align: center;
+    position: absolute;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+     .ball h1 {
+    font-size: 13px;
+    color: #8274A1;
+    text-align: center;
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+   .ball {
+    position: relative;
+    width: 101%;
+    height: 17%;
+    background: url("photos/Group 28.png") no-repeat center center / cover;
+    z-index: 1;
+    margin-top: 150px;
+  }
+   .notes h1 {
+    font-size: 19px;
+    color: #09989e;
+    text-align: center;
+    position: relative;
+    margin-top: 80px;
+  }
+     .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
+
+
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 0.9rem;
+                color: #09989e;
+                width: 100%;
+            }
+            .notes-grid {
+        display: grid;
+       grid-template-columns: 1fr !important;
+        gap: 0px;
+        max-width: 1000px;
+        margin: 80px auto;
+        padding: 20px;
+    }
+}
+@media (max-width: 375px){
+    
+     .hero {
+    height: 42vh;
+    margin-top: 50px;
+  }
+  .steps h1 {
+    font-size: 16px;
+    color: #8274A1;
+    text-align: center;
+    margin-top: 80px;
+  }
+  .p1 {
+    font-size: 11px;
+    color: #09989e;
+    text-align: center;
+    margin-top: 4px;
+  }
+   .img1 img {
+    margin-top: 50px;
+    margin-left: 58px;
+    width: 85%;
+    height: 90%;
+  }
+   .img2 img {
+    margin-top: -67px;
+    width: 85%;
+    height: 90%;
+  }
+  .img3 img {
+    margin-top: -32px;
+    margin-left: 57px;
+    width: 85%;
+    height: 90%;
+  }
+    .h2 {
+    margin-top: 72px;
+    font-size: 16px;
+    color: #09989e;
+    text-align: center;
+  }
+  .ball {
+    position: relative;
+    width: 101%;
+    height: 12%;
+    background: url("photos/Group 28.png") no-repeat center center / cover;
+    z-index: 1;
+    margin-top: 100px;
+  }
+   .p2 {
+    margin-top: 4px;
+    line-height: 1.2;
+    font-size: 15px;
+    color: #8274A1;
+    text-align: center;
+    font-family: "Caveat", sans-serif;
+  }
+    .notes h1 {
+    font-size: 16px;
+    color: #09989e;
+    text-align: center;
+    position: relative;
+    margin-top: 80px;
+  }
+   .chek {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    width: 15%;
+  }.notes-grid {
+        display: grid;
+       grid-template-columns: 1fr !important;
+        gap: 0px;
+        max-width: 1000px;
+        margin: 80px auto;
+        padding: 20px;
+    }
+
+   .ball h1 {
+    font-size: 11px;
+    color: #8274A1;
+    text-align: center;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+    .ball p {
+    font-size: 5px;
+    color: #E3D7E8;
+    text-align: center;
+    position: absolute;
+    top: 53px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+    .footer{
+        height: 90px;
+    }
+       .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
+
+
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 0.9rem;
+                color: #09989e;
+                width: 100%;
+            }
+}
+@media (max-width: 320px){
+    .hero{
+    height: 48vh;
+    }
+      .logo {
+    height: 39px;
+    margin-left: -17px;
+  }
+   .profile {
+    height: 74%;
+    margin-top: 2px;
+    margin-right: 80px;
+  }
+   .menu-toggle {
+    display: block;
+    margin-right: 9px;
+    z-index: 10;
+  }
+   .steps h1 {
+    font-size: 14px;
+    color: #8274A1;
+    text-align: center;
+    margin-top: 80px;
+  }
+    .p1 {
+    font-size: 10px;
+    color: #09989e;
+    text-align: center;
+    margin-top: 4px;
+  }
+   .img1 img {
+    margin-top: 50px;
+    margin-left: 49px;
+    width: 85%;
+    height: 90%;
+  }
+  .img2 img {
+    margin-top: -56px;
+    width: 85%;
+    height: 90%;
+  }
+   .img3 img {
+    margin-top: -26px;
+    margin-left: 45px;
+    width: 85%;
+    height: 90%;
+  }
+    .h2 {
+    margin-top: 72px;
+    font-size: 14px;
+    color: #09989e;
+    text-align: center;
+  }
+  .p2 {
+    margin-top: 4px;
+    line-height: 1.2;
+    font-size: 12px;
+    color: #8274A1;
+    text-align: center;
+    font-family: "Caveat", sans-serif;
+  }
+   .ball {
+    position: relative;
+    width: 101%;
+    height: 12%;
+    background: url("photos/Group 28.png") no-repeat center center / cover;
+    z-index: 1;
+    margin-top: 80px;
+  }
+   .ball h1 {
+    font-size: 10px;
+    color: #8274A1;
+    text-align: center;
+    position: absolute;
+    top: 31px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+    .ball p {
+    font-size: 4px;
+    color: #E3D7E8;
+    text-align: center;
+    position: absolute;
+    top: 47px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+    .notes h1 {
+    font-size: 17px;
+    color: #09989e;
+    text-align: center;
+    position: relative;
+    margin-top: 80px;
+  }
+  .footer{
+        height: 80px;
+       
+    }
+    .footer h1{
+        font-size: 10px;
+         margin-top: 2vh;
+    }
+     .footer {
+                aspect-ratio: 16 / 3;
+                margin-top: 30px;
+            }
+            
+            .footer-social {
+                gap: 8px;
+                margin-top: -3vh !important;
+            }
+.footer-social a{ 
+font-size: 0.6rem !important; 
+ margin-top: -1.5vh;
+        }
+           .nav-links {
+        position: absolute;
+    top: 100%;
+    right: 0;
+    width: 90vw;          /* ширината да не надвишава 90% от viewport */
+    max-width: 220px;     /* максимална ширина */
+    box-sizing: border-box; /* да включва padding в ширината */
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+    padding: 0;    
+    margin-right: 60px;       /* махни падинга, който добавя ширина */
+}
+    
+
+    .nav-links.active {
+        max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .nav-links ul {
+         display: flex;
+    flex-direction: column;
+    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
+    gap: 0.8rem;
+    margin: 0;
+    box-sizing: border-box; /* за всеки случай */
+    }
+
+
+            .nav-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-links ul li a {
+                text-align: left;
+                display: block;
+                font-size: 0.9rem;
+                color: #09989e;
+                width: 100%;
+            }
+             .hero {
+    height: 48vh;
+    margin-top: 70px;
+  }
+}

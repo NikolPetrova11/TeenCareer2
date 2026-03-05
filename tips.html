@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeenCareer</title>
-    <link rel="stylesheet" type="text/css" href="tips.css" />
-    <link rel="stylesheet" type="text/css" href="login2.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeenCareer</title>
+  <link rel="stylesheet" type="text/css" href="tips1.css" />
+  <link rel="stylesheet" type="text/css" href="login2.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
 </head>
+
 <body>
-    <header>
+   <header>
     <div class="header-container">
-      <a href="index.php">
+     <a href="#">
       <img src="photos/logo.png" class="logo" alt="TeenCareer">
 </a>
+
       <nav class="nav-links" id="navMenu">
         <ul>
           <li><a href="index.php">Да започнем</a></li>
@@ -36,8 +39,9 @@
         </button>
       </div>
     </div>
+    
     <div class="overlay"></div>
-   <div class="popup">
+    <div class="popup">
     <div class="close-btn">&times;</div>
     
     <div class="tab-header">
@@ -48,7 +52,7 @@
     <div class="form-container">
 
         <div class="form login-form-container active">
-            <form action="login.php" method="POST">
+            <form action="/login" method="POST">
                 
                 <div class="form-element">
                     <label for="login-email">Email</label>
@@ -66,7 +70,7 @@
             </form>
         </div>
         <div class="form register-form-container">
-            <form action="register.php" method="POST">
+            <form action="/register" method="POST">
                 
                 <div class="form-element">
                     <label for="register-email">Email</label>
@@ -90,67 +94,8 @@
         </div>
         </div> 
 </div>
-<script>
-  // Existing menu logic
-  const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); // Ensure element with ID="navMenu" exists
-
-  menuToggle.addEventListener("click", () => {
-    // Ensure navMenu exists before adding class
-    if (navMenu) {
-        navMenu.classList.toggle("active");
-    }
-  });
-
-  // Popup open/close logic
-  const profileBtn = document.querySelector(".profile-btn");
-  const overlay = document.querySelector(".overlay");
-  const popup = document.querySelector(".popup");
-  const closeBtn = document.querySelector(".popup .close-btn");
-
-  profileBtn.addEventListener("click", function() {
-    overlay.classList.add("active");
-    popup.classList.add("active");
-  });
-
-  closeBtn.addEventListener("click", function() {
-    overlay.classList.remove("active");
-    popup.classList.remove("active");
-  });
-
-  overlay.addEventListener("click", function(e) {
-    if (e.target.classList.contains("overlay")) {
-        overlay.classList.remove("active");
-        popup.classList.remove("active");
-    }
-  });
-
-
-  // NEW TAB LOGIC (LOGIN/REGISTER)
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const loginForm = document.querySelector(".login-form-container");
-  const registerForm = document.querySelector(".register-form-container");
-
-  tabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        // Removes "active" from all buttons
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-        // Adds "active" to the clicked button
-        button.classList.add("active");
-
-        const targetForm = button.getAttribute("data-form");
-
-        if (targetForm === "login") {
-            loginForm.classList.add("active");
-            registerForm.classList.remove("active");
-        } else if (targetForm === "register") {
-            loginForm.classList.remove("active");
-            registerForm.classList.add("active");
-        }
-    });
-  });
-</script>
-  </header>
+   </header>
+   </header>
 
     <section class="hero"></section>
     <section class="steps">
@@ -167,23 +112,25 @@
 
     </section>
     <section class="ball">
-        <h1>Репетиция с AI</h1>
-        <p>Използвай бутона до обявата – ще ти извади въпроси за интервю.<br> Тренирай, отговаряй, бъди 1 крачка напред!</p>
+        <h1>Качи своето CV и открий кои работи са най-подходящи за теб!</h1>
+        <a href="#" class="button">Качи сега</a>
+    
     </section>
     <section class="notes">
         <h1>Бърз чеклист преди интервю:</h1>
         <img class="chek" src="photos/Group 30.png">
        <div class="notes-grid">
-    <img src="photos/Group 31.png">
-   <img src="photos/Group 32.png">
-    <img src="photos/Group 33.png">
-    <img src="photos/Group 34.png">
-    <img src="photos/Group 35.png">
-    <img src="photos/Group 36.png">
+    <img src="photos/Group 31(1).png">
+   <img src="photos/Group 32(1).png">
+    <img src="photos/Group 33(1).png">
+    <img src="photos/Group 34(1).png">
+    <img src="photos/Group 35(1).png">
+    <img src="photos/Group 36(1).png">
 </div>
     </section>
     </section>
    <section class="footer">
+    
     <h1>Последвай ни в:</h1>
     <div class="footer-social">
       <a href="https://www.facebook.com/profile.php?id=61584096897244"><i class="fab fa-facebook-f"></i></a>
@@ -191,6 +138,10 @@
       <a href="https://instagram.com/teencareerweb"><i class="fab fa-instagram"></i></a>
       <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
     </div>
+    <img src="photos/Последвай ни в(1).png" class="social">
+    <img src="photos/Последвай ни в(3).png" class="social1">
+    <img src="photos/Последвай ни в(6).png" class="social2">
   </section>
+  <script src="tips.js"></script>
 </body>
 </html>

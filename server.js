@@ -5,20 +5,35 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const { GoogleGenerativeAI } = require("@google/generative-ai"); 
-const cors = require('cors'); 
+const cors = require('cors');
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (reason, promise) => {
+    // Only log if it's not a known MongoDB connection error
+    if (reason && reason.code !== 'ECONNREFUSED' && reason.syscall !== 'querySrv') {
+        console.error('Unhandled Rejection:', reason);
+    }
+}); 
 
 const app = express();
 
+// DataBase connection
+const dbURI = 'mongodb+srv://teencareer_db_user:jO38uGY9loz1xVar@cluster0.ylxecao.mongodb.net/TeenCareerDB?retryWrites=true&w=majority';
+
 // Sessions
+const sessionStore = new MongoStore({ mongoUrl: dbURI }).on('error', (err) => {
+    console.warn('MongoStore connection error:', err.message);
+});
+
 app.use(session({
     secret: process.env.SESSION_SECRET || 'your_secret_key',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: dbURI }),
+    store: sessionStore,
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
 
@@ -54,9 +69,6 @@ app.post('/chat', async (req, res) => {
         res.status(500).json({ error: "Грешка при комуникация с бота. Моля, опитайте отново по-късно." });
     }
 });
-
-// DataBase connection
-const dbURI = 'mongodb+srv://teencareer_db_user:jO38uGY9loz1xVar@cluster0.ylxecao.mongodb.net/TeenCareerDB?retryWrites=true&w=majority';
 
 // User info
 const userSchema = new mongoose.Schema({
@@ -434,10 +446,36 @@ app.post('/generate-portfolio', async (req, res) => {
 });
 
 const PORT = 3000;
-mongoose.connect(dbURI)
-  .then(() => {
-    console.log('Connected to MongoDB Atlas!');
-    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+// Start server immediately, connect to MongoDB separately
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+// Connect to MongoDB with retry logic
+let isConnected = false;
+
+const connectDB = () => {
+  mongoose.connect(dbURI, {
+    retryWrites: true,
+    w: 'majority'
   })
-  .catch((err) => console.error('Error connecting:', err));
+    .then(() => {
+      console.log('Connected to MongoDB Atlas!');
+      isConnected = true;
+    })
+    .catch((err) => {
+      if (!isConnected) {
+        console.error('Error connecting to MongoDB:', err.message);
+        console.log('Server is running but database connection failed. Retrying in 10 seconds...');
+      }
+    });
+};
+
+connectDB();
+
+// Retry connection every 10 seconds if not connected
+setInterval(() => {
+  if (!isConnected && mongoose.connection.readyState === 0) {
+    connectDB();
+  }
+}, 10000);
   
