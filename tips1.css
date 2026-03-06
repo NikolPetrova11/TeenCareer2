@@ -1,19 +1,21 @@
+/* ===================================================================
+   tips1.css - Подреден и коментиран
+   =================================================================== */
+
+/* === 1. ГЛОБАЛНИ СТИЛОВЕ И НУЛИРАНЕ === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
 html, body {
     width: 100%;
     overflow-x: hidden;
 }
-
 :root {
     --header-height: 80px;
 }
-
 img, video {
     height: auto;
     display: block;
@@ -108,45 +110,53 @@ header {
     cursor: pointer;
 }
 
-   .hero {
+/* === 3. ГЛАВНА СЕКЦИЯ (HERO) === */
+.hero {
     position: relative;
     width: 100%;
     height: 100%;
     background: url("photos/Group 23(4).png") no-repeat center center/cover;
     z-index: 1;
-    
 }
+
+/* === 4. СЕКЦИЯ "СТЪПКИ" === */
 .steps h1{
     font-size: 30px;
     color: #8274A1;
     text-align: center;
     margin-top: 8%;
-   
 }
+
+/* Подзаглавие за стъпките */
 .p1{
     font-size: 20px;
     color: #09989e;
     text-align: center;
     margin-top: 1%;
-   
 }
+
+/* Изображения за всяка стъпка */
 .img1 img{
     margin-top: 3%;
     margin-left: 12%;
     width: 90%;
     height: 90%;
 }
+
 .img2 img{
     margin-top: -17%;
     width: 90%;
     height: 90%;
 }
+
 .img3 img{
     margin-top: -13%;
     margin-left: 10%;
     width: 90%;
     height: 90%;
 }
+
+/* Текст с цитат под стъпките */
 .p2{
     margin-top: 2%;
     line-height: 1.2;
@@ -155,12 +165,17 @@ header {
     text-align: center;
     font-family: "Caveat", sans-serif;
 }
+
+/* === 5. СЕКЦИЯ "ПРИЗИВ ЗА ДЕЙСТВИЕ" (BALL) === */
+/* Заглавие преди банера */
 .h2{
     margin-top: 3.5%;
     font-size: 30px;
     color: #09989e;
     text-align: center; 
 }
+
+/* Контейнер на банера */
 .ball{
     position: relative;
     width: 100%;
@@ -169,18 +184,21 @@ header {
     z-index: 1;
     margin-top: 8%;
 }
+
+/* Текст в банера */
 .ball h1{
-  
     font-size: 27px;
     color: #8274A1;
     text-align: center;
-     position: absolute;
-     max-width: 700px;
+    position: absolute;
+    max-width: 700px;
     top: 40%;
-     left: 50%;
+    left: 50%;
     transform: translateX(-50%);
     font-weight: 650;
 }
+
+/* Бутон в банера */
 .button {
     text-decoration: none;
     color: #fff !important;
@@ -198,11 +216,13 @@ header {
     left: 50%;
     transform: translateX(-50%);
 }
+
 .button:hover {
     border-color: #09989e;
     background: #09989e;
 }
 
+/* === 6. СЕКЦИЯ "БЕЛЕЖКИ/СЪВЕТИ" === */
 .notes h1{
      font-size: 30px;
       color: #09989e;
@@ -210,16 +230,19 @@ header {
       position: relative;
       margin-top: 9.5%;
 }
+
+/* Изображение с отметки */
 .chek{
     position: relative;
      left: 50%;
     transform: translateX(-50%);
     margin-top: 1%;
-    
 }
+
+/* Грид с икони/бележки */
 .notes-grid {
     display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     max-width: 1400px;
     margin: 60px auto;
     padding-left: 20%;
@@ -233,12 +256,16 @@ header {
     display: block;
     margin: auto;
 }
+
+/* Контейнер на цялата секция */
 .notes {
     width: 100%;
     max-width: 1400px !important; /* или каквото ти трябва */
     margin: 0 auto;
     display: block; /* увери се, че не е flex или inline */
 }
+
+/* === 7. ФУТЪР === */
 .footer {
     position: relative;
     width: 100%;
@@ -248,13 +275,11 @@ header {
     background-size: 400% 400%;
     animation: animated-gradient 15s ease infinite;
 }
-
 @keyframes animated-gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
 .footer-social {
     position: relative;
     z-index: 2;
@@ -264,7 +289,6 @@ header {
     justify-content: center;
     gap: 20px;
 }
-
 .footer-social a {
     color: #fff !important;
     font-size: 1.5rem !important;
@@ -275,7 +299,6 @@ header {
 .footer-social a:hover {
     color: #8274A1 !important;
 }
-
 .footer h1 {
     position: relative;
     z-index: 2;
@@ -286,6 +309,7 @@ header {
     font-family: "Caveat", cursive;
 }
 
+/* Декоративни елементи във футъра */
 .social {
     position: relative;
     z-index: 1001;
@@ -293,7 +317,6 @@ header {
     margin-left: 34%;
     max-width: 165px;
 }
-
 .social1 {
     position: relative;
     z-index: 1001;
@@ -301,7 +324,6 @@ header {
     margin-left: 56%;
     max-width: 50px;
 }
-
 .social2 {
     position: relative;
     z-index: 1001;
@@ -309,8 +331,10 @@ header {
     margin-left: 58.8%;
     max-width: 130px;
 }
+
+/* === 8. МЕДИЙНИ ЗАЯВКИ (RESPONSIVE DESIGN) === */
+/* --- 1536px --- */
 @media (max-width: 1536px){
- 
 .logo { height: 60px; width: auto; }
     .profile-btn { margin-right: 0px; }
     .nav-links ul { margin-top: 11px; }
@@ -320,8 +344,9 @@ header {
        .social { margin-top: -9.9%; margin-left: 32%; }
     .social1 { margin-top: -8.8%; margin-left: 57%; }
     .social2 { margin-top: -0.2%; margin-left: 59.8%; }
-
 }
+
+/* --- 1440px --- */
 @media (max-width:1440px){
    .logo { height: 55px; margin-left: 22%; }
     .profile { height: 90%; margin-left: -70px; }
@@ -330,6 +355,8 @@ header {
     .footer-social a { font-size: 1.4rem !important; }
     .footer-social { margin-top: -7vh; }
 }
+
+/* --- 1280px --- */
 @media (max-width: 1280px){
          .profile-btn { margin-right: 0px; }
     .nav-links ul li a { font-size: 15px; }
@@ -363,6 +390,8 @@ header {
      .social { margin-left: 30%; }
     .social1 { margin-top: -10.8%; margin-left: 57%; }
 }
+
+/* --- 1024px --- */
 @media (max-width: 1024px){
        .profile-btn { margin-right: 0px; }
     .profile { margin-right: -70px; height: 75%; margin-top: 0px; }
@@ -400,11 +429,13 @@ header {
     .footer-social a { font-size: 1.2rem !important; }
     .social { margin-left: 26%; margin-top: -13.9%; }
     .social1 { margin-top: -12.8%; }
-
 }
+
+/* --- 768px --- */
 @media (max-width: 768px){
     .notes-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 45px;
     }
       .menu-toggle {
         display: block;
@@ -525,6 +556,8 @@ header {
     .social1 { margin-top: -13.8%; margin-left: 59%; }
     .social2 { max-width: 110px; margin-left: 60.8%; }
 }
+
+/* --- 480px --- */
 @media (max-width: 480px){
     .notes-grid {
         grid-template-columns: 1fr;
@@ -547,441 +580,159 @@ header {
     .p1 {
         font-size: 17px;
     }
-}
-@media (max-width: 425px){
-    
-.hero {
-    height: 48vh;
-    margin-top: 50px;
-  }
-   .img1 img {
-    margin-top: 50px;
-    margin-left: 65px;
-    width: 85%;
-    height: 90%;
-  }
+    .img1 img {
+        content: url("photos/Group\ 24\(2\).png");
+                margin-left: -9%;
+        width: 120%;
+    }
     .img2 img {
-    margin-top: -78px;
-    width: 85%;
-    height: 90%;
-  }
-    .img3 img {
-    margin-top: -47px;
-    margin-left: 63px;
-    width: 85%;
-    height: 90%;
-  }
-  .h2 {
-    margin-top: 72px;
-    font-size: 18px;
-    color: #09989e;
-    text-align: center;
-  }
-     .ball p {
-    font-size: 6px;
-    color: #E3D7E8;
-    text-align: center;
-    position: absolute;
-    top: 56px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-     .ball h1 {
-    font-size: 13px;
-    color: #8274A1;
-    text-align: center;
-    position: absolute;
-    top: 38px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-   .ball {
-    position: relative;
-    width: 101%;
-    height: 17%;
-    background: url("photos/Group 28.png") no-repeat center center / cover;
-    z-index: 1;
-    margin-top: 150px;
-  }
-   .notes h1 {
-    font-size: 19px;
-    color: #09989e;
-    text-align: center;
-    position: relative;
-    margin-top: 80px;
-  }
-     .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
+        content: url("photos/Group\ 26\(2\).png");
+                margin-left: -20%;
+        width: 120%;
+    }.img3 img {
+        content: url("photos/Group\ 27\(3\).png");
+                margin-left: -11%;
+        width: 120%;
+    }
+        .h2 {
+        font-size: 20px;
+        margin-top: 15.5%;
+    }
+        .p2 {
+        font-size: 19px;
+    }
+        .ball {
+        height: 175px;
+    }
+        .ball h1 {
+        font-size: 16px;
+        top: 32%;
+    }
+        .button {
+        padding: 2px 19px;
+        font-size: 12px !important;
+        top: 70%;
+    }
+        .notes h1 {
+        font-size: 21px;
+    }
+        .chek {
+        max-width: 140px;
+    }
+        .notes-grid img {
+        width: 60%;
+    }
+    .footer-social { gap: 7px; margin-top: -1vh; }
+    .footer h1 { font-size: 18px; margin-top: 3vh; }
+    .footer-social a { font-size: 0.9rem !important; margin-top: -7vh; }
+    .social { width: 100px; margin-top: -25.9%; margin-left: 19%; }
+    .social1 { max-width: 40px; margin-top: -16.8%; margin-left: 62%; }
+    .social2 { max-width: 80px; margin-top: -0.2%; margin-left: 64.8%; }
+    .footer { height: 100px; }
 }
-    
 
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
+/* --- 425px --- */
+@media (max-width: 425px){
+        .hero {
+        margin-top: 12%;
     }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
-    }
-
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 0.9rem;
-                color: #09989e;
-                width: 100%;
-            }
-            .notes-grid {
-        display: grid;
-       grid-template-columns: 1fr !important;
-        gap: 0px;
-        max-width: 1000px;
-        margin: 80px auto;
-        padding: 20px;
-    }
+.social { width: 90px; margin-top: -28.9%; margin-left: 16%; }
+    .social1 { max-width: 35px; margin-top: -17.8%; margin-left: 65%; }
+    .social2 { max-width: 75px; margin-top: 0.8%; margin-left: 65.8%; }
 }
+
+/* --- 375px --- */
 @media (max-width: 375px){
-    
-     .hero {
-    height: 42vh;
-    margin-top: 50px;
-  }
-  .steps h1 {
-    font-size: 16px;
-    color: #8274A1;
-    text-align: center;
-    margin-top: 80px;
-  }
-  .p1 {
-    font-size: 11px;
-    color: #09989e;
-    text-align: center;
-    margin-top: 4px;
-  }
-   .img1 img {
-    margin-top: 50px;
-    margin-left: 58px;
-    width: 85%;
-    height: 90%;
-  }
-   .img2 img {
-    margin-top: -67px;
-    width: 85%;
-    height: 90%;
-  }
-  .img3 img {
-    margin-top: -32px;
-    margin-left: 57px;
-    width: 85%;
-    height: 90%;
-  }
-    .h2 {
-    margin-top: 72px;
-    font-size: 16px;
-    color: #09989e;
-    text-align: center;
-  }
-  .ball {
-    position: relative;
-    width: 101%;
-    height: 12%;
-    background: url("photos/Group 28.png") no-repeat center center / cover;
-    z-index: 1;
-    margin-top: 100px;
-  }
-   .p2 {
-    margin-top: 4px;
-    line-height: 1.2;
-    font-size: 15px;
-    color: #8274A1;
-    text-align: center;
-    font-family: "Caveat", sans-serif;
-  }
-    .notes h1 {
-    font-size: 16px;
-    color: #09989e;
-    text-align: center;
-    position: relative;
-    margin-top: 80px;
-  }
-   .chek {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 8px;
-    width: 15%;
-  }.notes-grid {
-        display: grid;
-       grid-template-columns: 1fr !important;
-        gap: 0px;
-        max-width: 1000px;
-        margin: 80px auto;
-        padding: 20px;
+        .hero {
+        height: 54%;
     }
-
-   .ball h1 {
-    font-size: 11px;
-    color: #8274A1;
-    text-align: center;
-    position: absolute;
-    top: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-    .ball p {
-    font-size: 5px;
-    color: #E3D7E8;
-    text-align: center;
-    position: absolute;
-    top: 53px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-    .footer{
-        height: 90px;
+    .steps h1 {
+        font-size: 20px;
     }
-       .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
-}
-    
-
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
+        .p1 {
+        font-size: 15px;
     }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
+    .img1 img {
+         content: url("photos/Group\ 24\(3\).png");
     }
-
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 0.9rem;
-                color: #09989e;
-                width: 100%;
-            }
-}
-@media (max-width: 320px){
-    .hero{
-    height: 48vh;
+    .img2 img {
+        content: url("photos/Group\ 26\(3\).png");
     }
-      .logo {
-    height: 39px;
-    margin-left: -17px;
-  }
-   .profile {
-    height: 74%;
-    margin-top: 2px;
-    margin-right: 80px;
-  }
-   .menu-toggle {
-    display: block;
-    margin-right: 9px;
-    z-index: 10;
-  }
-   .steps h1 {
-    font-size: 14px;
-    color: #8274A1;
-    text-align: center;
-    margin-top: 80px;
-  }
-    .p1 {
-    font-size: 10px;
-    color: #09989e;
-    text-align: center;
-    margin-top: 4px;
-  }
-   .img1 img {
-    margin-top: 50px;
-    margin-left: 49px;
-    width: 85%;
-    height: 90%;
-  }
-  .img2 img {
-    margin-top: -56px;
-    width: 85%;
-    height: 90%;
-  }
-   .img3 img {
-    margin-top: -26px;
-    margin-left: 45px;
-    width: 85%;
-    height: 90%;
-  }
-    .h2 {
-    margin-top: 72px;
-    font-size: 14px;
-    color: #09989e;
-    text-align: center;
-  }
-  .p2 {
-    margin-top: 4px;
-    line-height: 1.2;
-    font-size: 12px;
-    color: #8274A1;
-    text-align: center;
-    font-family: "Caveat", sans-serif;
-  }
-   .ball {
-    position: relative;
-    width: 101%;
-    height: 12%;
-    background: url("photos/Group 28.png") no-repeat center center / cover;
-    z-index: 1;
-    margin-top: 80px;
-  }
-   .ball h1 {
-    font-size: 10px;
-    color: #8274A1;
-    text-align: center;
-    position: absolute;
-    top: 31px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-    .ball p {
-    font-size: 4px;
-    color: #E3D7E8;
-    text-align: center;
-    position: absolute;
-    top: 47px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-    .notes h1 {
-    font-size: 17px;
-    color: #09989e;
-    text-align: center;
-    position: relative;
-    margin-top: 80px;
-  }
-  .footer{
-        height: 80px;
-       
+    .img3 img {
+        content: url("photos/Group\ 27\(4\).png");
+        margin-left: -12%;
     }
-    .footer h1{
-        font-size: 10px;
-         margin-top: 2vh;
-    }
-     .footer {
-                aspect-ratio: 16 / 3;
-                margin-top: 30px;
-            }
-            
-            .footer-social {
-                gap: 8px;
-                margin-top: -3vh !important;
-            }
-.footer-social a{ 
-font-size: 0.6rem !important; 
- margin-top: -1.5vh;
+        .h2 {
+        font-size: 19px;
         }
-           .nav-links {
-        position: absolute;
-    top: 100%;
-    right: 0;
-    width: 90vw;          /* ширината да не надвишава 90% от viewport */
-    max-width: 220px;     /* максимална ширина */
-    box-sizing: border-box; /* да включва padding в ширината */
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-20px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-    padding: 0;    
-    margin-right: 60px;       /* махни падинга, който добавя ширина */
+            .ball {
+        height: 150px;
+    }
+        .ball h1 {
+        font-size: 14px;
+        top: 27%;
+    }
+        .notes h1 {
+        font-size: 19px;
+        margin-top: 10.5%;
+        }
+            .chek {
+        max-width: 125px;
+    }
+      .footer { height: 80px; }
+    .footer h1 { font-size: 18px; margin-top: 2vh; }
+    .social { width: 85px; margin-top: -22.9%; margin-left: 13%; }
+    .social2 { max-width: 70px; margin-top: -0.2%; margin-left: 67.8%; }
+    .footer-social { gap: 7px; margin-top: -3vh; }
+    .footer-social a { font-size: 0.8rem !important; margin-top: -1.5vh; }
 }
-    
 
-    .nav-links.active {
-        max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
+/* --- 320px --- */
+@media (max-width: 320px){
+    .nav-links ul li a { font-size: 0.9rem; }
+       .hero {
+        margin-top: 19%;
+        height: 53%;
     }
-
-    .nav-links ul {
-         display: flex;
-    flex-direction: column;
-    padding: 1.5rem;       /* малко padding вътре, без да бута ширината */
-    gap: 0.8rem;
-    margin: 0;
-    box-sizing: border-box; /* за всеки случай */
+        .steps h1 {
+        font-size: 18px;
     }
-
-
-            .nav-links ul li {
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-links ul li a {
-                text-align: left;
-                display: block;
-                font-size: 0.9rem;
-                color: #09989e;
-                width: 100%;
-            }
-             .hero {
-    height: 48vh;
-    margin-top: 70px;
-  }
+        .steps h1 {
+        margin-top: 18%;
+    }
+.p1 {
+        font-size: 14px;
+    }
+        .h2 {
+        font-size: 18px;
+    }
+        .p2 {
+        font-size: 17px;
+    }
+        .ball {
+        height: 130px;
+    }
+        .ball h1 {
+        font-size: 13px;
+        top: 23%;
+    }
+        .button {
+        padding: 1px 10px;
+        font-size: 10px !important;
+        top: 76%;
+    }
+        .notes h1 {
+        font-size: 17px;
+        margin-top: 12.5%;
+    }
+        .chek {
+        max-width: 115px;
+    }
+    .footer { height: 80px; }
+    .footer h1 { font-size: 16px; margin-top: 2vh; }
+    .social { width: 80px; margin-top: -24.9%; margin-left: 11%; }
+    .social1 { max-width: 30px; margin-top: -19.8%; margin-left: 67%; }
+    .social2 { max-width: 65px; margin-top: -0.2%; margin-left: 69.2%; }
+    .footer-social { gap: 8px; margin-top: -3vh; }
+    .footer-social a { font-size: 0.7rem !important; margin-top: -1.5vh; }
 }
