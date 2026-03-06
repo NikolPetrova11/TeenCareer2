@@ -8,6 +8,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo').default;
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+const PDFDocument = require('pdfkit');
 const { GoogleGenerativeAI } = require("@google/generative-ai"); 
 const cors = require('cors');
 
@@ -316,25 +317,70 @@ app.post('/generate-pdf', async (req, res) => {
                     <div class="preview-section">
                         <div class="preview-section-title">Езици</div>
                         <div class="preview-content">${languages}</div>
-                    </div>` : ''}
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-    `;
-
     try {
-        // Send HTML as downloadable file for browser to print/save
-        res.set({
-            'Content-Type': 'text/html; charset=utf-8',
-            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.html"`
-        });
-        res.send(htmlContent);
-
+        const doc = new PDFDocument({ bufferPages: true });
+        
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="CV_${fullName || 'user'}.pdf"`);
+        
+        doc.pipe(res);
+        
+        // Header
+        doc.fontSize(24).font('Helvetica-Bold').text(fullName || 'CV', { align: 'center' });
+        doc.fontSize(11).font('Helvetica').text(`${email || ''} | ${phone || ''} | ${city || ''}`, { align: 'center' });
+        
+        if (date) {
+            doc.fontSize(10).text(`Date: ${date}`, { align: 'center' });
+        }
+        
+        doc.moveDown();
+        
+        // Summary
+        if (summary) {
+            doc.fontSize(14).font('Helvetica-Bold').text('About Me');
+            doc.fontSize(11).font('Helvetica').text(summary);
+            doc.moveDown();
+        }
+        
+        // Education
+        if (education) {
+            doc.fontSize(14).font('Helvetica-Bold').text('Education');
+            doc.fontSize(11).font('Helvetica').text(education);
+            doc.moveDown();
+        }
+        
+        // Experience
+        if (experience) {
+            doc.fontSize(14).font('Helvetica-Bold').text('Experience');
+            doc.fontSize(11).font('Helvetica').text(experience);
+            doc.moveDown();
+        }
+        
+        // Skills
+        if (skills) {
+            doc.fontSize(14).font('Helvetica-Bold').text('Skills');
+            doc.fontSize(11).font('Helvetica').text(skills);
+            doc.moveDown();
+        }
+        
+        // Languages
+        if (languages) {
+            doc.fontSize(14).font('Helvetica-Bold').text('Languages');
+            doc.fontSize(11).font('Helvetica').text(languages);
+            doc.moveDown();
+        }
+        
+        // Additional text
+        if (text) {
+            doc.fontSize(14).font('Helvetica-Bold').text('Additional Information');
+            doc.fontSize(11).font('Helvetica').text(text);
+        }
+        
+        doc.end();
+        
     } catch (error) {
         console.error("PDF Generation Error:", error);
-        res.status(500).send("Error generating file");
+        res.status(500).send("Error generating PDF");
     }
 });
 
@@ -343,79 +389,40 @@ app.post('/generate-portfolio', async (req, res) => {
     console.log("Generating Portfolio PDF...");
     const { full_name, email, phone, education, experience } = req.body;
 
-    let css = '';
     try {
-        css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
-    } catch (e) {
-        console.error("Could not read cv.css", e);
-    }
-    const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-        <style>
-            ${css}
-            body { background: white; margin: 0; padding: 0; }
-            .cv-paper {
-                box-shadow: none;
-                margin: 0;
-                max-width: none;
-                width: 100%;
-                min-height: 100vh;
-                padding: 40px;
-            }
-            /* Ensure background colors print correctly */
-            * { -webkit-print-color-adjust: exact; }
-            
-            /* Portfolio specific overrides reusing CV classes */
-            .preview-header { text-align: center; border-bottom: 2px solid #09989e; display: block; }
-            .preview-name { color: #8274A1; font-size: 36px; text-align: center; }
-            .preview-contact { justify-content: center; margin-top: 10px; }
-        </style>
-    </head>
-    <body>
-        <div class="cv-preview-side" style="padding:0; background:white; display:block;">
-            <div class="cv-paper default landscape">
-                <div class="preview-header">
-                    <div class="preview-name">${full_name || 'Portfolio'}</div>
-                    <div class="preview-contact">
-                        ${email ? `<span>${email}</span>` : ''}
-                        ${phone ? ` | <span>${phone}</span>` : ''}
-                    </div>
-                </div>
-
-                <div class="main-content-card">
-                    ${education ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Образование</div>
-                        <div class="preview-content">${education.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
-
-                    ${experience ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Професионален Опит & Проекти</div>
-                        <div class="preview-content">${experience.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
-                    
-                    <div style="margin-top: 50px; text-align: center; font-size: 12px; color: #aaa;">
-                        Създадено с TeenCareer Portfolio Maker
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-    `;
-
-    try {
-        // Send HTML as downloadable file for browser to print/save
-        res.set({
-            'Content-Type': 'text/html; charset=utf-8',
-            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.html"`
-        });
-        res.send(htmlContent);
+        const doc = new PDFDocument({ bufferPages: true });
+        
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`);
+        
+        doc.pipe(res);
+        
+        // Header
+        doc.fontSize(20).font('Helvetica-Bold').text(full_name || 'Portfolio', { align: 'center' });
+        doc.fontSize(11).font('Helvetica').text(`${email || ''} | ${phone || ''}`, { align: 'center' });
+        
+        doc.moveDown();
+        doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
+        doc.moveDown();
+        
+        // Education
+        if (education) {
+            doc.fontSize(14).font('Helvetica-Bold').text('Education');
+            doc.fontSize(11).font('Helvetica').text(education);
+            doc.moveDown();
+        }
+        
+        // Experience
+        if (experience) {
+            doc.fontSize(14).font('Helvetica-Bold').text('Professional Experience & Projects');
+            doc.fontSize(11).font('Helvetica').text(experience);
+            doc.moveDown();
+        }
+        
+        doc.fontSize(10).fillColor('#999').text('Created with TeenCareer Portfolio Maker', { align: 'center' });
+        
+        doc.end();
+        
     } catch (error) {
         console.error("Portfolio PDF Error:", error);
         res.status(500).send("Error generating Portfolio");
