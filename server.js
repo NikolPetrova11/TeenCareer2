@@ -325,32 +325,16 @@ app.post('/generate-pdf', async (req, res) => {
     `;
 
     try {
-        // 3. Launch Puppeteer to generate PDF
-        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
-        const page = await browser.newPage();
-        
-        // Set content and wait for fonts/network
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-        
-        const pdfBuffer = await page.pdf({ 
-            format: 'A4', 
-            printBackground: true,
-            margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' }
-        });
-
-        await browser.close();
-
-        // 4. Send PDF to client
+        // Send HTML as downloadable file for browser to print/save
         res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`,
-            'Content-Length': pdfBuffer.length
+            'Content-Type': 'text/html; charset=utf-8',
+            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.html"`
         });
-        res.send(pdfBuffer);
+        res.send(htmlContent);
 
     } catch (error) {
         console.error("PDF Generation Error:", error);
-        res.status(500).send("Error generating PDF");
+        res.status(500).send("Error generating file");
     }
 });
 
@@ -426,28 +410,15 @@ app.post('/generate-portfolio', async (req, res) => {
     `;
 
     try {
-        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
-        const page = await browser.newPage();
-        
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-        
-        const pdfBuffer = await page.pdf({ 
-            format: 'A4', 
-            printBackground: true,
-            landscape: true 
-        });
-
-        await browser.close();
-
+        // Send HTML as downloadable file for browser to print/save
         res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`,
-            'Content-Length': pdfBuffer.length
+            'Content-Type': 'text/html; charset=utf-8',
+            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.html"`
         });
-        res.send(pdfBuffer);
+        res.send(htmlContent);
     } catch (error) {
         console.error("Portfolio PDF Error:", error);
-        res.status(500).send("Error generating Portfolio PDF");
+        res.status(500).send("Error generating Portfolio");
     }
 });
 
