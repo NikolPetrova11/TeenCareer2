@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>Търсене на работа</title>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -206,78 +207,133 @@
     </style>
 </head>
 <body>
-    <img class="photo" src="0-02-05-b2e5265937e32c427cebb5bfeb3ecdb9a5f50602c038f9ffd6b2f32b7d4d1b80_1c8c6fe2f4ce6c07-removebg-preview.png">
-     <a href="searching.html"><img class="arrow" src="arrow67.png"></a>
+    <img class="photo" src="photos/0-02-05-b2e5265937e32c427cebb5bfeb3ecdb9a5f50602c038f9ffd6b2f32b7d4d1b80_1c8c6fe2f4ce6c07-removebg-preview.png">
+     <a href="jobs.html"><img class="arrow" src="photos/arrow67.png"></a>
 <div class="container">
     <h2>Търсене на работа</h2>
 
-    <form action="" method="POST"> 
+    <form> 
         <div>
             <label for="country">Държава:</label>
-            <input type="text" id="country" name="country" placeholder="Напр: United States" value="<?= htmlspecialchars($country ?? '') ?>" required>
+            <input type="text" id="country" name="country" placeholder="Напр: United States" required>
         </div>
         <div>
             <label for="city">Град (по желание):</label>
-            <input type="text" id="city" name="city" placeholder="Напр: Dallas" value="<?= htmlspecialchars($city ?? '') ?>">
+            <input type="text" id="city" name="city" placeholder="Напр: Dallas">
         </div>
         <div>
             <label for="job">Професия:</label>
-            <input type="text" id="job" name="job" placeholder="Напр: Developer, Nurse, Manager" value="<?= htmlspecialchars($job ?? '') ?>">
+            <input type="text" id="job" name="job" placeholder="Напр: Developer, Nurse, Manager">
         </div>
         <div>
             <label for="experience">Минимални години стаж:</label>
-            <input type="number" id="experience" name="experience" placeholder="Напр: 3" min="0" value="<?= htmlspecialchars($experience ?? 0) ?>">
+            <input type="number" id="experience" name="experience" placeholder="Напр: 3" min="0">
         </div>
         <button type="submit">Търси</button>
     </form>
 
-    <?php if (isset($errorMessage)): ?>
-        <p class="error-message">Възникна грешка: <?= htmlspecialchars($errorMessage) ?></p>
-    <?php elseif ($searchPerformed): // Show results only if a search was performed ?>
-        <h2>Резултати</h2>
-        <?php if (empty($filtered)): ?>
-            <p class="no-results">Няма намерени резултати, отговарящи на вашите критерии.</p>
-        <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Компания</th>
-                        <th>Позиция</th>
-                        <th>Локация</th>
-                        <th>Стаж</th>
-                        <th>Обява</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($filtered as $item): ?>
-                        <?php 
-                            $companyName = htmlspecialchars($item['company_name'] ?? 'N/A');
-                            $jobTitle = htmlspecialchars($item['job_title'] ?? 'N/A');
-                            $locationDisplay = htmlspecialchars($item['location'] ?? 'N/A');
-                            $applyUrl = htmlspecialchars($item['apply_url'] ?? '#');
-                            $jobDescription = $item['job_description'] ?? '';
-                            $yearsFound = extractExperienceYears($jobDescription);
-                        ?>
-                        <tr>
-                            <td><?= $companyName ?></td>
-                            <td><?= $jobTitle ?></td>
-                            <td><?= $locationDisplay ?></td>
-                            <td><?= $yearsFound > 0 ? "{$yearsFound} години" : "Неуточнено" ?></td>
-                            <td>
-                                <?php if ($applyUrl !== '#'): ?>
-                                    <a href="<?= $applyUrl ?>" target="_blank">Отвори</a>
-                                <?php else: ?>
-                                    Не е налична
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    <?php else: // If the page is loaded for the first time ?>
-         <p class="info-message">Моля, въведете критерии за търсене на работа.</p>
-    <?php endif; ?>
+    <h2>Резултати</h2>
+    <p class="info-message">Моля, въведете критерии за търсене на работа.</p>
 </div>
+<script>
+    // --- GLOBAL VARIABLES ---
+    let jobsData = []; // This starts empty
+    let fuse;          // This will hold the search engine
+    const options = {
+        keys: ['title', 'city', 'company'],
+        threshold: 0.3
+    };
+
+    // --- STEP 1: FETCH DATA FROM YOUR SERVER ---
+    // This runs as soon as the page loads
+    fetch('/jobs.json')
+        .then(response => {
+            if (!response.ok) throw new Error("Could not load jobs.json");
+            return response.json();
+        })
+        .then(data => {
+            jobsData = data;
+            // Now that we have data, initialize Fuse.js
+            fuse = new Fuse(jobsData, options); 
+            console.log("Scraped jobs loaded into the search engine!");
+            
+            // Optional: Update the info message to say we are ready
+            document.querySelector('.info-message').innerText = `Намерени ${jobsData.length} обяви. Въведете град или професия.`;
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector('.info-message').innerText = "Грешка при зареждане на данните.";
+        });
+
+    // --- STEP 2: HANDLE SEARCH ---
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Safety check: Don't search if data hasn't loaded yet
+        if (!fuse) return;
+
+        const jobTitle = document.getElementById('job').value;
+        const city = document.getElementById('city').value;
+        const experience = document.getElementById('experience').value;
+
+        // Perform the Fuzzy Search using Fuse.js
+        let results = jobTitle ? fuse.search(jobTitle).map(r => r.item) : jobsData;
+
+        // Filter by City (Normal filter)
+        if (city) {
+            results = results.filter(j => 
+                j.city.toLowerCase().includes(city.toLowerCase())
+            );
+        }
+
+        // Filter by Experience (LINQ-style filter)
+        if (experience) {
+            results = results.filter(j => j.experience <= parseInt(experience));
+        }
+
+        renderResults(results);
+    });
+
+    // --- STEP 3: SHOW RESULTS IN THE TABLE ---
+    function renderResults(results) {
+        const container = document.querySelector('.container');
+        const infoMsg = document.querySelector('.info-message');
+        
+        const oldTable = document.querySelector('table');
+        if (oldTable) oldTable.remove();
+
+        if (results.length === 0) {
+            infoMsg.style.display = 'block';
+            infoMsg.innerText = "Няма намерени резултати за тези критерии.";
+            return;
+        }
+
+        infoMsg.style.display = 'none';
+        
+        let tableHtml = `<table>
+            <thead>
+                <tr>
+                    <th>Позиция</th>
+                    <th>Компания</th>
+                    <th>Град</th>
+                    <th>Линк</th>
+                </tr>
+            </thead>
+            <tbody>`;
+        
+        results.forEach(job => {
+            tableHtml += `<tr>
+                <td>${job.title}</td>
+                <td>${job.company}</td>
+                <td>${job.city}</td>
+                <td><a href="${job.link}" target="_blank">Към обявата</a></td>
+            </tr>`;
+        });
+
+        tableHtml += '</tbody></table>';
+        container.insertAdjacentHTML('beforeend', tableHtml);
+    }
+</script>
 </body>
 </html>
