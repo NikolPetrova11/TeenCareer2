@@ -22,8 +22,14 @@ process.on('unhandledRejection', (reason, promise) => {
 const app = express();
 
 // DataBase connection
-const dbURI = 'mongodb+srv://teencareer_db_user:jO38uGY9loz1xVar@cluster0.ylxecao.mongodb.net/TeenCareerDB?retryWrites=true&w=majority';
+// В твоя файл (напр. app.js или db.js)
 
+
+const dbURI = "mongodb+srv://new-user31:pbOLxEJKudngaIZY@cluster0.ylxecao.mongodb.net/?appName=Cluster0";
+
+mongoose.connect(dbURI)
+  .then(() => console.log('Свързани сме с Atlas!'))
+  .catch((err) => console.log('Грешка при свързване:', err));
 // Sessions
 const sessionStore = new MongoStore({ mongoUrl: dbURI }).on('error', (err) => {
     console.warn('MongoStore connection error:', err.message);
