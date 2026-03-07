@@ -8,7 +8,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo').default;
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-const { GoogleGenerativeAI } = require("@google/generative-ai"); 
 const cors = require('cors');
 
 // Handle unhandled promise rejections
@@ -48,31 +47,44 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// GEMINI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
+// Chatbot API (Pollinations.ai - free, no API key needed)
 app.post('/chat', async (req, res) => {
     try {
         const { message } = req.body; 
         if (!message) {
-            return res.status(400).json({ error: "Моля, въведете съобщение." });
+            return res.status(400).json({ error: "Please enter a message." });
         }
 
-        console.log("Сървърът получи съобщение:", message);
+        console.log("Server received message:", message);
 
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const apiResponse = await fetch("https://text.pollinations.ai/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                messages: [
+                    {
+                        role: "system",
+                        content: "Ти си експерт по подбор на персонал. Генерирай точно 5 въпроса за интервю за работа. Въпросите трябва да са подходящи за тийнейджъри или хора без опит. Напиши САМО списък с 5 въпроса на български език, номерирани от 1 до 5. Не добавяй въведения, поздрави или обяснения."
+                    },
+                    { role: "user", content: message }
+                ],
+                model: "openai",
+                seed: Math.floor(Math.random() * 100000)
+            })
+        });
 
-        const prompt = `Генерирай 5 въпроса за интервю за работа за позицията "${message}". Въпросите трябва да са подходящи за тийнейджъри или хора, които започват първа работа. Форматирай отговора като номериран списък.`;
+        if (!apiResponse.ok) {
+            console.error("API error status:", apiResponse.status);
+            return res.status(500).json({ error: "Chatbot API returned an error." });
+        }
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text(); 
+        const text = await apiResponse.text();
 
         res.json({ reply: text }); 
 
     } catch (error) {
-        console.error("Грешка при комуникация с Gemini:", error.message || error);
-        res.status(500).json({ error: "Грешка при комуникация с бота. Моля, опитайте отново по-късно." });
+        console.error("Chatbot API Error:", error.message || error);
+        res.status(500).json({ error: "Error communicating with chatbot. Please try again later." });
     }
 });
 
