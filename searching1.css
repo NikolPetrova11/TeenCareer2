@@ -290,10 +290,14 @@ h1 span {
 /* =========================================
    5. Robot & Quotes
    ========================================= */
+
+   .robot{
+    z-index: 1;
+   }
 .robot img{
     width: 75%;
     height: 900px;
-    z-index: 55;
+    z-index: 1;
     position: relative;
     margin-top: -10%;
     margin-left: 25%;
