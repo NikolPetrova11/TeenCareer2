@@ -8,7 +8,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo').default;
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-const { GoogleGenerativeAI } = require("@google/generative-ai"); 
 const cors = require('cors');
 
 // Handle unhandled promise rejections
@@ -22,8 +21,14 @@ process.on('unhandledRejection', (reason, promise) => {
 const app = express();
 
 // DataBase connection
-const dbURI = 'mongodb+srv://teencareer_db_user:jO38uGY9loz1xVar@cluster0.ylxecao.mongodb.net/TeenCareerDB?retryWrites=true&w=majority';
+// В твоя файл (напр. app.js или db.js)
 
+
+const dbURI = "mongodb+srv://new-user31:pbOLxEJKudngaIZY@cluster0.ylxecao.mongodb.net/?appName=Cluster0";
+
+mongoose.connect(dbURI)
+  .then(() => console.log('Свързани сме с Atlas!'))
+  .catch((err) => console.log('Грешка при свързване:', err));
 // Sessions
 const sessionStore = new MongoStore({ mongoUrl: dbURI }).on('error', (err) => {
     console.warn('MongoStore connection error:', err.message);
@@ -42,31 +47,44 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// GEMINI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
+// Chatbot API (Pollinations.ai - free, no API key needed)
 app.post('/chat', async (req, res) => {
     try {
         const { message } = req.body; 
         if (!message) {
-            return res.status(400).json({ error: "Моля, въведете съобщение." });
+            return res.status(400).json({ error: "Please enter a message." });
         }
 
-        console.log("Сървърът получи съобщение:", message);
+        console.log("Server received message:", message);
 
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const apiResponse = await fetch("https://text.pollinations.ai/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                messages: [
+                    {
+                        role: "system",
+                        content: "Ти си експерт по подбор на персонал. Генерирай точно 5 въпроса за интервю за работа. Въпросите трябва да са подходящи за тийнейджъри или хора без опит. Напиши САМО списък с 5 въпроса на български език, номерирани от 1 до 5. Не добавяй въведения, поздрави или обяснения."
+                    },
+                    { role: "user", content: message }
+                ],
+                model: "openai",
+                seed: Math.floor(Math.random() * 100000)
+            })
+        });
 
-        const prompt = `Генерирай 5 въпроса за интервю за работа за позицията "${message}". Въпросите трябва да са подходящи за тийнейджъри или хора, които започват първа работа. Форматирай отговора като номериран списък.`;
+        if (!apiResponse.ok) {
+            console.error("API error status:", apiResponse.status);
+            return res.status(500).json({ error: "Chatbot API returned an error." });
+        }
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text(); 
+        const text = await apiResponse.text();
 
         res.json({ reply: text }); 
 
     } catch (error) {
-        console.error("Грешка при комуникация с Gemini:", error.message || error);
-        res.status(500).json({ error: "Грешка при комуникация с бота. Моля, опитайте отново по-късно." });
+        console.error("Chatbot API Error:", error.message || error);
+        res.status(500).json({ error: "Error communicating with chatbot. Please try again later." });
     }
 });
 
@@ -234,9 +252,9 @@ app.post('/generate-pdf', async (req, res) => {
 
     let css = '';
     try {
-        css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
+        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
     } catch (e) {
-        console.error("Could not read cv.css", e);
+        console.error("Could not read CV_maker.css", e);
     }
 
     const htmlContent = `
@@ -319,32 +337,15 @@ app.post('/generate-pdf', async (req, res) => {
     `;
 
     try {
-        // 3. Launch Puppeteer to generate PDF
-        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
-        const page = await browser.newPage();
-        
-        // Set content and wait for fonts/network
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-        
-        const pdfBuffer = await page.pdf({ 
-            format: 'A4', 
-            printBackground: true,
-            margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' }
-        });
-
-        await browser.close();
-
-        // 4. Send PDF to client
         res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`,
-            'Content-Length': pdfBuffer.length
+            'Content-Type': 'text/html; charset=utf-8',
+            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.html"`
         });
-        res.send(pdfBuffer);
+        res.send(htmlContent);
 
     } catch (error) {
         console.error("PDF Generation Error:", error);
-        res.status(500).send("Error generating PDF");
+        res.status(500).send("Error generating file");
     }
 });
 
@@ -355,9 +356,9 @@ app.post('/generate-portfolio', async (req, res) => {
 
     let css = '';
     try {
-        css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
+        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
     } catch (e) {
-        console.error("Could not read cv.css", e);
+        console.error("Could not read CV_maker.css", e);
     }
     const htmlContent = `
     <!DOCTYPE html>
@@ -420,28 +421,14 @@ app.post('/generate-portfolio', async (req, res) => {
     `;
 
     try {
-        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
-        const page = await browser.newPage();
-        
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-        
-        const pdfBuffer = await page.pdf({ 
-            format: 'A4', 
-            printBackground: true,
-            landscape: true 
-        });
-
-        await browser.close();
-
         res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`,
-            'Content-Length': pdfBuffer.length
+            'Content-Type': 'text/html; charset=utf-8',
+            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.html"`
         });
-        res.send(pdfBuffer);
+        res.send(htmlContent);
     } catch (error) {
         console.error("Portfolio PDF Error:", error);
-        res.status(500).send("Error generating Portfolio PDF");
+        res.status(500).send("Error generating Portfolio");
     }
 });
 
@@ -478,4 +465,5 @@ setInterval(() => {
     connectDB();
   }
 }, 10000);
+
   

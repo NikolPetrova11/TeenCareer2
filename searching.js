@@ -71,31 +71,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.sendMessage = async function() {
-        const message = chatInput.value.trim();
-        if (!message) return;
+    const message = chatInput.value.trim();
+    if (!message) return;
 
-        addMessage('user', message);
-        chatInput.value = '';
+    addMessage('user', message);
+    chatInput.value = '';
 
-        try {
-            addMessage('bot', 'TeenBot пише...'); 
+    // Създаваме "loading" съобщение
+    const loadingMessage = document.createElement('div');
+    loadingMessage.classList.add('chat-message', 'bot');
+    loadingMessage.innerHTML = `<strong>TeenBot:</strong> Мисля...`;
+    chatMessages.appendChild(loadingMessage);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            const response = await fetch('http://localhost:3000/chat', { 
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message })
-            });
+    try {
+        const response = await fetch('/chat', { // Използвай относителен път
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: message })
+        });
 
-            const data = await response.json();
-            chatMessages.removeChild(chatMessages.lastChild);
-            addMessage('bot', data.reply || data.error); 
+        const data = await response.json();
+        
+        // Премахваме точно това "loading" съобщение
+        chatMessages.removeChild(loadingMessage);
 
-        } catch (error) {
-            console.error('Грешка при комуникация с бота:', error);
-            chatMessages.removeChild(chatMessages.lastChild); 
-            addMessage('bot', 'Грешка: Нещо се обърка при комуникацията с бота. Моля, опитайте отново.');
+        if (data.reply) {
+            addMessage('bot', data.reply);
+        } else {
+            addMessage('bot', 'Грешка: ' + (data.error || 'Нещо се обърка.'));
         }
-    };
+
+    } catch (error) {
+        console.error('Грешка:', error);
+        if (chatMessages.contains(loadingMessage)) chatMessages.removeChild(loadingMessage);
+        addMessage('bot', 'Нямам връзка със сървъра. Провери дали Node.js работи.');
+    }
+};
 
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
