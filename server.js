@@ -252,9 +252,9 @@ app.post('/generate-pdf', async (req, res) => {
 
     let css = '';
     try {
-        css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
+        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
     } catch (e) {
-        console.error("Could not read cv.css", e);
+        console.error("Could not read CV_maker.css", e);
     }
 
     const htmlContent = `
@@ -356,9 +356,9 @@ app.post('/generate-portfolio', async (req, res) => {
 
     let css = '';
     try {
-        css = fs.readFileSync(path.join(__dirname, 'cv.css'), 'utf8');
+        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
     } catch (e) {
-        console.error("Could not read cv.css", e);
+        console.error("Could not read CV_maker.css", e);
     }
     const htmlContent = `
     <!DOCTYPE html>
