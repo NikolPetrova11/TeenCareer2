@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer'); // Change this from playwright
+const puppeteer = require('puppeteer');
 const fs = require('fs');
 const cron = require('node-cron');
 
@@ -14,7 +14,7 @@ async function runScraper() {
     try {
         await page.goto(targetUrl, { waitUntil: 'networkidle2' });
 
-        // Extract jobs using Puppeteer syntax
+        // Extract jobs 
         const jobs = await page.evaluate(() => {
             const cards = Array.from(document.querySelectorAll('.mdc-card'));
             return cards.map(card => {
@@ -27,7 +27,7 @@ async function runScraper() {
                     link: titleLink ? titleLink.href : '',
                     company: company ? company.innerText.trim() : 'Private Company',
                     city: location ? location.innerText.trim() : 'Bulgaria',
-                    experience: 0 // Default for teen jobs
+                    experience: 0 
                 };
             });
         });
@@ -42,11 +42,8 @@ async function runScraper() {
         await browser.close();
     }
 }
-
-// Schedule: Run every day at 09:00 AM
 cron.schedule('0 9 * * *', () => {
     runScraper();
 });
 
-// Run once immediately when starting the server
 runScraper();

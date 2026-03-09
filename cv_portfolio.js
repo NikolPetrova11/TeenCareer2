@@ -362,13 +362,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'cv-text': 'sec-text'
     };
 
-    // Second page funktion
+    // Second page function
     function checkPageHeight() {
         const papers = document.querySelectorAll('.cv-paper');
         papers.forEach(paper => {
             if (paper.offsetParent === null) return; 
             
-            // Reset height to auto to measure content correctly
             paper.style.height = 'auto';
 
             // Remove old markers
