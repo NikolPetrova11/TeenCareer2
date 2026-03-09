@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (sender === 'user') {
             messageElement.style.textAlign = 'right';
-            messageElement.style.backgroundColor = '#e5d6eb'; // Светлосиньо за потребителя
+            messageElement.style.backgroundColor = '#e5d6eb'; 
             messageElement.style.color = '#8274A1'; 
             messageElement.style.borderRadius = '10px';
             messageElement.style.padding = '8px';
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageElement.style.maxWidth = '80%';
         } else {
             messageElement.style.textAlign = 'left';
-             messageElement.style.backgroundColor = '#e5d6eb'; // Светлосиньо за потребителя
+             messageElement.style.backgroundColor = '#e5d6eb'; 
              messageElement.style.color = '#8274A1'; 
             messageElement.style.borderRadius = '10px';
             messageElement.style.padding = '8px';
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addMessage('user', message);
     chatInput.value = '';
 
-    // Създаваме "loading" съобщение
+    //loading
     const loadingMessage = document.createElement('div');
     loadingMessage.classList.add('chat-message', 'bot');
     loadingMessage.innerHTML = `<strong>TeenBot:</strong> Мисля...`;
@@ -85,15 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
-        const response = await fetch('/chat', { // Използвай относителен път
+        const response = await fetch('/chat', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: message })
         });
 
         const data = await response.json();
-        
-        // Премахваме точно това "loading" съобщение
         chatMessages.removeChild(loadingMessage);
 
         if (data.reply) {
@@ -125,10 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Existing menu logic
   const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); // Ensure element with ID="navMenu" exists
+  const navMenu = document.getElementById("navMenu"); 
 
   menuToggle.addEventListener("click", () => {
-    // Ensure navMenu exists before adding class
     if (navMenu) {
         navMenu.classList.toggle("active");
     }
@@ -158,16 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // NEW TAB LOGIC (LOGIN/REGISTER)
+  //LOGIN/REGISTER
   const tabButtons = document.querySelectorAll(".tab-btn");
   const loginForm = document.querySelector(".login-form-container");
   const registerForm = document.querySelector(".register-form-container");
 
   tabButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // Removes "active" from all buttons
         tabButtons.forEach(btn => btn.classList.remove("active"));
-        // Adds "active" to the clicked button
         button.classList.add("active");
 
         const targetForm = button.getAttribute("data-form");

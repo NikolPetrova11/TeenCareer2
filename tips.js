@@ -1,9 +1,8 @@
-// Existing menu logic
+// menu logic
   const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu"); // Ensure element with ID="navMenu" exists
+  const navMenu = document.getElementById("navMenu"); 
 
   menuToggle.addEventListener("click", () => {
-    // Ensure navMenu exists before adding class
     if (navMenu) {
         navMenu.classList.toggle("active");
     }
@@ -33,16 +32,14 @@
   });
 
 
-  // NEW TAB LOGIC (LOGIN/REGISTER)
+  // LOGIN/REGISTER
   const tabButtons = document.querySelectorAll(".tab-btn");
   const loginForm = document.querySelector(".login-form-container");
   const registerForm = document.querySelector(".register-form-container");
 
   tabButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // Removes "active" from all buttons
         tabButtons.forEach(btn => btn.classList.remove("active"));
-        // Adds "active" to the clicked button
         button.classList.add("active");
 
         const targetForm = button.getAttribute("data-form");

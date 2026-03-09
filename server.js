@@ -12,7 +12,6 @@ const cors = require('cors');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
-    // Only log if it's not a known MongoDB connection error
     if (reason && reason.code !== 'ECONNREFUSED' && reason.syscall !== 'querySrv') {
         console.error('Unhandled Rejection:', reason);
     }
@@ -21,9 +20,6 @@ process.on('unhandledRejection', (reason, promise) => {
 const app = express();
 
 // DataBase connection
-// В твоя файл (напр. app.js или db.js)
-
-
 const dbURI = "mongodb+srv://new-user31:pbOLxEJKudngaIZY@cluster0.ylxecao.mongodb.net/?appName=Cluster0";
 
 mongoose.connect(dbURI)
@@ -47,7 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// Chatbot API (Pollinations.ai - free, no API key needed)
+// Chatbot API 
 app.post('/chat', async (req, res) => {
     try {
         const { message } = req.body; 
@@ -433,11 +429,7 @@ app.post('/generate-portfolio', async (req, res) => {
 });
 
 const PORT = 3000;
-
-// Start server immediately, connect to MongoDB separately
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-
-// Connect to MongoDB with retry logic
 let isConnected = false;
 
 const connectDB = () => {
@@ -458,8 +450,6 @@ const connectDB = () => {
 };
 
 connectDB();
-
-// Retry connection every 10 seconds if not connected
 setInterval(() => {
   if (!isConnected && mongoose.connection.readyState === 0) {
     connectDB();
