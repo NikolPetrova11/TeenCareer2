@@ -640,6 +640,9 @@ header {
     .social1 { max-width: 35px; margin-top: -17.8%; margin-left: 65%; }
     .social2 { max-width: 75px; margin-top: 0.8%; margin-left: 65.8%; }
 }
+    .ball h1 {
+        top: 22%;
+    }
 
 /* --- 375px --- */
 @media (max-width: 375px){
