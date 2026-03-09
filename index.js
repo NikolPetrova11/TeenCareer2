@@ -104,5 +104,28 @@ function klik3() {
   window.location.href = "tips.html";
 }
 
+// Add handler to open login popup when the main CTA is clicked
+const ctaBtn = document.querySelector('.cta');
+if (ctaBtn) {
+  ctaBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (overlay && popup) {
+      overlay.classList.add('active');
+      popup.classList.add('active');
+      // Activate the login tab/button
+      const loginTab = document.querySelector('.tab-btn[data-form="login"]');
+      if (loginTab && tabButtons) {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        loginTab.classList.add('active');
+      }
+      // Ensure the login form is visible and register form hidden
+      if (loginForm && registerForm) {
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+      }
+    }
+  });
+}
+
 
 
