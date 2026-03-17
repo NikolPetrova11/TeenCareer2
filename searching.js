@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+    const chatHistoryEl = document.getElementById('chatHistory');
+    let currentChatId = null;
+    let chatHistoryList = [];
+    let isLoggedIn = false;
+
     function addMessage(sender, text) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('chat-message', sender);
@@ -70,42 +75,181 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight; 
     }
 
-    window.sendMessage = async function() {
-    const message = chatInput.value.trim();
-    if (!message) return;
-
-    addMessage('user', message);
-    chatInput.value = '';
-
-    //loading
-    const loadingMessage = document.createElement('div');
-    loadingMessage.classList.add('chat-message', 'bot');
-    loadingMessage.innerHTML = `<strong>TeenBot:</strong> Мисля...`;
-    chatMessages.appendChild(loadingMessage);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    try {
-        const response = await fetch('/chat', { 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: message })
-        });
-
-        const data = await response.json();
-        chatMessages.removeChild(loadingMessage);
-
-        if (data.reply) {
-            addMessage('bot', data.reply);
-        } else {
-            addMessage('bot', 'Грешка: ' + (data.error || 'Нещо се обърка.'));
+    function renderChatHistory() {
+        if (!chatHistoryEl) return;
+        chatHistoryEl.innerHTML = '';
+        if (!isLoggedIn) {
+            const p = document.createElement('p');
+            p.textContent = 'Влезте в профила, за да запазите и заредите история на чатовете.';
+            p.style.color = '#fff';
+            p.style.padding = '8px';
+            chatHistoryEl.appendChild(p);
+            return;
         }
 
-    } catch (error) {
-        console.error('Грешка:', error);
-        if (chatMessages.contains(loadingMessage)) chatMessages.removeChild(loadingMessage);
-        addMessage('bot', 'Нямам връзка със сървъра. Провери дали Node.js работи.');
+        if (!chatHistoryList.length) {
+            const p = document.createElement('p');
+            p.textContent = 'Няма запазени чатове';
+            p.style.color = '#fff';
+            p.style.padding = '8px';
+            chatHistoryEl.appendChild(p);
+            return;
+        }
+
+        chatHistoryList.forEach(chat => {
+            const btn = document.createElement('button');
+            btn.textContent = chat.title || 'Нов чат';
+            btn.style.display = 'block';
+            btn.style.width = '100%';
+            btn.style.marginBottom = '4px';
+            btn.style.textAlign = 'left';
+            btn.style.background = chat.id === currentChatId ? '#fff' : 'transparent';
+            btn.style.color = '#593D6E';
+            btn.style.border = '1px solid #ddd';
+            btn.style.borderRadius = '6px';
+            btn.style.padding = '6px';
+            btn.addEventListener('click', () => loadConversation(chat.id));
+            chatHistoryEl.appendChild(btn);
+        });
     }
-};
+
+    async function loadChatHistoryFromServer() {
+        try {
+            const response = await fetch('/api/chat-history', { credentials: 'include' });
+            if (response.status === 401) {
+                isLoggedIn = false;
+                chatHistoryList = [];
+                currentChatId = null;
+                renderChatHistory();
+                return;
+            }
+            const data = await response.json();
+            if (Array.isArray(data)) {
+                isLoggedIn = true;
+                chatHistoryList = data;
+                if (!currentChatId && chatHistoryList.length) {
+                    currentChatId = chatHistoryList[0].id;
+                }
+                renderChatHistory();
+                if (currentChatId) {
+                    await loadConversation(currentChatId);
+                    return;
+                }
+            }
+        } catch (e) {
+            console.error('Неуспешно зареждане на историята', e);
+            isLoggedIn = false;
+            chatHistoryList = [];
+            currentChatId = null;
+            renderChatHistory();
+        }
+    }
+
+    async function loadConversation(chatId) {
+        currentChatId = chatId;
+        chatMessages.innerHTML = '';
+
+        try {
+            const response = await fetch(`/api/chat-history/${chatId}`, { credentials: 'include' });
+            if (response.ok) {
+                const data = await response.json();
+                if (Array.isArray(data.messages)) {
+                    data.messages.forEach(msg => addMessage(msg.sender, msg.text));
+                    chatHistoryList = chatHistoryList.map(chat => chat.id === chatId ? { ...chat, title: data.title || chat.title } : chat);
+                    renderChatHistory();
+                    return;
+                }
+            }
+        } catch (error) {
+            console.error('Неуспешно зареждане на чат', error);
+        }
+        addMessage('bot', 'Здравейте! Аз съм TeenBot. Кажете ми каква професия ви интересува и аз ще ви задам въпроси за интервю.');
+    }
+
+    async function createNewConversation() {
+        if (!isLoggedIn) {
+            currentChatId = null;
+            chatMessages.innerHTML = '';
+            addMessage('bot', 'Започнете чат. Историята ще се запази, след като се логнете в профила.');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/chat-history', {
+                credentials: 'include',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: 'Нов чат', messages: [{ sender: 'bot', text: 'Здравейте! Аз съм TeenBot. Кажете ми каква професия ви интересува и аз ще ви задам въпроси за интервю.' }] })
+            });
+
+            if (response.ok) {
+                const { id, title } = await response.json();
+                currentChatId = id;
+                chatHistoryList.unshift({ id, title: title || 'Нов чат', lastMessage: 'Здравейте!...' });
+                renderChatHistory();
+                chatMessages.innerHTML = '';
+                addMessage('bot', 'Здравейте! Аз съм TeenBot. Кажете ми каква професия ви интересува и аз ще ви задам въпроси за интервю.');
+                return;
+            }
+            addMessage('bot', 'Не мога да създам нов чат сега.');
+        } catch (error) {
+            console.error('Неуспешно създаване на чат', error);
+            addMessage('bot', 'Не мога да създам нов чат. Опитайте след като влезете.');
+        }
+    }
+
+    async function saveMessageToCurrentChat(sender, text) {
+        if (!isLoggedIn || !currentChatId) return;
+
+        try {
+            await fetch(`/api/chat-history/${currentChatId}`, {
+                credentials: 'include',
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: { sender, text } })
+            });
+        } catch (err) {
+            console.error('Неуспешно съхранение на съобщение', err);
+        }
+    }
+
+    window.sendMessage = async function() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        addMessage('user', message);
+        await saveMessageToCurrentChat('user', message);
+        chatInput.value = '';
+
+        const loadingMessage = document.createElement('div');
+        loadingMessage.classList.add('chat-message', 'bot');
+        loadingMessage.innerHTML = `<strong>TeenBot:</strong> Мисля...`;
+        chatMessages.appendChild(loadingMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+            const response = await fetch('/chat', { 
+                credentials: 'include',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+            if (chatMessages.contains(loadingMessage)) chatMessages.removeChild(loadingMessage);
+
+            if (data.reply) {
+                addMessage('bot', data.reply);
+                await saveMessageToCurrentChat('bot', data.reply);
+            } else {
+                addMessage('bot', 'Грешка: ' + (data.error || 'Нещо се обърка.'));
+            }
+        } catch (error) {
+            console.error('Грешка:', error);
+            if (chatMessages.contains(loadingMessage)) chatMessages.removeChild(loadingMessage);
+            addMessage('bot', 'Нямам връзка със сървъра. Провери дали Node.js работи.');
+        }
+    };
 
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -113,11 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    window.newChat = function() {
-        chatMessages.innerHTML = ''; 
-        addMessage('bot', 'Здравейте! Аз съм TeenBot. Кажете ми каква професия ви интересува и аз ще ви задам въпроси за интервю.');
+    window.newChat = async function() {
+        await createNewConversation();
     };
-    newChat();
+
+    loadChatHistoryFromServer();
 });
 
 
@@ -137,7 +281,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const popup = document.querySelector(".popup");
   const closeBtn = document.querySelector(".popup .close-btn");
 
-  profileBtn.addEventListener("click", function() {
+  profileBtn.addEventListener("click", async function() {
+    try {
+      const resp = await fetch('/api/user-data', { credentials: 'include' });
+      if (resp.ok) {
+        window.location.href = '/profile';
+        return;
+      }
+    } catch (err) {
+      console.error('Error checking login', err);
+    }
     overlay.classList.add("active");
     popup.classList.add("active");
   });

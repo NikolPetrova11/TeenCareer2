@@ -17,7 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Open popup
     if (profileBtn) {
-        profileBtn.addEventListener("click", () => {
+        profileBtn.addEventListener("click", async () => {
+            try {
+                const resp = await fetch('/api/user-data', { credentials: 'include' });
+                if (resp.ok) {
+                    window.location.href = '/profile';
+                    return;
+                }
+            } catch (err) {
+                console.error('Error checking login', err);
+            }
             overlay.classList.add("active");
             popup.classList.add("active");
         });

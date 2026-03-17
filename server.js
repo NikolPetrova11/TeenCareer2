@@ -9,6 +9,8 @@ const MongoStore = require('connect-mongo').default;
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
@@ -22,9 +24,6 @@ const app = express();
 // DataBase connection
 const dbURI = "mongodb+srv://new-user31:pbOLxEJKudngaIZY@cluster0.ylxecao.mongodb.net/?appName=Cluster0";
 
-mongoose.connect(dbURI)
-  .then(() => console.log('Свързани сме с Atlas!'))
-  .catch((err) => console.log('Грешка при свързване:', err));
 // Sessions
 const sessionStore = new MongoStore({ mongoUrl: dbURI }).on('error', (err) => {
     console.warn('MongoStore connection error:', err.message);
@@ -42,6 +41,24 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
+
+// Nodemailer configuration
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
+// Verify Nodemailer connection on startup
+transporter.verify((error, success) => {
+    if (error) {
+        console.error("Nodemailer configuration error:", error);
+    } else {
+        console.log("Server is ready to send emails via Nodemailer");
+    }
+});
 
 // Chatbot API 
 app.post('/chat', async (req, res) => {
@@ -91,8 +108,15 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   dob: Date,
   phone: String,
+  isVerified: { type: Boolean, default: false },
+  verificationToken: String,
   cvs: [{ data: mongoose.Schema.Types.Mixed, createdAt: { type: Date, default: Date.now } }],
-  portfolios: [{ data: mongoose.Schema.Types.Mixed, createdAt: { type: Date, default: Date.now } }]
+  portfolios: [{ data: mongoose.Schema.Types.Mixed, createdAt: { type: Date, default: Date.now } }],
+  chatHistory: [{
+    title: { type: String, default: 'Нов чат' },
+    updatedAt: { type: Date, default: Date.now },
+    messages: [{ sender: String, text: String, createdAt: { type: Date, default: Date.now } }]
+  }]
 });
 const User = mongoose.model('User', userSchema);
 
@@ -121,6 +145,77 @@ app.get('/api/user-data', async (req, res) => {
         res.json(user);
     } catch (err) {
         res.status(500).json({ error: "Грешка" });
+    }
+});
+
+app.get('/api/chat-history', async (req, res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    try {
+        const user = await User.findById(req.session.userId).select('chatHistory');
+        const history = (user?.chatHistory || []).map((chat) => ({
+            id: chat._id,
+            title: chat.title,
+            updatedAt: chat.updatedAt,
+            lastMessage: chat.messages?.[chat.messages.length - 1]?.text || ''
+        }));
+        res.json(history);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Грешка при зареждане на историята" });
+    }
+});
+
+app.post('/api/chat-history', async (req, res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    try {
+        const newChat = { title: req.body.title || 'Нов чат', messages: req.body.messages || [], updatedAt: new Date() };
+        const user = await User.findById(req.session.userId);
+        if (!user) return res.status(404).json({ error: 'Потребител не е намерен' });
+        user.chatHistory.push(newChat);
+        await user.save();
+        const added = user.chatHistory[user.chatHistory.length - 1];
+        res.json({ id: added._id, title: added.title, updatedAt: added.updatedAt, messages: added.messages });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Грешка при записване на чат" });
+    }
+});
+
+app.put('/api/chat-history/:chatId', async (req, res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    try {
+        const { chatId } = req.params;
+        const { message } = req.body;
+        const user = await User.findById(req.session.userId);
+        if (!user) return res.status(404).json({ error: 'Потребител не е намерен' });
+
+        const chat = user.chatHistory.id(chatId);
+        if (!chat) return res.status(404).json({ error: 'Чат не е намерен' });
+
+        if (message) {
+            chat.messages.push({ sender: message.sender, text: message.text, createdAt: new Date() });
+        }
+        chat.updatedAt = new Date();
+        await user.save();
+        res.json({ success: true, chatId: chat._id, updatedAt: chat.updatedAt });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Грешка при обновяване на чат" });
+    }
+});
+
+app.get('/api/chat-history/:chatId', async (req, res) => {
+    if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
+    try {
+        const { chatId } = req.params;
+        const user = await User.findById(req.session.userId).select('chatHistory');
+        if (!user) return res.status(404).json({ error: 'Потребител не е намерен' });
+        const chat = user.chatHistory.id(chatId);
+        if (!chat) return res.status(404).json({ error: 'Чат не е намерен' });
+        res.json({ id: chat._id, title: chat.title, messages: chat.messages, updatedAt: chat.updatedAt });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Грешка при зареждане на чат" });
     }
 });
 
@@ -173,6 +268,10 @@ app.post('/login', async (req, res) => {
             return res.send("<script>alert('Грешен имейл'); window.location='/';</script>");
         }
 
+        if (!user.isVerified) {
+            return res.send("<script>alert('Моля, потвърдете имейла си, преди да влезете! Проверете пощата си.'); window.location='/';</script>");
+        }
+
         const isMatch = await bcrypt.compare(password, user.password);
         console.log("Паролата съвпада:", isMatch);
 
@@ -199,30 +298,74 @@ app.post('/register', async (req, res) => {
         const { email, password, username } = req.body; 
 
         const existingUser = await User.findOne({ email });
-        if (existingUser) return res.send("Този имейл вече е регистриран.");
+        if (existingUser) return res.send("<script>alert('Този имейл вече е регистриран.'); window.location='/';</script>");
 
         const hashedPassword = await bcrypt.hash(password, 10);
+        const token = crypto.randomBytes(32).toString('hex');
+
         const newUser = new User({ 
             email, 
             password: hashedPassword,
-            username: username || email.split('@')[0] 
+            username: username || email.split('@')[0],
+            isVerified: false,
+            verificationToken: token
         });
         
-        const savedUser = await newUser.save();
-        req.session.userId = savedUser._id; 
-        res.redirect('/profile'); 
+        await newUser.save();
+
+        try {
+            const verificationUrl = `${req.protocol}://${req.get('host')}/verify?token=${token}`;
+            
+            const mailOptions = {
+                from: `"TeenCareer" <${process.env.EMAIL_USER}>`,
+                to: email,
+                subject: 'Потвърждение на регистрация в TeenCareer',
+                html: `<h3>Добре дошли в TeenCareer!</h3>
+                       <p>Моля, потвърдете имейла си, като кликнете на линка по-долу:</p>
+                       <a href="${verificationUrl}" style="background-color: #09989e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Потвърди моя профил</a>`
+            };
+
+            const info = await transporter.sendMail(mailOptions);
+            console.log("Verification email sent:", info.response);
+            res.send("<script>alert('Регистрацията е успешна! Моля, проверете имейла си (и папката за спам) за линк за потвърждение.'); window.location='/';</script>"); 
+        } catch (emailError) {
+            console.error("CRITICAL: Error sending verification email:", emailError);
+            res.status(500).send("<script>alert('Регистрацията е успешна, но имаше проблем с изпращането на имейла за потвърждение. Моля, свържете се с администратор.'); window.location='/';</script>");
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send("Грешка при регистрацията.");
     }
 });
+
+// Email Route
+app.get('/verify', async (req, res) => {
+    const { token } = req.query;
+    if (!token) return res.send("<script>alert('Невалиден линк.'); window.location='/';</script>");
+
+    try {
+        const user = await User.findOne({ verificationToken: token });
+        if (!user) return res.send("<script>alert('Невалиден или изтекъл линк за потвърждение.'); window.location='/';</script>");
+
+        user.isVerified = true;
+        user.verificationToken = undefined;
+        await user.save();
+
+        req.session.userId = user._id; 
+        res.send("<script>alert('Имейлът е потвърден успешно!'); window.location='/profile';</script>");
+    } catch (error) {
+        console.error(error);
+        res.send("<script>alert('Грешка при потвърждение.'); window.location='/';</script>");
+    }
+});
+
 // Logout
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
 
-// Update Profile API
+// Profile API
 app.post('/api/update-profile', async (req, res) => {
     if (!req.session.userId) return res.status(401).json({ error: "Не сте логнати" });
     

@@ -49,7 +49,16 @@ function updateHeaderHeight() {
   const popup = document.querySelector(".popup");
   const closeBtn = document.querySelector(".popup .close-btn");
 
-  profileBtn.addEventListener("click", function() {
+  profileBtn.addEventListener("click", async function() {
+    try {
+      const resp = await fetch('/api/user-data', { credentials: 'include' });
+      if (resp.ok) {
+        window.location.href = '/profile';
+        return;
+      }
+    } catch (err) {
+      console.error('Error checking login', err);
+    }
     overlay.classList.add("active");
     popup.classList.add("active");
   });
