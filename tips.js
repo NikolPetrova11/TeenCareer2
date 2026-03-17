@@ -62,3 +62,73 @@
         }
     });
   });
+  // CV Modal
+document.getElementById('uploadCvBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    const modal = document.getElementById('cvModal');
+    modal.style.display = 'flex';
+});
+
+function closeCvModal() {
+    document.getElementById('cvModal').style.display = 'none';
+    document.getElementById('cvResult').style.display = 'none';
+    document.getElementById('cvError').style.display = 'none';
+    document.getElementById('dropText').textContent = 'Плъзни файл тук или ';
+    document.getElementById('cvFileInput').value = '';
+    selectedFile = null;
+}
+
+let selectedFile = null;
+
+function handleFileSelect(input) {
+    if (input.files[0]) {
+        selectedFile = input.files[0];
+        document.getElementById('dropText').innerHTML = `✅ <strong>${selectedFile.name}</strong>`;
+    }
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('dropZone').style.background = '';
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+        selectedFile = file;
+        document.getElementById('dropText').innerHTML = `✅ <strong>${file.name}</strong>`;
+    } else {
+        document.getElementById('cvError').style.display = 'block';
+        document.getElementById('cvError').textContent = 'Моля качете PDF файл.';
+    }
+}
+
+async function uploadAndAnalyze() {
+    if (!selectedFile) {
+        document.getElementById('cvError').style.display = 'block';
+        document.getElementById('cvError').textContent = 'Моля избери CV файл първо.';
+        return;
+    }
+
+    const btn = document.getElementById('analyzeBtn');
+    btn.textContent = '⏳ Анализира се...';
+    btn.disabled = true;
+    document.getElementById('cvError').style.display = 'none';
+    document.getElementById('cvResult').style.display = 'none';
+
+    const formData = new FormData();
+    formData.append('cv', selectedFile);
+
+    try {
+        const response = await fetch('/api/analyze-cv', { method: 'POST', body: formData });
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.error || 'Грешка');
+
+        document.getElementById('cvResultText').textContent = data.recommendation;
+        document.getElementById('cvResult').style.display = 'block';
+    } catch (err) {
+        document.getElementById('cvError').style.display = 'block';
+        document.getElementById('cvError').textContent = err.message;
+    } finally {
+        btn.textContent = 'Анализирай';
+        btn.disabled = false;
+    }
+}

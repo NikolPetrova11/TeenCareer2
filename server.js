@@ -11,6 +11,9 @@ const fs = require('fs');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const multer = require('multer');
+const pdfParse = require('pdf-parse');
+const Anthropic = require('@anthropic-ai/sdk');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
@@ -570,7 +573,55 @@ app.post('/generate-portfolio', async (req, res) => {
         res.status(500).send("Error generating Portfolio");
     }
 });
+// CV Upload & Career Analysis
+const upload = multer({ 
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 5 * 1024 * 1024 } // 5MB
+});
 
+app.post('/api/analyze-cv', upload.single('cv'), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'Моля качете PDF файл.' });
+        }
+
+        // Извличане на текст от PDF
+        const pdfData = await pdfParse(req.file.buffer);
+        const cvText = pdfData.text?.trim();
+
+        if (!cvText || cvText.length < 50) {
+            return res.status(400).json({ error: 'PDF-ът изглежда празен или не може да се прочете.' });
+        }
+
+        const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+        const message = await anthropic.messages.create({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1024,
+            messages: [{
+                role: 'user',
+                content: `Ти си кариерен консултант за тийнейджъри и млади хора.
+Анализирай следното CV и препоръчай точно 3 подходящи професии.
+
+За всяка професия напиши:
+- Името на професията (с емоджи)
+- 2-3 изречения защо е подходяща за този човек, базирано на уменията и опита в CV-то
+- 1 практичен съвет как да започне в тази посока
+
+Отговори само на български език. Бъди позитивен и мотивиращ.
+
+CV:
+${cvText}`
+            }]
+        });
+
+        res.json({ recommendation: message.content[0].text });
+
+    } catch (error) {
+        console.error('CV Analysis Error:', error.message);
+        res.status(500).json({ error: 'Грешка при анализа. Опитай отново.' });
+    }
+});
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 let isConnected = false;

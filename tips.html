@@ -105,11 +105,42 @@
 
     </section>
     <section class="ball">
-        <h1>Качи своето CV и открий кои работи са най-подходящи за теб!</h1>
-        <a href="#" class="button" id="uploadCvBtn">Качи сега</a>
-        <input type="file" id="cvFileInput" accept=".pdf">
-        <div id="cvAnalysisResult"></div>
-    </section>
+    <h1>Качи своето CV и открий кои работи са най-подходящи за теб!</h1>
+    <a href="#" class="button" id="uploadCvBtn">Качи сега</a>
+</section>
+<!-- CV Upload Modal -->
+<div id="cvModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:20px; padding:40px; max-width:500px; width:90%; position:relative; text-align:center;">
+        <button onclick="closeCvModal()" style="position:absolute; top:15px; right:20px; background:none; border:none; font-size:24px; cursor:pointer; color:#888;">✕</button>
+        
+        <h2 style="color:#8274A1; font-family:'Caveat',cursive; font-size:28px; margin-bottom:10px;">Анализ на CV</h2>
+        <p style="color:#666; margin-bottom:25px;">Качи своето CV в PDF формат и ще ти препоръчаме най-подходящите професии!</p>
+
+        <!-- Drop Zone -->
+        <div id="dropZone" style="border:2px dashed #09989e; border-radius:15px; padding:30px; margin-bottom:20px; cursor:pointer; transition:background 0.2s;"
+             onclick="document.getElementById('cvFileInput').click()"
+             ondragover="event.preventDefault(); this.style.background='#f0fafa';"
+             ondragleave="this.style.background=''"
+             ondrop="handleDrop(event)">
+            <div style="font-size:40px;">📄</div>
+            <p id="dropText" style="color:#09989e; margin:10px 0 0;">Плъзни файл тук или <strong>избери</strong></p>
+        </div>
+        <input type="file" id="cvFileInput" accept=".pdf" style="display:none" onchange="handleFileSelect(this)">
+
+        <button id="analyzeBtn" onclick="uploadAndAnalyze()" 
+                style="background:#8274A1; color:white; border:none; padding:12px 35px; border-radius:25px; font-size:16px; cursor:pointer; width:100%;">
+            Анализирай
+        </button>
+
+        <!-- Result -->
+        <div id="cvResult" style="display:none; margin-top:25px; text-align:left; background:#f8f8ff; border-radius:15px; padding:20px; max-height:300px; overflow-y:auto;">
+            <h3 style="color:#8274A1; margin-bottom:10px;">Препоръчани професии за теб:</h3>
+            <div id="cvResultText" style="color:#444; line-height:1.7; white-space:pre-wrap;"></div>
+        </div>
+
+        <div id="cvError" style="display:none; margin-top:15px; color:#e05; font-size:14px;"></div>
+    </div>
+</div>
     <section class="notes">
         <h1>Бърз чеклист преди интервю:</h1>
         <img class="chek" src="photos/Group 30.png">
