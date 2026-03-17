@@ -127,7 +127,7 @@ async function loadUserData() {
         
         if (user.dob) {
             const date = new Date(user.dob);
-            document.getElementById('user-dob').innerText = date.toLocaleDateString('bg-BG') + ' г.';
+            document.getElementById('user-dob').innerText = date.toLocaleDateString('bg-BG') ;
         }
     } catch (err) {
         console.error("Грешка при зареждане:", err);

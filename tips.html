@@ -52,7 +52,7 @@
     <div class="form-container">
 
         <div class="form login-form-container active">
-            <form action="/login.html" method="POST">
+            <form action="/login" method="POST">
                 
                 <div class="form-element">
                     <label for="login-email">Email</label>
@@ -106,8 +106,9 @@
     </section>
     <section class="ball">
         <h1>Качи своето CV и открий кои работи са най-подходящи за теб!</h1>
-        <a href="#" class="button">Качи сега</a>
-    
+        <a href="#" class="button" id="uploadCvBtn">Качи сега</a>
+        <input type="file" id="cvFileInput" accept=".pdf">
+        <div id="cvAnalysisResult"></div>
     </section>
     <section class="notes">
         <h1>Бърз чеклист преди интервю:</h1>
