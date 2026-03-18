@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!chatHistoryList.length) {
             const p = document.createElement('p');
             p.textContent = 'Няма запазени чатове';
-            p.style.color = '#fff';
+            p.style.color = '#ccabd8';
             p.style.padding = '8px';
             chatHistoryEl.appendChild(p);
             return;
@@ -103,9 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.width = '100%';
             btn.style.marginBottom = '4px';
             btn.style.textAlign = 'left';
-            btn.style.background = chat.id === currentChatId ? '#fff' : 'transparent';
-            btn.style.color = '#593D6E';
-            btn.style.border = '1px solid #ddd';
+            btn.style.background = chat.id === currentChatId ? '#ccabd8' : 'transparent';
+            btn.style.color = '#fff';
+            btn.style.border = '1px solid #ccabd8';
             btn.style.borderRadius = '6px';
             btn.style.padding = '6px';
             btn.addEventListener('click', () => loadConversation(chat.id));
