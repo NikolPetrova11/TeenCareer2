@@ -86,7 +86,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let formDataSubmitted = false;
     const userId = null;
     let portfolioData = {}; 
-
+ 
+    function updatePortfolioPreview() {
+        const fields = {
+            'port-fullName': 'preview-port-fullName',
+            'port-email': 'preview-port-email',
+            'port-phone': 'preview-port-phone',
+            'port-education': 'preview-port-education',
+            'port-experience': 'preview-port-experience'
+        };
+        for (const [inputId, previewId] of Object.entries(fields)) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            if (input && preview && input.value.trim()) {
+                preview.textContent = input.value;
+            }
+        }
+    }
     // Open modal or trigger upload
     if (uploadText) {
         uploadText.addEventListener('click', () => {
