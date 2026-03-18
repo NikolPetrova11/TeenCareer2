@@ -13,7 +13,7 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
-const Anthropic = require('@anthropic-ai/sdk');
+const { HfInference } = require('@huggingface/inference');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
@@ -73,7 +73,13 @@ app.post('/chat', async (req, res) => {
 
         console.log("Server received message:", message);
 
-        const apiResponse = await fetch("https://text.pollinations.ai/", {
+        let fetchImpl = global.fetch;
+        if (!fetchImpl) {
+            // Fallback for Node versions < 18 or if global fetch is missing
+            fetchImpl = (await import('node-fetch')).default;
+        }
+
+        const apiResponse = await fetchImpl("https://text.pollinations.ai/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -587,16 +593,27 @@ app.post('/api/analyze-cv', upload.single('cv'), async (req, res) => {
 
         // Извличане на текст от PDF
         const pdfData = await pdfParse(req.file.buffer);
-        const cvText = pdfData.text?.trim();
+        let cvText = pdfData.text?.trim();
 
         if (!cvText || cvText.length < 50) {
             return res.status(400).json({ error: 'PDF-ът изглежда празен или не може да се прочете.' });
         }
 
-        const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+        // Изрязване на текста, ако е твърде дълъг (над 6000 символа), за да не гърми API-то
+        if (cvText.length > 6000) {
+            cvText = cvText.substring(0, 6000) + "...";
+        }
 
-        const message = await anthropic.messages.create({
-            model: 'claude-sonnet-4-20250514',
+        if (!process.env.HF_API_KEY_1) {
+            console.error("Missing HF_API_KEY_1");
+            return res.status(500).json({ error: 'Липсва API ключ за Hugging Face в .env файла.' });
+        }
+
+        console.log("Analyzing CV with Hugging Face (Zephyr)...");
+        const hf = new HfInference(process.env.HF_API_KEY_1);
+
+        const response = await hf.chatCompletion({
+            model: "meta-llama/Llama-3.1-8B-Instruct",
             max_tokens: 1024,
             messages: [{
                 role: 'user',
@@ -613,12 +630,12 @@ app.post('/api/analyze-cv', upload.single('cv'), async (req, res) => {
 CV:
 ${cvText}`
             }]
-        });
+        }, { waitForModel: true });
 
-        res.json({ recommendation: message.content[0].text });
+        res.json({ recommendation: response.choices[0].message.content });
 
     } catch (error) {
-        console.error('CV Analysis Error:', error.message);
+        console.error('CV Analysis Error:', JSON.stringify(error, null, 2));
         res.status(500).json({ error: 'Грешка при анализа. Опитай отново.' });
     }
 });
