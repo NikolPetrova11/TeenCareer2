@@ -5,6 +5,26 @@ const cron = require('node-cron');
 async function runScraper() {
     console.log("Scraping started at:", new Date().toLocaleString());
     
+    // Read existing jobs to preserve manually added ones
+    let existingJobs = [];
+    const customJobs = [];
+    
+    try {
+        if (fs.existsSync('./jobs.json')) {
+            const fileContent = fs.readFileSync('./jobs.json', 'utf8');
+            existingJobs = JSON.parse(fileContent);
+            
+            // Filter out jobs that were manually added (those with custom property)
+            existingJobs.forEach(job => {
+                if (job.custom === true) {
+                    customJobs.push(job);
+                }
+            });
+        }
+    } catch (error) {
+        console.log("Could not read existing jobs:", error.message);
+    }
+    
     // Launch Puppeteer
     const browser = await puppeteer.launch({ headless: "new" }); 
     const page = await browser.newPage();
@@ -27,23 +47,34 @@ async function runScraper() {
                     link: titleLink ? titleLink.href : '',
                     company: company ? company.innerText.trim() : 'Private Company',
                     city: location ? location.innerText.trim() : 'Bulgaria',
-                    experience: 0 
+                    experience: 0
                 };
             });
         });
 
-        // Save to public folder
-        fs.writeFileSync('./jobs.json', JSON.stringify(jobs, null, 2));
+        // Merge scraped jobs with custom jobs (custom jobs first)
+        const allJobs = [...customJobs, ...jobs];
         
-        console.log(`Successfully scraped ${jobs.length} jobs!`);
+        // Save to jobs.json
+        fs.writeFileSync('./jobs.json', JSON.stringify(allJobs, null, 2));
+        
+        console.log(`Successfully scraped ${jobs.length} jobs and preserved ${customJobs.length} custom jobs!`);
     } catch (error) {
         console.error("Scraping failed:", error);
     } finally {
         await browser.close();
     }
 }
+
+// Schedule scraper to run daily at 9 AM
 cron.schedule('0 9 * * *', () => {
     runScraper();
 });
 
-runScraper();
+// Only run scraper on startup if jobs.json doesn't exist
+if (!fs.existsSync('./jobs.json')) {
+    console.log("jobs.json not found, running scraper...");
+    runScraper();
+} else {
+    console.log("jobs.json already exists, skipping initial scrape. Will run at scheduled time.");
+}
