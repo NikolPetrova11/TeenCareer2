@@ -485,20 +485,38 @@ app.post('/generate-pdf', async (req, res) => {
     `;
 
     try {
-        console.log("Sending CV HTML - Full Name:", fullName);
-        console.log("Request body keys:", Object.keys(req.body));
+        console.log("Generating PDF - Full Name:", fullName);
         
         // Check if we have the required data
         if (!fullName) {
             console.warn("Warning: No fullName provided");
         }
 
-        res.set({
-            'Content-Type': 'text/html; charset=utf-8',
-            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.html"`
+        // Launch Puppeteer to convert HTML to PDF
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
-        res.send(htmlContent);
-        console.log("CV HTML sent successfully");
+        
+        const page = await browser.newPage();
+        await page.setContent(htmlContent, { waitUntil: 'networkidle2' });
+        
+        // Generate PDF
+        const pdfBuffer = await page.pdf({
+            format: 'A4',
+            margin: { top: '0', right: '0', bottom: '0', left: '0' },
+            printBackground: true
+        });
+        
+        await browser.close();
+        
+        // Send PDF to client
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`
+        });
+        res.send(pdfBuffer);
+        console.log("CV PDF generated and sent successfully");
 
     } catch (error) {
         console.error("PDF Generation Error Details:", {
@@ -507,7 +525,7 @@ app.post('/generate-pdf', async (req, res) => {
             fullName: fullName
         });
         res.status(500).json({ 
-            error: "Error generating file",
+            error: "Error generating PDF",
             details: error.message 
         });
     }
