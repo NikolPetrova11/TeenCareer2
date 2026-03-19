@@ -149,6 +149,59 @@ tabs.forEach(tab => {
         if (index === "0") {
             card.innerHTML = originalContent;
             loadUserData(); 
+        } else if (index === "1") {
+            // load favorites
+            card.innerHTML = `<h3>Любими обяви</h3><div id="favorites-list">Зареждане...</div>`;
+            fetch('/get-favorites').then(r=>{
+                if (!r.ok) throw new Error('fetch');
+                return r.json();
+            }).then(data=>{
+                const list = document.getElementById('favorites-list');
+                const favs = data.favorites || [];
+                if (!favs.length) {
+                    list.innerHTML = `<p>Все още нямате любими обяви. <a href="/jobs.html">Намерете работа</a>!</p>`;
+                    return;
+                }
+                list.innerHTML = '';
+                favs.forEach((job, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'favorite-item';
+                    const date = new Date(job.addedAt).toLocaleString('bg-BG');
+                    div.innerHTML = `
+                        <div class="fav-content">
+                            <strong>${job.title}</strong> в ${job.company} (${job.city})
+                            <br><small>Добавена: ${date}</small>
+                        </div>
+                        <div class="fav-actions">
+                            <a href="${job.link}" target="_blank" class="btn-link">Към обявата</a>
+                            <button class="btn-remove" data-title="${job.title}" data-company="${job.company}">Отстрани</button>
+                        </div>
+                    `;
+                    list.appendChild(div);
+                });
+                list.addEventListener('click', async (e) => {
+                    if (e.target.classList.contains('btn-remove')) {
+                        const title = e.target.dataset.title;
+                        const company = e.target.dataset.company;
+                        try {
+                            const response = await fetch('/remove-favorite', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ title, company })
+                            });
+                            if (response.ok) {
+                                e.target.closest('.favorite-item').remove();
+                            }
+                        } catch (err) {
+                            console.error(err);
+                            alert('Грешка при отстраняване от любими.');
+                        }
+                    }
+                });
+            }).catch(err=>{
+                console.error(err);
+                document.getElementById('favorites-list').innerHTML = '<p>Грешка при зареждане на любимите.</p>';
+            });
         } else if (index === "2") {
             // load CVs
             card.innerHTML = `<h3>CV файлове</h3><div id="cv-list">Зареждане...</div>`;

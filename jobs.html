@@ -142,6 +142,31 @@
             color: #8274A1;
         }
 
+        .favorite-btn {
+            background-color: #09989e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .favorite-btn:hover {
+            background-color: #077a7f;
+        }
+
+        .favorite-btn.btn-unfavorite {
+            background-color: #e74c3c;
+        }
+
+        .favorite-btn.btn-unfavorite:hover {
+            background-color: #c0392b;
+        }
+
         p.no-results, p.error-message {
             margin-top: 20px;
             padding: 15px;
@@ -314,22 +339,94 @@
                     <th>Компания</th>
                     <th>Град</th>
                     <th>Линк</th>
+                    <th>Действие</th>
                 </tr>
             </thead>
             <tbody>`;
         
         results.forEach(job => {
+            const isFavorited = userFavorites.some(fav => fav.title === job.title && fav.company === job.company);
+            const btnText = isFavorited ? '❤️ Отстрани' : '🤍 Добави в любими';
+            const btnClass = isFavorited ? 'btn-unfavorite' : 'btn-favorite';
+            
             tableHtml += `<tr>
                 <td>${job.title}</td>
                 <td>${job.company}</td>
                 <td>${job.city}</td>
                 <td><a href="${job.link}" target="_blank">Към обявата</a></td>
+                <td><button class="favorite-btn ${btnClass}" data-title="${job.title}" data-company="${job.company}" data-city="${job.city}" data-link="${job.link}" data-experience="${job.experience}">${btnText}</button></td>
             </tr>`;
         });
 
         tableHtml += '</tbody></table>';
         container.insertAdjacentHTML('beforeend', tableHtml);
+
+        // Add event listeners to favorite buttons
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            btn.addEventListener('click', toggleFavorite);
+        });
     }
+    
+    // Toggle favorite function
+    async function toggleFavorite(e) {
+        const btn = e.target;
+        const title = btn.dataset.title;
+        const company = btn.dataset.company;
+        const city = btn.dataset.city;
+        const link = btn.dataset.link;
+        const experience = btn.dataset.experience;
+
+        const isFavorited = btn.classList.contains('btn-unfavorite');
+        const endpoint = isFavorited ? '/remove-favorite' : '/add-favorite';
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, company, city, link, experience })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                if (isFavorited) {
+                    btn.classList.remove('btn-unfavorite');
+                    btn.classList.add('btn-favorite');
+                    btn.innerText = '🤍 Добави в любими';
+                    userFavorites = userFavorites.filter(fav => !(fav.title === title && fav.company === company));
+                } else {
+                    btn.classList.remove('btn-favorite');
+                    btn.classList.add('btn-unfavorite');
+                    btn.innerText = '❤️ Отстрани';
+                    userFavorites.push({ title, company, city, link, experience });
+                }
+            } else if (response.status === 401) {
+                alert('Моля, влезте в профила си, за да добавяте в любими.');
+            } else {
+                alert('Грешка: ' + data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Грешка при обновяване на любимите.');
+        }
+    }
+
+    // Load user favorites on page load
+    let userFavorites = [];
+    async function loadUserFavorites() {
+        try {
+            const response = await fetch('/get-favorites');
+            if (response.ok) {
+                const data = await response.json();
+                userFavorites = data.favorites || [];
+            }
+        } catch (error) {
+            console.log('Not logged in or favorites unavailable');
+        }
+    }
+
+    // Load favorites when page loads
+    window.addEventListener('load', loadUserFavorites);
 </script>
 </body>
 </html>

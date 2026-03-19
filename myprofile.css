@@ -317,6 +317,81 @@ body {
 
 .profile:hover {
 
+    background-color: #09989e;
+
+}
+
+/* Favorites styling */
+.favorite-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #09989e;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.favorite-item:hover {
+    background-color: #eff4f7;
+}
+
+.fav-content {
+    flex: 1;
+    color: #333;
+}
+
+.fav-content strong {
+    color: #8274A1;
+    font-size: 1.05em;
+}
+
+.fav-content small {
+    color: #999;
+    display: block;
+    margin-top: 5px;
+}
+
+.fav-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-link {
+    background-color: #09989e;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-link:hover {
+    background-color: #077a7f;
+}
+
+.btn-remove {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remove:hover {
+    background-color: #c0392b;
+}
+
+.profile:hover {
+
   background-color: #4db5af;
 
 }

@@ -121,6 +121,14 @@ const userSchema = new mongoose.Schema({
   verificationToken: String,
   cvs: [{ data: mongoose.Schema.Types.Mixed, createdAt: { type: Date, default: Date.now } }],
   portfolios: [{ data: mongoose.Schema.Types.Mixed, createdAt: { type: Date, default: Date.now } }],
+  favorites: [{ 
+    title: String,
+    company: String,
+    city: String,
+    link: String,
+    experience: Number,
+    addedAt: { type: Date, default: Date.now }
+  }],
   chatHistory: [{
     title: { type: String, default: 'Нов чат' },
     updatedAt: { type: Date, default: Date.now },
@@ -697,6 +705,81 @@ ${cvText}`
         res.status(500).json({ error: 'Грешка при анализа. Опитай отново.' });
     }
 });
+
+// Favorites Routes
+// Add job to favorites
+app.post('/add-favorite', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
+
+    const { title, company, city, link, experience } = req.body;
+
+    try {
+        const user = await User.findById(req.session.userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Check if job already exists in favorites
+        const exists = user.favorites.some(fav => fav.title === title && fav.company === company);
+        if (exists) {
+            return res.status(400).json({ error: 'Job already in favorites' });
+        }
+
+        user.favorites.push({ title, company, city, link, experience });
+        await user.save();
+
+        res.json({ success: true, message: 'Job added to favorites' });
+    } catch (error) {
+        console.error('Add favorite error:', error);
+        res.status(500).json({ error: 'Error adding to favorites' });
+    }
+});
+
+// Remove job from favorites
+app.post('/remove-favorite', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
+
+    const { title, company } = req.body;
+
+    try {
+        const user = await User.findById(req.session.userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        user.favorites = user.favorites.filter(fav => !(fav.title === title && fav.company === company));
+        await user.save();
+
+        res.json({ success: true, message: 'Job removed from favorites' });
+    } catch (error) {
+        console.error('Remove favorite error:', error);
+        res.status(500).json({ error: 'Error removing from favorites' });
+    }
+});
+
+// Get user's favorite jobs
+app.get('/get-favorites', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
+
+    try {
+        const user = await User.findById(req.session.userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({ favorites: user.favorites || [] });
+    } catch (error) {
+        console.error('Get favorites error:', error);
+        res.status(500).json({ error: 'Error fetching favorites' });
+    }
+});
+
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 let isConnected = false;
