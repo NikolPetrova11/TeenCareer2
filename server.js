@@ -602,14 +602,39 @@ app.post('/generate-portfolio', async (req, res) => {
     `;
 
     try {
-        res.set({
-            'Content-Type': 'text/html; charset=utf-8',
-            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.html"`
+        console.log("Generating Portfolio PDF - Full Name:", full_name);
+        
+        // Use html-pdf to convert HTML to PDF
+        const options = {
+            format: 'A4',
+            margin: '0',
+            base: `file://${__dirname}/`
+        };
+
+        pdf.create(htmlContent, options).toBuffer((err, buffer) => {
+            if (err) {
+                console.error("Portfolio PDF Generation Error:", err);
+                return res.status(500).json({ 
+                    error: "Error generating portfolio",
+                    details: err.message 
+                });
+            }
+
+            // Send PDF to client
+            res.set({
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`
+            });
+            res.send(buffer);
+            console.log("Portfolio PDF generated and sent successfully");
         });
-        res.send(htmlContent);
+
     } catch (error) {
         console.error("Portfolio PDF Error:", error);
-        res.status(500).send("Error generating Portfolio");
+        res.status(500).json({ 
+            error: "Error generating portfolio",
+            details: error.message 
+        });
     }
 });
 // CV Upload & Career Analysis
