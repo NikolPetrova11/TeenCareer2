@@ -626,7 +626,8 @@ h1 span {
     .hero h1 { margin-left: 11.2%;}
     .hero h2 { margin-left: 11.2%;}
     .hero p { margin-left: 11.2%;}
-    .button { margin-left: 11.2%;}
+    .button { margin-left: 11.2%; top: 56%; }
+    
     .whattoexpectimg { width: 60%; margin: 20px auto; }
     .bg { min-height: 750px; }
     
@@ -874,7 +875,7 @@ h1 span {
     .hero { height: 70%; width: 155%; }
     .hero h2 { margin-top: 23%; }
     .hero p { margin-top: 32.5%; }
-    .button { top: 51%; }
+    .button { top: 55%;}
     
     .arrow1 img, .arrow2 img { top: 15%; width: 75px; }
     .arrow1 img { left: 1.5%; }
@@ -900,7 +901,7 @@ h1 span {
     .hero h1 { font-size: 21px; margin-top: 37%; }
     .hero h2 { margin-top: 45%; font-size: 16px; }
     .hero p { margin-top: 59.5%; font-size: 12px; }
-    .button { top: 54%; font-size: 11px !important; }
+    .button { top: 55%; font-size: 11px !important; }
     
     .card { width: 254px; flex: 0 1 283px; }
     .card p { margin-top: 24px; }
