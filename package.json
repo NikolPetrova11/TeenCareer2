@@ -20,6 +20,7 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "express-session": "^1.18.2",
+    "html-pdf": "^3.0.0",
     "html2pdf.js": "^0.14.0",
     "mongodb": "^7.1.0",
     "mongoose": "^9.1.5",
@@ -28,8 +29,7 @@
     "nodemailer": "^8.0.2",
     "path": "^0.12.7",
     "pdf-parse": "^1.1.4",
-    "pdfkit": "^0.17.2",
-    "puppeteer": "^24.37.3"
+    "pdfkit": "^0.17.2"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"

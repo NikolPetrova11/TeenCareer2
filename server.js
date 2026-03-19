@@ -6,7 +6,6 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo').default;
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -14,6 +13,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const { HfInference } = require('@huggingface/inference');
+const pdf = require('html-pdf');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
@@ -492,31 +492,30 @@ app.post('/generate-pdf', async (req, res) => {
             console.warn("Warning: No fullName provided");
         }
 
-        // Launch Puppeteer to convert HTML to PDF
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-        });
-        
-        const page = await browser.newPage();
-        await page.setContent(htmlContent, { waitUntil: 'networkidle2' });
-        
-        // Generate PDF
-        const pdfBuffer = await page.pdf({
+        // Use html-pdf to convert HTML to PDF
+        const options = {
             format: 'A4',
-            margin: { top: '0', right: '0', bottom: '0', left: '0' },
-            printBackground: true
+            margin: '0',
+            base: `file://${__dirname}/`
+        };
+
+        pdf.create(htmlContent, options).toBuffer((err, buffer) => {
+            if (err) {
+                console.error("PDF Generation Error:", err);
+                return res.status(500).json({ 
+                    error: "Error generating PDF",
+                    details: err.message 
+                });
+            }
+
+            // Send PDF to client
+            res.set({
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`
+            });
+            res.send(buffer);
+            console.log("CV PDF generated and sent successfully");
         });
-        
-        await browser.close();
-        
-        // Send PDF to client
-        res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`
-        });
-        res.send(pdfBuffer);
-        console.log("CV PDF generated and sent successfully");
 
     } catch (error) {
         console.error("PDF Generation Error Details:", {
