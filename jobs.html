@@ -383,6 +383,7 @@
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ title, company, city, link, experience })
             });
 
@@ -415,7 +416,9 @@
     let userFavorites = [];
     async function loadUserFavorites() {
         try {
-            const response = await fetch('/get-favorites');
+            const response = await fetch('/get-favorites', {
+                credentials: 'include'
+            });
             if (response.ok) {
                 const data = await response.json();
                 userFavorites = data.favorites || [];
