@@ -330,25 +330,29 @@ app.post('/register', async (req, res) => {
         
         await newUser.save();
 
-        try {
-            const verificationUrl = `${req.protocol}://${req.get('host')}/verify?token=${token}`;
-            
-            const mailOptions = {
-                from: `"TeenCareer" <${process.env.EMAIL_USER}>`,
-                to: email,
-                subject: 'Потвърждение на регистрация в TeenCareer',
-                html: `<h3>Добре дошли в TeenCareer!</h3>
-                       <p>Моля, потвърдете имейла си, като кликнете на линка по-долу:</p>
-                       <a href="${verificationUrl}" style="background-color: #09989e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Потвърди моя профил</a>`
-            };
+        // Send verification email in background (non-blocking)
+        const verificationUrl = `${req.protocol}://${req.get('host')}/verify?token=${token}`;
+        
+        const mailOptions = {
+            from: `"TeenCareer" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: 'Потвърждение на регистрация в TeenCareer',
+            html: `<h3>Добре дошли в TeenCareer!</h3>
+                   <p>Моля, потвърдете имейла си, като кликнете на линка по-долу:</p>
+                   <a href="${verificationUrl}" style="background-color: #09989e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Потвърди моя профил</a>`
+        };
 
-            const info = await transporter.sendMail(mailOptions);
-            console.log("Verification email sent:", info.response);
-            res.send("<script>alert('Регистрацията е успешна! Моля, проверете имейла си (и папката за спам) за линк за потвърждение.'); window.location='/';</script>"); 
-        } catch (emailError) {
-            console.error("CRITICAL: Error sending verification email:", emailError);
-            res.status(500).send("<script>alert('Регистрацията е успешна, но имаше проблем с изпращането на имейла за потвърждение. Моля, свържете се с администратор.'); window.location='/';</script>");
-        }
+        // Send email asynchronously without waiting
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.error("Error sending verification email:", err);
+            } else {
+                console.log("Verification email sent:", info.response);
+            }
+        });
+
+        // Return response immediately
+        res.send("<script>alert('Регистрацията е успешна! Проверете имейла си (и папката за спам) за линк за потвърждение.'); window.location='/';</script>");
     } catch (error) {
         console.error(error);
         res.status(500).send("Грешка при регистрацията.");
