@@ -485,15 +485,31 @@ app.post('/generate-pdf', async (req, res) => {
     `;
 
     try {
+        console.log("Sending CV HTML - Full Name:", fullName);
+        console.log("Request body keys:", Object.keys(req.body));
+        
+        // Check if we have the required data
+        if (!fullName) {
+            console.warn("Warning: No fullName provided");
+        }
+
         res.set({
             'Content-Type': 'text/html; charset=utf-8',
             'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.html"`
         });
         res.send(htmlContent);
+        console.log("CV HTML sent successfully");
 
     } catch (error) {
-        console.error("PDF Generation Error:", error);
-        res.status(500).send("Error generating file");
+        console.error("PDF Generation Error Details:", {
+            message: error.message,
+            stack: error.stack,
+            fullName: fullName
+        });
+        res.status(500).json({ 
+            error: "Error generating file",
+            details: error.message 
+        });
     }
 });
 
