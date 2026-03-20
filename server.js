@@ -510,15 +510,36 @@ app.post('/generate-pdf', async (req, res) => {
         // Launch browser with proper options for production environments (Render compatible)
         const launchOptions = {
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
         };
         
-        // On Render, use system-installed Chrome or Puppeteer's bundled Chromium
-        if (process.env.RENDER) {
-            launchOptions.executablePath = '/usr/bin/chromium-browser' || undefined;
+        // On Render, use system-installed Chromium
+        if (process.env.RENDER === 'true') {
+            launchOptions.executablePath = '/usr/bin/chromium-browser';
         }
         
-        browser = await puppeteer.launch(launchOptions);
+        try {
+            browser = await puppeteer.launch(launchOptions);
+        } catch (launchErr) {
+            console.error("Standard launch failed, trying alternative paths...", launchErr.message);
+            // Fallback: try other common Chromium paths
+            const chromiumPaths = [
+                '/usr/bin/chromium',
+                '/usr/bin/google-chrome',
+                '/snap/bin/chromium'
+            ];
+            for (const path of chromiumPaths) {
+                try {
+                    launchOptions.executablePath = path;
+                    browser = await puppeteer.launch(launchOptions);
+                    console.log("Successfully launched with:", path);
+                    break;
+                } catch (err) {
+                    continue;
+                }
+            }
+            if (!browser) throw launchErr; // Re-throw original error if all fail
+        }
 
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
@@ -634,15 +655,36 @@ app.post('/generate-portfolio', async (req, res) => {
         // Launch browser with proper options for production environments (Render compatible)
         const launchOptions = {
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
         };
         
-        // On Render, use system-installed Chrome or Puppeteer's bundled Chromium
-        if (process.env.RENDER) {
-            launchOptions.executablePath = '/usr/bin/chromium-browser' || undefined;
+        // On Render, use system-installed Chromium
+        if (process.env.RENDER === 'true') {
+            launchOptions.executablePath = '/usr/bin/chromium-browser';
         }
         
-        browser = await puppeteer.launch(launchOptions);
+        try {
+            browser = await puppeteer.launch(launchOptions);
+        } catch (launchErr) {
+            console.error("Standard launch failed, trying alternative paths...", launchErr.message);
+            // Fallback: try other common Chromium paths
+            const chromiumPaths = [
+                '/usr/bin/chromium',
+                '/usr/bin/google-chrome',
+                '/snap/bin/chromium'
+            ];
+            for (const path of chromiumPaths) {
+                try {
+                    launchOptions.executablePath = path;
+                    browser = await puppeteer.launch(launchOptions);
+                    console.log("Successfully launched with:", path);
+                    break;
+                } catch (err) {
+                    continue;
+                }
+            }
+            if (!browser) throw launchErr; // Re-throw original error if all fail
+        }
 
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
@@ -812,8 +854,6 @@ app.get('/get-favorites', async (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-let isConnected = false;
-let useMockDB = false;
 
 const connectDB = () => {
   mongoose.connect(dbURI, {
