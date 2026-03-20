@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cvPaper = document.querySelector(".cv-paper");
 
     let cvData = {
-        template: templateSelector ? (templateSelector.value || 'default') : 'default'
+        template: 'default'
     };
 
     // Apply template style
@@ -269,10 +269,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (templateSelector) {
-        applyTemplate(templateSelector.value);
+        applyTemplate('default');
         templateSelector.addEventListener('change', function() {
-            cvData.template = this.value;
-            applyTemplate(this.value);
+            const selected = this.value || 'default';
+            cvData.template = selected;
+            applyTemplate(selected);
             checkPageHeight();
         });
     }
