@@ -509,37 +509,17 @@ app.post('/generate-pdf', async (req, res) => {
 
         // Launch browser with proper options for production environments (Render compatible)
         const launchOptions = {
-            headless: true,
+            headless: 'new',
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
         };
         
-        // On Render, use system-installed Chromium
+        // On Render, set the correct Chromium executable path
         if (process.env.RENDER === 'true') {
+            // Try to use system-installed chromium
             launchOptions.executablePath = '/usr/bin/chromium-browser';
         }
         
-        try {
-            browser = await puppeteer.launch(launchOptions);
-        } catch (launchErr) {
-            console.error("Standard launch failed, trying alternative paths...", launchErr.message);
-            // Fallback: try other common Chromium paths
-            const chromiumPaths = [
-                '/usr/bin/chromium',
-                '/usr/bin/google-chrome',
-                '/snap/bin/chromium'
-            ];
-            for (const path of chromiumPaths) {
-                try {
-                    launchOptions.executablePath = path;
-                    browser = await puppeteer.launch(launchOptions);
-                    console.log("Successfully launched with:", path);
-                    break;
-                } catch (err) {
-                    continue;
-                }
-            }
-            if (!browser) throw launchErr; // Re-throw original error if all fail
-        }
+        browser = await puppeteer.launch(launchOptions);
 
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
@@ -654,37 +634,17 @@ app.post('/generate-portfolio', async (req, res) => {
         
         // Launch browser with proper options for production environments (Render compatible)
         const launchOptions = {
-            headless: true,
+            headless: 'new',
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
         };
         
-        // On Render, use system-installed Chromium
+        // On Render, set the correct Chromium executable path
         if (process.env.RENDER === 'true') {
+            // Try to use system-installed chromium
             launchOptions.executablePath = '/usr/bin/chromium-browser';
         }
         
-        try {
-            browser = await puppeteer.launch(launchOptions);
-        } catch (launchErr) {
-            console.error("Standard launch failed, trying alternative paths...", launchErr.message);
-            // Fallback: try other common Chromium paths
-            const chromiumPaths = [
-                '/usr/bin/chromium',
-                '/usr/bin/google-chrome',
-                '/snap/bin/chromium'
-            ];
-            for (const path of chromiumPaths) {
-                try {
-                    launchOptions.executablePath = path;
-                    browser = await puppeteer.launch(launchOptions);
-                    console.log("Successfully launched with:", path);
-                    break;
-                } catch (err) {
-                    continue;
-                }
-            }
-            if (!browser) throw launchErr; // Re-throw original error if all fail
-        }
+        browser = await puppeteer.launch(launchOptions);
 
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });

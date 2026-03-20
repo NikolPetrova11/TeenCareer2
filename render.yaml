@@ -2,12 +2,14 @@ services:
   - type: web
     name: teencareer2
     runtime: node
-    buildCommand: npm install
+    buildCommand: bash render-build.sh
     startCommand: npm run server
     envVars:
       - key: NODE_ENV
         value: production
       - key: RENDER
         value: "true"
+      - key: PUPPETEER_CACHE_DIR
+        value: /opt/render/.cache/puppeteer
       - key: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
-        value: "true"
+        value: "false"
