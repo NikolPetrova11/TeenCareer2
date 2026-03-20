@@ -7,7 +7,8 @@
   "scripts": {
     "scrape": "node scraper.js",
     "server": "node server.js",
-    "dev": "concurrently \"npm run scrape\" \"npm run server\""
+    "dev": "concurrently \"npm run scrape\" \"npm run server\"",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.79.0",

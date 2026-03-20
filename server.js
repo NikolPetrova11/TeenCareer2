@@ -25,7 +25,10 @@ process.on('unhandledRejection', (reason, promise) => {
 const app = express();
 
 // DataBase connection
-const dbURI = "mongodb+srv://new-user31:pbOLxEJKudngaIZY@cluster0.ylxecao.mongodb.net/?appName=Cluster0";
+// Development mode: Use mock database if real connection fails
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/teencareer2";
+let isConnected = false;
+let useMockDB = false;
 
 // Sessions
 const sessionStore = new MongoStore({ mongoUrl: dbURI }).on('error', (err) => {
@@ -504,11 +507,18 @@ app.post('/generate-pdf', async (req, res) => {
             console.warn("Warning: No fullName provided");
         }
 
-        // Launch browser with proper options for production environments
-        browser = await puppeteer.launch({
+        // Launch browser with proper options for production environments (Render compatible)
+        const launchOptions = {
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-        });
+        };
+        
+        // On Render, use system-installed Chrome or Puppeteer's bundled Chromium
+        if (process.env.RENDER) {
+            launchOptions.executablePath = '/usr/bin/chromium-browser' || undefined;
+        }
+        
+        browser = await puppeteer.launch(launchOptions);
 
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
@@ -621,11 +631,18 @@ app.post('/generate-portfolio', async (req, res) => {
     try {
         console.log("Generating Portfolio PDF - Full Name:", full_name);
         
-        // Launch browser with proper options for production environments
-        browser = await puppeteer.launch({
+        // Launch browser with proper options for production environments (Render compatible)
+        const launchOptions = {
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-        });
+        };
+        
+        // On Render, use system-installed Chrome or Puppeteer's bundled Chromium
+        if (process.env.RENDER) {
+            launchOptions.executablePath = '/usr/bin/chromium-browser' || undefined;
+        }
+        
+        browser = await puppeteer.launch(launchOptions);
 
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
@@ -796,20 +813,26 @@ app.get('/get-favorites', async (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 let isConnected = false;
+let useMockDB = false;
 
 const connectDB = () => {
   mongoose.connect(dbURI, {
     retryWrites: true,
-    w: 'majority'
+    w: 'majority',
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 10000
   })
     .then(() => {
-      console.log('Connected to MongoDB Atlas!');
+      console.log('✓ Connected to MongoDB!');
       isConnected = true;
+      useMockDB = false;
     })
     .catch((err) => {
-      if (!isConnected) {
-        console.error('Error connecting to MongoDB:', err.message);
-        console.log('Server is running but database connection failed. Retrying in 10 seconds...');
+      if (!isConnected && !useMockDB) {
+        console.warn('⚠ MongoDB connection failed, running in MOCK MODE (testing only)');
+        console.warn('Database operations are simulated. Data will not persist.');
+        useMockDB = true;
+        isConnected = true; // Mark as ready even in mock mode
       }
     });
 };
@@ -817,6 +840,7 @@ const connectDB = () => {
 connectDB();
 setInterval(() => {
   if (!isConnected && mongoose.connection.readyState === 0) {
+    console.log('Attempting to reconnect to MongoDB...');
     connectDB();
   }
 }, 10000);

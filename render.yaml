@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: teencareer2
+    runtime: node
+    buildCommand: npm install && npx puppeteer browsers install chrome
+    startCommand: npm run server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RENDER
+        value: "true"
