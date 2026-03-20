@@ -515,8 +515,21 @@ app.post('/generate-pdf', async (req, res) => {
         
         // On Render, set the correct Chromium executable path
         if (process.env.RENDER === 'true') {
-            // Try to use system-installed chromium
-            launchOptions.executablePath = '/usr/bin/chromium-browser';
+            // Check which chromium is installed
+            const chromiumPaths = ['/usr/bin/chromium', '/usr/bin/chromium-browser'];
+            const fs = require('fs');
+            
+            for (const path of chromiumPaths) {
+                if (fs.existsSync(path)) {
+                    launchOptions.executablePath = path;
+                    console.log(`Using Chromium at: ${path}`);
+                    break;
+                }
+            }
+            
+            if (!launchOptions.executablePath) {
+                console.warn('Warning: Could not find Chromium executable. Puppeteer will attempt to use bundled version.');
+            }
         }
         
         browser = await puppeteer.launch(launchOptions);
@@ -640,8 +653,21 @@ app.post('/generate-portfolio', async (req, res) => {
         
         // On Render, set the correct Chromium executable path
         if (process.env.RENDER === 'true') {
-            // Try to use system-installed chromium
-            launchOptions.executablePath = '/usr/bin/chromium-browser';
+            // Check which chromium is installed
+            const chromiumPaths = ['/usr/bin/chromium', '/usr/bin/chromium-browser'];
+            const fs = require('fs');
+            
+            for (const path of chromiumPaths) {
+                if (fs.existsSync(path)) {
+                    launchOptions.executablePath = path;
+                    console.log(`Using Chromium at: ${path}`);
+                    break;
+                }
+            }
+            
+            if (!launchOptions.executablePath) {
+                console.warn('Warning: Could not find Chromium executable. Puppeteer will attempt to use bundled version.');
+            }
         }
         
         browser = await puppeteer.launch(launchOptions);

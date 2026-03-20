@@ -1,12 +1,15 @@
 #!/bin/bash
 
-# Install system dependencies for Chromium
+# Update package lists
 apt-get update
-apt-get install -y chromium-browser chromium-common
 
-# Copy Chromium to expected location
-mkdir -p /usr/bin
-which chromium-browser && echo "Chromium found at $(which chromium-browser)" || echo "Chromium not found, installing..."
+# Install Chromium (the correct package for Debian/Ubuntu)
+apt-get install -y chromium
+
+# Verify installation and find the executable
+echo "Checking for Chromium installation..."
+which chromium && echo "Chromium found!" || echo "Chromium not found in PATH"
+ls -la /usr/bin/chromium* || echo "No chromium files in /usr/bin"
 
 # Run npm install
 npm install
