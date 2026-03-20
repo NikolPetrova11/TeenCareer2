@@ -48,23 +48,30 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// Nodemailer configuration
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+// Nodemailer configuration (Gmail SMTP)
+let transporter = null;
+if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.warn("EMAIL_USER or EMAIL_PASS is not set. Verification emails will NOT be sent.");
+} else {
+    transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
 
-// Verify Nodemailer connection on startup
-transporter.verify((error, success) => {
-    if (error) {
-        console.error("Nodemailer configuration error:", error);
-    } else {
-        console.log("Server is ready to send emails via Nodemailer");
-    }
-});
+    // Verify Nodemailer connection on startup
+    transporter.verify((error, success) => {
+        if (error) {
+            console.error("Nodemailer configuration error:", error.message || error);
+        } else {
+            console.log("Server is ready to send emails via Nodemailer");
+        }
+    });
+}
 
 // Chatbot API 
 app.post('/chat', async (req, res) => {
@@ -333,7 +340,12 @@ app.post('/register', async (req, res) => {
         
         await newUser.save();
 
-        // Send verification email in background (non-blocking)
+        // If mail transport is not configured, don't pretend email was sent
+        if (!transporter) {
+            console.warn('Registration: transporter is not configured, cannot send verification email.');
+            return res.send("<script>alert('Регистрацията е успешна, но в момента не можем да изпратим имейл за потвърждение. Свържете се с нас или опитайте по-късно.'); window.location='/';</script>");
+        }
+
         const verificationUrl = `${req.protocol}://${req.get('host')}/verify?token=${token}`;
         
         const mailOptions = {
@@ -345,17 +357,14 @@ app.post('/register', async (req, res) => {
                    <a href="${verificationUrl}" style="background-color: #09989e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Потвърди моя профил</a>`
         };
 
-        // Send email asynchronously without waiting
-        transporter.sendMail(mailOptions, (err, info) => {
-            if (err) {
-                console.error("Error sending verification email:", err);
-            } else {
-                console.log("Verification email sent:", info.response);
-            }
-        });
-
-        // Return response immediately
-        res.send("<script>alert('Регистрацията е успешна! Проверете имейла си (и папката за спам) за линк за потвърждение.'); window.location='/';</script>");
+        try {
+            const info = await transporter.sendMail(mailOptions);
+            console.log('Verification email sent:', info.response);
+            return res.send("<script>alert('Регистрацията е успешна! Проверете имейла си (и папката за спам) за линк за потвърждение.'); window.location='/';</script>");
+        } catch (mailErr) {
+            console.error('Error sending verification email:', mailErr);
+            return res.send("<script>alert('Регистрацията е успешна, но имаше проблем при изпращането на имейл за потвърждение. Опитайте отново по-късно или използвайте друг имейл.'); window.location='/';</script>");
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send("Грешка при регистрацията.");

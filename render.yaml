@@ -7,9 +7,4 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: RENDER
-        value: "true"
-      - key: PUPPETEER_CACHE_DIR
-        value: /opt/render/.cache/puppeteer
-      - key: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
-        value: "true"
+      # No Puppeteer/Chromium required for PDF generation
