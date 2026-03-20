@@ -13,7 +13,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const { HfInference } = require('@huggingface/inference');
-const puppeteer = require('puppeteer');
+const PDFDocument = require('pdfkit');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
@@ -408,299 +408,110 @@ app.get('/edit-profile', redirectIfLoggedOut, (req, res) => {
     res.sendFile(path.join(__dirname, 'edit-profile.html'));
 });
 
-// Generate PDF Route
-app.post('/generate-pdf', async (req, res) => {
-    console.log("Generating CV PDF...");
-    const { fullName, email, phone, city, education, experience, skills, languages, summary, date, text, template } = req.body;
+// Generate PDF Route (using pdfkit instead of Puppeteer)
+app.post('/generate-pdf', (req, res) => {
+    console.log("Generating CV PDF with pdfkit...");
+    const { fullName, email, phone, city, education, experience, skills, languages, summary, date, text } = req.body;
 
-    let css = '';
     try {
-        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
-    } catch (e) {
-        console.error("Could not read CV_maker.css", e);
-    }
+        const fileName = `CV_${(fullName || 'user').replace(/\s+/g, '_')}.pdf`;
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
 
-    const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-        <style>
-            ${css}
-            body { background: white; margin: 0; padding: 0; }
-            .cv-paper {
-                box-shadow: none;
-                margin: 0;
-                max-width: none;
-                width: 100%;
-                min-height: 100vh;
-                padding: 40px;
-            }
-            /* Ensure background colors print correctly */
-            * { -webkit-print-color-adjust: exact; }
-        </style>
-    </head>
-    <body>
-        <div class="cv-preview-side" style="padding:0; background:white; display:block;">
-            <div class="cv-paper ${template || 'default'}">
-                <div class="preview-header">
-                    <div class="header-info">
-                        <div class="preview-name">${fullName || ''}</div>
-                        <div class="preview-contact">
-                            ${email ? `<span>${email}</span> | ` : ''}
-                            ${phone ? `<span>${phone}</span> | ` : ''}
-                            ${city ? `<span>${city}</span> | ` : ''}
-                            ${date ? `<span>${date}</span>` : ''}
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="main-content-card">
-                    ${summary ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">За мен</div>
-                        <div class="preview-content">${summary.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
+        const doc = new PDFDocument({ size: 'A4', margin: 50 });
+        doc.pipe(res);
 
-                    ${education ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Образование</div>
-                        <div class="preview-content">${education.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
-
-                    ${experience ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Опит</div>
-                        <div class="preview-content">${experience.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
-
-                    ${text ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Повече за моя опит</div>
-                        <div class="preview-content">${text.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
-
-                    ${skills ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Умения</div>
-                        <div class="preview-content">${skills.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
-
-                    ${languages ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Езици</div>
-                        <div class="preview-content">${languages}</div>
-                    </div>` : ''}
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-    `;
-
-    let browser;
-    try {
-        console.log("Generating PDF - Full Name:", fullName);
-        
-        if (!fullName) {
-            console.warn("Warning: No fullName provided");
-        }
-
-        // Launch browser with proper options for production environments (Render compatible)
-        const launchOptions = {
-            headless: 'new',
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
+        const addSection = (title, content) => {
+            if (!content) return;
+            doc.moveDown();
+            doc.fontSize(12).fillColor('#09989e').text(title.toUpperCase());
+            doc.moveDown(0.3);
+            doc.fontSize(10).fillColor('#000000').text(String(content), {
+                width: doc.page.width - doc.options.margins.left - doc.options.margins.right
+            });
         };
-        
-        // On Render, set the correct Chromium executable path
-        if (process.env.RENDER === 'true') {
-            // Check which chromium is installed
-            const chromiumPaths = ['/usr/bin/chromium', '/usr/bin/chromium-browser'];
-            const fs = require('fs');
-            
-            for (const path of chromiumPaths) {
-                if (fs.existsSync(path)) {
-                    launchOptions.executablePath = path;
-                    console.log(`Using Chromium at: ${path}`);
-                    break;
-                }
-            }
-            
-            if (!launchOptions.executablePath) {
-                console.warn('Warning: Could not find Chromium executable. Puppeteer will attempt to use bundled version.');
-            }
+
+        // Header
+        doc.fontSize(22).fillColor('#8274A1').text(fullName || 'CV', { align: 'left' });
+        doc.moveDown(0.5);
+
+        const contactParts = [];
+        if (email) contactParts.push(email);
+        if (phone) contactParts.push(phone);
+        if (city) contactParts.push(city);
+        if (date) contactParts.push(date);
+        if (contactParts.length) {
+            doc.fontSize(10).fillColor('#333333').text(contactParts.join(' | '));
         }
-        
-        browser = await puppeteer.launch(launchOptions);
 
-        const page = await browser.newPage();
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+        // Sections
+        addSection('За мен', summary);
+        addSection('Образование', education);
+        addSection('Опит', experience);
+        addSection('Повече за моя опит', text);
+        addSection('Умения', skills);
+        addSection('Езици', languages);
 
-        // Generate PDF buffer
-        const pdfBuffer = await page.pdf({
-            format: 'A4',
-            margin: { top: 0, bottom: 0, left: 0, right: 0 },
-            printBackground: true
-        });
-
-        await browser.close();
-
-        // Send PDF to client
-        res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`
-        });
-        res.send(pdfBuffer);
-        console.log("CV PDF generated and sent successfully");
-
+        doc.end();
     } catch (error) {
-        if (browser) {
-            await browser.close().catch(() => {});
+        console.error('Error generating CV PDF with pdfkit:', error);
+        if (!res.headersSent) {
+            res.status(500).json({ error: 'Error generating PDF' });
+        } else {
+            res.end();
         }
-        console.error("PDF Generation Error Details:", {
-            message: error.message,
-            stack: error.stack,
-            fullName: fullName
-        });
-        res.status(500).json({ 
-            error: "Error generating PDF",
-            details: error.message 
-        });
     }
 });
 
-// Generate Portfolio PDF Route
-app.post('/generate-portfolio', async (req, res) => {
-    console.log("Generating Portfolio PDF...");
+// Generate Portfolio PDF Route (using pdfkit instead of Puppeteer)
+app.post('/generate-portfolio', (req, res) => {
+    console.log("Generating Portfolio PDF with pdfkit...");
     const { full_name, email, phone, education, experience } = req.body;
 
-    let css = '';
     try {
-        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
-    } catch (e) {
-        console.error("Could not read CV_maker.css", e);
-    }
-    const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-        <style>
-            ${css}
-            body { background: white; margin: 0; padding: 0; }
-            .cv-paper {
-                box-shadow: none;
-                margin: 0;
-                max-width: none;
-                width: 100%;
-                min-height: 100vh;
-                padding: 40px;
-            }
-            /* Ensure background colors print correctly */
-            * { -webkit-print-color-adjust: exact; }
-            
-            /* Portfolio specific overrides reusing CV classes */
-            .preview-header { text-align: center; border-bottom: 2px solid #09989e; display: block; }
-            .preview-name { color: #8274A1; font-size: 36px; text-align: center; }
-            .preview-contact { justify-content: center; margin-top: 10px; }
-        </style>
-    </head>
-    <body>
-        <div class="cv-preview-side" style="padding:0; background:white; display:block;">
-            <div class="cv-paper default landscape">
-                <div class="preview-header">
-                    <div class="preview-name">${full_name || 'Portfolio'}</div>
-                    <div class="preview-contact">
-                        ${email ? `<span>${email}</span>` : ''}
-                        ${phone ? ` | <span>${phone}</span>` : ''}
-                    </div>
-                </div>
+        const fileName = `Portfolio_${(full_name || 'user').replace(/\s+/g, '_')}.pdf`;
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
 
-                <div class="main-content-card">
-                    ${education ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Образование</div>
-                        <div class="preview-content">${education.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
+        const doc = new PDFDocument({ size: 'A4', margin: 50, layout: 'portrait' });
+        doc.pipe(res);
 
-                    ${experience ? `
-                    <div class="preview-section">
-                        <div class="preview-section-title">Професионален Опит & Проекти</div>
-                        <div class="preview-content">${experience.replace(/\n/g, '<br>')}</div>
-                    </div>` : ''}
-                    
-                    <div style="margin-top: 50px; text-align: center; font-size: 12px; color: #aaa;">
-                        Създадено с TeenCareer Portfolio Maker
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-    `;
-
-    let browser;
-    try {
-        console.log("Generating Portfolio PDF - Full Name:", full_name);
-        
-        // Launch browser with proper options for production environments (Render compatible)
-        const launchOptions = {
-            headless: 'new',
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
+        const addSection = (title, content) => {
+            if (!content) return;
+            doc.moveDown();
+            doc.fontSize(12).fillColor('#09989e').text(title.toUpperCase());
+            doc.moveDown(0.3);
+            doc.fontSize(10).fillColor('#000000').text(String(content), {
+                width: doc.page.width - doc.options.margins.left - doc.options.margins.right
+            });
         };
-        
-        // On Render, set the correct Chromium executable path
-        if (process.env.RENDER === 'true') {
-            // Check which chromium is installed
-            const chromiumPaths = ['/usr/bin/chromium', '/usr/bin/chromium-browser'];
-            const fs = require('fs');
-            
-            for (const path of chromiumPaths) {
-                if (fs.existsSync(path)) {
-                    launchOptions.executablePath = path;
-                    console.log(`Using Chromium at: ${path}`);
-                    break;
-                }
-            }
-            
-            if (!launchOptions.executablePath) {
-                console.warn('Warning: Could not find Chromium executable. Puppeteer will attempt to use bundled version.');
-            }
+
+        // Header
+        doc.fontSize(24).fillColor('#8274A1').text(full_name || 'Portfolio', { align: 'center' });
+        doc.moveDown(0.5);
+
+        const contactParts = [];
+        if (email) contactParts.push(email);
+        if (phone) contactParts.push(phone);
+        if (contactParts.length) {
+            doc.fontSize(10).fillColor('#333333').text(contactParts.join(' | '), { align: 'center' });
         }
-        
-        browser = await puppeteer.launch(launchOptions);
 
-        const page = await browser.newPage();
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+        // Sections
+        addSection('Образование', education);
+        addSection('Професионален Опит & Проекти', experience);
 
-        // Generate PDF buffer
-        const pdfBuffer = await page.pdf({
-            format: 'A4',
-            margin: { top: 0, bottom: 0, left: 0, right: 0 },
-            printBackground: true
-        });
+        doc.moveDown(2);
+        doc.fontSize(8).fillColor('#aaaaaa').text('Създадено с TeenCareer Portfolio Maker', { align: 'center' });
 
-        await browser.close();
-
-        // Send PDF to client
-        res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`
-        });
-        res.send(pdfBuffer);
-        console.log("Portfolio PDF generated and sent successfully");
-
+        doc.end();
     } catch (error) {
-        if (browser) {
-            await browser.close().catch(() => {});
+        console.error('Error generating Portfolio PDF with pdfkit:', error);
+        if (!res.headersSent) {
+            res.status(500).json({ error: 'Error generating portfolio PDF' });
+        } else {
+            res.end();
         }
-        console.error("Portfolio PDF Error:", error);
-        res.status(500).json({ 
-            error: "Error generating portfolio",
-            details: error.message 
-        });
     }
 });
 // CV Upload & Career Analysis
