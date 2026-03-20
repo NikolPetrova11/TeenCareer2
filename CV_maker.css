@@ -1104,7 +1104,7 @@ header {
 @media (max-width: 425px) {
     /* Hero */
     .phone img { width: 62%; top: 36%; left: 30%; }
-    .hero .text { margin-top: 22%; margin-left: 52%; }
+    .hero .text { margin-top: 30%; margin-left: 52%; }
     .hero h1 { font-size: 20px; }
     
     /* Steps */
@@ -1130,7 +1130,7 @@ header {
     /* Hero */
     .hero .background { width: 194%; height: 68%; }
     .phone img { width: 63%; top: 36%; left: 28%; }
-    .hero .text { margin-top: 33%; margin-left: 50%; }
+    .hero .text { margin-top: 34%; margin-left: 50%; }
     .hero h1, .hero h2 { font-size: 19px; }
     .hero p { margin-top: 7%; font-size: 11px; }
     .button { margin-top: 41%; }
