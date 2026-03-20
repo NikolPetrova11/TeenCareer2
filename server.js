@@ -13,7 +13,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const { HfInference } = require('@huggingface/inference');
-const pdf = require('html-pdf');
+const puppeteer = require('puppeteer');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
@@ -496,40 +496,44 @@ app.post('/generate-pdf', async (req, res) => {
     </html>
     `;
 
+    let browser;
     try {
         console.log("Generating PDF - Full Name:", fullName);
         
-        // Check if we have the required data
         if (!fullName) {
             console.warn("Warning: No fullName provided");
         }
 
-        // Use html-pdf to convert HTML to PDF
-        const options = {
-            format: 'A4',
-            margin: '0',
-            base: `file://${__dirname}/`
-        };
-
-        pdf.create(htmlContent, options).toBuffer((err, buffer) => {
-            if (err) {
-                console.error("PDF Generation Error:", err);
-                return res.status(500).json({ 
-                    error: "Error generating PDF",
-                    details: err.message 
-                });
-            }
-
-            // Send PDF to client
-            res.set({
-                'Content-Type': 'application/pdf',
-                'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`
-            });
-            res.send(buffer);
-            console.log("CV PDF generated and sent successfully");
+        // Launch browser with proper options for production environments
+        browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
         });
 
+        const page = await browser.newPage();
+        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+        // Generate PDF buffer
+        const pdfBuffer = await page.pdf({
+            format: 'A4',
+            margin: { top: 0, bottom: 0, left: 0, right: 0 },
+            printBackground: true
+        });
+
+        await browser.close();
+
+        // Send PDF to client
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="CV_${fullName || 'user'}.pdf"`
+        });
+        res.send(pdfBuffer);
+        console.log("CV PDF generated and sent successfully");
+
     } catch (error) {
+        if (browser) {
+            await browser.close().catch(() => {});
+        }
         console.error("PDF Generation Error Details:", {
             message: error.message,
             stack: error.stack,
@@ -613,35 +617,40 @@ app.post('/generate-portfolio', async (req, res) => {
     </html>
     `;
 
+    let browser;
     try {
         console.log("Generating Portfolio PDF - Full Name:", full_name);
         
-        // Use html-pdf to convert HTML to PDF
-        const options = {
-            format: 'A4',
-            margin: '0',
-            base: `file://${__dirname}/`
-        };
-
-        pdf.create(htmlContent, options).toBuffer((err, buffer) => {
-            if (err) {
-                console.error("Portfolio PDF Generation Error:", err);
-                return res.status(500).json({ 
-                    error: "Error generating portfolio",
-                    details: err.message 
-                });
-            }
-
-            // Send PDF to client
-            res.set({
-                'Content-Type': 'application/pdf',
-                'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`
-            });
-            res.send(buffer);
-            console.log("Portfolio PDF generated and sent successfully");
+        // Launch browser with proper options for production environments
+        browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
         });
 
+        const page = await browser.newPage();
+        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+        // Generate PDF buffer
+        const pdfBuffer = await page.pdf({
+            format: 'A4',
+            margin: { top: 0, bottom: 0, left: 0, right: 0 },
+            printBackground: true
+        });
+
+        await browser.close();
+
+        // Send PDF to client
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="Portfolio_${full_name || 'user'}.pdf"`
+        });
+        res.send(pdfBuffer);
+        console.log("Portfolio PDF generated and sent successfully");
+
     } catch (error) {
+        if (browser) {
+            await browser.close().catch(() => {});
+        }
         console.error("Portfolio PDF Error:", error);
         res.status(500).json({ 
             error: "Error generating portfolio",
