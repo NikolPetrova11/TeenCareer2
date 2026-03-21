@@ -873,7 +873,7 @@ header {
 
 .social {
     position: relative;
-    z-index: 1001;
+    z-index: 1;
     margin-top: -4.9%;
     margin-left: 34%;
     max-width: 165px;
@@ -881,7 +881,7 @@ header {
 
 .social1 {
     position: relative;
-    z-index: 1001;
+    z-index: 999;
     margin-top: -6.8%;
     margin-left: 56%;
     max-width: 50px;
@@ -889,7 +889,7 @@ header {
 
 .social2 {
     position: relative;
-    z-index: 1001;
+    z-index: 999;
     margin-top: -0.2%;
     margin-left: 58.8%;
     max-width: 130px;

@@ -26,22 +26,36 @@ const app = express();
 
 // DataBase connection
 // Development mode: Use mock database if real connection fails
-const dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/teencareer2";
-let isConnected = false;
-let useMockDB = false;
+const dbURI = "mongodb+srv://new-user30:vUlh2FGKl0Fjn4Ua@cluster0.ylxecao.mongodb.net/?appName=Cluster0";
 
 // Sessions
-const sessionStore = new MongoStore({ mongoUrl: dbURI }).on('error', (err) => {
-    console.warn('MongoStore connection error:', err.message);
-});
-
-app.use(session({
+const baseSessionConfig = {
     secret: process.env.SESSION_SECRET || 'your_secret_key',
     resave: false,
     saveUninitialized: false,
-    store: sessionStore,
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
-}));
+};
+
+const buildSessionMiddleware = () => {
+    if (useMockDB) {
+        console.warn('Using in-memory session store because MongoDB is unavailable.');
+        return session(baseSessionConfig);
+    }
+
+    const sessionStore = MongoStore.create({ mongoUrl: dbURI });
+    sessionStore.on('error', (err) => {
+        console.warn('MongoStore connection error:', err.message);
+    });
+
+    return session({
+        ...baseSessionConfig,
+        store: sessionStore
+    });
+};
+
+let sessionMiddleware = session(baseSessionConfig);
+
+app.use((req, res, next) => sessionMiddleware(req, res, next));
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -659,9 +673,29 @@ app.get('/get-favorites', async (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
-const connectDB = () => {
+const connectDB = async () => {
+  try {
+    await mongoose.connect(dbURI, {
+      retryWrites: true,
+      w: 'majority',
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 10000
+    });
+
+    console.log('Connected to MongoDB.');
+    isConnected = true;
+    useMockDB = false;
+    return;
+  } catch (err) {
+    console.warn('MongoDB connection failed, running in MOCK MODE (testing only)');
+    console.warn('Database operations are simulated. Data will not persist.');
+    console.warn(`MongoDB error: ${err.message}`);
+    useMockDB = true;
+    isConnected = true;
+    return;
+  }
+
   mongoose.connect(dbURI, {
     retryWrites: true,
     w: 'majority',
@@ -683,7 +717,14 @@ const connectDB = () => {
     });
 };
 
-connectDB();
+const startServer = async () => {
+  await connectDB();
+  sessionMiddleware = buildSessionMiddleware();
+
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+};
+
+startServer();
 setInterval(() => {
   if (!isConnected && mongoose.connection.readyState === 0) {
     console.log('Attempting to reconnect to MongoDB...');
