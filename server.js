@@ -13,7 +13,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const { HfInference } = require('@huggingface/inference');
-const PDFDocument = require('pdfkit');
+const pdf = require('html-pdf');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
@@ -25,67 +25,55 @@ process.on('unhandledRejection', (reason, promise) => {
 const app = express();
 
 // DataBase connection
-// Development mode: Use mock database if real connection fails
-const dbURI = "mongodb+srv://new-user30:vUlh2FGKl0Fjn4Ua@cluster0.ylxecao.mongodb.net/?appName=Cluster0";
+const dbURI = process.env.MONGODB_URI;
 
 // Sessions
-const baseSessionConfig = {
+const sessionStore = new MongoStore({ mongoUrl: dbURI }).on('error', (err) => {
+    console.warn('MongoStore connection error:', err.message);
+});
+
+app.use(session({
     secret: process.env.SESSION_SECRET || 'your_secret_key',
     resave: false,
     saveUninitialized: false,
+    store: sessionStore,
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
-};
-
-const buildSessionMiddleware = () => {
-    if (useMockDB) {
-        console.warn('Using in-memory session store because MongoDB is unavailable.');
-        return session(baseSessionConfig);
-    }
-
-    const sessionStore = MongoStore.create({ mongoUrl: dbURI });
-    sessionStore.on('error', (err) => {
-        console.warn('MongoStore connection error:', err.message);
-    });
-
-    return session({
-        ...baseSessionConfig,
-        store: sessionStore
-    });
-};
-
-let sessionMiddleware = session(baseSessionConfig);
-
-app.use((req, res, next) => sessionMiddleware(req, res, next));
+}));
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// Nodemailer configuration (Gmail SMTP)
-let transporter = null;
-if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.warn("EMAIL_USER or EMAIL_PASS is not set. Verification emails will NOT be sent.");
-} else {
-    transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
-    });
+function buildPdfContentDisposition(prefix, name) {
+    const rawName = `${prefix}_${name || 'user'}.pdf`;
+    const asciiName = rawName
+        .normalize('NFKD')
+        .replace(/[^\x00-\x7F]/g, '')
+        .replace(/[^A-Za-z0-9._-]+/g, '_')
+        .replace(/_+/g, '_')
+        .replace(/^_|_$/g, '') || `${prefix}_user.pdf`;
 
-    // Verify Nodemailer connection on startup
-    transporter.verify((error, success) => {
-        if (error) {
-            console.error("Nodemailer configuration error:", error.message || error);
-        } else {
-            console.log("Server is ready to send emails via Nodemailer");
-        }
-    });
+    return `attachment; filename="${asciiName}"; filename*=UTF-8''${encodeURIComponent(rawName)}`;
 }
+
+// Nodemailer configuration
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
+// Verify Nodemailer connection on startup
+transporter.verify((error, success) => {
+    if (error) {
+        console.error("Nodemailer configuration error:", error);
+    } else {
+        console.log("Server is ready to send emails via Nodemailer");
+    }
+});
 
 // Chatbot API 
 app.post('/chat', async (req, res) => {
@@ -354,12 +342,7 @@ app.post('/register', async (req, res) => {
         
         await newUser.save();
 
-        // If mail transport is not configured, don't pretend email was sent
-        if (!transporter) {
-            console.warn('Registration: transporter is not configured, cannot send verification email.');
-            return res.send("<script>alert('Регистрацията е успешна, но в момента не можем да изпратим имейл за потвърждение. Свържете се с нас или опитайте по-късно.'); window.location='/';</script>");
-        }
-
+        // Send verification email in background (non-blocking)
         const verificationUrl = `${req.protocol}://${req.get('host')}/verify?token=${token}`;
         
         const mailOptions = {
@@ -371,14 +354,17 @@ app.post('/register', async (req, res) => {
                    <a href="${verificationUrl}" style="background-color: #09989e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Потвърди моя профил</a>`
         };
 
-        try {
-            const info = await transporter.sendMail(mailOptions);
-            console.log('Verification email sent:', info.response);
-            return res.send("<script>alert('Регистрацията е успешна! Проверете имейла си (и папката за спам) за линк за потвърждение.'); window.location='/';</script>");
-        } catch (mailErr) {
-            console.error('Error sending verification email:', mailErr);
-            return res.send("<script>alert('Регистрацията е успешна, но имаше проблем при изпращането на имейл за потвърждение. Опитайте отново по-късно или използвайте друг имейл.'); window.location='/';</script>");
-        }
+        // Send email asynchronously without waiting
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.error("Error sending verification email:", err);
+            } else {
+                console.log("Verification email sent:", info.response);
+            }
+        });
+
+        // Return response immediately
+        res.send("<script>alert('Регистрацията е успешна! Проверете имейла си (и папката за спам) за линк за потвърждение.'); window.location='/';</script>");
     } catch (error) {
         console.error(error);
         res.status(500).send("Грешка при регистрацията.");
@@ -431,110 +417,248 @@ app.get('/edit-profile', redirectIfLoggedOut, (req, res) => {
     res.sendFile(path.join(__dirname, 'edit-profile.html'));
 });
 
-// Generate PDF Route (using pdfkit instead of Puppeteer)
-app.post('/generate-pdf', (req, res) => {
-    console.log("Generating CV PDF with pdfkit...");
-    const { fullName, email, phone, city, education, experience, skills, languages, summary, date, text } = req.body;
+// Generate PDF Route
+app.post('/generate-pdf', async (req, res) => {
+    console.log("Generating CV PDF...");
+    const { fullName, email, phone, city, education, experience, skills, languages, summary, date, text, template } = req.body;
+
+    let css = '';
+    try {
+        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
+    } catch (e) {
+        console.error("Could not read CV_maker.css", e);
+    }
+
+    const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            ${css}
+            body { background: white; margin: 0; padding: 0; }
+            .cv-paper {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+                width: 100%;
+                min-height: 100vh;
+                padding: 40px;
+            }
+            /* Ensure background colors print correctly */
+            * { -webkit-print-color-adjust: exact; }
+        </style>
+    </head>
+    <body>
+        <div class="cv-preview-side" style="padding:0; background:white; display:block;">
+            <div class="cv-paper ${template || 'default'}">
+                <div class="preview-header">
+                    <div class="header-info">
+                        <div class="preview-name">${fullName || ''}</div>
+                        <div class="preview-contact">
+                            ${email ? `<span>${email}</span> | ` : ''}
+                            ${phone ? `<span>${phone}</span> | ` : ''}
+                            ${city ? `<span>${city}</span> | ` : ''}
+                            ${date ? `<span>${date}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="main-content-card">
+                    ${summary ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">За мен</div>
+                        <div class="preview-content">${summary.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${education ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Образование</div>
+                        <div class="preview-content">${education.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${experience ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Опит</div>
+                        <div class="preview-content">${experience.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${text ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Повече за моя опит</div>
+                        <div class="preview-content">${text.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${skills ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Умения</div>
+                        <div class="preview-content">${skills.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+
+                    ${languages ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Езици</div>
+                        <div class="preview-content">${languages}</div>
+                    </div>` : ''}
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
 
     try {
-        const fileName = `CV_${(fullName || 'user').replace(/\s+/g, '_')}.pdf`;
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+        console.log("Generating PDF - Full Name:", fullName);
+        
+        // Check if we have the required data
+        if (!fullName) {
+            console.warn("Warning: No fullName provided");
+        }
 
-        const doc = new PDFDocument({ size: 'A4', margin: 50 });
-        doc.pipe(res);
-
-        const addSection = (title, content) => {
-            if (!content) return;
-            doc.moveDown();
-            doc.fontSize(12).fillColor('#09989e').text(title.toUpperCase());
-            doc.moveDown(0.3);
-            doc.fontSize(10).fillColor('#000000').text(String(content), {
-                width: doc.page.width - doc.options.margins.left - doc.options.margins.right
-            });
+        // Use html-pdf to convert HTML to PDF
+        const options = {
+            format: 'A4',
+            margin: '0',
+            base: `file://${__dirname}/`
         };
 
-        // Header
-        doc.fontSize(22).fillColor('#8274A1').text(fullName || 'CV', { align: 'left' });
-        doc.moveDown(0.5);
+        pdf.create(htmlContent, options).toBuffer((err, buffer) => {
+            if (err) {
+                console.error("PDF Generation Error:", err);
+                return res.status(500).json({ 
+                    error: "Error generating PDF",
+                    details: err.message 
+                });
+            }
 
-        const contactParts = [];
-        if (email) contactParts.push(email);
-        if (phone) contactParts.push(phone);
-        if (city) contactParts.push(city);
-        if (date) contactParts.push(date);
-        if (contactParts.length) {
-            doc.fontSize(10).fillColor('#333333').text(contactParts.join(' | '));
-        }
+            // Send PDF to client
+            res.set({
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': buildPdfContentDisposition('CV', fullName)
+            });
+            res.send(buffer);
+            console.log("CV PDF generated and sent successfully");
+        });
 
-        // Sections
-        addSection('За мен', summary);
-        addSection('Образование', education);
-        addSection('Опит', experience);
-        addSection('Повече за моя опит', text);
-        addSection('Умения', skills);
-        addSection('Езици', languages);
-
-        doc.end();
     } catch (error) {
-        console.error('Error generating CV PDF with pdfkit:', error);
-        if (!res.headersSent) {
-            res.status(500).json({ error: 'Error generating PDF' });
-        } else {
-            res.end();
-        }
+        console.error("PDF Generation Error Details:", {
+            message: error.message,
+            stack: error.stack,
+            fullName: fullName
+        });
+        res.status(500).json({ 
+            error: "Error generating PDF",
+            details: error.message 
+        });
     }
 });
 
-// Generate Portfolio PDF Route (using pdfkit instead of Puppeteer)
-app.post('/generate-portfolio', (req, res) => {
-    console.log("Generating Portfolio PDF with pdfkit...");
+// Generate Portfolio PDF Route
+app.post('/generate-portfolio', async (req, res) => {
+    console.log("Generating Portfolio PDF...");
     const { full_name, email, phone, education, experience } = req.body;
 
+    let css = '';
     try {
-        const fileName = `Portfolio_${(full_name || 'user').replace(/\s+/g, '_')}.pdf`;
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+        css = fs.readFileSync(path.join(__dirname, 'CV_maker.css'), 'utf8');
+    } catch (e) {
+        console.error("Could not read CV_maker.css", e);
+    }
+    const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            ${css}
+            body { background: white; margin: 0; padding: 0; }
+            .cv-paper {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+                width: 100%;
+                min-height: 100vh;
+                padding: 40px;
+            }
+            /* Ensure background colors print correctly */
+            * { -webkit-print-color-adjust: exact; }
+            
+            /* Portfolio specific overrides reusing CV classes */
+            .preview-header { text-align: center; border-bottom: 2px solid #09989e; display: block; }
+            .preview-name { color: #8274A1; font-size: 36px; text-align: center; }
+            .preview-contact { justify-content: center; margin-top: 10px; }
+        </style>
+    </head>
+    <body>
+        <div class="cv-preview-side" style="padding:0; background:white; display:block;">
+            <div class="cv-paper default landscape">
+                <div class="preview-header">
+                    <div class="preview-name">${full_name || 'Portfolio'}</div>
+                    <div class="preview-contact">
+                        ${email ? `<span>${email}</span>` : ''}
+                        ${phone ? ` | <span>${phone}</span>` : ''}
+                    </div>
+                </div>
 
-        const doc = new PDFDocument({ size: 'A4', margin: 50, layout: 'portrait' });
-        doc.pipe(res);
+                <div class="main-content-card">
+                    ${education ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Образование</div>
+                        <div class="preview-content">${education.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
 
-        const addSection = (title, content) => {
-            if (!content) return;
-            doc.moveDown();
-            doc.fontSize(12).fillColor('#09989e').text(title.toUpperCase());
-            doc.moveDown(0.3);
-            doc.fontSize(10).fillColor('#000000').text(String(content), {
-                width: doc.page.width - doc.options.margins.left - doc.options.margins.right
-            });
+                    ${experience ? `
+                    <div class="preview-section">
+                        <div class="preview-section-title">Професионален Опит & Проекти</div>
+                        <div class="preview-content">${experience.replace(/\n/g, '<br>')}</div>
+                    </div>` : ''}
+                    
+                    <div style="margin-top: 50px; text-align: center; font-size: 12px; color: #aaa;">
+                        Създадено с TeenCareer Portfolio Maker
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+
+    try {
+        console.log("Generating Portfolio PDF - Full Name:", full_name);
+        
+        // Use html-pdf to convert HTML to PDF
+        const options = {
+            format: 'A4',
+            margin: '0',
+            base: `file://${__dirname}/`
         };
 
-        // Header
-        doc.fontSize(24).fillColor('#8274A1').text(full_name || 'Portfolio', { align: 'center' });
-        doc.moveDown(0.5);
+        pdf.create(htmlContent, options).toBuffer((err, buffer) => {
+            if (err) {
+                console.error("Portfolio PDF Generation Error:", err);
+                return res.status(500).json({ 
+                    error: "Error generating portfolio",
+                    details: err.message 
+                });
+            }
 
-        const contactParts = [];
-        if (email) contactParts.push(email);
-        if (phone) contactParts.push(phone);
-        if (contactParts.length) {
-            doc.fontSize(10).fillColor('#333333').text(contactParts.join(' | '), { align: 'center' });
-        }
+            // Send PDF to client
+            res.set({
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': buildPdfContentDisposition('Portfolio', full_name)
+            });
+            res.send(buffer);
+            console.log("Portfolio PDF generated and sent successfully");
+        });
 
-        // Sections
-        addSection('Образование', education);
-        addSection('Професионален Опит & Проекти', experience);
-
-        doc.moveDown(2);
-        doc.fontSize(8).fillColor('#aaaaaa').text('Създадено с TeenCareer Portfolio Maker', { align: 'center' });
-
-        doc.end();
     } catch (error) {
-        console.error('Error generating Portfolio PDF with pdfkit:', error);
-        if (!res.headersSent) {
-            res.status(500).json({ error: 'Error generating portfolio PDF' });
-        } else {
-            res.end();
-        }
+        console.error("Portfolio PDF Error:", error);
+        res.status(500).json({ 
+            error: "Error generating portfolio",
+            details: error.message 
+        });
     }
 });
 // CV Upload & Career Analysis
@@ -673,61 +797,29 @@ app.get('/get-favorites', async (req, res) => {
 });
 
 const PORT = 3000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+let isConnected = false;
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(dbURI, {
-      retryWrites: true,
-      w: 'majority',
-      serverSelectionTimeoutMS: 5000,
-      connectTimeoutMS: 10000
-    });
-
-    console.log('Connected to MongoDB.');
-    isConnected = true;
-    useMockDB = false;
-    return;
-  } catch (err) {
-    console.warn('MongoDB connection failed, running in MOCK MODE (testing only)');
-    console.warn('Database operations are simulated. Data will not persist.');
-    console.warn(`MongoDB error: ${err.message}`);
-    useMockDB = true;
-    isConnected = true;
-    return;
-  }
-
+const connectDB = () => {
   mongoose.connect(dbURI, {
     retryWrites: true,
-    w: 'majority',
-    serverSelectionTimeoutMS: 5000,
-    connectTimeoutMS: 10000
+    w: 'majority'
   })
     .then(() => {
-      console.log('✓ Connected to MongoDB!');
+      console.log('Connected to MongoDB Atlas!');
       isConnected = true;
-      useMockDB = false;
     })
     .catch((err) => {
-      if (!isConnected && !useMockDB) {
-        console.warn('⚠ MongoDB connection failed, running in MOCK MODE (testing only)');
-        console.warn('Database operations are simulated. Data will not persist.');
-        useMockDB = true;
-        isConnected = true; // Mark as ready even in mock mode
+      if (!isConnected) {
+        console.error('Error connecting to MongoDB:', err.message);
+        console.log('Server is running but database connection failed. Retrying in 10 seconds...');
       }
     });
 };
 
-const startServer = async () => {
-  await connectDB();
-  sessionMiddleware = buildSessionMiddleware();
-
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-};
-
-startServer();
+connectDB();
 setInterval(() => {
   if (!isConnected && mongoose.connection.readyState === 0) {
-    console.log('Attempting to reconnect to MongoDB...');
     connectDB();
   }
 }, 10000);

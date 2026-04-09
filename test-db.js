@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const dbURI = process.env.MONGODB_URI || "mongodb+srv://new-user31:pbOLxEJKudngaIZY@cluster0.ylxecao.mongodb.net/?retryWrites=true&w=majority&authSource=admin";
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/teencareer2";
 
 console.log("Testing MongoDB connection...");
 console.log("URI:", dbURI.replace(/password|pbOLxEJKudngaIZY/g, '****'));
