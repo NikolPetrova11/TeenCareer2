@@ -4,8 +4,6 @@ const cron = require('node-cron');
 
 async function runScraper() {
     console.log("Scraping started at:", new Date().toLocaleString());
-    
-    // Read existing jobs to preserve manually added ones
     let existingJobs = [];
     const customJobs = [];
     
@@ -14,7 +12,6 @@ async function runScraper() {
             const fileContent = fs.readFileSync('./jobs.json', 'utf8');
             existingJobs = JSON.parse(fileContent);
             
-            // Filter out jobs that were manually added (those with custom property)
             existingJobs.forEach(job => {
                 if (job.custom === true) {
                     customJobs.push(job);
@@ -52,7 +49,7 @@ async function runScraper() {
             });
         });
 
-        // Merge scraped jobs with custom jobs (custom jobs first)
+        // Merge scraped jobs with custom jobs 
         const allJobs = [...customJobs, ...jobs];
         
         // Save to jobs.json

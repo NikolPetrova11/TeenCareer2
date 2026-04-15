@@ -510,8 +510,6 @@ app.post('/generate-pdf', async (req, res) => {
 
     try {
         console.log("Generating PDF - Full Name:", fullName);
-        
-        // Check if we have the required data
         if (!fullName) {
             console.warn("Warning: No fullName provided");
         }
@@ -680,8 +678,6 @@ app.post('/api/analyze-cv', upload.single('cv'), async (req, res) => {
         if (!cvText || cvText.length < 50) {
             return res.status(400).json({ error: 'PDF-ът изглежда празен или не може да се прочете.' });
         }
-
-        // Изрязване на текста, ако е твърде дълъг (над 6000 символа), за да не гърми API-то
         if (cvText.length > 6000) {
             cvText = cvText.substring(0, 6000) + "...";
         }

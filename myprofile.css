@@ -227,7 +227,6 @@ body {
 .value {
 }
 
-/* saved lists */
 .saved-item {
     display: flex;
     justify-content: space-between;
@@ -406,7 +405,7 @@ body {
 
          
 
-    position: fixed;   /* стои винаги в горния ляв ъгъл */
+    position: fixed;  
 
     top: 20px;
 
@@ -608,13 +607,10 @@ body {
 
 .header {
 
-    padding-top: 120px; /* място за стрелката */
+    padding-top: 120px; 
 
 }
 
-
-
-/* На телефон – стрелката е по-малка, затова и разстоянието е по-малко */
 
 @media (max-width: 600px) {
 
@@ -626,9 +622,6 @@ body {
 
 }
 
-
-
-/* Много малки телефони */
 
 @media (max-width: 400px) {
 
@@ -684,7 +677,7 @@ body {
 
     .header {
 
-        margin-top: -30px;   /* ПРАВИЛНО РАЗСТОЯНИЕ ПОД СТРЕЛКАТА */
+        margin-top: -30px;   
 
         margin-bottom: 25px;
 

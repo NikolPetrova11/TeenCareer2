@@ -258,15 +258,13 @@
 </div>
 <script>
     // --- GLOBAL VARIABLES ---
-    let jobsData = []; // This starts empty
-    let fuse;          // This will hold the search engine
+    let jobsData = []; 
+    let fuse;         
     const options = {
         keys: ['title', 'city', 'company'],
         threshold: 0.3
     };
 
-    // --- STEP 1: FETCH DATA FROM YOUR SERVER ---
-    // This runs as soon as the page loads
     fetch('/jobs.json')
         .then(response => {
             if (!response.ok) throw new Error("Could not load jobs.json");
@@ -274,11 +272,9 @@
         })
         .then(data => {
             jobsData = data;
-            // Now that we have data, initialize Fuse.js
             fuse = new Fuse(jobsData, options); 
             console.log("Scraped jobs loaded into the search engine!");
             
-            // Optional: Update the info message to say we are ready
             document.querySelector('.info-message').innerText = `Намерени ${jobsData.length} обяви. Въведете град или професия.`;
         })
         .catch(err => {
@@ -286,29 +282,24 @@
             document.querySelector('.info-message').innerText = "Грешка при зареждане на данните.";
         });
 
-    // --- STEP 2: HANDLE SEARCH ---
     const form = document.querySelector('form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Safety check: Don't search if data hasn't loaded yet
         if (!fuse) return;
 
         const jobTitle = document.getElementById('job').value;
         const city = document.getElementById('city').value;
         const experience = document.getElementById('experience').value;
 
-        // Perform the Fuzzy Search using Fuse.js
         let results = jobTitle ? fuse.search(jobTitle).map(r => r.item) : jobsData;
 
-        // Filter by City (Normal filter)
         if (city) {
             results = results.filter(j => 
                 j.city.toLowerCase().includes(city.toLowerCase())
             );
         }
 
-        // Filter by Experience (LINQ-style filter)
         if (experience) {
             results = results.filter(j => j.experience <= parseInt(experience));
         }
@@ -316,7 +307,6 @@
         renderResults(results);
     });
 
-    // --- STEP 3: SHOW RESULTS IN THE TABLE ---
     function renderResults(results) {
         const container = document.querySelector('.container');
         const infoMsg = document.querySelector('.info-message');
@@ -361,13 +351,11 @@
         tableHtml += '</tbody></table>';
         container.insertAdjacentHTML('beforeend', tableHtml);
 
-        // Add event listeners to favorite buttons
         document.querySelectorAll('.favorite-btn').forEach(btn => {
             btn.addEventListener('click', toggleFavorite);
         });
     }
     
-    // Toggle favorite function
     async function toggleFavorite(e) {
         const btn = e.target;
         const title = btn.dataset.title;
