@@ -1,4 +1,5 @@
 # TeenCareer
+https://teencareer2.onrender.com/
 
 TeenCareer is a Node.js + Express web app aimed at helping teenagers and young people prepare for their first job. The project combines a static multi-page frontend with a backend that handles authentication, profile data, saved CVs/portfolios, favorite job listings, AI-assisted chat, and CV analysis.
 
